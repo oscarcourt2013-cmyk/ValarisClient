@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "StellarClient",
+	"id": "stellarclient",
 	"version": "${version}",
 	"name": "StellarClient",
 	"description": "All-in-One Minecraft client: PvP, performance, QoL, content creation, customization.",
