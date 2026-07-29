@@ -1,13 +1,13 @@
 package dev.stellarclient.core.design;
 
 /**
- * StellarClient v1.1 design tokens â€” spacing, radii, motion, typography scale.
+ * StellarClient v1.1 design tokens — spacing, radii, motion, typography scale.
  * Colors live on {@link dev.stellarclient.core.theme.Theme}; this class holds layout and motion.
  */
 public final class PrimeDesign {
 
     /** Synced from {@code gradle.properties} {@code mod_version} at build time. */
-    public static final String VERSION = PrimeVersion.VERSION;
+    public static final String VERSION = StellarVersion.VERSION;
     public static final String TAGLINE = "Premium Minecraft Client";
 
     // Spacing (px, GUI scaled)

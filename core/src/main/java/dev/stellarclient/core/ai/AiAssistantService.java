@@ -1,7 +1,7 @@
 package dev.stellarclient.core.ai;
 
 import dev.stellarclient.core.adapter.MinecraftAdapter;
-import dev.stellarclient.core.design.PrimeVersion;
+import dev.stellarclient.core.design.StellarVersion;
 import dev.stellarclient.core.module.Module;
 import dev.stellarclient.core.module.ModuleCategory;
 import dev.stellarclient.core.module.ModuleManager;
@@ -232,7 +232,7 @@ public final class AiAssistantService {
     private String systemPrompt() {
         StringBuilder sb = new StringBuilder();
         sb.append("Tu es Prime AI, l'assistant intÃ©grÃ© Ã  StellarClient (mod Fabric Minecraft). ");
-        sb.append("Version client: ").append(PrimeVersion.VERSION).append(". ");
+        sb.append("Version client: ").append(StellarVersion.VERSION).append(". ");
         sb.append("Tu aides sur: modules Prime, ClickGUI, HUD, performances, PvP/CPvP, survival, SMP Ã©conomie, stream privacy. ");
         sb.append("RÃ©ponds de faÃ§on courte et actionnable (listes / Ã©tapes). ");
         sb.append("Cite les modules par leur nom exact. Ne invente pas de modules absents du catalogue. ");

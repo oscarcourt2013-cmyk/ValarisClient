@@ -3,7 +3,7 @@ package dev.stellarclient.core.serverapi;
 import com.google.gson.JsonObject;
 import dev.stellarclient.core.StellarClient;
 import dev.stellarclient.core.adapter.MinecraftAdapter;
-import dev.stellarclient.core.design.PrimeVersion;
+import dev.stellarclient.core.design.StellarVersion;
 import dev.stellarclient.core.notification.NotificationManager;
 import dev.stellarclient.core.servers.PartnerServers;
 import dev.stellarclient.core.social.SocialClient;
@@ -90,7 +90,7 @@ public final class ServerApiService {
         JsonObject obj = new JsonObject();
         obj.addProperty("t", ServerApiProtocol.T_HANDSHAKE);
         obj.addProperty("client", ServerApiProtocol.CLIENT_NAME);
-        obj.addProperty("version", PrimeVersion.VERSION);
+        obj.addProperty("version", StellarVersion.VERSION);
         obj.addProperty("protocol", ServerApiProtocol.PROTOCOL);
         String uuid = adapter.playerUuid();
         obj.addProperty("account", uuid != null ? uuid : "");
@@ -159,7 +159,7 @@ public final class ServerApiService {
         JsonObject profile = new JsonObject();
         profile.addProperty("t", ServerApiProtocol.T_PROFILE);
         profile.addProperty("client", ServerApiProtocol.CLIENT_NAME);
-        profile.addProperty("version", PrimeVersion.VERSION);
+        profile.addProperty("version", StellarVersion.VERSION);
         profile.addProperty("protocol", ServerApiProtocol.PROTOCOL);
         profile.addProperty("level", account.getLevel());
         profile.addProperty("xp", account.getXP());
