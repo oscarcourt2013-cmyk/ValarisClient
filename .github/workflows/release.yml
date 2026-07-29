@@ -1,0 +1,67 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: |
+            21
+            25
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: launcher/package-lock.json
+
+      - name: Build Prime Client mods
+        shell: pwsh
+        run: |
+          .\gradlew :mc-1.21.11:build :mc-26.2:build --no-daemon
+
+      - name: Install launcher dependencies
+        working-directory: launcher
+        run: npm ci
+
+      - name: Build launcher installer
+        working-directory: launcher
+        run: npm run dist
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Collect release assets
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path release-bundle | Out-Null
+          Copy-Item launcher/release/*.exe release-bundle/ -ErrorAction SilentlyContinue
+          foreach ($dir in @('mc-1.21.11', 'mc-26.2')) {
+            Get-ChildItem "$dir/build/libs/prime-client-*.jar" |
+              Where-Object { $_.Name -notmatch 'sources|dev' } |
+              Copy-Item -Destination release-bundle/
+          }
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release-bundle/*
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
