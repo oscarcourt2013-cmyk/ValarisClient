@@ -17,7 +17,7 @@ import dev.stellarclient.core.theme.Theme;
 import dev.stellarclient.core.theme.ThemeManager;
 
 /**
- * Records in-game video clips to {@code config/StellarClient/clips/*.mp4}.
+ * Records in-game video clips to {@code config/stellarclient/clips/*.mp4}.
  * StellarClient Launcher scans the same folder on the Media page.
  */
 public final class ClipToolsModule extends Module {
@@ -40,7 +40,7 @@ public final class ClipToolsModule extends Module {
 
     public ClipToolsModule(HudManager hud, ThemeManager themes, MinecraftAdapter adapter,
                            ClipRecorder recorder, KeybindManager keybinds) {
-        super("clip-recorder", "Clip Recorder", "Export MP4 clips to config/StellarClient/clips", ModuleCategory.CREATOR);
+        super("clip-recorder", "Clip Recorder", "Export MP4 clips to config/stellarclient/clips", ModuleCategory.CREATOR);
         this.recorder = recorder;
         this.adapter = adapter;
         this.overlay = hud.register(new OverlayElement(themes, recorder));

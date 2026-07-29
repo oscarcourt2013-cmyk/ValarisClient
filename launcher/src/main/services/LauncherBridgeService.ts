@@ -29,7 +29,7 @@ function launcherSkinsDir(): string {
 
 /**
  * Writes launcher state into the instance game dir so StellarClient mod picks it up
- * on next launch (`config/StellarClient/profiles/default.json`).
+ * on next launch (`config/stellarclient/profiles/default.json`).
  */
 export class LauncherBridgeService {
   async syncToInstance(instanceId: string): Promise<{ ok: boolean; error?: string }> {

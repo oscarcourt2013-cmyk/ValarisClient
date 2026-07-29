@@ -16,12 +16,13 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Detects StellarClient via {@code StellarClient:main} handshake.
+ * Detects StellarClient via {@code stellarclient:main} handshake.
  * Rejects spoofed names / protocol mismatches to reduce false positives.
  */
 public final class ClientDetectionService implements PluginMessageListener {
 
-    public static final String CHANNEL = "StellarClient:main";
+    /** Must stay lowercase and match ServerApiProtocol.CHANNEL on the mod side. */
+    public static final String CHANNEL = "stellarclient:main";
 
     private final StellarClientPlugin plugin;
     private final Database database;

@@ -6,7 +6,7 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.minecraft.client.Minecraft;
 
-/** Registers {@code StellarClient:main} and wires handshake sends. */
+/** Registers {@code stellarclient:main} and wires handshake sends. */
 public final class MainNetworking {
 
     private MainNetworking() {

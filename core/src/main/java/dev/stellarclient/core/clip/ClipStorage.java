@@ -5,7 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.UUID;
 
-/** Clip output directory: {@code config/StellarClient/clips/} (read by StellarClient Launcher). */
+/** Clip output directory: {@code config/stellarclient/clips/} (read by StellarClient Launcher). */
 public final class ClipStorage {
 
     private final Path clipsDir;

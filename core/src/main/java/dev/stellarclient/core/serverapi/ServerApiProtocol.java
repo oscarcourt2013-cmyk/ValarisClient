@@ -3,11 +3,12 @@ package dev.stellarclient.core.serverapi;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-/** Shared protocol constants and JSON helpers for {@code StellarClient:main}. */
+/** Shared protocol constants and JSON helpers for {@code stellarclient:main}. */
 public final class ServerApiProtocol {
 
     public static final int PROTOCOL = 1;
-    public static final String CHANNEL = "StellarClient:main";
+    /** Plugin channel id. Namespace must be lowercase and match the plugin side. */
+    public static final String CHANNEL = "stellarclient:main";
     public static final String CLIENT_NAME = "StellarClient";
 
     public static final String T_HANDSHAKE = "HANDSHAKE";

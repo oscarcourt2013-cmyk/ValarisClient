@@ -226,7 +226,7 @@ public final class PrimeHooks {
         dev.stellarclient.core.state.CustomSkinState.setPeer(playerId, png);
     }
 
-    /** JSON body from the {@code StellarClient:main} custom payload channel. */
+    /** JSON body from the {@code stellarclient:main} custom payload channel. */
     public static void onServerApiPayload(String json) {
         StellarClient client = tryGet();
         if (client != null) {

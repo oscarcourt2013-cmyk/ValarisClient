@@ -52,7 +52,8 @@ import java.nio.file.Path;
 /** StellarClient entry point and service root. */
 public final class StellarClient {
 
-    public static final String MOD_ID = "StellarClient";
+    /** Fabric mod id / Identifier namespace / config dir name. Must stay lowercase. */
+    public static final String MOD_ID = "stellarclient";
     public static final String NAME = "StellarClient";
     public static final Logger LOGGER = LoggerFactory.getLogger(NAME);
 

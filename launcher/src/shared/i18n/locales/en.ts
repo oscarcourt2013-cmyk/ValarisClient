@@ -791,7 +791,7 @@ export const en = {
   media: {
     openFolder: 'Open clips folder',
     refresh: 'Refresh',
-    replaysNote: 'Replays and clips appear here when exported by StellarClient (config/StellarClient/clips).'
+    replaysNote: 'Replays and clips appear here when exported by StellarClient (config/stellarclient/clips).'
   },
   logs: {
     title: 'Launch logs',

@@ -18,9 +18,9 @@ import java.util.stream.Stream;
 /**
  * Named configuration profiles (default, pvp, survival, ...).
  *
- * <p>Each profile is one JSON file under {@code config/StellarClient/profiles/}
+ * <p>Each profile is one JSON file under {@code config/stellarclient/profiles/}
  * holding the full state of every {@link ConfigManager} binding. Which profile
- * is active persists in {@code config/StellarClient/state.json}.</p>
+ * is active persists in {@code config/stellarclient/state.json}.</p>
  */
 public final class ProfileManager {
 

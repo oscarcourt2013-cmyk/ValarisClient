@@ -15,7 +15,7 @@ import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
 
 /**
- * Client-side bus for the {@code StellarClient:main} custom payload channel.
+ * Client-side bus for the {@code stellarclient:main} custom payload channel.
  */
 public final class ServerApiService {
 

@@ -77,7 +77,7 @@ public final class StellarClientPlugin extends JavaPlugin {
             getLogger().info("PlaceholderAPI hooked.");
         }
 
-        getLogger().info("StellarClient enabled â€” channel StellarClient:main");
+        getLogger().info("StellarClient enabled â€” channel stellarclient:main");
     }
 
     @Override

@@ -793,7 +793,7 @@ export const fr: LocaleCatalog = {
   media: {
     openFolder: 'Ouvrir le dossier clips',
     refresh: 'Actualiser',
-    replaysNote: 'Replays et clips apparaissent ici via StellarClient (config/StellarClient/clips).'
+    replaysNote: 'Replays et clips apparaissent ici via StellarClient (config/stellarclient/clips).'
   },
   logs: {
     title: 'Logs de lancement',
