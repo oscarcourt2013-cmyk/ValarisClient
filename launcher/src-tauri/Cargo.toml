@@ -1,4 +1,4 @@
-﻿[package]
+[package]
 name = "stellar-client-launcher"
 version = "2.1.4"
 description = "StellarClient Launcher â€” Rust / Tauri shell (pixel-identical UI)"

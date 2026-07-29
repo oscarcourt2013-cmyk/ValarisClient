@@ -1,4 +1,4 @@
-﻿use crate::accounts;
+use crate::accounts;
 use crate::bridge;
 use crate::content;
 use crate::discord;

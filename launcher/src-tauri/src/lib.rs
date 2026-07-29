@@ -1,4 +1,4 @@
-﻿mod accounts;
+mod accounts;
 mod bridge;
 mod commands;
 mod content;

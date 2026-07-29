@@ -1,4 +1,4 @@
-﻿use crate::error::AppError;
+use crate::error::AppError;
 use crate::paths;
 use crate::settings;
 use serde::{Deserialize, Serialize};

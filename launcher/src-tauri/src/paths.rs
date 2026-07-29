@@ -1,4 +1,4 @@
-﻿use std::path::PathBuf;
+use std::path::PathBuf;
 
 /// Same folder as Electron: `%APPDATA%/stellar-client-launcher` on Windows.
 pub fn user_data_dir() -> PathBuf {

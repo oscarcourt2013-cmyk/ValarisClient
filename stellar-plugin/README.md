@@ -1,4 +1,4 @@
-﻿# StellarClient (Paper / Purpur plugin)
+# StellarClient (Paper / Purpur plugin)
 
 Server-side bridge for the **StellarClient** Fabric mod.
 

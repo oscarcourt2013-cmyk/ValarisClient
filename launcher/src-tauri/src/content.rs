@@ -1,4 +1,4 @@
-﻿use crate::downloads;
+use crate::downloads;
 use crate::error::AppError;
 use crate::instances;
 use crate::options_txt;

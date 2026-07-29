@@ -1,4 +1,4 @@
-﻿//! Microsoft â†’ Xbox Live â†’ Minecraft Services OAuth (Prism-compatible client).
+//! Microsoft â†’ Xbox Live â†’ Minecraft Services OAuth (Prism-compatible client).
 use crate::accounts::{save, load, StoredMinecraftAccount};
 use crate::error::{AppError, OkResult};
 use base64::{engine::general_purpose::URL_SAFE_NO_PAD, Engine};

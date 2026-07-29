@@ -1,4 +1,4 @@
-﻿use crate::error::AppError;
+use crate::error::AppError;
 use crate::minecraft_targets::{resolve_target, DEFAULT_TARGET};
 use crate::paths;
 use chrono::Utc;

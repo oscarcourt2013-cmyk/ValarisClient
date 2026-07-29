@@ -1,4 +1,4 @@
-﻿# StellarClient â€” Site web
+# StellarClient â€” Site web
 
 Landing page marketing pour [StellarClient](https://github.com/oscarcourt2013-cmyk/StellarClient).
 

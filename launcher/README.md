@@ -1,4 +1,4 @@
-﻿# StellarClient Launcher
+# StellarClient Launcher
 
 Official launcher for **StellarClient** â€” premium Minecraft platform.
 

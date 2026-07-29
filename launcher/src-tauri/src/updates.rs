@@ -1,4 +1,4 @@
-﻿use crate::error::AppError;
+use crate::error::AppError;
 use crate::minecraft_targets::{is_prime_jar_for_prefix, DEFAULT_TARGET};
 use crate::paths;
 use serde_json::{json, Value};

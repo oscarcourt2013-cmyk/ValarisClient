@@ -1,4 +1,4 @@
-﻿//! Discord Rich Presence over named pipe (Windows) / unix socket.
+//! Discord Rich Presence over named pipe (Windows) / unix socket.
 use crate::error::AppError;
 use serde_json::json;
 use std::io::{Read, Write};

@@ -1,4 +1,4 @@
-﻿use crate::error::AppError;
+use crate::error::AppError;
 use crate::ecosystem;
 use crate::instances;
 use crate::paths;

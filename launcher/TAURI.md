@@ -1,4 +1,4 @@
-﻿# StellarClient Launcher â€” Rust (Tauri)
+# StellarClient Launcher â€” Rust (Tauri)
 
 Pixel-identical React UI. Shell is **Rust + WebView2** (low RAM). Electron remains available as `npm run dev`.
 

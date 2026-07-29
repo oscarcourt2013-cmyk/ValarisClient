@@ -1,4 +1,4 @@
-﻿//! Spawns the Node launch-bridge only while starting the game (not a persistent Electron shell).
+//! Spawns the Node launch-bridge only while starting the game (not a persistent Electron shell).
 use crate::accounts;
 use crate::bridge;
 use crate::ecosystem;

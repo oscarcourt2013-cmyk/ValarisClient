@@ -1,4 +1,4 @@
-﻿//! Installs Fabric API + StellarClient jar before launch (same behaviour as Electron ModPackService).
+//! Installs Fabric API + StellarClient jar before launch (same behaviour as Electron ModPackService).
 use crate::error::AppError;
 use crate::instances;
 use crate::minecraft_targets::{
