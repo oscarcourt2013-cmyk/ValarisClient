@@ -1,0 +1,94 @@
+﻿---
+const features = [
+  {
+    icon: 'âš”ï¸',
+    title: 'PvP & HUD',
+    desc: 'Crosshair editor, keystrokes, CPS/FPS, Target HUD, Speed HUD, TNT Timer, combo counter, cooldowns pearl/gapple â€” plus un HUD Editor (touche H) pour tout placer.'
+  },
+  {
+    icon: 'âš¡',
+    title: 'Performance',
+    desc: 'Entity culling, Dynamic FPS, Adaptive FPS, optimisations particules et chunks, profils RAM â€” plus de FPS sans sacrifier le visuel.'
+  },
+  {
+    icon: 'âœ¨',
+    title: 'QualitÃ© de vie',
+    desc: 'Zoom, waypoints, Auto Jump, Hand Shader, TAB Animation, preview shulker, Date/Day HUDs, auto-respawn â€” le confort au quotidien.'
+  },
+  {
+    icon: 'ðŸŽ¬',
+    title: 'CrÃ©ation & stream',
+    desc: 'CamÃ©ra cinÃ©matique, replays, clips, Stream Redactor (masquage noms/chat/HUD) et suite privacy pour streamer sans fuite.'
+  },
+  {
+    icon: 'ðŸ‘‘',
+    title: 'Ã‰cosystÃ¨me Prime',
+    desc: 'Discord RPC, cosmÃ©tiques (capes/ailes + physique de cape), badges & tiers, compte Prime, Social Hub, switcher de comptes et sync cloud.'
+  },
+  {
+    icon: 'ðŸŽ¨',
+    title: 'Skins custom (/skin)',
+    desc: 'Skin PNG via /skin url â€” visible pour toi et les autres joueurs Prime (LAN / monde intÃ©grÃ©). Pas un remplacement Essentials serveur pour tout le monde.'
+  },
+  {
+    icon: 'ðŸ¤–',
+    title: 'Assistant IA',
+    desc: 'Aide modules, packs et tips FPS dans le launcher et en jeu (/ai) â€” clÃ© Groq locale, rÃ©ponses prÃ©fÃ©rentiellement en franÃ§ais.'
+  },
+  {
+    icon: 'ðŸ›¡ï¸',
+    title: '100 % lÃ©gitime',
+    desc: 'Aucun cheat gameplay. StellarClient amÃ©liore l\'expÃ©rience visuelle et le confort â€” compatible avec les serveurs fair-play et le partenaire Elysia SMP.'
+  }
+]
+---
+
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-label">Pourquoi Prime</div>
+    <h2 class="section-title">Tout ce qu'un client premium<br /><span class="text-gradient">devrait offrir</span></h2>
+    <p class="section-lead" style="margin-bottom: 56px;">
+      Une alternative moderne Ã  Lunar, Badlion et Feather â€” conÃ§ue pour les joueurs exigeants qui veulent
+      performance, style et contrÃ´le sans compromis sur l'Ã©thique.
+    </p>
+
+    <div class="features__grid">
+      {features.map((f) => (
+        <article class="features__card glass-card">
+          <div class="features__icon">{f.icon}</div>
+          <h3>{f.title}</h3>
+          <p>{f.desc}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .features__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .features__card {
+    padding: 28px;
+  }
+
+  .features__icon {
+    font-size: 1.75rem;
+    margin-bottom: 16px;
+  }
+
+  .features__card h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .features__card p {
+    font-size: 0.9rem;
+    color: var(--prime-muted);
+    line-height: 1.65;
+  }
+</style>

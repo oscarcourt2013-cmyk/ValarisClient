@@ -1,0 +1,31 @@
+.prime-toggle {
+  width: 38px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  background: var(--prime-surface-3);
+  border: 1px solid var(--prime-border);
+  position: relative;
+  transition: background var(--duration-fast), border-color var(--duration-fast);
+  flex-shrink: 0;
+}
+
+.prime-toggle--on {
+  background: var(--prime-red);
+  border-color: var(--prime-red-bright);
+}
+
+.prime-toggle__knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  transition: transform var(--duration-fast) var(--ease-spring);
+  box-shadow: var(--shadow-sm);
+}
+
+.prime-toggle--on .prime-toggle__knob {
+  transform: translateX(16px);
+}

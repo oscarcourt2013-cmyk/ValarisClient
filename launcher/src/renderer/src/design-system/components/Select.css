@@ -1,0 +1,146 @@
+.prime-select {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  min-width: 0;
+  width: 100%;
+}
+
+.prime-select__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid var(--prime-border);
+  background: color-mix(in srgb, var(--prime-surface) 78%, transparent);
+  color: var(--prime-text);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.prime-select--sm .prime-select__trigger {
+  min-height: 36px;
+  padding: 0 10px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.prime-select__trigger:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--prime-red-bright) 35%, var(--prime-border));
+  background: color-mix(in srgb, var(--prime-surface) 92%, transparent);
+}
+
+.prime-select.is-open .prime-select__trigger,
+.prime-select__trigger:focus-visible {
+  outline: none;
+  border-color: color-mix(in srgb, var(--prime-red-bright) 55%, var(--prime-border));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--prime-red-bright) 16%, transparent);
+}
+
+.prime-select__trigger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.prime-select__value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.prime-select__value.is-placeholder {
+  color: var(--prime-muted);
+  font-weight: 500;
+}
+
+.prime-select__chevron {
+  flex-shrink: 0;
+  color: var(--prime-muted);
+  transition: transform 0.18s ease;
+}
+
+.prime-select.is-open .prime-select__chevron {
+  transform: rotate(180deg);
+  color: var(--prime-red-bright);
+}
+
+.prime-select__menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 80;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  border-radius: 14px;
+  border: 1px solid var(--prime-border);
+  background: color-mix(in srgb, var(--prime-surface) 96%, var(--prime-black));
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  max-height: 240px;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--prime-border) 80%, transparent) transparent;
+  animation: prime-select-in 0.14s ease;
+}
+
+@keyframes prime-select-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.prime-select__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--prime-text);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 550;
+  text-align: left;
+  cursor: pointer;
+}
+
+.prime-select__option:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--prime-red-bright) 12%, transparent);
+}
+
+.prime-select__option.is-active {
+  background: color-mix(in srgb, var(--prime-red-bright) 16%, transparent);
+  color: var(--prime-text);
+}
+
+.prime-select__option:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.prime-select__check {
+  flex-shrink: 0;
+  color: var(--prime-red-bright);
+}

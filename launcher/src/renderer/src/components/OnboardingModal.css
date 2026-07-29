@@ -1,0 +1,376 @@
+.onboard-wizard {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, color-mix(in srgb, var(--prime-red-bright) 28%, transparent), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 100% 100%, color-mix(in srgb, var(--prime-red) 12%, transparent), transparent 50%),
+    color-mix(in srgb, var(--prime-black) 92%, #000);
+}
+
+.onboard-wizard__glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--prime-border) 35%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--prime-border) 35%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%);
+  opacity: 0.35;
+}
+
+.onboard-wizard__panel {
+  position: relative;
+  width: min(720px, 100%);
+  max-height: min(92vh, 820px);
+  overflow: auto;
+  padding: 28px 28px 20px;
+  border-radius: 22px;
+  border: 1px solid var(--prime-border);
+  background: color-mix(in srgb, var(--prime-surface) 94%, transparent);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.onboard-wizard__header {
+  text-align: center;
+}
+
+.onboard-wizard__eyebrow {
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--prime-muted);
+}
+
+.onboard-wizard__brand {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--prime-text);
+}
+
+.onboard-wizard__subtitle {
+  margin: 8px 0 0;
+  color: var(--prime-muted);
+  font-size: var(--text-sm);
+}
+
+.onboard-wizard__progress {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.onboard-wizard__progress button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--prime-border);
+  background: transparent;
+  color: var(--prime-muted);
+  font: inherit;
+  font-size: 11px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.onboard-wizard__progress button span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  background: color-mix(in srgb, var(--prime-border) 70%, transparent);
+  color: var(--prime-text);
+}
+
+.onboard-wizard__progress button.is-active {
+  border-color: color-mix(in srgb, var(--prime-red-bright) 55%, var(--prime-border));
+  background: color-mix(in srgb, var(--prime-red-bright) 12%, transparent);
+  color: var(--prime-text);
+}
+
+.onboard-wizard__progress button.is-done span,
+.onboard-wizard__progress button.is-active span {
+  background: var(--prime-red-bright);
+  color: #fff;
+}
+
+.onboard-wizard__body {
+  min-height: 220px;
+}
+
+.onboard-wizard__step-head {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+  color: var(--prime-red-bright);
+}
+
+.onboard-wizard__step-head h2 {
+  margin: 0 0 4px;
+  font-size: 1.2rem;
+  color: var(--prime-text);
+}
+
+.onboard-wizard__step-head p {
+  margin: 0;
+  color: var(--prime-muted);
+  font-size: var(--text-sm);
+  line-height: 1.45;
+}
+
+.onboard-wizard__choices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.onboard-wizard__choice,
+.onboard-wizard__theme {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid var(--prime-border);
+  background: color-mix(in srgb, var(--prime-bg, #111) 40%, transparent);
+  color: var(--prime-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.onboard-wizard__choice strong {
+  font-size: 15px;
+}
+
+.onboard-wizard__choice span,
+.onboard-wizard__theme em {
+  font-size: 11px;
+  color: var(--prime-muted);
+  font-style: normal;
+}
+
+.onboard-wizard__choice.is-active,
+.onboard-wizard__theme.is-active {
+  border-color: var(--prime-red-bright);
+  background: color-mix(in srgb, var(--prime-red-bright) 14%, transparent);
+}
+
+.onboard-wizard__themes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 8px;
+}
+
+.onboard-wizard__theme {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.onboard-wizard__theme-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--swatch);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--swatch) 35%, transparent);
+}
+
+.onboard-wizard__ram {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 8px 4px;
+}
+
+.onboard-wizard__ram-value {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  justify-content: center;
+}
+
+.onboard-wizard__ram-value strong {
+  font-size: 2.4rem;
+  letter-spacing: -0.03em;
+}
+
+.onboard-wizard__ram-value span {
+  color: var(--prime-muted);
+  font-size: 14px;
+}
+
+.onboard-wizard__ram input[type='range'] {
+  width: 100%;
+  accent-color: var(--prime-red-bright);
+}
+
+.onboard-wizard__ram-scale {
+  display: flex;
+  justify-content: space-between;
+  color: var(--prime-muted);
+  font-size: 12px;
+}
+
+.onboard-wizard__folder {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.onboard-wizard__path {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--prime-border);
+  background: color-mix(in srgb, var(--prime-black) 35%, transparent);
+  color: var(--prime-text);
+  font-size: 12px;
+  word-break: break-all;
+}
+
+.onboard-wizard__folder-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.onboard-wizard__hint {
+  margin: 0;
+  color: var(--prime-muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.onboard-wizard__account {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 420px;
+}
+
+.onboard-wizard__signed-in {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--prime-red-bright) 40%, var(--prime-border));
+  background: color-mix(in srgb, var(--prime-red-bright) 10%, transparent);
+}
+
+.onboard-wizard__signed-in strong {
+  display: block;
+}
+
+.onboard-wizard__signed-in span {
+  color: var(--prime-muted);
+  font-size: 12px;
+}
+
+.onboard-wizard__check {
+  margin-left: auto;
+  color: var(--prime-red-bright);
+}
+
+.onboard-wizard__divider {
+  margin: 6px 0;
+  text-align: center;
+  color: var(--prime-muted);
+  font-size: 12px;
+}
+
+.onboard-wizard__field {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--prime-border);
+  background: color-mix(in srgb, var(--prime-black) 30%, transparent);
+  color: var(--prime-text);
+  font: inherit;
+}
+
+.onboard-wizard__error {
+  margin-top: 4px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: color-mix(in srgb, #ef4444 16%, transparent);
+  color: #fecaca;
+  font-size: 13px;
+}
+
+.onboard-wizard__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 4px;
+  border-top: 1px solid var(--prime-border);
+}
+
+.onboard-wizard__nav {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.onboard-wizard__skip {
+  border: none;
+  background: none;
+  color: var(--prime-muted);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.onboard-wizard__skip:hover {
+  color: var(--prime-text);
+}
+
+@media (max-width: 640px) {
+  .onboard-wizard {
+    padding: 12px;
+  }
+
+  .onboard-wizard__panel {
+    padding: 18px 16px 14px;
+  }
+
+  .onboard-wizard__progress {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .onboard-wizard__progress button {
+    font-size: 0;
+    align-items: center;
+    padding: 8px;
+  }
+
+  .onboard-wizard__progress button span {
+    font-size: 10px;
+  }
+
+  .onboard-wizard__choices {
+    grid-template-columns: 1fr;
+  }
+}

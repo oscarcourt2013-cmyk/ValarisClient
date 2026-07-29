@@ -1,0 +1,31 @@
+﻿name: StellarClient
+version: '${version}'
+main: com.stellarclient.StellarClientPlugin
+api-version: '1.21'
+authors: [Prime]
+description: Official StellarClient server bridge â€” detection, XP, rewards, network.
+website: https://github.com/oscarcourt2013-cmyk/StellarClient
+softdepend: [PlaceholderAPI, LuckPerms, Vault]
+
+commands:
+  prime:
+    description: StellarClient profile and admin tools
+    usage: /prime [reload|info|rewards|achievements]
+    aliases: [StellarClient, pclient]
+
+permissions:
+  StellarClient.verified:
+    description: Verified StellarClient user badge
+    default: false
+  StellarClient.admin:
+    description: Full admin access
+    default: op
+  StellarClient.reload:
+    description: Reload configuration
+    default: op
+  StellarClient.info:
+    description: View other players' Prime profiles
+    default: op
+  StellarClient.use:
+    description: Open /prime GUI
+    default: true

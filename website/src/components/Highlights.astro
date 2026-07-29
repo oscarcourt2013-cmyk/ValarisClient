@@ -1,0 +1,88 @@
+---
+const highlights = [
+  {
+    tag: 'Client',
+    title: 'Assistant IA & skins Prime',
+    desc: 'Module AI Assistant (/ai) pour l\'aide modules et builds. Skins custom via /skin — visibles entre joueurs Prime (LAN / intégré), pas Essentials serveur-wide.'
+  },
+  {
+    tag: 'Client',
+    title: 'Cosmétiques & HUD',
+    desc: 'Capes / ailes avec physique de cape, badges & tiers, HUD Editor, TNT Timer, Speed / Date / Day HUDs, Auto Jump, Hand Shader, TAB Animation.'
+  },
+  {
+    tag: 'Client',
+    title: 'Stream & social',
+    desc: 'Suite streamer (redact chat, masquage noms, HUD shield), Discord RPC, Social Hub, account switcher et Voice Chat intégré.'
+  },
+  {
+    tag: 'Launcher',
+    title: 'Import & partenaires',
+    desc: 'Importe tes instances depuis Prism, MultiMC, Lunar, Feather ou Dawn. Serveur partenaire Elysia SMP (elysiasmp.fr) épinglé en tête des favoris.'
+  },
+  {
+    tag: 'Launcher',
+    title: 'Écosystème complet',
+    desc: 'Onboarding, store Prime Coins, bibliothèque de skins, profil, amis & activité, téléchargements robustes, Modrinth / CurseForge et assistant IA pour les crashs.'
+  },
+  {
+    tag: 'Backend',
+    title: 'Compte & sync',
+    desc: 'Compte Prime, sync cloud des configs, catalogue store et présence — le client et le launcher partagent le même écosystème.'
+  }
+]
+---
+
+<section class="section highlights" id="nouveautes">
+  <div class="container">
+    <div class="section-label">À la une</div>
+    <h2 class="section-title">Fonctionnalités <span class="text-gradient">récentes</span></h2>
+    <p class="section-lead" style="margin-bottom: 48px;">
+      Ce qui a été livré récemment — client, launcher et écosystème — pour que le site colle au produit réel.
+    </p>
+
+    <div class="highlights__grid">
+      {highlights.map((h) => (
+        <article class="highlights__card glass-card">
+          <span class="highlights__tag">{h.tag}</span>
+          <h3>{h.title}</h3>
+          <p>{h.desc}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .highlights__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .highlights__card {
+    padding: 28px;
+  }
+
+  .highlights__tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--prime-red-bright);
+    margin-bottom: 12px;
+  }
+
+  .highlights__card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .highlights__card p {
+    font-size: 0.9rem;
+    color: var(--prime-muted);
+    line-height: 1.65;
+  }
+</style>

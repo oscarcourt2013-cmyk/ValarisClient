@@ -1,0 +1,9 @@
+﻿{
+  "name": "prime-launch-bridge",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "minecraft-java-core": "^4.2.7",
+    "stellar-client-launcher": "file:../.."
+  }
+}

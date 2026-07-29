@@ -1,0 +1,214 @@
+.instances {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.instances__loading {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.instances__actions-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.instances__create {
+  position: relative;
+}
+
+.instances__create .prime-btn {
+  gap: 8px;
+}
+
+.instances__create-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 40;
+  width: min(280px, 78vw);
+  padding: 6px;
+  border-radius: 14px;
+  border: 1px solid var(--prime-border);
+  background: color-mix(in srgb, var(--prime-surface) 96%, var(--prime-black));
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  animation: instances-menu-in 0.14s ease;
+}
+
+@keyframes instances-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.instances__create-menu button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--prime-text);
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.instances__create-menu button:hover {
+  background: color-mix(in srgb, var(--prime-red-bright) 12%, transparent);
+}
+
+.instances__create-menu strong {
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.instances__create-menu span {
+  font-size: 11px;
+  color: var(--prime-muted);
+}
+
+.instances__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.instances__row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 16px 16px 14px;
+  border-radius: 18px;
+  border: 1px solid transparent;
+  background: color-mix(in srgb, var(--prime-surface) 55%, transparent);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.instances__row:hover {
+  border-color: var(--prime-border);
+  background: color-mix(in srgb, var(--prime-surface) 82%, transparent);
+}
+
+.instances__row.is-default {
+  border-color: color-mix(in srgb, var(--prime-red-bright) 38%, var(--prime-border));
+  background: color-mix(in srgb, var(--prime-red-bright) 7%, var(--prime-surface));
+}
+
+.instances__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  color: var(--prime-red-bright);
+  background: color-mix(in srgb, var(--prime-red-bright) 12%, transparent);
+}
+
+.instances__body {
+  min-width: 0;
+}
+
+.instances__title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.instances__title-row h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.instances__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--prime-muted);
+}
+
+.instances__meta span {
+  opacity: 0.4;
+}
+
+.instances__played {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: var(--prime-muted);
+  opacity: 0.85;
+}
+
+.instances__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.instances__icon-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: 2px;
+}
+
+.instances__icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--prime-muted);
+  cursor: pointer;
+}
+
+.instances__icon-btn:hover {
+  color: var(--prime-text);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.instances__icon-btn--danger:hover {
+  color: var(--prime-red-bright);
+  background: color-mix(in srgb, var(--prime-red-bright) 12%, transparent);
+}
+
+@media (max-width: 860px) {
+  .instances__row {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .instances__actions {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding-left: 60px;
+  }
+}

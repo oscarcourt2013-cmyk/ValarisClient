@@ -1,0 +1,264 @@
+﻿---
+import PrimeLogo from './PrimeLogo.astro'
+---
+
+<section class="hero">
+  <div class="container hero__inner">
+    <div class="hero__badge reveal">Premium Minecraft Client Â· Fabric</div>
+    <h1 class="hero__title reveal reveal-delay-1">
+      Joue mieux.<br />
+      <span class="text-gradient">Joue Prime.</span>
+    </h1>
+    <p class="hero__lead reveal reveal-delay-2">
+      Client Minecraft all-in-one : 130+ modules, HUD Ã©ditable, cosmÃ©tiques, skins Prime-Ã -Prime,
+      assistant IA et launcher officiel â€” import d'instances, serveur partenaire Elysia SMP, store
+      et amis. 100&nbsp;% visuel et QoL, zÃ©ro triche.
+    </p>
+    <div class="hero__actions reveal reveal-delay-3">
+      <a class="btn btn-primary" href="#download">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+        TÃ©lÃ©charger le launcher
+      </a>
+      <a class="btn btn-ghost" href="https://github.com/oscarcourt2013-cmyk/StellarClient" target="_blank" rel="noopener noreferrer">
+        Voir sur GitHub
+      </a>
+    </div>
+
+    <div class="hero__stats reveal reveal-delay-4">
+      <div class="hero__stat">
+        <strong id="stat-downloads">â€”</strong>
+        <span>TÃ©lÃ©chargements</span>
+      </div>
+      <div class="hero__stat">
+        <strong>130+</strong>
+        <span>Modules</span>
+      </div>
+      <div class="hero__stat">
+        <strong>1.21.11</strong>
+        <span>Minecraft</span>
+      </div>
+      <div class="hero__stat">
+        <strong>100%</strong>
+        <span>LÃ©gitime</span>
+      </div>
+    </div>
+
+    <div class="hero__visual reveal reveal-delay-4">
+      <div class="hero__mockup glass-card">
+        <div class="hero__mockup-bar">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="hero__mockup-body">
+          <PrimeLogo alt="" class="hero__mockup-logo" height={48} />
+          <div class="hero__mockup-buttons">
+            <div class="hero__mockup-btn">Singleplayer</div>
+            <div class="hero__mockup-btn">Multiplayer</div>
+            <div class="hero__mockup-btn hero__mockup-btn--accent">StellarClient</div>
+            <div class="hero__mockup-btn">Options</div>
+          </div>
+        </div>
+        <div class="hero__mockup-glow" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: 140px 0 80px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero__inner {
+    text-align: center;
+  }
+
+  .hero__badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 45, 66, 0.35);
+    background: var(--prime-red-subtle);
+    color: var(--prime-red-bright);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .hero__title {
+    font-size: clamp(2.75rem, 7vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+
+  .hero__lead {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--prime-muted);
+    max-width: 680px;
+    margin: 0 auto 36px;
+    line-height: 1.75;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    margin-bottom: 48px;
+  }
+
+  .hero__stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 64px;
+  }
+
+  .hero__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .hero__stat strong {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--prime-white);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .hero__stat span {
+    font-size: 0.8rem;
+    color: var(--prime-muted-2);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  .hero__visual {
+    max-width: 420px;
+    margin: 0 auto;
+    perspective: 1200px;
+  }
+
+  .hero__mockup {
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+    transform: rotateX(4deg);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.55), var(--shadow-glow);
+  }
+
+  .hero__mockup-bar {
+    display: flex;
+    gap: 6px;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.35);
+    border-bottom: 1px solid var(--prime-border);
+  }
+
+  .hero__mockup-bar span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .hero__mockup-bar span:first-child { background: #ff5f57; }
+  .hero__mockup-bar span:nth-child(2) { background: #febc2e; }
+  .hero__mockup-bar span:nth-child(3) { background: #28c840; }
+
+  .hero__mockup-body {
+    padding: 32px 24px 28px;
+    background: linear-gradient(180deg, rgba(17, 17, 22, 0.9), rgba(6, 6, 8, 0.95));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .hero__mockup-logo {
+    height: 48px;
+    width: auto;
+    filter: drop-shadow(0 0 20px rgba(255, 45, 66, 0.5));
+  }
+
+  .hero__mockup-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 180px;
+  }
+
+  .hero__mockup-btn {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--prime-border);
+    color: var(--prime-muted);
+  }
+
+  .hero__mockup-btn--accent {
+    background: linear-gradient(135deg, var(--prime-red-bright), var(--prime-red));
+    border-color: transparent;
+    color: white;
+    box-shadow: 0 4px 16px rgba(225, 29, 46, 0.4);
+  }
+
+  .hero__mockup-glow {
+    position: absolute;
+    inset: auto 0 -40%;
+    height: 60%;
+    background: radial-gradient(ellipse at center, rgba(255, 45, 66, 0.25), transparent 70%);
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  const API_BASE = (typeof import.meta !== 'undefined' && import.meta.env?.PUBLIC_API_URL
+    ? String(import.meta.env.PUBLIC_API_URL)
+    : 'http://194.9.172.102:26005'
+  ).replace(/\/$/, '')
+  const FALLBACK_DOWNLOADS = 0
+
+  function formatCount(n) {
+    try {
+      return new Intl.NumberFormat('fr-FR', {
+        notation: n >= 10000 ? 'compact' : 'standard'
+      }).format(Math.max(0, Math.floor(n)))
+    } catch {
+      return String(Math.max(0, Math.floor(n)))
+    }
+  }
+
+  async function loadDownloads() {
+    const el = document.getElementById('stat-downloads')
+    if (!el) return
+    try {
+      const res = await fetch(`${API_BASE}/v1/stats`, { headers: { Accept: 'application/json' } })
+      if (!res.ok) throw new Error(String(res.status))
+      const data = await res.json()
+      const downloads = Number(data.downloads) || FALLBACK_DOWNLOADS
+      el.textContent = formatCount(downloads)
+      el.title = data.updatedAt ? `Mis Ã  jour ${data.updatedAt}` : ''
+    } catch {
+      el.textContent = formatCount(FALLBACK_DOWNLOADS)
+    }
+  }
+
+  loadDownloads()
+</script>

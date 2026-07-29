@@ -1,0 +1,19 @@
+﻿pluginManagement {
+	repositories {
+		maven {
+			name = 'Fabric'
+			url = 'https://maven.fabricmc.net/'
+		}
+		mavenCentral()
+		gradlePluginPortal()
+	}
+}
+
+rootProject.name = 'stellar-client'
+
+// Common core: pure Java, no Minecraft dependency, shared by every version layer.
+include 'core'
+
+// Version layers: one Fabric mod per supported Minecraft version.
+include 'mc-1.21.11'
+include 'mc-26.2'

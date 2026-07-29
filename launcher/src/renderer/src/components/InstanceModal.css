@@ -1,0 +1,85 @@
+.instance-modal {
+  width: min(560px, 100%);
+  max-height: min(90vh, 720px);
+  overflow-y: auto;
+}
+
+.instance-modal__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 8px 0 16px;
+}
+
+.instance-modal__cards--versions {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.instance-modal__card {
+  text-align: left;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--prime-border);
+  background: var(--prime-bg, rgba(255, 255, 255, 0.03));
+  color: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.instance-modal__card:hover {
+  border-color: color-mix(in srgb, var(--prime-accent) 50%, var(--prime-border));
+}
+
+.instance-modal__card.is-active {
+  border-color: var(--prime-accent);
+  background: color-mix(in srgb, var(--prime-accent) 14%, transparent);
+}
+
+.instance-modal__card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: var(--text-sm);
+  margin-bottom: 4px;
+}
+
+.instance-modal__card-desc {
+  display: block;
+  font-size: 11px;
+  color: var(--prime-muted);
+  line-height: 1.35;
+}
+
+.instance-modal__badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: var(--prime-accent);
+  color: #04120a;
+}
+
+.instance-modal__note {
+  margin: -8px 0 16px;
+  color: var(--prime-muted);
+}
+
+.instance-modal__advanced-toggle {
+  display: block;
+  width: 100%;
+  margin: 4px 0 12px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--prime-accent);
+  font-size: var(--text-sm);
+  text-align: left;
+  cursor: pointer;
+}
+
+@media (max-width: 560px) {
+  .instance-modal__cards {
+    grid-template-columns: 1fr;
+  }
+}

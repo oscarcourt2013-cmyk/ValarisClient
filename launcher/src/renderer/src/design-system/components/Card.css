@@ -1,0 +1,47 @@
+.prime-card {
+  background: var(--prime-surface);
+  border: 1px solid var(--prime-border);
+  border-radius: var(--radius-xl);
+  transition:
+    border-color var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.prime-card--hover:hover {
+  border-color: var(--prime-border-hover);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+.prime-card--glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.prime-card--glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top left, var(--prime-red-subtle), transparent 60%);
+  pointer-events: none;
+}
+
+.prime-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.prime-card__title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--prime-muted);
+  letter-spacing: -0.01em;
+}
+
+.prime-card__body {
+  position: relative;
+  z-index: 1;
+}

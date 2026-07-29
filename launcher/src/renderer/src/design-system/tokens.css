@@ -1,0 +1,168 @@
+/* Prime Launcher — Design System Tokens */
+
+:root {
+  /* Brand */
+  --prime-red: #e11d2e;
+  --prime-red-bright: #ff2d42;
+  --prime-red-glow: rgba(255, 45, 66, 0.45);
+  --prime-red-dim: #991b1b;
+  --prime-red-subtle: rgba(225, 29, 46, 0.12);
+
+  /* Neutrals */
+  --prime-black: #060608;
+  --prime-black-elevated: #0c0c10;
+  --prime-surface: #111116;
+  --prime-surface-2: #18181f;
+  --prime-surface-3: #1f1f28;
+  --prime-border: rgba(255, 255, 255, 0.06);
+  --prime-border-hover: rgba(255, 255, 255, 0.12);
+  --prime-white: #f8f9fc;
+  --prime-muted: #8b8fa3;
+  --prime-muted-2: #5c6070;
+
+  /* Semantic */
+  --prime-success: #22c55e;
+  --prime-warning: #f59e0b;
+  --prime-error: #ef4444;
+  --prime-info: #3b82f6;
+
+  /* Typography */
+  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-display: 'Sora', 'Outfit', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --text-xs: 0.6875rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Radius — softer premium cards */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows & effects */
+  --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 12px 40px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 48px var(--prime-red-glow);
+  --blur-glass: blur(20px);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 450ms;
+
+  /* Layout — slim icon rail */
+  --sidebar-width: 72px;
+  --titlebar-height: 40px;
+}
+
+html[data-theme='prime-crimson'] {
+  --prime-red: #e11d2e;
+  --prime-red-bright: #ff2d42;
+  --prime-red-glow: rgba(255, 45, 66, 0.45);
+  --prime-red-dim: #991b1b;
+  --prime-red-subtle: rgba(225, 29, 46, 0.12);
+  --prime-black: #060608;
+  --prime-black-elevated: #0c0c10;
+  --prime-surface: #111116;
+  --prime-surface-2: #18181f;
+  --prime-surface-3: #1f1f28;
+}
+
+html[data-theme='prime-midnight'] {
+  --prime-red: #38bdf8;
+  --prime-red-bright: #7dd3fc;
+  --prime-red-glow: rgba(56, 189, 248, 0.4);
+  --prime-red-dim: #0369a1;
+  --prime-red-subtle: rgba(56, 189, 248, 0.14);
+  --prime-black: #070b14;
+  --prime-black-elevated: #0c121c;
+  --prime-surface: #0e1624;
+  --prime-surface-2: #141e2e;
+  --prime-surface-3: #1a2740;
+}
+
+html[data-theme='prime-aurora'] {
+  --prime-red: #34d399;
+  --prime-red-bright: #6ee7b7;
+  --prime-red-glow: rgba(52, 211, 153, 0.4);
+  --prime-red-dim: #059669;
+  --prime-red-subtle: rgba(52, 211, 153, 0.14);
+  --prime-black: #06120f;
+  --prime-black-elevated: #0a1a16;
+  --prime-surface: #0c1c18;
+  --prime-surface-2: #122820;
+  --prime-surface-3: #183830;
+}
+
+/* Elevated — champagne gold on deep black, richer contrast */
+html[data-theme='prime-obsidian'] {
+  --prime-red: #d4af37;
+  --prime-red-bright: #f0d78c;
+  --prime-red-glow: rgba(240, 215, 140, 0.42);
+  --prime-red-dim: #8a7020;
+  --prime-red-subtle: rgba(212, 175, 55, 0.16);
+  --prime-black: #030303;
+  --prime-black-elevated: #080808;
+  --prime-surface: #0e0e0e;
+  --prime-surface-2: #161616;
+  --prime-surface-3: #222222;
+  --prime-border: rgba(240, 215, 140, 0.1);
+  --prime-border-hover: rgba(240, 215, 140, 0.22);
+  --prime-white: #f7f1df;
+  --prime-muted: #a89b78;
+  --prime-muted-2: #6e6450;
+}
+
+/* Elevated — copper ember on charcoal, warm depth */
+html[data-theme='prime-ember'] {
+  --prime-red: #ea580c;
+  --prime-red-bright: #fdba74;
+  --prime-red-glow: rgba(253, 186, 116, 0.45);
+  --prime-red-dim: #9a3412;
+  --prime-red-subtle: rgba(234, 88, 12, 0.16);
+  --prime-black: #080504;
+  --prime-black-elevated: #100a08;
+  --prime-surface: #15100d;
+  --prime-surface-2: #1e1612;
+  --prime-surface-3: #2a1e18;
+  --prime-border: rgba(253, 186, 116, 0.1);
+  --prime-border-hover: rgba(253, 186, 116, 0.22);
+  --prime-white: #fff5ed;
+  --prime-muted: #b89784;
+  --prime-muted-2: #7a5c4c;
+}
+
+/* Legacy alias — same as crimson */
+html[data-theme='prime-dark'] {
+  --prime-red: #e11d2e;
+  --prime-red-bright: #ff2d42;
+  --prime-red-glow: rgba(255, 45, 66, 0.45);
+  --prime-red-dim: #991b1b;
+  --prime-red-subtle: rgba(225, 29, 46, 0.12);
+  --prime-black: #060608;
+  --prime-black-elevated: #0c0c10;
+  --prime-surface: #111116;
+  --prime-surface-2: #18181f;
+  --prime-surface-3: #1f1f28;
+}
+

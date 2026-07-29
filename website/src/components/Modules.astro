@@ -1,0 +1,140 @@
+---
+const categories = [
+  {
+    name: 'PvP',
+    count: 41,
+    color: '#ff2d42',
+    items: ['Crosshair Editor', 'Target HUD', 'Speed HUD', 'TNT Timer', 'Keystrokes', 'Combo / Cooldowns']
+  },
+  {
+    name: 'Survie & SMP',
+    count: 32,
+    color: '#22c55e',
+    items: ['Date / Day Counter', 'Waypoints', 'Nether Link', 'Raid Alert', 'Travel ETA', 'Shop Waypoint']
+  },
+  {
+    name: 'Performance',
+    count: 12,
+    color: '#f59e0b',
+    items: ['FPS Booster', 'Entity Culling', 'Dynamic FPS', 'Adaptive FPS', 'RAM Cleaner', 'Chunk Optimizer']
+  },
+  {
+    name: 'QoL',
+    count: 23,
+    color: '#3b82f6',
+    items: ['Zoom', 'Auto Jump', 'Hand Shader', 'TAB Animation', 'Shulker Preview', 'Better Chat']
+  },
+  {
+    name: 'Streamers',
+    count: 6,
+    color: '#ec4899',
+    items: ['Privacy Suite', 'Chat Redact', 'Name Mask', 'HUD Shield', 'Debug Shield', 'Branding']
+  },
+  {
+    name: 'Creator',
+    count: 7,
+    color: '#a855f7',
+    items: ['Cinematic Camera', 'Screenshot Mode', 'Replay Tools', 'Clip Tools', 'Camera Zoom', 'Bookmarks']
+  },
+  {
+    name: 'Prime',
+    count: 15,
+    color: '#e11d2e',
+    items: ['AI Assistant', 'Custom Skin', 'Cosmetics', 'Client Badge', 'Discord RPC', 'Social Hub']
+  }
+]
+
+const total = categories.reduce((sum, c) => sum + c.count, 0)
+---
+
+<section class="section modules" id="modules">
+  <div class="container">
+    <div class="section-label">Modules</div>
+    <h2 class="section-title"><span class="text-gradient">{total} modules</span> modulaires</h2>
+    <p class="section-lead" style="margin-bottom: 48px;">
+      Active uniquement ce dont tu as besoin. ClickGUI premium, favoris, recherche live, packs de modules
+      et persistance par profil (PvP, survie, custom).
+    </p>
+
+    <div class="modules__grid">
+      {categories.map((cat) => (
+        <article class="modules__card glass-card">
+          <div class="modules__head">
+            <h3>{cat.name}</h3>
+            <span class="modules__count" style={`--accent: ${cat.color}`}>{cat.count}</span>
+          </div>
+          <ul>
+            {cat.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .modules {
+    background: linear-gradient(180deg, transparent, rgba(225, 29, 46, 0.03), transparent);
+  }
+
+  .modules__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .modules__card {
+    padding: 24px;
+  }
+
+  .modules__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .modules__head h3 {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .modules__count {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+
+  .modules__card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .modules__card li {
+    font-size: 0.85rem;
+    color: var(--prime-muted);
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .modules__card li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--prime-red);
+    opacity: 0.7;
+  }
+</style>

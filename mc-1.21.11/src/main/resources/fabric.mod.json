@@ -1,0 +1,27 @@
+﻿{
+	"schemaVersion": 1,
+	"id": "StellarClient",
+	"version": "${version}",
+	"name": "StellarClient",
+	"description": "All-in-One Minecraft client: PvP, performance, QoL, content creation, customization.",
+	"icon": "assets/stellarclient/icon.png",
+	"authors": [
+		"StellarClient Team"
+	],
+	"license": "All-Rights-Reserved",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"dev.stellarclient.v1_21_11.StellarClientEntrypoint"
+		]
+	},
+	"mixins": [
+		"stellarclient.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}

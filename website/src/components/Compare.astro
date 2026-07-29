@@ -1,0 +1,108 @@
+---
+const rows = [
+  { feature: '130+ modules (PvP, Survie, QoL…)', prime: true, lunar: true, feather: true },
+  { feature: 'HUD Editor + packs de modules', prime: true, lunar: 'partial', feather: true },
+  { feature: 'Skins custom Prime-à-Prime', prime: true, lunar: false, feather: false },
+  { feature: 'Assistant IA (launcher + /ai)', prime: true, lunar: false, feather: false },
+  { feature: 'Import Prism / Lunar / Feather…', prime: true, lunar: false, feather: 'partial' },
+  { feature: 'Serveur partenaire épinglé', prime: true, lunar: 'partial', feather: false },
+  { feature: 'Stream redactor / privacy suite', prime: true, lunar: 'partial', feather: false },
+  { feature: 'Open source', prime: true, lunar: false, feather: false },
+  { feature: '100 % gratuit (client + launcher)', prime: true, lunar: 'partial', feather: true },
+  { feature: 'Analyseur de crash intelligent', prime: true, lunar: false, feather: false }
+]
+
+function cell(value: boolean | string) {
+  if (value === true) return 'yes'
+  if (value === 'partial') return 'partial'
+  return 'no'
+}
+---
+
+<section class="section compare">
+  <div class="container">
+    <div class="section-label">Comparaison</div>
+    <h2 class="section-title">Prime vs les autres<br /><span class="text-gradient">clients premium</span></h2>
+    <p class="section-lead" style="margin-bottom: 40px;">
+      Les essentiels des clients premium, plus des différenciateurs open source — sans paywall agressif.
+    </p>
+
+    <div class="compare__table glass-card">
+      <div class="compare__row compare__row--head">
+        <span>Fonctionnalité</span>
+        <span class="compare__brand compare__brand--prime">Prime</span>
+        <span>Lunar</span>
+        <span>Feather</span>
+      </div>
+      {rows.map((row) => (
+        <div class="compare__row">
+          <span>{row.feature}</span>
+          <span class={`compare__cell compare__cell--${cell(row.prime)}`} data-label="Prime"></span>
+          <span class={`compare__cell compare__cell--${cell(row.lunar)}`} data-label="Lunar"></span>
+          <span class={`compare__cell compare__cell--${cell(row.feather)}`} data-label="Feather"></span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .compare__table {
+    overflow: hidden;
+  }
+
+  .compare__row {
+    display: grid;
+    grid-template-columns: 1.6fr repeat(3, 0.55fr);
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--prime-border);
+    font-size: 0.9rem;
+  }
+
+  .compare__row:last-child {
+    border-bottom: none;
+  }
+
+  .compare__row--head {
+    background: rgba(0, 0, 0, 0.25);
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--prime-muted);
+  }
+
+  .compare__row--head span:not(:first-child) {
+    text-align: center;
+  }
+
+  .compare__brand--prime {
+    color: var(--prime-red-bright) !important;
+  }
+
+  .compare__cell {
+    text-align: center;
+    font-size: 1.1rem;
+  }
+
+  .compare__cell--yes::after { content: '✓'; color: var(--prime-success); }
+  .compare__cell--no::after { content: '—'; color: var(--prime-muted-2); }
+  .compare__cell--partial::after { content: '~'; color: var(--prime-warning); }
+
+  @media (max-width: 700px) {
+    .compare__row {
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .compare__row--head {
+      display: none;
+    }
+
+    .compare__row span:first-child {
+      grid-column: 1 / -1;
+      font-weight: 600;
+    }
+  }
+</style>

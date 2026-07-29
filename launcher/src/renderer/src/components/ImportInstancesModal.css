@@ -1,0 +1,132 @@
+.import-modal {
+  width: min(560px, 100%);
+  max-height: min(88vh, 720px);
+  overflow: auto;
+}
+
+.import-modal__sources {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.import-modal__source {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--prime-border);
+  background: color-mix(in srgb, var(--prime-bg, #111) 35%, transparent);
+  color: var(--prime-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.import-modal__source strong {
+  font-size: 13px;
+}
+
+.import-modal__source span {
+  font-size: 11px;
+  color: var(--prime-muted);
+}
+
+.import-modal__source.is-active {
+  border-color: var(--prime-red-bright);
+  background: color-mix(in srgb, var(--prime-red-bright) 12%, transparent);
+}
+
+.import-modal__source.is-empty {
+  opacity: 0.72;
+}
+
+.import-modal__list-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.import-modal__list-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--prime-muted);
+}
+
+.import-modal__list-head button {
+  border: none;
+  background: none;
+  color: var(--prime-red-bright);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.import-modal__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 280px;
+  overflow: auto;
+}
+
+.import-modal__list label {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--prime-border);
+  cursor: pointer;
+}
+
+.import-modal__list label.is-selected {
+  border-color: color-mix(in srgb, var(--prime-red-bright) 55%, var(--prime-border));
+  background: color-mix(in srgb, var(--prime-red-bright) 10%, transparent);
+}
+
+.import-modal__list strong {
+  display: block;
+  font-size: 13px;
+}
+
+.import-modal__list span {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--prime-muted);
+}
+
+.import-modal__muted {
+  margin: 8px 0;
+  color: var(--prime-muted);
+  font-size: 13px;
+}
+
+.import-modal__status {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: color-mix(in srgb, #34d399 14%, transparent);
+  color: #bbf7d0;
+  font-size: 13px;
+}
+
+.import-modal__footer {
+  margin-top: 16px;
+}
+
+@media (max-width: 520px) {
+  .import-modal__sources {
+    grid-template-columns: 1fr;
+  }
+}

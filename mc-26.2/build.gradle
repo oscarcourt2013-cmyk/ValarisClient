@@ -1,0 +1,53 @@
+// Version layer: Minecraft 26.2.
+// Uses the new Loom flavour: Mojang mappings are the runtime namespace on
+// 26.x+, so there is no remap step and plain `implementation` is used.
+plugins {
+	id 'net.fabricmc.fabric-loom'
+}
+
+base {
+	archivesName = 'stellar-client-26.2'
+}
+
+loom {
+	mods {
+		"stellarclient" {
+			sourceSet sourceSets.main
+			sourceSet project(':core').sourceSets.main
+		}
+	}
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.mc262_minecraft_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.mc262_fabric_api_version}"
+
+	// Common core, bundled into the released jar (Jar-in-Jar).
+	api project(':core')
+	include project(':core')
+}
+
+processResources {
+	def version = project.version
+	inputs.property "version", version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 25
+	it.options.encoding = 'UTF-8'
+}
+
+java {
+	withSourcesJar()
+
+	// Minecraft 26.2 requires Java 25. A toolchain keeps the build independent
+	// from the JVM running the Gradle daemon (JAVA_HOME may be older).
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(25)
+	}
+}

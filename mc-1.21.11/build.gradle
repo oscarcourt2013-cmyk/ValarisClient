@@ -1,0 +1,55 @@
+// Version layer: Minecraft 1.21.11.
+// Uses the "remap" flavour of Loom: code is written against Mojang mappings
+// and remapped to intermediary for distribution (required on <= 1.21.11).
+plugins {
+	id 'net.fabricmc.fabric-loom-remap'
+}
+
+base {
+	archivesName = 'stellar-client-1.21.11'
+}
+
+loom {
+	mods {
+		"stellarclient" {
+			sourceSet sourceSets.main
+			sourceSet project(':core').sourceSets.main
+		}
+	}
+	mixin {
+		defaultRefmapName = "stellarclient-refmap.json"
+	}
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.mc12111_minecraft_version}"
+	mappings loom.officialMojangMappings()
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.mc12111_fabric_api_version}"
+	annotationProcessor "io.github.llamalad7:mixinextras-common:0.5.0"
+	implementation "io.github.llamalad7:mixinextras-common:0.5.0"
+
+	// Common core, bundled into the released jar (Jar-in-Jar).
+	api project(':core')
+	include project(':core')
+}
+
+processResources {
+	def version = project.version
+	inputs.property "version", version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 21
+	it.options.encoding = 'UTF-8'
+}
+
+java {
+	withSourcesJar()
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
+}

@@ -30,7 +30,7 @@ jobs:
           cache: npm
           cache-dependency-path: launcher/package-lock.json
 
-      - name: Build Prime Client mods
+      - name: Build StellarClient mods
         shell: pwsh
         run: |
           .\gradlew :mc-1.21.11:build :mc-26.2:build --no-daemon
@@ -51,7 +51,7 @@ jobs:
           New-Item -ItemType Directory -Force -Path release-bundle | Out-Null
           Copy-Item launcher/release/*.exe release-bundle/ -ErrorAction SilentlyContinue
           foreach ($dir in @('mc-1.21.11', 'mc-26.2')) {
-            Get-ChildItem "$dir/build/libs/prime-client-*.jar" |
+            Get-ChildItem "$dir/build/libs/stellar-client-*.jar" |
               Where-Object { $_.Name -notmatch 'sources|dev' } |
               Copy-Item -Destination release-bundle/
           }

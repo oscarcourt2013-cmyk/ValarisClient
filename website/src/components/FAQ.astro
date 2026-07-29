@@ -1,0 +1,101 @@
+﻿---
+const faqs = [
+  {
+    q: 'Est-ce que StellarClient est un cheat ?',
+    a: 'Non. StellarClient est 100 % visuel et QoL : HUD, performance, confort, cosmÃ©tiques. Aucun avantage gameplay dÃ©loyal (pas de killaura, fly, x-ray, etc.).'
+  },
+  {
+    q: 'Quelle version de Minecraft est supportÃ©e ?',
+    a: 'Actuellement Minecraft 1.21.11 avec Fabric via le launcher. Une cible mc-26.2 est en prÃ©paration pour les futures versions. La version affichÃ©e au tÃ©lÃ©chargement vient toujours de la derniÃ¨re release GitHub.'
+  },
+  {
+    q: 'Dois-je tÃ©lÃ©charger le mod sÃ©parÃ©ment ?',
+    a: 'Non. TÃ©lÃ©charge uniquement le launcher (.exe). Il installe automatiquement le mod StellarClient dans ton instance Fabric.'
+  },
+  {
+    q: 'Comment fonctionnent les skins custom (/skin) ?',
+    a: 'Tu charges un PNG via /skin url. Il s\'affiche pour toi et les autres joueurs qui utilisent aussi StellarClient (y compris en LAN / monde intÃ©grÃ© / offline). Ce n\'est pas un skin Essentials visible pour tous les joueurs d\'un serveur public â€” seuls les peers Prime le voient.'
+  },
+  {
+    q: 'Qu\'est-ce qu\'Elysia SMP ?',
+    a: 'Elysia SMP (elysiasmp.fr) est le serveur partenaire officiel, Ã©pinglÃ© en tÃªte des favoris du launcher. Survival multiplayer, Ã©conomie, claims et events â€” avec badge et cosmÃ©tiques Prime sur le serveur.'
+  },
+  {
+    q: 'Puis-je importer mes instances d\'un autre launcher ?',
+    a: 'Oui. Le launcher dÃ©tecte et importe des instances depuis Prism Launcher, MultiMC, Lunar Client, Feather et Dawn Client.'
+  },
+  {
+    q: 'L\'assistant IA nÃ©cessite-t-il un abonnement ?',
+    a: 'Non. Tu peux brancher ta propre clÃ© Groq (stockÃ©e localement). L\'IA aide pour les modules, packs, tips FPS et diagnostics â€” dans le launcher et en jeu via /ai.'
+  },
+  {
+    q: 'StellarClient est-il gratuit ?',
+    a: 'Oui. Le client, le launcher et le code source sont gratuits et open source sur GitHub. Le store utilise des Prime Coins (cosmÃ©tiques / extras), sans payer pour les modules de base.'
+  }
+]
+---
+
+<section class="section faq" id="faq">
+  <div class="container">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Questions <span class="text-gradient">frÃ©quentes</span></h2>
+
+    <div class="faq__list">
+      {faqs.map((item) => (
+        <details class="faq__item glass-card">
+          <summary>{item.q}</summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq__list {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 760px;
+  }
+
+  .faq__item {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .faq__item summary {
+    padding: 20px 24px;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__item summary::after {
+    content: '+';
+    font-size: 1.25rem;
+    color: var(--prime-red-bright);
+    font-weight: 400;
+    transition: transform 0.2s;
+  }
+
+  .faq__item[open] summary::after {
+    transform: rotate(45deg);
+  }
+
+  .faq__item p {
+    padding: 0 24px 20px;
+    font-size: 0.9rem;
+    color: var(--prime-muted);
+    line-height: 1.7;
+  }
+</style>

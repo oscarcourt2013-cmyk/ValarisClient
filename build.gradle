@@ -1,0 +1,13 @@
+// Root build: declares the Loom plugins once so every version layer resolves
+// the exact same plugin classpath. Loom 1.17 ships two plugin ids:
+//  - net.fabricmc.fabric-loom        -> Minecraft 26.x+ (Mojang mappings at runtime, no remap step)
+//  - net.fabricmc.fabric-loom-remap  -> Minecraft <= 1.21.11 (compiled against Mojang mappings, remapped to intermediary)
+plugins {
+	id 'net.fabricmc.fabric-loom' version "${loom_version}" apply false
+	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}" apply false
+}
+
+subprojects {
+	version = rootProject.mod_version
+	group = rootProject.maven_group
+}

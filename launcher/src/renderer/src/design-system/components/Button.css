@@ -1,0 +1,114 @@
+.prime-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  border-radius: var(--radius-md);
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out),
+    background var(--duration-fast),
+    border-color var(--duration-fast);
+  white-space: nowrap;
+}
+
+.prime-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.prime-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Sizes */
+.prime-btn--sm {
+  height: 32px;
+  padding: 0 var(--space-3);
+  font-size: var(--text-xs);
+}
+
+.prime-btn--md {
+  height: 40px;
+  padding: 0 var(--space-4);
+}
+
+.prime-btn--lg {
+  height: 48px;
+  padding: 0 var(--space-6);
+  font-size: var(--text-base);
+}
+
+.prime-btn--xl {
+  height: 58px;
+  padding: 0 28px;
+  font-size: 1.05rem;
+  border-radius: 16px;
+  letter-spacing: -0.02em;
+}
+
+/* Variants */
+.prime-btn--primary {
+  background: linear-gradient(135deg, var(--prime-red-bright), var(--prime-red));
+  color: #fff;
+  box-shadow: 0 8px 28px color-mix(in srgb, var(--prime-red-bright) 35%, transparent);
+}
+
+.prime-btn--primary:hover:not(:disabled) {
+  box-shadow: 0 10px 34px color-mix(in srgb, var(--prime-red-bright) 48%, transparent);
+  transform: translateY(-1px);
+}
+
+html[data-theme='prime-aurora'] .prime-btn--primary {
+  color: #07110c;
+}
+
+html[data-theme='prime-obsidian'] .prime-btn--primary {
+  color: #1a1408;
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--prime-red-bright) 40%, transparent);
+}
+
+html[data-theme='prime-ember'] .prime-btn--primary {
+  color: #1a0c06;
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--prime-red-bright) 42%, transparent);
+}
+
+.prime-btn--secondary {
+  background: var(--prime-surface-2);
+  border: 1px solid var(--prime-border);
+  color: var(--prime-white);
+}
+
+.prime-btn--secondary:hover:not(:disabled) {
+  background: var(--prime-surface-3);
+  border-color: var(--prime-border-hover);
+}
+
+.prime-btn--ghost {
+  background: transparent;
+  color: var(--prime-muted);
+}
+
+.prime-btn--ghost:hover:not(:disabled) {
+  color: var(--prime-white);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.prime-btn--danger {
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--prime-error);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.prime-btn--icon {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: var(--radius-sm);
+}
+
+.prime-btn--block {
+  width: 100%;
+}

@@ -1,0 +1,18 @@
+.prime-avatar {
+  border-radius: var(--radius-md);
+  background: var(--prime-surface-3);
+  border: 2px solid var(--prime-border);
+  image-rendering: pixelated;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.prime-avatar--sm { width: 32px; height: 32px; }
+.prime-avatar--md { width: 48px; height: 48px; }
+.prime-avatar--lg { width: 64px; height: 64px; }
+.prime-avatar--xl { width: 80px; height: 80px; }
+
+.prime-avatar--glow {
+  box-shadow: 0 0 20px var(--prime-red-glow);
+  border-color: rgba(255, 45, 66, 0.3);
+}

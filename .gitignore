@@ -1,0 +1,64 @@
+# Gradle
+.gradle/
+build/
+out/
+classes/
+
+# Launcher (Electron)
+launcher/node_modules/
+launcher/out/
+launcher/release/
+launcher/dist/
+launcher/resources/launch-bridge/node_modules/
+
+# Launcher (Tauri)
+launcher/src-tauri/target/
+
+# Backend
+backend/node_modules/
+backend/data/
+backend/uploads/
+
+# Voice relay (legacy redirect)
+voice-relay/node_modules/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+bin/
+
+# Fabric / Loom
+run/
+remappedSrc/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local dev extracts
+_panorama_extract/
+
+# TypeScript incremental
+*.tsbuildinfo
+
+# Secrets & local user data
+.env
+.env.*
+!.env.example
+*.pem
+accounts.json
+instances.json
+ecosystem.json
+settings.json
+downloads.json
+**/secrets.json
+secrets.json
+
+backend/.zip
+*.zip

@@ -1,0 +1,114 @@
+.crash-panel {
+  border: 1px solid rgba(255, 45, 66, 0.35);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(145deg, rgba(255, 45, 66, 0.08), rgba(6, 6, 8, 0.85));
+  box-shadow: 0 0 32px rgba(255, 45, 66, 0.12);
+  overflow: hidden;
+}
+
+.crash-panel__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px 0;
+}
+
+.crash-panel__title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.crash-panel__icon {
+  color: var(--prime-red-bright);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.crash-panel__title {
+  margin: 0;
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: var(--prime-red-bright);
+}
+
+.crash-panel__subtitle {
+  margin: 4px 0 0;
+  font-size: var(--text-xs);
+  color: var(--prime-muted);
+}
+
+.crash-panel__dismiss {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--prime-muted);
+  cursor: pointer;
+}
+
+.crash-panel__dismiss:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--prime-text);
+}
+
+.crash-panel__body {
+  padding: 14px 18px 0;
+}
+
+.crash-panel__exception {
+  margin: 0 0 10px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: var(--text-sm);
+  color: var(--prime-text);
+  word-break: break-word;
+}
+
+.crash-panel__detail {
+  margin: 0 0 8px;
+  font-size: var(--text-sm);
+  color: var(--prime-muted);
+}
+
+.crash-panel__label {
+  font-weight: 600;
+  color: var(--prime-text);
+}
+
+.crash-panel__prime-badge {
+  display: inline-block;
+  margin: 0 0 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--prime-red-subtle);
+  color: var(--prime-red-bright);
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+.crash-panel__suggestion {
+  margin-top: 8px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--prime-border);
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.crash-panel__suggestion p {
+  margin: 6px 0 0;
+  font-size: var(--text-sm);
+  color: var(--prime-text);
+  line-height: 1.5;
+}
+
+.crash-panel__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 16px 18px 18px;
+}
