@@ -1,6 +1,6 @@
 ﻿{
   "name": "stellar-client-launcher",
-  "version": "2.1.4",
+  "version": "1.0.0",
   "description": "Official launcher for StellarClient â€” premium Minecraft platform",
   "main": "./out/main/index.js",
   "author": "StellarClient",
