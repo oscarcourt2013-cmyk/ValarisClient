@@ -188,7 +188,7 @@ class ClickGuiTest {
     void middleClickTogglesFavorite() {
         ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(SCREEN_W, 600, true);
         int cardX = layout.gridX() + 10;
-        int cardY = layout.gridY() + ModuleCardBrowser.TAB_H + 4 + 10;
+        int cardY = layout.gridY() + ModuleCardBrowser.TAB_H + ClickGuiBrowseLayout.CARD_GAP + 6;
         gui.render(new FakeRenderContext(SCREEN_W, 600), cardX, cardY);
         assertFalse(favorites.isFavorite("zoom"));
         assertTrue(gui.mousePressed(cardX, cardY, 2));
@@ -221,8 +221,8 @@ class ClickGuiTest {
 
         ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(SCREEN_W, 600, true);
         int cardX = layout.gridX();
-        int cardY = layout.gridY() + ModuleCardBrowser.TAB_H + 4;
-        int[] pill = ModuleCardBrowser.pillButtonRect();
+        int cardY = layout.gridY() + ModuleCardBrowser.TAB_H + ClickGuiBrowseLayout.CARD_GAP;
+        int[] pill = ModuleCardBrowser.pillRect(layout.cardW(), layout.cardH());
         double pillX = cardX + pill[0] + pill[2] / 2.0;
         double pillY = cardY + pill[1] + pill[3] / 2.0;
 
@@ -251,6 +251,46 @@ class ClickGuiTest {
         gui.render(new FakeRenderContext(SCREEN_W, 600), 100, 100);
         gui.keyPressed(256);
         gui.render(new FakeRenderContext(SCREEN_W, 600), 100, 100);
+    }
+
+    @Test
+    void layoutStaysOnScreenAtEveryGuiScale() {
+        // Minecraft's effective GUI canvas is window/guiScale and bottoms out
+        // around 320x240, so nothing may extend past the screen edge.
+        int[][] sizes = {{320, 240}, {427, 240}, {480, 270}, {640, 360}, {854, 480}, {1920, 1080}};
+        for (int[] size : sizes) {
+            int w = size[0];
+            int h = size[1];
+            for (boolean selection : new boolean[]{false, true}) {
+                ClickGuiBrowseLayout l = ClickGuiBrowseLayout.compute(w, h, selection);
+                String at = "at " + w + "x" + h + " selection=" + selection;
+
+                assertTrue(l.topBarX() + l.topBarW() <= w, "top bar overflows " + at);
+                assertTrue(l.gridX() + l.gridW() <= w, "grid overflows width " + at);
+                assertTrue(l.gridY() + l.gridH() <= h, "grid overflows height " + at);
+                assertTrue(l.dockX() >= 0 && l.dockX() + l.dockW() <= w, "dock overflows " + at);
+                assertTrue(l.dockY() + l.dockH() <= h, "dock below screen " + at);
+                assertTrue(l.sidebarY() + l.sidebarH() <= h, "sidebar overflows height " + at);
+                assertTrue(l.settingsPanelX() + Panel.WIDTH <= w, "settings panel overflows " + at);
+
+                // A full row of cards must fit inside the grid's width.
+                int rowW = l.columns() * l.cardW() + (l.columns() - 1) * ClickGuiBrowseLayout.CARD_GAP;
+                assertTrue(rowW <= l.gridW(), "card row wider than grid " + at);
+                assertTrue(l.cardW() > 0 && l.cardH() > 0, "degenerate card size " + at);
+                assertTrue(l.columns() >= 1, "no columns " + at);
+
+                // The dock must not overlap the scrollable grid area.
+                assertTrue(l.gridY() + l.gridH() <= l.dockY(), "grid overlaps dock " + at);
+            }
+        }
+    }
+
+    @Test
+    void renderIsSafeAtMinimumCanvasSize() {
+        FakeRenderContext ctx = new FakeRenderContext(320, 240);
+        gui.render(ctx, 10, 10);
+        assertEquals(0, ctx.clipDepth());
+        assertTrue(ctx.fillCalls > 0);
     }
 
     @Test

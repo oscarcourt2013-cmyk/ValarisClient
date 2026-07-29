@@ -24,8 +24,8 @@ public final class CosmeticsMenuRenderer {
 
     public void render(RenderContext ctx, Theme theme, CosmeticManager cosmetics,
                        int screenW, int screenH, double mouseX, double mouseY) {
-        int w = PANEL_W;
-        int h = PANEL_H;
+        int w = GuiLayout.fitToScreen(PANEL_W, screenW, 6, 240);
+        int h = GuiLayout.fitToScreen(PANEL_H, screenH, 6, 170);
         int x = (screenW - w) / 2;
         int y = (screenH - h) / 2;
         UiChrome.glassPanel(ctx, theme, x, y, w, h);
@@ -94,8 +94,8 @@ public final class CosmeticsMenuRenderer {
     }
 
     public boolean mousePressed(RenderContext ctx, double mx, double my, int screenW, int screenH, CosmeticManager cosmetics) {
-        int w = PANEL_W;
-        int h = PANEL_H;
+        int w = GuiLayout.fitToScreen(PANEL_W, screenW, 6, 240);
+        int h = GuiLayout.fitToScreen(PANEL_H, screenH, 6, 170);
         int x = (screenW - w) / 2;
         int y = (screenH - h) / 2;
         int tabX = x + 8;

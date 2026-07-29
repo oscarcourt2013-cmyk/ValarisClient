@@ -15,10 +15,10 @@ import java.util.List;
 /** Left-hand named-profile list for the ClickGUI browse screen. */
 final class ProfileSidebar {
 
-    private static final int ROW_H = 20;
-    private static final int PAD = 8;
-    private static final int BUTTON_H = 18;
-    private static final int BUTTON_GAP = 4;
+    private static final int ROW_H = 15;
+    private static final int PAD = 5;
+    private static final int BUTTON_H = 14;
+    private static final int BUTTON_GAP = 3;
 
     private TextInputField newProfileField;
     private boolean naming;
@@ -35,25 +35,30 @@ final class ProfileSidebar {
 
         UiChrome.cardElevated(ctx, theme, x, y, w, h, false);
 
+        int buttonsY = buttonsY(y, h);
+        int listH = Math.max(0, buttonsY - BUTTON_GAP - (y + PAD));
+        int maxRows = visibleRows(y, h);
+
+        ctx.pushClip(x, y + PAD, w, listH);
         List<String> names = profiles.listProfiles();
         int rowY = y + PAD;
-        for (String name : names) {
+        for (int i = 0; i < names.size() && i < maxRows; i++) {
+            String name = names.get(i);
             boolean active = name.equals(profiles.activeProfile());
             boolean hover = mouseX >= x && mouseX < x + w && mouseY >= rowY && mouseY < rowY + ROW_H;
             if (active || hover) {
-                ctx.fillRoundedRect(x + 4, rowY, w - 8, ROW_H, PrimeDesign.RADIUS_SM,
+                ctx.fillRoundedRect(x + 3, rowY, w - 6, ROW_H, PrimeDesign.RADIUS_SM,
                         active ? theme.surfaceElevated() : ColorUtil.withAlpha(theme.surfaceElevated(), 0.5f));
             }
             if (active) {
-                ctx.fillRect(x + 4, rowY + 4, 2, ROW_H - 8, theme.accent());
+                ctx.fillRect(x + 3, rowY + 3, 2, Math.max(1, ROW_H - 6), theme.accent());
             }
-            String label = GuiLayout.trimToWidth(ctx, name, w - PAD * 2 - 8);
-            GuiLayout.label(ctx, label, x + PAD + 4, rowY + (ROW_H - ctx.uiFontHeight()) / 2 + 1,
+            String label = GuiLayout.trimToWidth(ctx, name, w - PAD * 2 - 4);
+            GuiLayout.label(ctx, label, x + PAD + 3, rowY + (ROW_H - ctx.uiFontHeight()) / 2 + 1,
                     active ? theme.foreground() : theme.foregroundMuted());
             rowY += ROW_H;
         }
-
-        int buttonsY = y + h - PAD - BUTTON_H * 2 - BUTTON_GAP;
+        ctx.popClip();
         if (naming && newProfileField != null) {
             newProfileField.render(ctx, theme, x + PAD, buttonsY, w - PAD * 2);
         } else {
@@ -89,16 +94,17 @@ final class ProfileSidebar {
         }
 
         List<String> names = profiles.listProfiles();
+        int maxRows = visibleRows(y, h);
         int rowY = y + PAD;
-        for (String name : names) {
+        for (int i = 0; i < names.size() && i < maxRows; i++) {
             if (mouseY >= rowY && mouseY < rowY + ROW_H) {
-                profiles.switchTo(name);
+                profiles.switchTo(names.get(i));
                 return true;
             }
             rowY += ROW_H;
         }
 
-        int buttonsY = y + h - PAD - BUTTON_H * 2 - BUTTON_GAP;
+        int buttonsY = buttonsY(y, h);
         if (naming && newProfileField != null) {
             if (newProfileField.hit(mouseX, mouseY, x + PAD, buttonsY, w - PAD * 2)) {
                 newProfileField.setFocused(true);
@@ -117,6 +123,17 @@ final class ProfileSidebar {
             return true;
         }
         return true;
+    }
+
+    /** Top of the two pinned action buttons, kept inside the sidebar on short screens. */
+    private static int buttonsY(int y, int h) {
+        return Math.max(y + PAD, y + h - PAD - BUTTON_H * 2 - BUTTON_GAP);
+    }
+
+    /** How many profile rows fit above the pinned buttons. */
+    private static int visibleRows(int y, int h) {
+        int listH = buttonsY(y, h) - BUTTON_GAP - (y + PAD);
+        return Math.max(0, listH / ROW_H);
     }
 
     boolean charTyped(char character) {

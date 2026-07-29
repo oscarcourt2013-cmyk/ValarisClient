@@ -17,8 +17,9 @@ import java.util.List;
  */
 public final class ConfigurationsMenuRenderer {
 
-    private static final int PANEL_W = 360;
-    private static final int PANEL_H = 230;
+    // Kept within Minecraft's smallest effective GUI canvas (320x240).
+    private static final int PANEL_W = 300;
+    private static final int PANEL_H = 224;
     private static final int BTN_H = 20;
     private static final int BTN_GAP = 6;
 

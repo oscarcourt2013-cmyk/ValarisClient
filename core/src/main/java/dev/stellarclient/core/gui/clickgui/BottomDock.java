@@ -23,8 +23,8 @@ final class BottomDock {
         }
     }
 
-    private static final int BTN = 20;
-    private static final int GAP = 4;
+    private static final int BTN = 16;
+    private static final int GAP = 3;
 
     void render(RenderContext ctx, Theme theme, ClickGuiBrowseLayout layout, double mouseX, double mouseY) {
         int w = layout.dockW();

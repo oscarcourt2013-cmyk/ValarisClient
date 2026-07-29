@@ -13,7 +13,8 @@ import dev.stellarclient.core.theme.Theme;
  */
 public final class OnboardingScreen {
 
-    public static final int PANEL_W = 340;
+    // Kept within Minecraft's smallest effective GUI canvas (320x240).
+    public static final int PANEL_W = 300;
     public static final int PANEL_H = 196;
 
     private OnboardingScreen() {

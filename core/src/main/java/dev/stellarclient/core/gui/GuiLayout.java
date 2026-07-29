@@ -29,6 +29,24 @@ public final class GuiLayout {
         return Math.max(min, Math.min(max, value));
     }
 
+    /**
+     * Shrinks a fixed panel dimension so it fits the effective GUI resolution.
+     *
+     * <p>Minecraft's GUI canvas is the window size divided by the user's GUI
+     * scale and can be as small as 320x240, so a panel authored at a comfortable
+     * size will otherwise run off-screen. Returns {@code desired} untouched when
+     * it already fits, so large screens are unaffected.</p>
+     *
+     * @param minimum floor below which the panel would be unusable anyway
+     */
+    public static int fitToScreen(int desired, int available, int margin, int minimum) {
+        int room = available - margin * 2;
+        if (desired <= room) {
+            return desired;
+        }
+        return Math.max(minimum, room);
+    }
+
     /** Clamps a popup's top-left so it stays on screen with a small margin. */
     public static int[] clampPopup(int x, int y, int width, int height, int screenW, int screenH) {
         int margin = 4;

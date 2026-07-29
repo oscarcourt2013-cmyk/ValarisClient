@@ -86,12 +86,19 @@ public final class SettingsMenuRenderer {
         return true;
     }
 
+    /**
+     * Preferred width, but never wider than the screen. The lower bound must stay
+     * below Minecraft's smallest effective GUI canvas (320x240) or the panel is
+     * forced off-screen at high GUI scales.
+     */
     private static int settingsPanelW(int screenW) {
-        return Math.min(420, Math.max(360, screenW - 80));
+        int preferred = Math.min(420, Math.max(360, screenW - 80));
+        return Math.min(preferred, Math.max(220, screenW - 12));
     }
 
     private static int settingsPanelH(int screenH) {
-        return Math.min(300, Math.max(260, screenH - 60));
+        int preferred = Math.min(300, Math.max(260, screenH - 60));
+        return Math.min(preferred, Math.max(170, screenH - 12));
     }
 
     public void render(RenderContext ctx, Theme theme, ThemeManager themes, ProfileManager profiles,

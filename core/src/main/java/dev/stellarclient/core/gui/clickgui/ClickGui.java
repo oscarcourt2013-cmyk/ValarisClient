@@ -269,8 +269,7 @@ public final class ClickGui implements ConfigBinding {
                 if (layout.showSidebar()) {
                     sidebar.render(ctx, theme, layout, profiles, mouseX, mouseY);
                 }
-                cardBrowser.render(ctx, theme, layout.gridX(), layout.gridY(), layout.gridW(), layout.gridH(),
-                        mouseX, mouseY);
+                cardBrowser.render(ctx, theme, layout, mouseX, mouseY);
                 bottomDock.render(ctx, theme, layout, mouseX, mouseY);
                 if (selectedModulePanel != null) {
                     selectedModulePanel.render(ctx, theme, mouseX, mouseY);
@@ -393,7 +392,7 @@ public final class ClickGui implements ConfigBinding {
         if (selectedModulePanel != null && dispatchPress(selectedModulePanel, mouseX, mouseY, button)) {
             return true;
         }
-        if (topBar.hitClose(layout, mouseX, mouseY)) {
+        if (topBar.hitClose(textMetrics, layout, mouseX, mouseY)) {
             adapter.closeCurrentScreen();
             return true;
         }
@@ -412,8 +411,7 @@ public final class ClickGui implements ConfigBinding {
             handleDockAction(dockAction);
             return true;
         }
-        return cardBrowser.mousePressed(textMetrics, mouseX, mouseY, layout.gridX(), layout.gridY(),
-                layout.gridW(), layout.gridH(), button);
+        return cardBrowser.mousePressed(textMetrics, layout, mouseX, mouseY, button);
     }
 
     private void handleDockAction(BottomDock.Action action) {
@@ -429,8 +427,7 @@ public final class ClickGui implements ConfigBinding {
         if (view == ClickGuiView.BROWSE) {
             ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(screenWidth, screenHeight,
                     selectedModulePanel != null);
-            return cardBrowser.mouseScrolled(verticalAmount, layout.gridX(), layout.gridY(),
-                    layout.gridW(), layout.gridH());
+            return cardBrowser.mouseScrolled(verticalAmount, layout);
         }
         if (view == ClickGuiView.COSMETICS) {
             return cosmeticsMenu.scroll(verticalAmount);
