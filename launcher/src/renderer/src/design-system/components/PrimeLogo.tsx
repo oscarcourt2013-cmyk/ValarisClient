@@ -1,7 +1,5 @@
-import logoUrl from '../../assets/prime-logo.png'
+import logoUrl from '../../assets/stellar-logo.png'
 import './PrimeLogo.css'
-
-const LOGO_ASPECT = 1024 / 559
 
 interface PrimeLogoProps {
   size?: number
@@ -10,25 +8,11 @@ interface PrimeLogoProps {
 }
 
 export function PrimeLogo({ size = 48, compact = false }: PrimeLogoProps) {
-  if (compact) {
-    return (
-      <img
-        className="prime-logo prime-logo--compact"
-        src={logoUrl}
-        width={size}
-        height={size}
-        alt=""
-        draggable={false}
-        aria-hidden
-      />
-    )
-  }
-
   return (
     <img
-      className="prime-logo"
+      className={compact ? 'prime-logo prime-logo--compact' : 'prime-logo'}
       src={logoUrl}
-      width={Math.round(size * LOGO_ASPECT)}
+      width={size}
       height={size}
       alt=""
       draggable={false}
