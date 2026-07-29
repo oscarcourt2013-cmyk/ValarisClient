@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.modules.prime;
+package dev.stellarclient.core.modules.prime;
 
 import dev.stellarclient.core.ai.AiAssistantService;
 import dev.stellarclient.core.event.ClientTickEvent;

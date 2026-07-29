@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.hud;
+package dev.stellarclient.core.hud;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

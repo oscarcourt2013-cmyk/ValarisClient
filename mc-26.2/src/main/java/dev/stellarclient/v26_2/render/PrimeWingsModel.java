@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.v26_2.render;
+package dev.stellarclient.v26_2.render;
 
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;

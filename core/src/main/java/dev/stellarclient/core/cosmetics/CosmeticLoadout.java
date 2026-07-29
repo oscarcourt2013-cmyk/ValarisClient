@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.cosmetics;
+package dev.stellarclient.core.cosmetics;
 
 /** Equipped cape + wings IDs (empty strings mean none). */
 public record CosmeticLoadout(String capeId, String wingsId) {

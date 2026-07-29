@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.modules.qol;
+package dev.stellarclient.core.modules.qol;
 
 import dev.stellarclient.core.module.ModuleManager;
 import dev.stellarclient.core.keybind.KeybindManager;

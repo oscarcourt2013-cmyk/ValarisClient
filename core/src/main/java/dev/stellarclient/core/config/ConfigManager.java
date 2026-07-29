@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.config;
+package dev.stellarclient.core.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

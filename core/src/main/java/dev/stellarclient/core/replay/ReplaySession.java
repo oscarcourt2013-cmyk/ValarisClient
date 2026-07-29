@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.replay;
+package dev.stellarclient.core.replay;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;

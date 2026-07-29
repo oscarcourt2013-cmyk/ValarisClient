@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.hud.vanilla;
+package dev.stellarclient.core.hud.vanilla;
 
 import dev.stellarclient.core.hud.HudManager;
 

@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.state;
+package dev.stellarclient.core.state;
 
 /** Shared zoom FOV multiplier, read by version-layer mixins. */
 public final class ZoomState {

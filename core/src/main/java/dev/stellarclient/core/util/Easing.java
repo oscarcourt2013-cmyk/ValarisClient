@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.util;
+package dev.stellarclient.core.util;
 
 /** Simple easing helpers for GUI animations. */
 public final class Easing {

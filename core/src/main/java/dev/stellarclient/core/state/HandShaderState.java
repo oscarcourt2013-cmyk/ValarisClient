@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.state;
+package dev.stellarclient.core.state;
 
 /** First-person hand tint, read by version-layer item-in-hand mixins. */
 public final class HandShaderState {

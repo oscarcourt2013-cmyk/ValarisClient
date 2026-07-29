@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.theme;
+package dev.stellarclient.core.theme;
 
 /**
  * A StellarClient color theme. Colors are packed ARGB ints (0xAARRGGBB) â€”

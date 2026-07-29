@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.state;
+package dev.stellarclient.core.state;
 
 /** Smoothed camera rotation, read by version-layer mixins. */
 public final class CinematicCameraState {

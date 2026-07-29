@@ -1,4 +1,4 @@
-﻿import { readdir, readFile, stat } from 'fs/promises'
+import { readdir, readFile, stat } from 'fs/promises'
 import { join } from 'path'
 import type { GameCrashAnalysisDto, GameExitInfoDto } from '../../shared/ipc'
 

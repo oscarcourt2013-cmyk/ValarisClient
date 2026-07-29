@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.event;
+package dev.stellarclient.core.event;
 
 /** Fired when the player leaves a world or disconnects. Stateless singleton. */
 public final class WorldLeaveEvent {

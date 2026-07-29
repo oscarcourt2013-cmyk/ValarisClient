@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.design;
+package dev.stellarclient.core.design;
 
 /**
  * StellarClient v1.1 design tokens â€” spacing, radii, motion, typography scale.

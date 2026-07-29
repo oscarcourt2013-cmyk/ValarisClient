@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.v1_21_11.render;
+package dev.stellarclient.v1_21_11.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.stellarclient.core.StellarClient;

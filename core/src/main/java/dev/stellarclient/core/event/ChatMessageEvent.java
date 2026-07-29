@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.event;
+package dev.stellarclient.core.event;
 
 /**
  * Fired when a chat message is received or sent.

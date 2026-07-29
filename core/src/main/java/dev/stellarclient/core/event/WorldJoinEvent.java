@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.event;
+package dev.stellarclient.core.event;
 
 /** Fired when the player joins a world or server. Stateless singleton. */
 public final class WorldJoinEvent {

@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.bundle;
+package dev.stellarclient.core.bundle;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.modules.creator;
+package dev.stellarclient.core.modules.creator;
 
 import dev.stellarclient.core.adapter.MinecraftAdapter;
 import dev.stellarclient.core.adapter.RenderContext;

@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.event;
+package dev.stellarclient.core.event;
 
 import dev.stellarclient.core.StellarClient;
 

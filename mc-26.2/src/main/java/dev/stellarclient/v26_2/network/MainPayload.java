@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.v26_2.network;
+package dev.stellarclient.v26_2.network;
 
 import dev.stellarclient.core.StellarClient;
 import net.minecraft.network.RegistryFriendlyByteBuf;

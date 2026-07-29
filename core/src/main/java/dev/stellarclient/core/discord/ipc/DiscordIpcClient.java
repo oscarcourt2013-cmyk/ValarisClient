@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.discord.ipc;
+package dev.stellarclient.core.discord.ipc;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

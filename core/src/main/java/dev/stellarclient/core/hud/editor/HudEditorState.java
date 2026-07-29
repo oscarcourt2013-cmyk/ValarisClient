@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.hud.editor;
+package dev.stellarclient.core.hud.editor;
 
 /** True while the HUD editor screen is open â€” used to defer in-game HUD rendering. */
 public final class HudEditorState {

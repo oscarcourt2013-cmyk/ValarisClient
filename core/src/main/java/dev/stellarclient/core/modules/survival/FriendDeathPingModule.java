@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.modules.survival;
+package dev.stellarclient.core.modules.survival;
 
 import dev.stellarclient.core.event.ChatMessageEvent;
 import dev.stellarclient.core.module.Module;

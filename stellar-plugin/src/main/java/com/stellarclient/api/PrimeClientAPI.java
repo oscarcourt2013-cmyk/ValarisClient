@@ -1,4 +1,4 @@
-﻿package com.stellarclient.api;
+package com.stellarclient.api;
 
 import org.bukkit.entity.Player;
 

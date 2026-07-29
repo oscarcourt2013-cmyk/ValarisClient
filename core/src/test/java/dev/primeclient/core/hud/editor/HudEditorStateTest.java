@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.hud.editor;
+package dev.stellarclient.core.hud.editor;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;

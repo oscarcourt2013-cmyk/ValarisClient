@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.cosmetics;
+package dev.stellarclient.core.cosmetics;
 
 import dev.stellarclient.core.state.CosmeticsState;
 import org.junit.jupiter.api.AfterEach;

@@ -1,4 +1,4 @@
-﻿package com.stellarclient;
+package com.stellarclient;
 
 import com.stellarclient.achievements.AchievementService;
 import com.stellarclient.api.StellarClientAPI;

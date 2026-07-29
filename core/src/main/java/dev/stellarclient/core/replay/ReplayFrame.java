@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.replay;
+package dev.stellarclient.core.replay;
 
 /** One recorded player sample (event-based, compact). */
 public record ReplayFrame(

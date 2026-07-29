@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.modules.pvp;
+package dev.stellarclient.core.modules.pvp;
 
 import dev.stellarclient.core.adapter.MinecraftAdapter;
 import dev.stellarclient.core.adapter.RenderContext;

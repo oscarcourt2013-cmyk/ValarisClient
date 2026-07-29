@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.config;
+package dev.stellarclient.core.config;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;

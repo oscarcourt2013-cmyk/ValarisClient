@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.discord;
+package dev.stellarclient.core.discord;
 
 import dev.stellarclient.core.account.PrimeAccountService;
 import dev.stellarclient.core.adapter.MinecraftAdapter;

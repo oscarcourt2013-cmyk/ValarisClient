@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.discord;
+package dev.stellarclient.core.discord;
 
 import java.util.List;
 import java.util.Objects;

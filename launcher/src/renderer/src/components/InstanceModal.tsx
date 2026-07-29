@@ -1,4 +1,4 @@
-﻿import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button, Select } from '@renderer/design-system/components'
 import { useI18n } from '@renderer/context/I18nProvider'

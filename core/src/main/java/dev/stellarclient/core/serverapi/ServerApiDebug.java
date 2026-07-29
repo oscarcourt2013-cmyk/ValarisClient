@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.serverapi;
+package dev.stellarclient.core.serverapi;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;

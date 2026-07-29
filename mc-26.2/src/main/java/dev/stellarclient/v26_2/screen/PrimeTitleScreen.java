@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.v26_2.screen;
+package dev.stellarclient.v26_2.screen;
 
 import dev.stellarclient.core.StellarClient;
 import dev.stellarclient.core.gui.menu.TitleMenu;

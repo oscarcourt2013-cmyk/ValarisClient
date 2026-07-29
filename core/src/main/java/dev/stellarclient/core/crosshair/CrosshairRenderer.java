@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.crosshair;
+package dev.stellarclient.core.crosshair;
 
 import dev.stellarclient.core.adapter.RenderContext;
 import dev.stellarclient.core.util.ColorUtil;

@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.modules.performance;
+package dev.stellarclient.core.modules.performance;
 
 import dev.stellarclient.core.adapter.MinecraftAdapter;
 import dev.stellarclient.core.event.ClientTickEvent;

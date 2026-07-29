@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.modules.smp;
+package dev.stellarclient.core.modules.smp;
 
 import dev.stellarclient.core.event.ClientTickEvent;
 import dev.stellarclient.core.hud.HudAnchor;

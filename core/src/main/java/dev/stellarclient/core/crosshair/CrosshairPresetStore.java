@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.crosshair;
+package dev.stellarclient.core.crosshair;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;

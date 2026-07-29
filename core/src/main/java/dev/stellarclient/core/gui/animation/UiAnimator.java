@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.gui.animation;
+package dev.stellarclient.core.gui.animation;
 
 import dev.stellarclient.core.util.Easing;
 

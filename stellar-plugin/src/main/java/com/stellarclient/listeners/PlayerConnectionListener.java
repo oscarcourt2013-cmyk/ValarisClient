@@ -1,4 +1,4 @@
-﻿package com.stellarclient.listeners;
+package com.stellarclient.listeners;
 
 import com.stellarclient.StellarClientPlugin;
 import com.stellarclient.detection.StellarClientDetectedEvent;

@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.bootstrap;
+package dev.stellarclient.core.bootstrap;
 
 import dev.stellarclient.core.StellarClient;
 import dev.stellarclient.core.bundle.ModuleBundle;

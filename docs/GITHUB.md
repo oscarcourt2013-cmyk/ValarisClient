@@ -1,4 +1,4 @@
-﻿# GitHub â€” Releases & mises Ã  jour
+# GitHub â€” Releases & mises Ã  jour
 
 Repo public : **[github.com/oscarcourt2013-cmyk/StellarClient](https://github.com/oscarcourt2013-cmyk/StellarClient)**
 

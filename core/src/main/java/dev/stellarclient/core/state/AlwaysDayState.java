@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.state;
+package dev.stellarclient.core.state;
 
 /** Client-side daytime override read by version-layer level mixins. */
 public final class AlwaysDayState {

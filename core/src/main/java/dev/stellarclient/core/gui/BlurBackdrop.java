@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.gui;
+package dev.stellarclient.core.gui;
 
 /** Tracks whether the current frame has a live blurred game-world backdrop. */
 public final class BlurBackdrop {

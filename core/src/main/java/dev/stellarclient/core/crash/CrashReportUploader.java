@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.crash;
+package dev.stellarclient.core.crash;
 
 import com.google.gson.JsonObject;
 import dev.stellarclient.core.social.SocialSettings;

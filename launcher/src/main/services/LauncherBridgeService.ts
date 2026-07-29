@@ -1,4 +1,4 @@
-﻿import { mkdir, readFile, writeFile, copyFile, unlink } from 'fs/promises'
+import { mkdir, readFile, writeFile, copyFile, unlink } from 'fs/promises'
 import { join, dirname } from 'path'
 import { app } from 'electron'
 import { getInstanceGameDir } from '../minecraft/paths'

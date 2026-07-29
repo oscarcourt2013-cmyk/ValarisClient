@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.state;
+package dev.stellarclient.core.state;
 
 /** Rule-of-thirds overlay flag, read by HUD render hooks. */
 public final class CinematicGridState {

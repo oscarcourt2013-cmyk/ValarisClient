@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.v26_2.hud;
+package dev.stellarclient.v26_2.hud;
 
 import dev.stellarclient.core.StellarClient;
 import dev.stellarclient.core.hud.HudElement;

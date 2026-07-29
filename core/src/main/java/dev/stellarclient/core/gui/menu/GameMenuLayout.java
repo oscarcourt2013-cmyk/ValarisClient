@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.gui.menu;
+package dev.stellarclient.core.gui.menu;
 
 /** Geometry for the Prime pause / game menu. */
 record GameMenuLayout(

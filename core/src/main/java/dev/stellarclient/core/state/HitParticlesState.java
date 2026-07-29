@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.state;
+package dev.stellarclient.core.state;
 
 /** Hit-only particle overrides (does not touch world particles). */
 public final class HitParticlesState {

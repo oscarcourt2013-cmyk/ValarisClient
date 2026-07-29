@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.ai;
+package dev.stellarclient.core.ai;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

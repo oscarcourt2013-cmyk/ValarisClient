@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.ai;
+package dev.stellarclient.core.ai;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;

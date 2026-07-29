@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.stream;
+package dev.stellarclient.core.stream;
 
 import java.util.HashMap;
 import java.util.Locale;

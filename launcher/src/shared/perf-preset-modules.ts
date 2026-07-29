@@ -1,4 +1,4 @@
-﻿import type { PerformancePreset } from './content-types'
+import type { PerformancePreset } from './content-types'
 
 /** Module enable/disable applied into the mod profile via the launcher bridge. */
 export interface PerfPresetModulePlan {

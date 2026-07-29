@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.v1_21_11.mixin;
+package dev.stellarclient.v1_21_11.mixin;
 
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;

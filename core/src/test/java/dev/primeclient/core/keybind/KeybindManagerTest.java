@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.keybind;
+package dev.stellarclient.core.keybind;
 
 import com.google.gson.JsonObject;
 import org.junit.jupiter.api.Test;

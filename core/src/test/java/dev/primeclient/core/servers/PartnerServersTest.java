@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.servers;
+package dev.stellarclient.core.servers;
 
 import org.junit.jupiter.api.Test;
 

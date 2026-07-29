@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.cosmetics;
+package dev.stellarclient.core.cosmetics;
 
 /** Cosmetic slot types. Only CAPE and WINGS are equippable in-world. */
 public enum CosmeticType {

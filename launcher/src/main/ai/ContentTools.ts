@@ -1,4 +1,4 @@
-﻿import { contentService } from '../services/ContentService'
+import { contentService } from '../services/ContentService'
 import { instanceService } from '../services/InstanceService'
 import { profileService } from '../services/ProfileService'
 import { settingsStore } from '../storage/SettingsStore'

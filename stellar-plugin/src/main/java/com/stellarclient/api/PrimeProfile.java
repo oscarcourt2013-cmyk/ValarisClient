@@ -1,4 +1,4 @@
-﻿package com.stellarclient.api;
+package com.stellarclient.api;
 
 import java.util.UUID;
 

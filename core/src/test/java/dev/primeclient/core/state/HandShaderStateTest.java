@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.state;
+package dev.stellarclient.core.state;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;

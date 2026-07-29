@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.stream;
+package dev.stellarclient.core.stream;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

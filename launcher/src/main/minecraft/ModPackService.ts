@@ -1,4 +1,4 @@
-﻿import { copyFile, mkdir, readdir, readFile, stat, unlink, writeFile } from 'fs/promises'
+import { copyFile, mkdir, readdir, readFile, stat, unlink, writeFile } from 'fs/promises'
 import { app } from 'electron'
 import { basename, join } from 'path'
 import {
@@ -8,8 +8,8 @@ import {
   type GitHubRelease
 } from '../../shared/githubRelease'
 import {
-  allPrimeJarPrefixes,
-  parsePrimeJarSemVer,
+  allStellarJarPrefixes,
+  parseStellarJarSemVer,
   resolveTarget,
   type MinecraftTarget
 } from '../../shared/minecraft-targets'
@@ -55,7 +55,7 @@ function modCacheManifestPath(): string {
 }
 
 function parseJarVersion(fileName: string, jarPrefix: string): SemVer | null {
-  return parsePrimeJarSemVer(fileName, jarPrefix)
+  return parseStellarJarSemVer(fileName, jarPrefix)
 }
 
 function compareSemVer(a: SemVer, b: SemVer): number {
@@ -309,7 +309,7 @@ async function resolveStellarClientSource(
 }
 
 function isAnyPrimeJar(fileName: string): boolean {
-  return allPrimeJarPrefixes().some((prefix) => isPrimeModJarAsset(fileName, prefix))
+  return allStellarJarPrefixes().some((prefix) => isPrimeModJarAsset(fileName, prefix))
 }
 
 async function removeStalePrimeJars(modsDir: string, keepFileName: string): Promise<void> {

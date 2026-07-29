@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.social;
+package dev.stellarclient.core.social;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;

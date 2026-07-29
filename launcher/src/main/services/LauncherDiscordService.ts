@@ -1,4 +1,4 @@
-﻿import { app } from 'electron'
+import { app } from 'electron'
 import { DiscordIpcClient } from '../discord/DiscordIpcClient'
 import {
   DISCORD_APPLICATION_ID,

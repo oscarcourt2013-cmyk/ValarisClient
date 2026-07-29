@@ -1,4 +1,4 @@
-﻿package com.stellarclient.rewards;
+package com.stellarclient.rewards;
 
 import com.stellarclient.StellarClientPlugin;
 import com.stellarclient.database.Database;

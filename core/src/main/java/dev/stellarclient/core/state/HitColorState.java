@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.state;
+package dev.stellarclient.core.state;
 
 /** Shared hit-overlay color, read by version-layer mixins. */
 public final class HitColorState {

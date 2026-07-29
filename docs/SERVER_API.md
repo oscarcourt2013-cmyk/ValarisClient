@@ -1,4 +1,4 @@
-﻿# StellarClient Server API
+# StellarClient Server API
 
 Custom payload channel for partner Minecraft servers to detect and integrate with **StellarClient**.
 

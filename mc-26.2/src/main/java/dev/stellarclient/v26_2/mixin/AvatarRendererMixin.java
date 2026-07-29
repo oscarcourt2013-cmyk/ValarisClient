@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.v26_2.mixin;
+package dev.stellarclient.v26_2.mixin;
 
 import dev.stellarclient.core.cosmetics.CapePhysics;
 import dev.stellarclient.core.cosmetics.CosmeticLoadout;

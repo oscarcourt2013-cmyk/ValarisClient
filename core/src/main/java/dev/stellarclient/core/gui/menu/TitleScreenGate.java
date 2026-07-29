@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.gui.menu;
+package dev.stellarclient.core.gui.menu;
 
 /** Allows opening the vanilla {@code TitleScreen} once without Prime redirect. */
 public final class TitleScreenGate {

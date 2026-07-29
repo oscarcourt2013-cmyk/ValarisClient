@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.voice;
+package dev.stellarclient.core.voice;
 
 import dev.stellarclient.core.adapter.MinecraftAdapter;
 import dev.stellarclient.core.notification.NotificationManager;

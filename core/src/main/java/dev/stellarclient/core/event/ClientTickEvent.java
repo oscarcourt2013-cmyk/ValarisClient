@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.event;
+package dev.stellarclient.core.event;
 
 /**
  * Fired at the end of every client tick (20/s).

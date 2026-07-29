@@ -1,4 +1,4 @@
-﻿import { randomUUID } from 'crypto'
+import { randomUUID } from 'crypto'
 import type { FavoriteServer } from '../../shared/types'
 import { findCatalogEntry, mergeCatalogMetadata, SERVER_CATALOG } from '../../shared/server-catalog'
 import { ecosystemStore } from '../storage/EcosystemStore'

@@ -1,4 +1,4 @@
-﻿import type { LocaleCatalog } from './en'
+import type { LocaleCatalog } from './en'
 
 export const fr: LocaleCatalog = {
   app: {

@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.hud.editor;
+package dev.stellarclient.core.hud.editor;
 
 import dev.stellarclient.core.adapter.RenderContext;
 import dev.stellarclient.core.hud.FakeRenderContext;

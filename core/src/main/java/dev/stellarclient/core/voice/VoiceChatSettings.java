@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.voice;
+package dev.stellarclient.core.voice;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

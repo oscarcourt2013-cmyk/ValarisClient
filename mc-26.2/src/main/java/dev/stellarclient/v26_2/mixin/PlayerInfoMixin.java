@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.v26_2.mixin;
+package dev.stellarclient.v26_2.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.mojang.authlib.GameProfile;

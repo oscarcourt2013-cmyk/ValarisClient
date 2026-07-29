@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core;
+package dev.stellarclient.core;
 
 import dev.stellarclient.core.modules.creator.CameraZoomModule;
 import dev.stellarclient.core.modules.creator.CinematicCameraModule;

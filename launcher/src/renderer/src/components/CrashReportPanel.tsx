@@ -1,4 +1,4 @@
-﻿import { AlertTriangle, Bot, ExternalLink, FileText, X } from 'lucide-react'
+import { AlertTriangle, Bot, ExternalLink, FileText, X } from 'lucide-react'
 import type { GameCrashAnalysisDto } from '@shared/ipc'
 import { Button } from '@renderer/design-system/components'
 import { useI18n } from '@renderer/context/I18nProvider'

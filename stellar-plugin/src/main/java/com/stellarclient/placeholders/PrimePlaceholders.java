@@ -1,4 +1,4 @@
-﻿package com.stellarclient.placeholders;
+package com.stellarclient.placeholders;
 
 import com.stellarclient.StellarClientPlugin;
 import com.stellarclient.database.Database;

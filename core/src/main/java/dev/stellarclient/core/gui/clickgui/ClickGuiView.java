@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.gui.clickgui;
+package dev.stellarclient.core.gui.clickgui;
 
 /** Top-level ClickGUI screens. */
 public enum ClickGuiView {

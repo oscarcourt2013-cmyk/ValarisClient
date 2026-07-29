@@ -1,4 +1,4 @@
-﻿package com.stellarclient.database;
+package com.stellarclient.database;
 
 import com.stellarclient.api.PrimeProfile;
 import com.stellarclient.utils.Text;

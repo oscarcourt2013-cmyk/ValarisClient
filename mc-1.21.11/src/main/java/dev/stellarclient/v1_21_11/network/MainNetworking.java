@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.v1_21_11.network;
+package dev.stellarclient.v1_21_11.network;
 
 import dev.stellarclient.core.StellarClient;
 import dev.stellarclient.core.hook.PrimeHooks;

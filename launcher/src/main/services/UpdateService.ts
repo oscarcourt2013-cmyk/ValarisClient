@@ -1,4 +1,4 @@
-﻿import { copyFile, mkdir, readdir, unlink, writeFile } from 'fs/promises'
+import { copyFile, mkdir, readdir, unlink, writeFile } from 'fs/promises'
 import { app, shell } from 'electron'
 import { join } from 'path'
 import { spawn } from 'child_process'
@@ -13,7 +13,7 @@ import {
   pickWindowsLauncherAsset,
   type GitHubRelease
 } from '../../shared/githubRelease'
-import { allPrimeJarPrefixes, primeJarPrefix, resolveTarget } from '../../shared/minecraft-targets'
+import { allStellarJarPrefixes, primeJarPrefix, resolveTarget } from '../../shared/minecraft-targets'
 import type { UpdateInstallResultDto, UpdateProgressDto, UpdateStatusDto } from '../../shared/ipc'
 import { getInstanceModsDir } from '../minecraft/paths'
 import { minecraftEngine } from '../minecraft/MinecraftEngine'
@@ -97,7 +97,7 @@ async function getInstalledModVersion(instanceId: string, jarPrefix: string): Pr
 }
 
 function isAnyPrimeJar(fileName: string): boolean {
-  return allPrimeJarPrefixes().some((prefix) => isPrimeModJarAsset(fileName, prefix))
+  return allStellarJarPrefixes().some((prefix) => isPrimeModJarAsset(fileName, prefix))
 }
 
 async function removeStalePrimeJars(modsDir: string, keepFileName: string): Promise<void> {

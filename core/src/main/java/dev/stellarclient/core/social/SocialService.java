@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.social;
+package dev.stellarclient.core.social;
 
 import java.util.concurrent.CompletableFuture;
 

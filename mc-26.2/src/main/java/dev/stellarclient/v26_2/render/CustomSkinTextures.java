@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.v26_2.render;
+package dev.stellarclient.v26_2.render;
 
 import com.mojang.blaze3d.platform.NativeImage;
 import dev.stellarclient.core.StellarClient;

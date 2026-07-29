@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.v1_21_11.hud;
+package dev.stellarclient.v1_21_11.hud;
 
 import dev.stellarclient.core.hud.vanilla.VanillaHudMeasurements;
 import net.minecraft.client.Minecraft;

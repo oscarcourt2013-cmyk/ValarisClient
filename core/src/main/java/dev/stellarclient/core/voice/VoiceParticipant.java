@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.voice;
+package dev.stellarclient.core.voice;
 
 /** A StellarClient user in the current voice room. */
 public final class VoiceParticipant {

@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.modules.smp;
+package dev.stellarclient.core.modules.smp;
 
 import java.util.HashMap;
 import java.util.Locale;

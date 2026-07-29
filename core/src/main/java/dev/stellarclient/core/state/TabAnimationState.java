@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.state;
+package dev.stellarclient.core.state;
 
 /** Subtle tab-list open animation, read by PlayerTabOverlay mixins. */
 public final class TabAnimationState {

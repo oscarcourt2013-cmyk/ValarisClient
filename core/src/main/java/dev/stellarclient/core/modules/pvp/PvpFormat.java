@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.modules.pvp;
+package dev.stellarclient.core.modules.pvp;
 
 /** Shared formatting for PvP HUD modules. */
 final class PvpFormat {

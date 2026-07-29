@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.gui.component;
+package dev.stellarclient.core.gui.component;
 
 import dev.stellarclient.core.adapter.RenderContext;
 import dev.stellarclient.core.design.PrimeDesign;

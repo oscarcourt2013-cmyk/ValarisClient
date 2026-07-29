@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.modules.smp;
+package dev.stellarclient.core.modules.smp;
 
 import dev.stellarclient.core.adapter.RenderContext;
 import dev.stellarclient.core.event.ChatMessageEvent;

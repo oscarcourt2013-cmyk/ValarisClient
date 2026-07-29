@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.stream;
+package dev.stellarclient.core.stream;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

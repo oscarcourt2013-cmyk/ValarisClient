@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.v26_2;
+package dev.stellarclient.v26_2;
 
 import dev.stellarclient.core.adapter.MinecraftAdapter;
 import dev.stellarclient.core.StellarClient;

@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.util;
+package dev.stellarclient.core.util;
 
 /** Cardinal direction from player yaw. Allocation-free. */
 public final class DirectionUtil {

@@ -1,4 +1,4 @@
-﻿import type { FavoriteServer, NewsItem } from '../../shared/types'
+import type { FavoriteServer, NewsItem } from '../../shared/types'
 import { instanceService } from './InstanceService'
 
 /** Minecraft metadata â€” instances are managed by InstanceService. */

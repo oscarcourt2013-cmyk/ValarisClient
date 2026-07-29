@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.v1_21_11.render;
+package dev.stellarclient.v1_21_11.render;
 
 import dev.stellarclient.core.hook.PrimeHooks;
 import net.minecraft.client.Minecraft;

@@ -1,4 +1,4 @@
-﻿import type { FavoriteServer, ServerSocialLinks } from './types'
+import type { FavoriteServer, ServerSocialLinks } from './types'
 
 /** Curated partner / featured servers â€” merged into favorites by address. */
 export interface ServerCatalogEntry {

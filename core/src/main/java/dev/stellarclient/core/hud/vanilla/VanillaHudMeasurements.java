@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.hud.vanilla;
+package dev.stellarclient.core.hud.vanilla;
 
 /** Last measured on-screen bounds for vanilla HUD widgets with variable size. */
 public final class VanillaHudMeasurements {

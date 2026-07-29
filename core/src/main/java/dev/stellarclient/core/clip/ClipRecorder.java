@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.clip;
+package dev.stellarclient.core.clip;
 
 import dev.stellarclient.core.StellarClient;
 import dev.stellarclient.core.adapter.MinecraftAdapter;

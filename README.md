@@ -1,4 +1,4 @@
-﻿# StellarClient
+# StellarClient
 
 Client Minecraft All-in-One : PvP, Performance, QoL, CrÃ©ation de contenu, Personnalisation.
 Alternative professionnelle Ã  Lunar / Badlion / Feather â€” 100 % lÃ©gitime (visuel, confort, performance ; aucun cheat).

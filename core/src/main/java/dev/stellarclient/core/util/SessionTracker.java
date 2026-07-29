@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.util;
+package dev.stellarclient.core.util;
 
 /** Tracks how long the current in-game session has been running. */
 public final class SessionTracker {

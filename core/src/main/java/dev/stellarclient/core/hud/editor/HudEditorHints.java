@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.hud.editor;
+package dev.stellarclient.core.hud.editor;
 
 /** Short HUD editor footer hints (two lines to avoid clipping). */
 public final class HudEditorHints {

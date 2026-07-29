@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.hud;
+package dev.stellarclient.core.hud;
 
 import dev.stellarclient.core.adapter.RenderContext;
 import dev.stellarclient.core.theme.Theme;

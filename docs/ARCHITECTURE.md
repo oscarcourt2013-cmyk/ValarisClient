@@ -1,4 +1,4 @@
-﻿# StellarClient â€” Architecture
+# StellarClient â€” Architecture
 
 ## Vue d'ensemble
 

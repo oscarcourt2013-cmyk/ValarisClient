@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.i18n;
+package dev.stellarclient.core.i18n;
 
 import dev.stellarclient.core.module.ModuleCategory;
 

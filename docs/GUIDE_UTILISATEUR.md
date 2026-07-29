@@ -1,4 +1,4 @@
-﻿# Guide StellarClient v1.1
+# Guide StellarClient v1.1
 
 Bienvenue sur **StellarClient** â€” client Minecraft premium (Fabric) pour le PvP, la performance, le QoL et la personnalisation.
 

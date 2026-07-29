@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.state;
+package dev.stellarclient.core.state;
 
 /** Fullbright flag read by version-layer lightmap mixins. */
 public final class FullbrightState {

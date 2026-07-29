@@ -1,4 +1,4 @@
-﻿import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { existsSync } from 'fs'
 import { IPC } from '../shared/ipc'

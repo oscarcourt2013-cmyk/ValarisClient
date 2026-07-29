@@ -1,4 +1,4 @@
-﻿package com.stellarclient.achievements;
+package com.stellarclient.achievements;
 
 import com.stellarclient.StellarClientPlugin;
 import com.stellarclient.database.Database;

@@ -1,4 +1,4 @@
-﻿name: StellarClient
+name: StellarClient
 version: '${version}'
 main: com.stellarclient.StellarClientPlugin
 api-version: '1.21'

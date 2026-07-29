@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.v1_21_11.mixin;
+package dev.stellarclient.v1_21_11.mixin;
 
 import dev.stellarclient.v1_21_11.render.PrimeCosmeticRenderData;
 import net.minecraft.client.renderer.entity.state.AvatarRenderState;

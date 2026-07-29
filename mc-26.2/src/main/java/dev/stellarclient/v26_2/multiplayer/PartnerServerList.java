@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.v26_2.multiplayer;
+package dev.stellarclient.v26_2.multiplayer;
 
 import dev.stellarclient.core.servers.PartnerServers;
 import net.minecraft.client.Minecraft;

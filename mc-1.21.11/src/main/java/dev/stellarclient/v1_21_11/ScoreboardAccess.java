@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.v1_21_11;
+package dev.stellarclient.v1_21_11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;

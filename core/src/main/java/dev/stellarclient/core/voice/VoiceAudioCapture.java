@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.voice;
+package dev.stellarclient.core.voice;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

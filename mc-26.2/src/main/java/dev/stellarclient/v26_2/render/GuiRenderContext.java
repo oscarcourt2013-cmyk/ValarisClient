@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.v26_2.render;
+package dev.stellarclient.v26_2.render;
 
 import dev.stellarclient.core.StellarClient;
 import dev.stellarclient.core.adapter.RenderContext;

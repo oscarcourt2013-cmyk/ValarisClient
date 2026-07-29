@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.state;
+package dev.stellarclient.core.state;
 
 /** Client-side precipitation override read by version-layer level mixins. */
 public final class NoRainState {

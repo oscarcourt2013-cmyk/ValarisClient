@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.v26_2.mixin;
+package dev.stellarclient.v26_2.mixin;
 
 import com.mojang.blaze3d.pipeline.RenderPipeline;
 import dev.stellarclient.core.hud.vanilla.VanillaHudMeasurements;

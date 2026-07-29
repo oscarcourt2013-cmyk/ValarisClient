@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.gui;
+package dev.stellarclient.core.gui;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;

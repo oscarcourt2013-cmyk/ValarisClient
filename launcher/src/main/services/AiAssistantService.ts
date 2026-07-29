@@ -1,4 +1,4 @@
-﻿import { contentService } from './ContentService'
+import { contentService } from './ContentService'
 import { aiSecretsStore } from '../ai/AiSecretsStore'
 import { aiProxyAvailable, groqChat, type ChatMessage } from '../ai/GroqClient'
 import { AI_TOOL_DEFINITIONS, executeAiTool } from '../ai/ContentTools'

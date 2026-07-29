@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.gui.menu;
+package dev.stellarclient.core.gui.menu;
 
 import dev.stellarclient.core.adapter.RenderContext;
 import dev.stellarclient.core.cosmetics.CosmeticItem;

@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.theme;
+package dev.stellarclient.core.theme;
 
 import com.google.gson.JsonObject;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-﻿import net from 'net'
+import net from 'net'
 import { readdirSync } from 'fs'
 import type { DiscordPresencePayload } from './types'
 

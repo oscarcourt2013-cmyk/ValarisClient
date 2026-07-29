@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.modules.survival;
+package dev.stellarclient.core.modules.survival;
 
 /** Shared formatting for survival HUD modules. */
 final class SurvivalFormat {

@@ -1,4 +1,4 @@
-﻿package com.stellarclient.utils;
+package com.stellarclient.utils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

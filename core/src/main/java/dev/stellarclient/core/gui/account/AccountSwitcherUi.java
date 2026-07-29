@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.gui.account;
+package dev.stellarclient.core.gui.account;
 
 import dev.stellarclient.core.StellarClient;
 import dev.stellarclient.core.account.LauncherAccountStore;

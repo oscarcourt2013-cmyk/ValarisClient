@@ -1,4 +1,4 @@
-﻿missions:
+missions:
   daily_playtime:
     name: "Session quotidienne"
     description: "Jouer 30 minutes aujourd'hui"

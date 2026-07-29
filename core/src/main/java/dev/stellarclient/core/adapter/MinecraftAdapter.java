@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.adapter;
+package dev.stellarclient.core.adapter;
 
 import java.nio.file.Path;
 

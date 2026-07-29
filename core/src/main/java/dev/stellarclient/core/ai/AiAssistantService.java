@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.ai;
+package dev.stellarclient.core.ai;
 
 import dev.stellarclient.core.adapter.MinecraftAdapter;
 import dev.stellarclient.core.design.PrimeVersion;

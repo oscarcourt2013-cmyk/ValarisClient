@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.modules.streamers;
+package dev.stellarclient.core.modules.streamers;
 
 import dev.stellarclient.core.module.BooleanSetting;
 import dev.stellarclient.core.module.Module;

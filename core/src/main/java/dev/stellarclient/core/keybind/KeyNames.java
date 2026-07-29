@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.keybind;
+package dev.stellarclient.core.keybind;
 
 /** Human-readable labels for GLFW key codes (ClickGUI keybind editor). */
 public final class KeyNames {

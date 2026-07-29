@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.modules.creator;
+package dev.stellarclient.core.modules.creator;
 
 import dev.stellarclient.core.clip.ClipRecorder;
 import dev.stellarclient.core.keybind.Keybind;

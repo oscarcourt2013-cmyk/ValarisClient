@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.modules.prime;
+package dev.stellarclient.core.modules.prime;
 
 import dev.stellarclient.core.module.ModuleToggleEvent;
 import dev.stellarclient.core.event.WorldLeaveEvent;

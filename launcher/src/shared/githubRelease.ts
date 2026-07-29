@@ -1,4 +1,4 @@
-﻿import { GITHUB_REPO_SLUG } from './github'
+import { GITHUB_REPO_SLUG } from './github'
 
 export interface GitHubReleaseAsset {
   name: string

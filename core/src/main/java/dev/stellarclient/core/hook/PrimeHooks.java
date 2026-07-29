@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.hook;
+package dev.stellarclient.core.hook;
 
 import dev.stellarclient.core.StellarClient;
 import dev.stellarclient.core.event.AttackEntityEvent;

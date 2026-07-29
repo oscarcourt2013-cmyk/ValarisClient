@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.clip;
+package dev.stellarclient.core.clip;
 
 import org.jcodec.api.awt.AWTSequenceEncoder;
 

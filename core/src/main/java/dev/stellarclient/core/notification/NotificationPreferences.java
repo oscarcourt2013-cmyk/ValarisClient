@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.notification;
+package dev.stellarclient.core.notification;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

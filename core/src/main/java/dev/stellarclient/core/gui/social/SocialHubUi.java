@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.gui.social;
+package dev.stellarclient.core.gui.social;
 
 import dev.stellarclient.core.adapter.MinecraftAdapter;
 import dev.stellarclient.core.adapter.RenderContext;

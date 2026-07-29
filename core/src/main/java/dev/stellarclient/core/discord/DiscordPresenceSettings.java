@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.discord;
+package dev.stellarclient.core.discord;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

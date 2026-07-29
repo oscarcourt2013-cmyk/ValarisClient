@@ -1,4 +1,4 @@
-﻿package com.stellarclient.network;
+package com.stellarclient.network;
 
 import com.google.gson.JsonObject;
 import com.stellarclient.StellarClientPlugin;

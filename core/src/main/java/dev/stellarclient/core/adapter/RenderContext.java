@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.adapter;
+package dev.stellarclient.core.adapter;
 
 /**
  * Version-independent 2D drawing surface for HUD and GUI rendering.

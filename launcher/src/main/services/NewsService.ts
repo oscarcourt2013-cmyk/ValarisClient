@@ -1,4 +1,4 @@
-﻿import { BUNDLED_NEWS } from '../../shared/ecosystem-catalog'
+import { BUNDLED_NEWS } from '../../shared/ecosystem-catalog'
 import { GITHUB_REPO_SLUG } from '../../shared/github'
 import type { NewsItem } from '../../shared/types'
 

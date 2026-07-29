@@ -1,4 +1,4 @@
-﻿package com.stellarclient.notifications;
+package com.stellarclient.notifications;
 
 import com.stellarclient.StellarClientPlugin;
 import com.stellarclient.utils.Text;

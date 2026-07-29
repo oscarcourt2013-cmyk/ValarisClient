@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.notification;
+package dev.stellarclient.core.notification;
 
 import org.junit.jupiter.api.Test;
 

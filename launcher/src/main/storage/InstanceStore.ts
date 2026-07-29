@@ -1,4 +1,4 @@
-﻿import { app } from 'electron'
+import { app } from 'electron'
 import { mkdir, readFile, writeFile } from 'fs/promises'
 import { join } from 'path'
 import { DEFAULT_MINECRAFT_TARGET } from '../../shared/minecraft-targets'

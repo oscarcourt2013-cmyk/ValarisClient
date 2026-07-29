@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.notification;
+package dev.stellarclient.core.notification;
 
 /**
  * One HUD notification. Immutable; expiry derives from creation time so no

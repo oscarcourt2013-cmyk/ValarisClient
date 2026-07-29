@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.gui.clickgui;
+package dev.stellarclient.core.gui.clickgui;
 
 import dev.stellarclient.core.adapter.RenderContext;
 import dev.stellarclient.core.gui.FavoritesManager;

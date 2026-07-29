@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.clip;
+package dev.stellarclient.core.clip;
 
 import java.io.IOException;
 import java.nio.file.Files;

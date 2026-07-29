@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.notification;
+package dev.stellarclient.core.notification;
 
 import java.util.ArrayDeque;
 import java.util.Iterator;

@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.v26_2.mixin;
+package dev.stellarclient.v26_2.mixin;
 
 import dev.stellarclient.core.hook.PrimeHooks;
 import dev.stellarclient.core.hud.editor.HudEditorState;

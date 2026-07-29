@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.gui;
+package dev.stellarclient.core.gui;
 
 import dev.stellarclient.core.adapter.RenderContext;
 import dev.stellarclient.core.theme.Theme;

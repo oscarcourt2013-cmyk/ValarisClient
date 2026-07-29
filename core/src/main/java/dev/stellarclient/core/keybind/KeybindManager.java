@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.keybind;
+package dev.stellarclient.core.keybind;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

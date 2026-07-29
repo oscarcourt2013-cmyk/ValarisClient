@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.state;
+package dev.stellarclient.core.state;
 
 import dev.stellarclient.core.account.PrimeAccountService;
 import org.junit.jupiter.api.AfterEach;

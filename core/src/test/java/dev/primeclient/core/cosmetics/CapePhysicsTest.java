@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.cosmetics;
+package dev.stellarclient.core.cosmetics;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;

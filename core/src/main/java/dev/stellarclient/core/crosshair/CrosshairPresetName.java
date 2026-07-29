@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.crosshair;
+package dev.stellarclient.core.crosshair;
 
 /** Built-in crosshair preset names. */
 public enum CrosshairPresetName {

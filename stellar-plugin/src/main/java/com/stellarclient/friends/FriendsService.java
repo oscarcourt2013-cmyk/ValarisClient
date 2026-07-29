@@ -1,4 +1,4 @@
-﻿package com.stellarclient.friends;
+package com.stellarclient.friends;
 
 import com.stellarclient.StellarClientPlugin;
 import com.stellarclient.notifications.NotificationService;

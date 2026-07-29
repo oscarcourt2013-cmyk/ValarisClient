@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.v26_2.mixin;
+package dev.stellarclient.v26_2.mixin;
 
 import dev.stellarclient.core.state.HitColorState;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;

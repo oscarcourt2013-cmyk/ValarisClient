@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.v1_21_11.mixin;
+package dev.stellarclient.v1_21_11.mixin;
 
 import dev.stellarclient.core.hook.PrimeHooks;
 import dev.stellarclient.core.stream.StreamRedactor;

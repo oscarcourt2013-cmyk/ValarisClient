@@ -1,4 +1,4 @@
-﻿package com.stellarclient.api;
+package com.stellarclient.api;
 
 import com.stellarclient.database.Database;
 import com.stellarclient.detection.ClientDetectionService;

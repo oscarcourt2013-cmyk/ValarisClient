@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.hud.elements;
+package dev.stellarclient.core.hud.elements;
 
 import dev.stellarclient.core.adapter.RenderContext;
 import dev.stellarclient.core.hud.HudAnchor;

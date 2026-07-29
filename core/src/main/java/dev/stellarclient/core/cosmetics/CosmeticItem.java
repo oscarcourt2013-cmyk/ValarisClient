@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.cosmetics;
+package dev.stellarclient.core.cosmetics;
 
 /** One cosmetic item with rarity for future shop/inventory. */
 public record CosmeticItem(

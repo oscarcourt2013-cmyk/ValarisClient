@@ -1,4 +1,4 @@
-﻿import { access } from 'fs/promises'
+import { access } from 'fs/promises'
 import { constants } from 'fs'
 import { readdir, stat } from 'fs/promises'
 import { join } from 'path'

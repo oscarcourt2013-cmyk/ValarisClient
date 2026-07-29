@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.presence;
+package dev.stellarclient.core.presence;
 
 import dev.stellarclient.core.adapter.MinecraftAdapter;
 import org.junit.jupiter.api.Test;

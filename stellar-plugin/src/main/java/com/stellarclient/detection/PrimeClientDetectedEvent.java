@@ -1,4 +1,4 @@
-﻿package com.stellarclient.detection;
+package com.stellarclient.detection;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;

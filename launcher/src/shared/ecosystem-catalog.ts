@@ -1,4 +1,4 @@
-﻿import type { CosmeticItem, PerformancePresetInfo, StoreItem } from './content-types'
+import type { CosmeticItem, PerformancePresetInfo, StoreItem } from './content-types'
 import type { NewsItem } from './types'
 
 /** Static store catalog â€” purchases unlock locally (Prime Coins, no payment server). */

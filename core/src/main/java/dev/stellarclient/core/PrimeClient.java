@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core;
+package dev.stellarclient.core;
 
 import dev.stellarclient.core.account.PrimeAccountService;
 import dev.stellarclient.core.adapter.MinecraftAdapter;

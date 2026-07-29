@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.design;
+package dev.stellarclient.core.design;
 
 import dev.stellarclient.core.adapter.RenderContext;
 

@@ -1,4 +1,4 @@
-﻿package com.stellarclient.xp;
+package com.stellarclient.xp;
 
 import com.stellarclient.StellarClientPlugin;
 import com.stellarclient.database.Database;

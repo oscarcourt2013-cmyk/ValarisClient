@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.hud;
+package dev.stellarclient.core.hud;
 
 /**
  * The nine screen anchor points a HUD element can attach to.

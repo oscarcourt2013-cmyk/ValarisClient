@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.state;
+package dev.stellarclient.core.state;
 
 import dev.stellarclient.core.cosmetics.CapePhysics;
 

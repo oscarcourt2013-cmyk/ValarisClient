@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.v1_21_11.mixin;
+package dev.stellarclient.v1_21_11.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import dev.stellarclient.core.hook.PrimeHooks;

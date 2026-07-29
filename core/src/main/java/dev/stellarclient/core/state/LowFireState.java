@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.state;
+package dev.stellarclient.core.state;
 
 /** Client-side fire overlay offset read by version-layer screen effect mixins. */
 public final class LowFireState {

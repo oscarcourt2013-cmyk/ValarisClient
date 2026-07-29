@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.keybind;
+package dev.stellarclient.core.keybind;
 
 /**
  * A rebindable key action, identified by GLFW key code.

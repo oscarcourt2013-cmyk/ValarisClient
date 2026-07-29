@@ -1,4 +1,4 @@
-﻿package com.stellarclient.profile;
+package com.stellarclient.profile;
 
 import com.stellarclient.StellarClientPlugin;
 import com.stellarclient.api.PrimeProfile;

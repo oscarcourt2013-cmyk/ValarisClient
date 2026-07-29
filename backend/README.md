@@ -1,4 +1,4 @@
-﻿# Prime Backend
+# Prime Backend
 
 Unified **social + voice** server for StellarClient (friends / DM / party / presence), plus cloud-sync helpers for profiles, store, cosmetics, and settings.
 

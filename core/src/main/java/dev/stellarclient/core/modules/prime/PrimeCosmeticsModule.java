@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.modules.prime;
+package dev.stellarclient.core.modules.prime;
 
 import dev.stellarclient.core.cosmetics.CosmeticManager;
 import dev.stellarclient.core.cosmetics.CosmeticType;

@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.ai;
+package dev.stellarclient.core.ai;
 
 import dev.stellarclient.core.event.EventBus;
 import dev.stellarclient.core.keybind.KeybindManager;

@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.util;
+package dev.stellarclient.core.util;
 
 /** Packed ARGB helpers. Allocation-free. */
 public final class ColorUtil {

@@ -1,4 +1,4 @@
-﻿# Discord Rich Presence â€” Configuration
+# Discord Rich Presence â€” Configuration
 
 ## Application ID (obligatoire)
 

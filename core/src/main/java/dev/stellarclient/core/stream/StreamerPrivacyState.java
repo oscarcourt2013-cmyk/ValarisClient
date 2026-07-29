@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.stream;
+package dev.stellarclient.core.stream;
 
 /** Shared stream-privacy flags read by modules, HUD elements, and version-layer mixins. */
 public final class StreamerPrivacyState {

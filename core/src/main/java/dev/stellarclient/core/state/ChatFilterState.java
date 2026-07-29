@@ -1,4 +1,4 @@
-﻿package dev.stellarclient.core.state;
+package dev.stellarclient.core.state;
 
 /**
  * Shared chat filter word list, read by version-layer hooks.
