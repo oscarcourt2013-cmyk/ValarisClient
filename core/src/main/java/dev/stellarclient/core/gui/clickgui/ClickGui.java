@@ -60,6 +60,9 @@ public final class ClickGui implements ConfigBinding {
     private final TooltipRenderer tooltips;
     private final MainMenuRenderer mainMenu = new MainMenuRenderer();
     private final ModuleCardBrowser cardBrowser;
+    private final ClickGuiTopBar topBar = new ClickGuiTopBar();
+    private final ProfileSidebar sidebar = new ProfileSidebar();
+    private final BottomDock bottomDock = new BottomDock();
     private final SettingsMenuRenderer settingsMenu = new SettingsMenuRenderer();
     private final CosmeticsMenuRenderer cosmeticsMenu = new CosmeticsMenuRenderer();
     private final ConfigurationsMenuRenderer configurationsMenu = new ConfigurationsMenuRenderer();
@@ -223,7 +226,7 @@ public final class ClickGui implements ConfigBinding {
         this.fontHeight = ctx.fontHeight();
         Theme theme = themes.active();
 
-        if (isSearching()) {
+        if (isSearching() && view != ClickGuiView.BROWSE) {
             renderSearchBar(ctx, theme);
             if (searchPanel != null) {
                 searchPanel.render(ctx, theme, mouseX, mouseY);
@@ -259,9 +262,16 @@ public final class ClickGui implements ConfigBinding {
                 favoritesPanel.render(ctx, theme, mouseX, mouseY);
             }
             case BROWSE -> {
-                renderSearchBar(ctx, theme);
-                int browserW = selectedModulePanel != null ? screenWidth - Panel.WIDTH - 24 : screenWidth - 16;
-                cardBrowser.render(ctx, theme, 8, 8, browserW, screenHeight - 40, mouseX, mouseY);
+                ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(screenWidth, screenHeight,
+                        selectedModulePanel != null);
+                cardBrowser.setSearchQuery(searchQuery.toString());
+                topBar.render(ctx, theme, layout, view, searchQuery.toString(), mouseX, mouseY);
+                if (layout.showSidebar()) {
+                    sidebar.render(ctx, theme, layout, profiles, mouseX, mouseY);
+                }
+                cardBrowser.render(ctx, theme, layout.gridX(), layout.gridY(), layout.gridW(), layout.gridH(),
+                        mouseX, mouseY);
+                bottomDock.render(ctx, theme, layout, mouseX, mouseY);
                 if (selectedModulePanel != null) {
                     selectedModulePanel.render(ctx, theme, mouseX, mouseY);
                 }
@@ -363,7 +373,7 @@ public final class ClickGui implements ConfigBinding {
             return configurationsMenu.mousePressed(mouseX, mouseY, button, cloudSync, profiles,
                     screenWidth, screenHeight);
         }
-        if (isSearching()) {
+        if (isSearching() && view != ClickGuiView.BROWSE) {
             return dispatchPress(searchPanel, mouseX, mouseY, button);
         }
         if (view == ClickGuiView.FAVORITES) {
@@ -371,19 +381,56 @@ public final class ClickGui implements ConfigBinding {
             return dispatchPress(favoritesPanel, mouseX, mouseY, button);
         }
         if (view == ClickGuiView.BROWSE) {
-            if (selectedModulePanel != null && dispatchPress(selectedModulePanel, mouseX, mouseY, button)) {
-                return true;
-            }
-            int browserW = selectedModulePanel != null ? screenWidth - Panel.WIDTH - 24 : screenWidth - 16;
-            return cardBrowser.mousePressed(textMetrics, mouseX, mouseY, 8, 8, browserW, screenHeight - 40, button);
+            return handleBrowsePress(mouseX, mouseY, button);
         }
         return false;
     }
 
+    private boolean handleBrowsePress(double mouseX, double mouseY, int button) {
+        ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(screenWidth, screenHeight,
+                selectedModulePanel != null);
+
+        if (selectedModulePanel != null && dispatchPress(selectedModulePanel, mouseX, mouseY, button)) {
+            return true;
+        }
+        if (topBar.hitClose(layout, mouseX, mouseY)) {
+            adapter.closeCurrentScreen();
+            return true;
+        }
+        ClickGuiView tab = topBar.hitTab(textMetrics, layout, mouseX, mouseY);
+        if (tab != null) {
+            if (tab != ClickGuiView.BROWSE) {
+                view = tab;
+            }
+            return true;
+        }
+        if (layout.showSidebar() && sidebar.mousePressed(layout, profiles, adapter, mouseX, mouseY, button)) {
+            return true;
+        }
+        BottomDock.Action dockAction = bottomDock.hit(layout, mouseX, mouseY);
+        if (dockAction != null) {
+            handleDockAction(dockAction);
+            return true;
+        }
+        return cardBrowser.mousePressed(textMetrics, mouseX, mouseY, layout.gridX(), layout.gridY(),
+                layout.gridW(), layout.gridH(), button);
+    }
+
+    private void handleDockAction(BottomDock.Action action) {
+        switch (action) {
+            case HUD_EDITOR -> adapter.openHudEditor();
+            case COSMETICS -> view = ClickGuiView.COSMETICS;
+            case CONFIGURATIONS -> view = ClickGuiView.CONFIGURATIONS;
+            case SETTINGS -> view = ClickGuiView.SETTINGS;
+        }
+    }
+
     public boolean mouseScrolled(double mouseX, double mouseY, double verticalAmount) {
         if (view == ClickGuiView.BROWSE) {
-            int browserW = selectedModulePanel != null ? screenWidth - Panel.WIDTH - 24 : screenWidth - 16;
-            return cardBrowser.mouseScrolled(verticalAmount, 8, 8, browserW, screenHeight - 40);
+            ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(screenWidth, screenHeight,
+                    selectedModulePanel != null);
+            return cardBrowser.mouseScrolled(verticalAmount, layout.gridX(), layout.gridY(),
+                    layout.gridW(), layout.gridH());
         }
         if (view == ClickGuiView.COSMETICS) {
             return cosmeticsMenu.scroll(verticalAmount);
@@ -497,11 +544,16 @@ public final class ClickGui implements ConfigBinding {
         if (view == ClickGuiView.MAIN_MENU || view == ClickGuiView.ONBOARDING) {
             return false;
         }
+        if (view == ClickGuiView.BROWSE && sidebar.charTyped(character)) {
+            return true;
+        }
         if (character < ' ') {
             return false;
         }
         searchQuery.append(character);
-        rebuildSearchPanel();
+        if (view != ClickGuiView.BROWSE) {
+            rebuildSearchPanel();
+        }
         return true;
     }
 
@@ -517,6 +569,9 @@ public final class ClickGui implements ConfigBinding {
         }
         if (view == ClickGuiView.SETTINGS && settingsMenu.capturingKey()) {
             return settingsMenu.captureKey(glfwKey, keybinds);
+        }
+        if (view == ClickGuiView.BROWSE && sidebar.keyPressed(glfwKey, profiles)) {
+            return true;
         }
         if (glfwKey == 256 && view == ClickGuiView.ONBOARDING) {
             onboarding.skip();

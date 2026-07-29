@@ -22,6 +22,7 @@ public final class PrimeDesign {
     public static final int RADIUS_SM = 2;
     public static final int RADIUS_MD = 4;
     public static final int RADIUS_LG = 8;
+    public static final int RADIUS_XL = 12;
 
     // Motion (seconds-ish lerp factors are applied per tick in UiAnimator)
     public static final float MOTION_FAST = 18f;

@@ -12,25 +12,31 @@ import dev.stellarclient.core.theme.Theme;
 import dev.stellarclient.core.util.ColorUtil;
 import dev.stellarclient.core.util.Easing;
 
-import java.util.ArrayList;
 import java.util.List;
 
-/** Card-based module browser with category tabs. */
+/** Card-based module browser: pill category filters + a grid of module cards. */
 public final class ModuleCardBrowser {
 
-    public static final int CARD_W = 112;
-    public static final int CARD_H = 38;
-    public static final int TAB_H = 18;
-    public static final int TAB_PAD = 26;
+    public static final int CARD_W = 128;
+    public static final int CARD_H = 96;
+    public static final int TAB_H = 20;
 
-    private static final int TITLE_X = 8;
-    private static final int TEXT_PAD = 6;
-    private static final int TOGGLE_TOP = 8;
+    private static final float ICON_SCALE = 2.1f;
+    private static final int ICON_CENTER_Y = 24;
+    private static final int TITLE_Y = 42;
+    private static final int DIVIDER_Y = 56;
+    private static final int OPTIONS_Y = 60;
+    private static final int OPTIONS_H = 16;
+    private static final int PILL_Y = 78;
+    private static final int PILL_H = 14;
+    private static final int SIDE_PAD = 8;
+    private static final int TAB_PAD = 22;
 
     private final ModuleManager modules;
     private final FavoritesManager favorites;
 
     private ModuleCategory activeCategory = ModuleCategory.PVP;
+    private String searchQuery = "";
     private Module selected;
     private float scrollY;
     private float targetScrollY;
@@ -44,6 +50,15 @@ public final class ModuleCardBrowser {
         return selected;
     }
 
+    /** Global search text - when non-blank, overrides the category filter. */
+    public void setSearchQuery(String query) {
+        this.searchQuery = query == null ? "" : query;
+    }
+
+    public boolean isSearching() {
+        return !searchQuery.isBlank();
+    }
+
     public void tick(float deltaSeconds) {
         scrollY = Easing.lerp(scrollY, targetScrollY, deltaSeconds * 14f);
     }
@@ -51,7 +66,7 @@ public final class ModuleCardBrowser {
     public void render(RenderContext ctx, Theme theme, int x, int y, int width, int height,
                        double mouseX, double mouseY) {
         ctx.pushClip(x, y, width, TAB_H);
-        renderTabs(ctx, theme, x, y, width, mouseX, mouseY);
+        renderCategoryPills(ctx, theme, x, y, width, mouseX, mouseY);
         ctx.popClip();
 
         int contentY = y + TAB_H + PrimeDesign.SPACE_SM;
@@ -68,9 +83,10 @@ public final class ModuleCardBrowser {
             scrollY = maxScroll;
         }
 
-        ctx.pushClip(x, contentY, width, contentH);
-        int startRow = Math.max(0, (int) (scrollY / (CARD_H + PrimeDesign.SPACE_SM)));
-        int endRow = Math.min(rows, startRow + (contentH / (CARD_H + PrimeDesign.SPACE_SM)) + 2);
+        ctx.pushClip(x, contentY, width, Math.max(0, contentH));
+        int rowSpan = CARD_H + PrimeDesign.SPACE_SM;
+        int startRow = rowSpan <= 0 ? 0 : Math.max(0, (int) (scrollY / rowSpan));
+        int endRow = rowSpan <= 0 ? rows : Math.min(rows, startRow + (contentH / rowSpan) + 2);
         for (int row = startRow; row < endRow; row++) {
             for (int col = 0; col < cols; col++) {
                 int i = row * cols + col;
@@ -79,7 +95,7 @@ public final class ModuleCardBrowser {
                 }
                 Module module = list.get(i);
                 int cx = x + col * (CARD_W + PrimeDesign.SPACE_SM);
-                int cy = contentY + row * (CARD_H + PrimeDesign.SPACE_SM) - Math.round(scrollY);
+                int cy = contentY + row * rowSpan - Math.round(scrollY);
                 if (cy + CARD_H < contentY || cy > contentY + contentH) {
                     continue;
                 }
@@ -89,66 +105,79 @@ public final class ModuleCardBrowser {
         ctx.popClip();
     }
 
-    private void renderTabs(RenderContext ctx, Theme theme, int x, int y, int width,
-                            double mouseX, double mouseY) {
+    private void renderCategoryPills(RenderContext ctx, Theme theme, int x, int y, int width,
+                                     double mouseX, double mouseY) {
         int tabX = x;
         for (ModuleCategory cat : ModuleCategory.values()) {
             int tw = tabWidth(ctx, cat);
             if (tabX > x + width) {
                 break;
             }
-            boolean active = cat == activeCategory;
+            boolean active = cat == activeCategory && !isSearching();
             boolean hover = mouseX >= tabX && mouseX < tabX + tw && mouseY >= y && mouseY < y + TAB_H;
-            int radius = PrimeDesign.RADIUS_SM;
-            int fill = active ? theme.surfaceElevated() : theme.backgroundLight();
+            int radius = TAB_H / 2;
+            int fill = active
+                    ? ColorUtil.withAlpha(cat.accent(), 0.9f)
+                    : (hover ? theme.surfaceElevated() : theme.backgroundLight());
             ctx.fillRoundedRect(tabX, y, tw, TAB_H, radius, fill);
-            if (active || hover) {
-                ctx.fillRect(tabX + 2, y + TAB_H - 2, tw - 4, 1, cat.accent());
-            }
-            GuiLayout.label(ctx, cat.icon(), tabX + 6, y + 4, cat.accent());
-            GuiLayout.label(ctx, cat.displayName(), tabX + 18, y + 4,
-                    active ? theme.foreground() : theme.foregroundMuted());
+            int textColor = active ? 0xFFFFFFFF : (hover ? theme.foreground() : theme.foregroundMuted());
+            GuiLayout.label(ctx, cat.icon(), tabX + 8, y + (TAB_H - ctx.uiFontHeight()) / 2 + 1, textColor);
+            GuiLayout.label(ctx, cat.displayName(), tabX + 20, y + (TAB_H - ctx.uiFontHeight()) / 2 + 1, textColor);
             tabX += tw + PrimeDesign.SPACE_XS;
         }
     }
 
     private void renderCard(RenderContext ctx, Theme theme, Module module, int x, int y,
                             double mouseX, double mouseY) {
-        boolean hover = mouseX >= x && mouseX < x + CARD_W && mouseY >= y && mouseY < y + CARD_H;
         boolean sel = module == selected;
-        UiChrome.cardLite(ctx, theme, x, y, CARD_W, CARD_H, sel || hover);
-        if (hover || sel) {
-            ctx.fillRect(x + 2, y + CARD_H - 2, CARD_W - 4, 1,
-                    ColorUtil.withAlpha(module.category().accent(), sel ? 0.95f : 0.55f));
-        }
+        boolean hover = mouseX >= x && mouseX < x + CARD_W && mouseY >= y && mouseY < y + CARD_H;
+        UiChrome.cardElevated(ctx, theme, x, y, CARD_W, CARD_H, sel || hover);
 
-        ctx.fillRect(x + 2, y + 5, 2, CARD_H - 10, module.category().accent());
+        int accent = module.category().accent();
+        String icon = module.category().icon();
+        int iconW = ctx.smoothTextWidth(icon, ICON_SCALE);
+        int iconH = Math.round(ctx.uiFontHeight() * ICON_SCALE);
+        ctx.drawSmoothText(icon, x + (CARD_W - iconW) / 2, y + ICON_CENTER_Y - iconH / 2,
+                ColorUtil.withAlpha(accent, 0.95f), ICON_SCALE);
 
-        int toggleX = cardToggleX(x);
-        int toggleY = cardToggleY(y);
-        int textMax = toggleX - (x + TITLE_X) - 4;
+        String title = GuiLayout.trimToWidth(ctx, module.name(), CARD_W - SIDE_PAD * 2);
+        int titleW = GuiLayout.labelWidth(ctx, title);
+        GuiLayout.label(ctx, title, x + (CARD_W - titleW) / 2, y + TITLE_Y, theme.foreground());
 
-        GuiLayout.label(ctx, GuiLayout.trimToWidth(ctx, module.name(), textMax),
-                x + TITLE_X, y + 6, theme.foreground());
-        GuiLayout.label(ctx, GuiLayout.trimToWidth(ctx, module.description(), textMax),
-                x + TITLE_X, y + 20, theme.foregroundMuted());
+        ctx.fillRect(x + SIDE_PAD, y + DIVIDER_Y, CARD_W - SIDE_PAD * 2, 1,
+                ColorUtil.withAlpha(theme.border(), 0.6f));
 
-        drawCardToggle(ctx, theme, toggleX, toggleY, module.isEnabled());
+        boolean optionsHover = hover && localHit(mouseX, mouseY, x, y, optionsRowRect());
+        int optionsColor = optionsHover ? theme.foreground() : theme.foregroundMuted();
+        GuiLayout.label(ctx, "OPTIONS", x + SIDE_PAD,
+                y + OPTIONS_Y + (OPTIONS_H - ctx.uiFontHeight()) / 2 + 1, optionsColor);
+        String gear = "⚙";
+        int gearW = GuiLayout.labelWidth(ctx, gear);
+        GuiLayout.label(ctx, gear, x + CARD_W - SIDE_PAD - gearW,
+                y + OPTIONS_Y + (OPTIONS_H - ctx.uiFontHeight()) / 2 + 1, optionsColor);
 
-        if (favorites.isFavorite(module.id())) {
-            GuiLayout.label(ctx, "â˜…", x + 6, y + CARD_H - 11, theme.accent());
-        }
+        int[] pill = pillButtonRect();
+        UiChrome.pillButton(ctx, theme, x + pill[0], y + pill[1], pill[2], pill[3], module.isEnabled());
+        String pillLabel = module.isEnabled() ? "ENABLED" : "DISABLED";
+        int pillLabelW = GuiLayout.labelWidth(ctx, pillLabel);
+        int pillTextColor = module.isEnabled() ? 0xFFFFFFFF : theme.foregroundMuted();
+        GuiLayout.label(ctx, pillLabel, x + pill[0] + (pill[2] - pillLabelW) / 2,
+                y + pill[1] + (pill[3] - ctx.uiFontHeight()) / 2 + 1, pillTextColor);
     }
 
-    private void drawCardToggle(RenderContext ctx, Theme theme, int x, int y, boolean on) {
-        int w = PrimeDesign.TOGGLE_WIDTH;
-        int h = PrimeDesign.TOGGLE_HEIGHT;
-        int radius = h / 2;
-        int track = on ? theme.accent() : ColorUtil.withAlpha(theme.backgroundLight(), 0.95f);
-        ctx.fillRoundedRect(x, y, w, h, radius, track);
-        int knob = h - 4;
-        int knobX = on ? x + w - knob - 2 : x + 2;
-        ctx.fillRoundedRect(knobX, y + 2, knob, knob, knob / 2, 0xFFFFFFFF);
+    private static int[] optionsRowRect() {
+        return new int[]{0, OPTIONS_Y, CARD_W, OPTIONS_H};
+    }
+
+    /** Card-relative rect of the ENABLED/DISABLED pill button. Package-visible for tests. */
+    static int[] pillButtonRect() {
+        int w = CARD_W - SIDE_PAD * 2;
+        return new int[]{SIDE_PAD, PILL_Y, w, PILL_H};
+    }
+
+    private static boolean localHit(double mouseX, double mouseY, int cardX, int cardY, int[] rect) {
+        return mouseX >= cardX + rect[0] && mouseX < cardX + rect[0] + rect[2]
+                && mouseY >= cardY + rect[1] && mouseY < cardY + rect[1] + rect[3];
     }
 
     public boolean mousePressed(RenderContext ctx, double mouseX, double mouseY, int x, int y, int width, int height, int button) {
@@ -171,24 +200,18 @@ public final class ModuleCardBrowser {
         List<Module> list = filteredModules();
         int cols = Math.max(1, width / (CARD_W + PrimeDesign.SPACE_SM));
         int contentY = y + TAB_H + PrimeDesign.SPACE_SM;
+        int rowSpan = CARD_H + PrimeDesign.SPACE_SM;
         for (int i = 0; i < list.size(); i++) {
             int col = i % cols;
             int row = i / cols;
             int cx = x + col * (CARD_W + PrimeDesign.SPACE_SM);
-            int cy = contentY + row * (CARD_H + PrimeDesign.SPACE_SM) - Math.round(scrollY);
+            int cy = contentY + row * rowSpan - Math.round(scrollY);
             if (mouseX >= cx && mouseX < cx + CARD_W && mouseY >= cy && mouseY < cy + CARD_H) {
                 Module module = list.get(i);
                 if (button == 2) {
                     favorites.toggle(module.id());
-                } else if (button == 0) {
-                    int tx = cardToggleX(cx);
-                    int ty = cardToggleY(cy);
-                    if (mouseX >= tx && mouseX < tx + PrimeDesign.TOGGLE_WIDTH
-                            && mouseY >= ty && mouseY < ty + PrimeDesign.TOGGLE_HEIGHT) {
-                        module.toggle();
-                    } else {
-                        selected = module;
-                    }
+                } else if (button == 0 && localHit(mouseX, mouseY, cx, cy, pillButtonRect())) {
+                    module.toggle();
                 } else {
                     selected = module;
                 }
@@ -218,19 +241,10 @@ public final class ModuleCardBrowser {
     }
 
     private List<Module> filteredModules() {
-        List<Module> list = new ArrayList<>();
-        for (Module m : modules.byCategory(activeCategory)) {
-            list.add(m);
+        if (isSearching()) {
+            return modules.search(searchQuery);
         }
-        return list;
-    }
-
-    private static int cardToggleX(int cardX) {
-        return cardX + CARD_W - PrimeDesign.TOGGLE_WIDTH - TEXT_PAD;
-    }
-
-    private static int cardToggleY(int cardY) {
-        return cardY + TOGGLE_TOP;
+        return modules.byCategory(activeCategory);
     }
 
     private static int tabWidth(RenderContext ctx, ModuleCategory cat) {

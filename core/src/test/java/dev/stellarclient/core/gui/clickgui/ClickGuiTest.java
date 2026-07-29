@@ -186,16 +186,19 @@ class ClickGuiTest {
 
     @Test
     void middleClickTogglesFavorite() {
-        int cardY = 8 + ModuleCardBrowser.TAB_H + 4 + 10;
-        gui.render(new FakeRenderContext(SCREEN_W, 600), 8 + 10, cardY);
+        ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(SCREEN_W, 600, true);
+        int cardX = layout.gridX() + 10;
+        int cardY = layout.gridY() + ModuleCardBrowser.TAB_H + 4 + 10;
+        gui.render(new FakeRenderContext(SCREEN_W, 600), cardX, cardY);
         assertFalse(favorites.isFavorite("zoom"));
-        assertTrue(gui.mousePressed(8 + 10, cardY, 2));
+        assertTrue(gui.mousePressed(cardX, cardY, 2));
         assertTrue(favorites.isFavorite("zoom"));
         gui.mouseReleased();
     }
 
     @Test
     void missReturnsFalse() {
+        gui.render(new FakeRenderContext(SCREEN_W, 600), 0, 0);
         assertFalse(gui.mousePressed(600, 300, 0));
     }
 
@@ -213,8 +216,17 @@ class ClickGuiTest {
 
     @Test
     void searchFiltersAndEscapeClearsBeforeClosing() {
+        gui.render(new FakeRenderContext(SCREEN_W, 600), 0, 0);
         assertTrue(gui.charTyped('z'));
-        assertTrue(gui.mousePressed(8 + 10, 8 + 16 + 5, 0));
+
+        ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(SCREEN_W, 600, true);
+        int cardX = layout.gridX();
+        int cardY = layout.gridY() + ModuleCardBrowser.TAB_H + 4;
+        int[] pill = ModuleCardBrowser.pillButtonRect();
+        double pillX = cardX + pill[0] + pill[2] / 2.0;
+        double pillY = cardY + pill[1] + pill[3] / 2.0;
+
+        assertTrue(gui.mousePressed(pillX, pillY, 0));
         assertTrue(module.isEnabled());
         gui.mouseReleased();
 

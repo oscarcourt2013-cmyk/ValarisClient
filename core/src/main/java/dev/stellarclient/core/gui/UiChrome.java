@@ -94,6 +94,32 @@ public final class UiChrome {
         }
     }
 
+    /** Rounder card chrome for the module-browser grid (bigger radius than {@link #card}). */
+    public static void cardElevated(RenderContext ctx, Theme theme, int x, int y, int w, int h, boolean selected) {
+        int radius = PrimeDesign.RADIUS_XL;
+        float fillAlpha = BlurBackdrop.isActive()
+                ? (selected ? 0.52f : 0.38f)
+                : (selected ? 1f : 0.92f);
+        int fill = ColorUtil.withAlpha(selected ? theme.surfaceElevated() : theme.background(), fillAlpha);
+        RoundedRect.softShadow(ctx, x, y, w, h, radius, selected ? 0x50000000 : 0x30000000);
+        RoundedRect.border(ctx, x, y, w, h, radius, 1,
+                ColorUtil.withAlpha(theme.border(), selected ? 0.8f : 0.4f), fill);
+    }
+
+    /** Full-width stadium/pill button, e.g. the card's ENABLED / DISABLED toggle. */
+    public static void pillButton(RenderContext ctx, Theme theme, int x, int y, int w, int h, boolean on) {
+        int radius = h / 2;
+        if (on) {
+            RoundedRect.fill(ctx, x, y, w, h, radius, theme.success());
+            ctx.fillGradientVertical(x + 1, y + 1, w - 2, Math.max(0, h - 2),
+                    ColorUtil.withAlpha(0xFFFFFFFF, 0.10f), ColorUtil.withAlpha(0xFFFFFFFF, 0.0f));
+        } else {
+            RoundedRect.border(ctx, x, y, w, h, radius, 1,
+                    ColorUtil.withAlpha(theme.border(), 0.55f),
+                    ColorUtil.withAlpha(theme.backgroundLight(), 0.7f));
+        }
+    }
+
     public static void flatHeader(RenderContext ctx, Theme theme, int x, int y, int w, int h) {
         int radius = PrimeDesign.RADIUS_MD;
         int fill = BlurBackdrop.isActive()

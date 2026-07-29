@@ -8,9 +8,9 @@ public enum ModuleCategory {
     SURVIVAL("Survival", "S", 0xFF84CC16),
     PERFORMANCE("Performance", "F", 0xFF22C55E),
     QOL("QoL", "Q", 0xFF3B82F6),
-    STREAMERS("Streamers", "â–¶", 0xFF9146FF),
+    STREAMERS("Streamers", "▶", 0xFF9146FF),
     CREATOR("Creator", "C", 0xFFA855F7),
-    PRIME("Prime", "â˜…", 0xFFF59E0B);
+    PRIME("Prime", "★", 0xFFF59E0B);
 
     private final String displayName;
     private final String icon;
