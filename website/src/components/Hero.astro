@@ -1,18 +1,18 @@
-﻿---
+---
 import PrimeLogo from './PrimeLogo.astro'
 ---
 
 <section class="hero">
   <div class="container hero__inner">
-    <div class="hero__badge reveal">Premium Minecraft Client Â· Fabric</div>
+    <div class="hero__badge reveal">Premium Minecraft Client · Fabric</div>
     <h1 class="hero__title reveal reveal-delay-1">
       Joue mieux.<br />
-      <span class="text-gradient">Joue Prime.</span>
+      <span class="text-gradient">Joue Valeris.</span>
     </h1>
     <p class="hero__lead reveal reveal-delay-2">
-      Client Minecraft all-in-one : 130+ modules, HUD Ã©ditable, cosmÃ©tiques, skins Prime-Ã -Prime,
-      assistant IA et launcher officiel â€” import d'instances, serveur partenaire Elysia SMP, store
-      et amis. 100&nbsp;% visuel et QoL, zÃ©ro triche.
+      Client Minecraft all-in-one : 130+ modules, HUD éditable, cosmétiques, skins Valeris-à-Valeris,
+      assistant IA et launcher officiel — import d'instances, serveur partenaire Elysia SMP, store
+      et amis. 100&nbsp;% visuel et QoL, zéro triche.
     </p>
     <div class="hero__actions reveal reveal-delay-3">
       <a class="btn btn-primary" href="#download">
@@ -21,17 +21,17 @@ import PrimeLogo from './PrimeLogo.astro'
           <polyline points="7 10 12 15 17 10" />
           <line x1="12" y1="15" x2="12" y2="3" />
         </svg>
-        TÃ©lÃ©charger le launcher
+        Télécharger le launcher
       </a>
-      <a class="btn btn-ghost" href="https://github.com/oscarcourt2013-cmyk/StellarClient" target="_blank" rel="noopener noreferrer">
+      <a class="btn btn-ghost" href="https://github.com/oscarcourt2013-cmyk/ValerisClient" target="_blank" rel="noopener noreferrer">
         Voir sur GitHub
       </a>
     </div>
 
     <div class="hero__stats reveal reveal-delay-4">
       <div class="hero__stat">
-        <strong id="stat-downloads">â€”</strong>
-        <span>TÃ©lÃ©chargements</span>
+        <strong id="stat-downloads">—</strong>
+        <span>Téléchargements</span>
       </div>
       <div class="hero__stat">
         <strong>130+</strong>
@@ -43,7 +43,7 @@ import PrimeLogo from './PrimeLogo.astro'
       </div>
       <div class="hero__stat">
         <strong>100%</strong>
-        <span>LÃ©gitime</span>
+        <span>Légitime</span>
       </div>
     </div>
 
@@ -57,7 +57,7 @@ import PrimeLogo from './PrimeLogo.astro'
           <div class="hero__mockup-buttons">
             <div class="hero__mockup-btn">Singleplayer</div>
             <div class="hero__mockup-btn">Multiplayer</div>
-            <div class="hero__mockup-btn hero__mockup-btn--accent">StellarClient</div>
+            <div class="hero__mockup-btn hero__mockup-btn--accent">ValerisClient</div>
             <div class="hero__mockup-btn">Options</div>
           </div>
         </div>
@@ -254,7 +254,7 @@ import PrimeLogo from './PrimeLogo.astro'
       const data = await res.json()
       const downloads = Number(data.downloads) || FALLBACK_DOWNLOADS
       el.textContent = formatCount(downloads)
-      el.title = data.updatedAt ? `Mis Ã  jour ${data.updatedAt}` : ''
+      el.title = data.updatedAt ? `Mis à jour ${data.updatedAt}` : ''
     } catch {
       el.textContent = formatCount(FALLBACK_DOWNLOADS)
     }

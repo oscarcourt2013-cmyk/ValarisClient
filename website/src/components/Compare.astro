@@ -2,7 +2,7 @@
 const rows = [
   { feature: '130+ modules (PvP, Survie, QoL…)', prime: true, lunar: true, feather: true },
   { feature: 'HUD Editor + packs de modules', prime: true, lunar: 'partial', feather: true },
-  { feature: 'Skins custom Prime-à-Prime', prime: true, lunar: false, feather: false },
+  { feature: 'Skins custom Valeris-à-Valeris', prime: true, lunar: false, feather: false },
   { feature: 'Assistant IA (launcher + /ai)', prime: true, lunar: false, feather: false },
   { feature: 'Import Prism / Lunar / Feather…', prime: true, lunar: false, feather: 'partial' },
   { feature: 'Serveur partenaire épinglé', prime: true, lunar: 'partial', feather: false },
@@ -22,7 +22,7 @@ function cell(value: boolean | string) {
 <section class="section compare">
   <div class="container">
     <div class="section-label">Comparaison</div>
-    <h2 class="section-title">Prime vs les autres<br /><span class="text-gradient">clients premium</span></h2>
+    <h2 class="section-title">Valeris vs les autres<br /><span class="text-gradient">clients premium</span></h2>
     <p class="section-lead" style="margin-bottom: 40px;">
       Les essentiels des clients premium, plus des différenciateurs open source — sans paywall agressif.
     </p>
@@ -30,14 +30,14 @@ function cell(value: boolean | string) {
     <div class="compare__table glass-card">
       <div class="compare__row compare__row--head">
         <span>Fonctionnalité</span>
-        <span class="compare__brand compare__brand--prime">Prime</span>
+        <span class="compare__brand compare__brand--prime">Valeris</span>
         <span>Lunar</span>
         <span>Feather</span>
       </div>
       {rows.map((row) => (
         <div class="compare__row">
           <span>{row.feature}</span>
-          <span class={`compare__cell compare__cell--${cell(row.prime)}`} data-label="Prime"></span>
+          <span class={`compare__cell compare__cell--${cell(row.prime)}`} data-label="Valeris"></span>
           <span class={`compare__cell compare__cell--${cell(row.lunar)}`} data-label="Lunar"></span>
           <span class={`compare__cell compare__cell--${cell(row.feather)}`} data-label="Feather"></span>
         </div>

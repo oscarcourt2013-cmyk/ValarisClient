@@ -1,4 +1,4 @@
-/** Production Prime backend (same host as launcher / SocialService). */
+/** Production Valeris backend (same host as launcher / SocialService). */
 export const DEFAULT_API_BASE = 'http://194.9.172.102:26005'
 
 /** Prefer Astro PUBLIC_API_URL at build time, else production default. */

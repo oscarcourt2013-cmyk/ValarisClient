@@ -1,18 +1,18 @@
-﻿<section class="section download" id="download">
+<section class="section download" id="download">
   <div class="container">
     <div class="download__card glass-card">
       <div class="download__glow" aria-hidden="true"></div>
       <div class="download__content">
-        <div class="section-label">TÃ©lÃ©chargement</div>
-        <h2 class="section-title">Installe <span class="text-gradient">StellarClient</span></h2>
+        <div class="section-label">Téléchargement</div>
+        <h2 class="section-title">Installe <span class="text-gradient">ValerisClient</span></h2>
         <p class="section-lead">
-          TÃ©lÃ©charge le launcher Windows (.exe) depuis la derniÃ¨re release GitHub.
-          Le mod StellarClient s'installe automatiquement au premier lancement â€”
+          Télécharge le launcher Windows (.exe) depuis la dernière release GitHub.
+          Le mod ValerisClient s'installe automatiquement au premier lancement —
           onboarding, import d'instances et serveur partenaire Elysia SMP inclus.
         </p>
 
         <div class="download__meta" id="release-meta">
-          <span class="download__status" id="release-status">Recherche de la derniÃ¨re versionâ€¦</span>
+          <span class="download__status" id="release-status">Recherche de la dernière version…</span>
         </div>
 
         <div class="download__actions">
@@ -22,9 +22,9 @@
               <polyline points="7 10 12 15 17 10" />
               <line x1="12" y1="15" x2="12" y2="3" />
             </svg>
-            <span id="download-label">Chargementâ€¦</span>
+            <span id="download-label">Chargement…</span>
           </a>
-          <a class="btn btn-ghost" href="https://github.com/oscarcourt2013-cmyk/StellarClient/releases" target="_blank" rel="noopener noreferrer">
+          <a class="btn btn-ghost" href="https://github.com/oscarcourt2013-cmyk/ValerisClient/releases" target="_blank" rel="noopener noreferrer">
             Toutes les releases
           </a>
         </div>
@@ -33,8 +33,8 @@
           <div class="download__step">
             <span class="download__step-num">1</span>
             <div>
-              <strong>TÃ©lÃ©charge</strong>
-              <p>stellar-client-launcher-Setup-x.x.x.exe</p>
+              <strong>Télécharge</strong>
+              <p>valeris-client-launcher-Setup-x.x.x.exe</p>
             </div>
           </div>
           <div class="download__step">
@@ -54,7 +54,7 @@
         </div>
 
         <p class="download__note">
-          Windows 10/11 Â· Java 21 inclus automatiquement Â· Minecraft 1.21.11 (Fabric)
+          Windows 10/11 · Java 21 inclus automatiquement · Minecraft 1.21.11 (Fabric)
         </p>
       </div>
     </div>
@@ -195,7 +195,7 @@
 </style>
 
 <script>
-  const REPO = 'oscarcourt2013-cmyk/StellarClient'
+  const REPO = 'oscarcourt2013-cmyk/ValerisClient'
   const RELEASES_URL = `https://github.com/${REPO}/releases`
   const API_BASE = (typeof import.meta !== 'undefined' && import.meta.env?.PUBLIC_API_URL
     ? String(import.meta.env.PUBLIC_API_URL)
@@ -241,7 +241,7 @@
       })
 
       if (!res.ok) {
-        throw new Error(res.status === 404 ? 'Aucune release publiÃ©e' : `HTTP ${res.status}`)
+        throw new Error(res.status === 404 ? 'Aucune release publiée' : `HTTP ${res.status}`)
       }
 
       const release = await res.json()
@@ -250,8 +250,8 @@
 
       if (statusEl) {
         statusEl.textContent = asset
-          ? `DerniÃ¨re version : v${version} Â· ${asset.name}`
-          : `Version v${version} â€” .exe non trouvÃ© sur la release`
+          ? `Dernière version : v${version} · ${asset.name}`
+          : `Version v${version} — .exe non trouvé sur la release`
         statusEl.classList.add(asset ? 'download__status--ready' : 'download__status--error')
       }
 
@@ -259,7 +259,7 @@
         btnEl.href = asset.browser_download_url
         btnEl.setAttribute('aria-disabled', 'false')
         btnEl.setAttribute('download', asset.name)
-        labelEl.textContent = `TÃ©lÃ©charger v${version}`
+        labelEl.textContent = `Télécharger v${version}`
       } else if (btnEl && labelEl) {
         btnEl.href = RELEASES_URL
         btnEl.setAttribute('aria-disabled', 'false')
@@ -268,9 +268,9 @@
     } catch (err) {
       if (statusEl) {
         statusEl.textContent =
-          err instanceof Error && err.message === 'Aucune release publiÃ©e'
-            ? 'Pas encore de release â€” build & push un tag v* sur GitHub'
-            : 'Impossible de joindre GitHub â€” rÃ©essaie plus tard'
+          err instanceof Error && err.message === 'Aucune release publiée'
+            ? 'Pas encore de release — build & push un tag v* sur GitHub'
+            : 'Impossible de joindre GitHub — réessaie plus tard'
         statusEl.classList.add('download__status--error')
       }
       if (btnEl && labelEl) {

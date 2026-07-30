@@ -1,12 +1,12 @@
-﻿---
+---
 import PrimeLogo from './PrimeLogo.astro'
 
 const links = [
-  { href: '#features', label: 'FonctionnalitÃ©s' },
-  { href: '#nouveautes', label: 'NouveautÃ©s' },
+  { href: '#features', label: 'Fonctionnalités' },
+  { href: '#nouveautes', label: 'Nouveautés' },
   { href: '#modules', label: 'Modules' },
   { href: '#launcher', label: 'Launcher' },
-  { href: '#download', label: 'TÃ©lÃ©charger' },
+  { href: '#download', label: 'Télécharger' },
   { href: '#faq', label: 'FAQ' }
 ]
 ---
@@ -14,15 +14,15 @@ const links = [
 <header class="nav">
   <div class="container nav__inner">
     <a class="nav__brand" href={import.meta.env.BASE_URL}>
-      <PrimeLogo width={36} height={20} class="nav__logo" />
-      <span>StellarClient</span>
+      <PrimeLogo width={20} height={20} class="nav__logo" />
+      <span>ValerisClient</span>
     </a>
     <nav class="nav__links" aria-label="Navigation principale">
       {links.map((link) => (
         <a href={link.href}>{link.label}</a>
       ))}
     </nav>
-    <a class="btn btn-primary nav__cta" href="#download">TÃ©lÃ©charger</a>
+    <a class="btn btn-primary nav__cta" href="#download">Télécharger</a>
   </div>
 </header>
 
