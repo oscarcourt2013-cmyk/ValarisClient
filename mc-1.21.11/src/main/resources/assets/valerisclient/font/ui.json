@@ -2,7 +2,7 @@
   "providers": [
     {
       "type": "ttf",
-      "file": "valerisclient:fonts/inter.ttf",
+      "file": "valerisclient:inter.ttf",
       "size": 10.0,
       "oversample": 8.0,
       "shift": [0, 0.35]
