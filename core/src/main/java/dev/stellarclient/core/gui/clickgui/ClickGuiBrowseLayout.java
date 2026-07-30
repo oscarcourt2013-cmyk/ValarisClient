@@ -35,7 +35,12 @@ record ClickGuiBrowseLayout(
     private static final int CARD_H_MAX = 88;
     private static final int MAX_COLUMNS = 5;
 
-    static ClickGuiBrowseLayout compute(int screenWidth, int screenHeight, boolean hasSelection) {
+    /**
+     * Geometry does not depend on whether a module's settings panel is open: that
+     * panel floats <em>over</em> the grid rather than reserving space, so opening it
+     * never reflows the card columns underneath.
+     */
+    static ClickGuiBrowseLayout compute(int screenWidth, int screenHeight) {
         int topBarW = Math.max(0, screenWidth - MARGIN * 2);
         int contentY = MARGIN + TOP_BAR_H + GAP;
 
@@ -43,11 +48,10 @@ record ClickGuiBrowseLayout(
         int sidebarW = showSidebar ? SIDEBAR_W : 0;
         int sidebarGap = showSidebar ? GAP : 0;
 
-        int panelReserve = hasSelection ? Panel.WIDTH + GAP : 0;
         int contentH = Math.max(0, screenHeight - contentY - MARGIN - DOCK_H - GAP);
 
         int gridX = MARGIN + sidebarW + sidebarGap;
-        int gridW = Math.max(0, screenWidth - gridX - MARGIN - panelReserve);
+        int gridW = Math.max(0, screenWidth - gridX - MARGIN);
 
         int columns = columnsFor(gridW);
         int cardW = cardWidthFor(gridW, columns);

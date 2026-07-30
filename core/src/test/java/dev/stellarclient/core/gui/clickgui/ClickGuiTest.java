@@ -130,9 +130,14 @@ class ClickGuiTest {
 
     // Legacy category panel for QoL: PvP, Survival, Performance, then QoL → index 3
     private static final double LEGACY_PANEL_X = 8 + 3 * (Panel.WIDTH + 8);
-    private static final double PANEL_X = SCREEN_W - Panel.WIDTH - 12;
     private static final double HEADER_Y = 8;
-    private static final double FIRST_ROW_Y = HEADER_Y + 18;
+
+    // The selected-module settings panel docks where the browse layout says it does.
+    private static final ClickGuiBrowseLayout PANEL_LAYOUT =
+            ClickGuiBrowseLayout.compute(SCREEN_W, 600);
+    private static final double PANEL_X = PANEL_LAYOUT.settingsPanelX();
+    private static final double PANEL_HEADER_Y = PANEL_LAYOUT.settingsPanelY();
+    private static final double FIRST_ROW_Y = PANEL_HEADER_Y + Panel.HEADER_HEIGHT;
 
     @BeforeEach
     void setUp() {
@@ -186,7 +191,7 @@ class ClickGuiTest {
 
     @Test
     void middleClickTogglesFavorite() {
-        ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(SCREEN_W, 600, true);
+        ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(SCREEN_W, 600);
         int cardX = layout.gridX() + 10;
         int cardY = layout.gridY() + ModuleCardBrowser.TAB_H + ClickGuiBrowseLayout.CARD_GAP + 6;
         gui.render(new FakeRenderContext(SCREEN_W, 600), cardX, cardY);
@@ -219,7 +224,7 @@ class ClickGuiTest {
         gui.render(new FakeRenderContext(SCREEN_W, 600), 0, 0);
         assertTrue(gui.charTyped('z'));
 
-        ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(SCREEN_W, 600, true);
+        ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(SCREEN_W, 600);
         int cardX = layout.gridX();
         int cardY = layout.gridY() + ModuleCardBrowser.TAB_H + ClickGuiBrowseLayout.CARD_GAP;
         int[] pill = ModuleCardBrowser.pillRect(layout.cardW(), layout.cardH());
@@ -262,7 +267,7 @@ class ClickGuiTest {
             int w = size[0];
             int h = size[1];
             for (boolean selection : new boolean[]{false, true}) {
-                ClickGuiBrowseLayout l = ClickGuiBrowseLayout.compute(w, h, selection);
+                ClickGuiBrowseLayout l = ClickGuiBrowseLayout.compute(w, h);
                 String at = "at " + w + "x" + h + " selection=" + selection;
 
                 assertTrue(l.topBarX() + l.topBarW() <= w, "top bar overflows " + at);
@@ -293,7 +298,7 @@ class ClickGuiTest {
             modules.register(new Module("filler" + n, "Filler " + n, "", ModuleCategory.PVP) {
             });
         }
-        ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(SCREEN_W, 400, false);
+        ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(SCREEN_W, 400);
         ModuleCardBrowser browser = new ModuleCardBrowser(modules, favorites);
         FakeRenderContext ctx = new FakeRenderContext(SCREEN_W, 400);
 

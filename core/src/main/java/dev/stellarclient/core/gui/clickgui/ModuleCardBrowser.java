@@ -319,7 +319,8 @@ public final class ModuleCardBrowser {
                 } else if (button == 0 && localHit(mouseX, mouseY, cx, cy, pillRect(cardW, cardH))) {
                     module.toggle();
                 } else {
-                    selected = module;
+                    // Clicking the open card again closes its settings panel.
+                    selected = module == selected ? null : module;
                 }
                 return true;
             }

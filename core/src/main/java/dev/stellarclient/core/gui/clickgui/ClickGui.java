@@ -214,8 +214,9 @@ public final class ClickGui implements ConfigBinding {
             return;
         }
         if (selectedModulePanel == null || !selectedModulePanel.hasModule(sel)) {
+            ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(screenWidth, screenHeight);
             selectedModulePanel = new Panel(sel.name(), List.of(sel), favorites,
-                    screenWidth - Panel.WIDTH - 12, 8);
+                    layout.settingsPanelX(), layout.settingsPanelY());
             selectedModulePanel.collapsed = false;
         }
     }
@@ -265,8 +266,7 @@ public final class ClickGui implements ConfigBinding {
             }
             case BROWSE -> {
                 renderScrim(ctx, theme);
-                ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(screenWidth, screenHeight,
-                        selectedModulePanel != null);
+                ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(screenWidth, screenHeight);
                 cardBrowser.setSearchQuery(searchQuery.toString());
                 topBar.render(ctx, theme, layout, view, searchQuery.toString(), mouseX, mouseY);
                 if (layout.showSidebar()) {
@@ -406,8 +406,7 @@ public final class ClickGui implements ConfigBinding {
     }
 
     private boolean handleBrowsePress(double mouseX, double mouseY, int button) {
-        ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(screenWidth, screenHeight,
-                selectedModulePanel != null);
+        ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(screenWidth, screenHeight);
 
         if (selectedModulePanel != null && dispatchPress(selectedModulePanel, mouseX, mouseY, button)) {
             return true;
@@ -445,8 +444,7 @@ public final class ClickGui implements ConfigBinding {
 
     public boolean mouseScrolled(double mouseX, double mouseY, double verticalAmount) {
         if (view == ClickGuiView.BROWSE) {
-            ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(screenWidth, screenHeight,
-                    selectedModulePanel != null);
+            ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(screenWidth, screenHeight);
             return cardBrowser.mouseScrolled(verticalAmount, layout);
         }
         if (view == ClickGuiView.COSMETICS) {
@@ -524,8 +522,7 @@ public final class ClickGui implements ConfigBinding {
 
     public void mouseDragged(double mouseX, double mouseY, int screenWidth, int screenHeight) {
         if (view == ClickGuiView.BROWSE && cardBrowser.isDragging()) {
-            cardBrowser.mouseDragged(mouseY, ClickGuiBrowseLayout.compute(
-                    screenWidth, screenHeight, selectedModulePanel != null));
+            cardBrowser.mouseDragged(mouseY, ClickGuiBrowseLayout.compute(screenWidth, screenHeight));
             return;
         }
         if (colorPicker != null) {
@@ -597,7 +594,7 @@ public final class ClickGui implements ConfigBinding {
             return true;
         }
         if (view == ClickGuiView.BROWSE && cardBrowser.keyPressed(glfwKey,
-                ClickGuiBrowseLayout.compute(screenWidth, screenHeight, selectedModulePanel != null))) {
+                ClickGuiBrowseLayout.compute(screenWidth, screenHeight))) {
             return true;
         }
         if (glfwKey == 256 && view == ClickGuiView.ONBOARDING) {
