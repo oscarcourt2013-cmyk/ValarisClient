@@ -334,7 +334,10 @@ class HudEditorTest {
             editor.mousePressed(12, 54);
             editor.renderOverlay(ctx, 0, 0);
 
-            assertTrue(editor.mousePressed(208, 219));
+            // On a 400x300 canvas the dock stacks its sliders, so it is 106px tall
+            // and starts at y=176. The visibility button sits on its first row at
+            // x=192..232, y=181..195.
+            assertTrue(editor.mousePressed(208, 188));
             assertFalse(box.isVisible());
         }
 
@@ -374,7 +377,9 @@ class HudEditorTest {
             editor.mousePressed(12, 54);
             editor.renderOverlay(ctx, 0, 0);
 
-            assertFalse(editor.mousePressed(60, 200)); // empty list panel area passes through
+            // Inside the list panel (y 34..172 here) but below the only row, which
+            // ends at y=65 -- the empty area must pass through.
+            assertFalse(editor.mousePressed(60, 100));
             assertSame(box, editor.selected());
             editor.mouseDragged(200, 200, 400, 300);
             hud.render(ctx);

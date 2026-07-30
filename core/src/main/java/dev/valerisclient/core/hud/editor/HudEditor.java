@@ -33,6 +33,7 @@ public final class HudEditor {
 
     // GLFW key codes
     private static final int KEY_G = 71;
+    private static final int KEY_H = 72;
     private static final int KEY_R = 82;
     private static final int KEY_S = 83;
     private static final int KEY_V = 86;
@@ -261,8 +262,14 @@ public final class HudEditor {
         return keyPressed(glfwKey, false, false);
     }
 
-    /** G grid · S snap · V visibility · R tint · arrows nudge (Shift=10px) · Ctrl+Z/Y undo/redo. */
+    /** G grid · H panels · S snap · V visibility · R tint · arrows nudge (Shift=10px) · Ctrl+Z/Y undo/redo. */
     public boolean keyPressed(int glfwKey, boolean shiftDown, boolean ctrlDown) {
+        // Checked before the selection guard below: hiding the panels to see the
+        // HUD is just as useful with nothing selected.
+        if (glfwKey == KEY_H) {
+            ui.toggleChrome();
+            return true;
+        }
         if (ctrlDown && glfwKey == KEY_Z) {
             if (shiftDown) {
                 redo();
