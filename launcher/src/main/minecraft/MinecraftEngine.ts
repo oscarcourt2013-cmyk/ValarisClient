@@ -26,6 +26,9 @@ let knownCrashReports = new Set<string>()
 let intentionalKill = false
 let exitHandled = false
 
+/** How long the JVM must stay alive before the launch counts as running. */
+const RUNNING_ANNOUNCE_DELAY_MS = 4000
+
 function isLikelyMinecraftProcess(command: unknown, args: unknown): boolean {
   const joined = Array.isArray(args) ? args.join(' ').toLowerCase() : ''
   // Require MC/Fabric markers — bare `java` matches installers and breaks running sync.
@@ -47,14 +50,23 @@ function trackGameProcess(proc: ChildProcess): void {
   }
   activeGameProcess = proc
   gameRunning = true
-  if (activeInstanceId) {
-    emitLaunchProgress({
-      phase: 'running',
-      detail: 'Minecraft running',
-      percent: 100
-    })
-  }
+
+  // Spawning the JVM is not the same as launching the game: a mod or mapping
+  // mismatch kills it in well under a second, and announcing 'running' on spawn
+  // meant a failed launch reported "Game launched" and then went quiet. Wait for
+  // the process to survive first, and let the exit handler speak otherwise.
+  const announceRunning = setTimeout(() => {
+    if (activeGameProcess === proc && processAlive(proc) && activeInstanceId) {
+      emitLaunchProgress({
+        phase: 'running',
+        detail: 'Minecraft running',
+        percent: 100
+      })
+    }
+  }, RUNNING_ANNOUNCE_DELAY_MS)
+
   proc.once('exit', (code, signal) => {
+    clearTimeout(announceRunning)
     if (activeGameProcess === proc) {
       activeGameProcess = null
       gameRunning = false
@@ -200,6 +212,30 @@ async function resolveLaunchJava(config: InstanceLaunchConfig, settingsJavaPath?
   }
 }
 
+/**
+ * Throttles the high-frequency download events down to something a human can
+ * read.
+ *
+ * <p>These fire hundreds of times per second and every logged entry costs an
+ * appendFile plus an IPC broadcast, so mirroring them raw would both drown the
+ * Console page and hammer the disk. One line per stage per interval keeps the
+ * trail useful without the flood.</p>
+ */
+function createStageLogger(): (stage: string, detail: string) => void {
+  const intervalMs = 2000
+  let lastStage = ''
+  let lastAt = 0
+  return (stage, detail) => {
+    const now = Date.now()
+    if (stage === lastStage && now - lastAt < intervalMs) {
+      return
+    }
+    lastStage = stage
+    lastAt = now
+    launchLogService.append('info', detail, 'log')
+  }
+}
+
 function attachLauncherEvents(
   launcher: Launch,
   onSpawn: () => void,
@@ -223,17 +259,47 @@ function attachLauncherEvents(
     }
   })
 
+  const logStage = createStageLogger()
+
   launcher.on('progress', (progress, size, element) => {
-    const percent =
-      typeof size === 'number' && size > 0 ? 20 + Math.round((progress / size) * 50) : undefined
+    const ratio = typeof size === 'number' && size > 0 ? progress / size : null
+    const percent = ratio != null ? 20 + Math.round(ratio * 50) : undefined
+    const label = typeof element === 'string' && element ? element : 'Minecraft files'
     emitLaunchProgress({
       phase: 'download',
-      detail: typeof element === 'string' && element ? element : 'Downloading Minecraft files…',
+      detail: label,
       percent
     })
+    logStage(
+      'download',
+      ratio != null
+        ? `Downloading ${label} — ${Math.round(ratio * 100)}%`
+        : `Downloading ${label}…`
+    )
+  })
+
+  // First launch of a version pulls several hundred megabytes, and these three
+  // stages are the only evidence it is making progress. Without them the log is
+  // silent for minutes, which makes an interrupted download indistinguishable
+  // from a hang.
+  launcher.on('check', (progress, size, element) => {
+    const ratio = typeof size === 'number' && size > 0 ? progress / size : null
+    const label = typeof element === 'string' && element ? element : 'files'
+    logStage('check', ratio != null
+      ? `Verifying ${label} — ${Math.round(ratio * 100)}%`
+      : `Verifying ${label}…`)
+  })
+
+  launcher.on('extract', (element) => {
+    logStage('extract', `Extracting ${String(element ?? 'files')}…`)
+  })
+
+  launcher.on('patch', (patch) => {
+    logStage('patch', String(patch ?? 'Patching…'))
   })
 
   launcher.on('error', (error) => {
+    launchLogService.append('error', formatLaunchError(error), 'log')
     onFailure(error)
   })
 
@@ -268,7 +334,19 @@ async function runMinecraftJavaCoreLaunch(options: LaunchOptions): Promise<void>
     }
 
     attachLauncherEvents(launcher, succeed, fail)
-    void launcher.Launch(options)
+
+    // Launch() returns a promise, and discarding it means a rejection thrown
+    // outside an 'error' event goes nowhere: no log line, no error surfaced,
+    // and this promise never settles, so the UI keeps whatever state it had.
+    // Route it to the same failure path as the event.
+    launcher
+      .Launch(options)
+      .then((ok) => {
+        if (ok === false) {
+          fail(new Error('The launcher backend reported the launch did not start.'))
+        }
+      })
+      .catch(fail)
   })
 }
 

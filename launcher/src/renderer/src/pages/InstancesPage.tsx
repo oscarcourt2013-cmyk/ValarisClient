@@ -147,11 +147,11 @@ export function InstancesPage() {
               <div className="instances__create-menu">
                 <button type="button" onClick={() => openCreate('prime', '26.2')}>
                   <strong>{t('instances.createPrime26')}</strong>
-                  <span>Minecraft 26.2 · Prime</span>
+                  <span>Minecraft 26.2 · Valeris</span>
                 </button>
                 <button type="button" onClick={() => openCreate('prime', '1.21.11')}>
                   <strong>{t('instances.createPrime121')}</strong>
-                  <span>Minecraft 1.21.11 · Prime</span>
+                  <span>Minecraft 1.21.11 · Valeris</span>
                 </button>
                 <button type="button" onClick={() => openCreate('fabric', '26.2')}>
                   <strong>{t('instances.fabric')}</strong>

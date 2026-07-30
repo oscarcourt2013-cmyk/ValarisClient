@@ -68,6 +68,12 @@ export class LaunchLogService {
     if (payload.phase === 'crashed') {
       return
     }
+    // 'download' fires per file per tick -- one appendFile and one IPC
+    // broadcast each. MinecraftEngine logs a throttled summary of these
+    // instead, so mirroring them here as well would flood the log.
+    if (payload.phase === 'download') {
+      return
+    }
     const level =
       payload.phase === 'error' ? 'error' : payload.phase === 'stopped' ? 'info' : 'info'
     this.append(level, payload.detail, payload.phase)
