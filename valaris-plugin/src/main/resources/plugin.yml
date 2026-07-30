@@ -1,0 +1,31 @@
+name: ValarisClient
+version: '${version}'
+main: com.valarisclient.ValarisClientPlugin
+api-version: '1.21'
+authors: [Valaris]
+description: Official ValarisClient server bridge — detection, XP, rewards, network.
+website: https://github.com/oscarcourt2013-cmyk/ValerisClient
+softdepend: [PlaceholderAPI, LuckPerms, Vault]
+
+commands:
+  valaris:
+    description: ValarisClient profile and admin tools
+    usage: /valaris [reload|info|rewards|achievements]
+    aliases: [ValarisClient, pclient]
+
+permissions:
+  ValarisClient.verified:
+    description: Verified ValarisClient user badge
+    default: false
+  ValarisClient.admin:
+    description: Full admin access
+    default: op
+  ValarisClient.reload:
+    description: Reload configuration
+    default: op
+  ValarisClient.info:
+    description: View other players' Valaris profiles
+    default: op
+  ValarisClient.use:
+    description: Open /valaris GUI
+    default: true

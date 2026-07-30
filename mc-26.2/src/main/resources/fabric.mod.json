@@ -1,22 +1,22 @@
 {
 	"schemaVersion": 1,
-	"id": "valerisclient",
+	"id": "valarisclient",
 	"version": "${version}",
-	"name": "ValerisClient",
+	"name": "ValarisClient",
 	"description": "All-in-One Minecraft client: PvP, performance, QoL, content creation, customization.",
-	"icon": "assets/valerisclient/icon.png",
+	"icon": "assets/valarisclient/icon.png",
 	"authors": [
-		"ValerisClient Team"
+		"ValarisClient Team"
 	],
 	"license": "All-Rights-Reserved",
 	"environment": "client",
 	"entrypoints": {
 		"client": [
-			"dev.valerisclient.v26_2.ValerisClientEntrypoint"
+			"dev.valarisclient.v26_2.ValarisClientEntrypoint"
 		]
 	},
 	"mixins": [
-		"valerisclient.mixins.json"
+		"valarisclient.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.19.3",

@@ -1,0 +1,38 @@
+{
+	"required": true,
+	"package": "dev.valarisclient.v1_21_11.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"refmap": "valarisclient-refmap.json",
+	"mixinextras": true,
+	"client": [
+		"GameRendererMixin",
+		"LivingEntityRendererMixin",
+		"EntityRendererMixin",
+		"DebugScreenOverlayMixin",
+		"ChatComponentMixin",
+		"CameraMixin",
+		"LevelMixin",
+		"LightTextureMixin",
+		"ScreenEffectRendererMixin",
+		"GuiMixin",
+		"GuiLayerInvoker",
+		"ScoreboardSidebarBoundsMixin",
+		"AvatarRendererMixin",
+		"AvatarRenderStateMixin",
+		"CapeLayerMixin",
+		"LivingEntityRendererAccessor",
+		"PlayerTabOverlayMixin",
+		"PlayerInfoMixin",
+		"TitleScreenMixin",
+		"PauseScreenMixin",
+		"OptionsScreenMixin",
+		"AbstractButtonMixin",
+		"ScreenBackgroundMixin",
+		"MinecraftUserAccessor",
+		"ClientBrandRetrieverMixin",
+		"ServerListMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

@@ -9,7 +9,7 @@ pluginManagement {
 	}
 }
 
-rootProject.name = 'valeris-client'
+rootProject.name = 'valaris-client'
 
 // Common core: pure Java, no Minecraft dependency, shared by every version layer.
 include 'core'

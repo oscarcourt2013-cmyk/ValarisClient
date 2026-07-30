@@ -1,0 +1,19 @@
+achievements:
+  FIRST_CONNECTION:
+    name: "Première connexion"
+    description: "Se connecter avec ValarisClient"
+    xp: 25
+  PLAYTIME_10_HOURS:
+    name: "10 heures"
+    description: "Jouer 10 heures avec ValarisClient"
+    xp: 100
+    playtime-hours: 10
+  PLAYTIME_100_HOURS:
+    name: "100 heures"
+    description: "Jouer 100 heures avec ValarisClient"
+    xp: 500
+    playtime-hours: 100
+  FIRST_SERVER:
+    name: "Premier serveur"
+    description: "Rejoindre un serveur partenaire"
+    xp: 50

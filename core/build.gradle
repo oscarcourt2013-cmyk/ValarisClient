@@ -2,7 +2,7 @@
 // Everything version-independent lives here: module system, event bus, config,
 // themes, notifications, profiles, HUD layout model, utils.
 // Minecraft access goes exclusively through the adapter interfaces in
-// dev.valerisclient.core.adapter, implemented by each version layer.
+// dev.valarisclient.core.adapter, implemented by each version layer.
 plugins {
 	id 'java-library'
 }
@@ -11,20 +11,20 @@ repositories {
 	mavenCentral()
 }
 
-/** Keeps {@code ValerisVersion.VERSION} identical to root {@code mod_version}. */
-tasks.register("generateValerisVersion") {
-	def versionFile = layout.projectDirectory.file("src/main/java/dev/valerisclient/core/design/ValerisVersion.java")
+/** Keeps {@code ValarisVersion.VERSION} identical to root {@code mod_version}. */
+tasks.register("generateValarisVersion") {
+	def versionFile = layout.projectDirectory.file("src/main/java/dev/valarisclient/core/design/ValarisVersion.java")
 	inputs.property("modVersion", rootProject.mod_version)
 	outputs.file(versionFile)
 	doLast {
 		versionFile.asFile.text = """\
-package dev.valerisclient.core.design;
+package dev.valarisclient.core.design;
 
 /** Build-time version — synced from gradle.properties {@code mod_version}. Do not hand-edit. */
-public final class ValerisVersion {
+public final class ValarisVersion {
     public static final String VERSION = "${rootProject.mod_version}";
 
-    private ValerisVersion() {
+    private ValarisVersion() {
     }
 }
 """
@@ -35,7 +35,7 @@ public final class ValerisVersion {
 // directory depends on it -- not just compileJava. Without this, sourcesJar
 // races the generator and Gradle fails the build on the undeclared dependency.
 tasks.matching { it.name in ["compileJava", "sourcesJar"] }.configureEach {
-	dependsOn("generateValerisVersion")
+	dependsOn("generateValarisVersion")
 }
 
 dependencies {

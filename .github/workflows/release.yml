@@ -24,7 +24,7 @@ jobs:
             21
             25
 
-      - name: Build ValerisClient mods
+      - name: Build ValarisClient mods
         shell: pwsh
         run: |
           .\gradlew :mc-1.21.11:build :mc-26.2:build --no-daemon
@@ -34,7 +34,7 @@ jobs:
         run: |
           New-Item -ItemType Directory -Force -Path release-bundle | Out-Null
           foreach ($dir in @('mc-1.21.11', 'mc-26.2')) {
-            Get-ChildItem "$dir/build/libs/valeris-client-*.jar" |
+            Get-ChildItem "$dir/build/libs/valaris-client-*.jar" |
               Where-Object { $_.Name -notmatch 'sources|dev' } |
               Copy-Item -Destination release-bundle/
           }

@@ -8,7 +8,7 @@ bases = [
 ]
 
 
-def cape(path, bg, accent, highlight, motif="prime"):
+def cape(path, bg, accent, highlight, motif="valaris"):
     img = Image.new("RGBA", (64, 64), (0, 0, 0, 0))
     d = ImageDraw.Draw(img)
     for y in range(0, 32):
@@ -23,7 +23,7 @@ def cape(path, bg, accent, highlight, motif="prime"):
                 b = min(255, b + 10)
             img.putpixel((x, y), (r, g, b, 255))
     d.rectangle([0, 0, 21, 31], outline=highlight + (255,))
-    if motif == "prime":
+    if motif == "valaris":
         d.polygon([(7, 6), (14, 10), (7, 14), (9, 10)], fill=highlight + (255,))
         d.rectangle([8, 14, 12, 24], fill=highlight + (230,))
     elif motif == "star":
@@ -61,7 +61,7 @@ def wings(path, c1, c2, vein):
 
 
 caps = {
-    "cape_prime.png": ((20, 40, 120), (59, 130, 246), (147, 197, 253), "prime"),
+    "cape_valaris.png": ((20, 40, 120), (59, 130, 246), (147, 197, 253), "valaris"),
     "cape_star.png": ((80, 55, 10), (255, 215, 0), (255, 248, 180), "star"),
     "cape_crimson.png": ((60, 10, 20), (225, 29, 72), (254, 202, 202), "crimson"),
     "cape_midnight.png": ((15, 15, 45), (99, 102, 241), (199, 210, 254), "midnight"),

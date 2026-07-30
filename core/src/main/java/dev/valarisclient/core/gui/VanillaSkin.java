@@ -1,0 +1,77 @@
+package dev.valarisclient.core.gui;
+
+import dev.valarisclient.core.adapter.RenderContext;
+import dev.valarisclient.core.design.ValarisDesign;
+import dev.valarisclient.core.theme.Theme;
+import dev.valarisclient.core.util.ColorUtil;
+
+/**
+ * Valaris styling applied on top of unmodified vanilla screens.
+ *
+ * <p>Screens we have not rebuilt (world select, server list, Realms, reporting,
+ * dialogs, error popups) keep every bit of their vanilla logic and widget tree;
+ * only their background and widget painting is redirected here. That brands them
+ * without risking the behaviour behind them -- which matters most for the screens
+ * that appear when something has already gone wrong.</p>
+ */
+public final class VanillaSkin {
+
+    private VanillaSkin() {
+    }
+
+    /** Backdrop behind a vanilla screen, replacing the dirt/blur menu background. */
+    public static void background(RenderContext ctx, Theme theme, boolean inWorld) {
+        int w = ctx.screenWidth();
+        int h = ctx.screenHeight();
+        if (inWorld) {
+            ctx.fillRect(0, 0, w, h, theme.overlay());
+        } else {
+            ctx.fillGradientVertical(0, 0, w, h, theme.gradientTop(), theme.gradientBottom());
+        }
+        // Deeper bands top and bottom so vanilla's title and footer rows sit on
+        // a darker base than the middle of the screen.
+        int band = Math.max(8, h / 8);
+        int edge = ColorUtil.withAlpha(0xFF000000, 0.4f);
+        int clear = ColorUtil.withAlpha(0xFF000000, 0f);
+        ctx.fillGradientVertical(0, 0, w, band, edge, clear);
+        ctx.fillGradientVertical(0, h - band, w, band, clear, edge);
+    }
+
+    /**
+     * Chrome for a button on a skinned vanilla screen. The caller still draws the
+     * label, so the button's own text handling (truncation, narration) is untouched.
+     *
+     * <p>Delegates to {@link UiChrome#button} so a vanilla button and a button in
+     * one of our own screens are the same pixels from the same code, rather than
+     * two implementations that drift apart.</p>
+     */
+    public static void button(RenderContext ctx, Theme theme, int x, int y, int w, int h,
+                              boolean hovered, boolean active, float alpha) {
+        if (w <= 0 || h <= 0) {
+            return;
+        }
+        boolean faded = alpha < 0.99f;
+        if (faded) {
+            ctx.setDrawOpacity(alpha);
+        }
+        if (active) {
+            UiChrome.button(ctx, theme, x, y, w, h, hovered, false);
+        } else {
+            int radius = Math.min(ValarisDesign.RADIUS_MD, h / 2);
+            RoundedRect.border(ctx, x, y, w, h, radius, 1,
+                    ColorUtil.withAlpha(theme.border(), 0.3f),
+                    ColorUtil.withAlpha(theme.background(), 0.55f));
+        }
+        if (faded) {
+            ctx.setDrawOpacity(1f);
+        }
+    }
+
+    /** Label colour for a vanilla button, so disabled/hover states read consistently. */
+    public static int buttonTextColor(Theme theme, boolean hovered, boolean active) {
+        if (!active) {
+            return theme.foregroundMuted();
+        }
+        return hovered ? theme.foreground() : ColorUtil.withAlpha(theme.foreground(), 0.9f);
+    }
+}
