@@ -361,12 +361,15 @@ export class MinecraftEngine {
 
     let primeModInstalled = false
     if (config.loader === 'fabric' && config.includePrimeMod) {
-      const { primeJar } = await installInstanceMods(instanceId, config)
-      if (!primeJar) {
+      const { primeJar, unsupportedVersion } = await installInstanceMods(instanceId, config)
+      if (!primeJar && !unsupportedVersion) {
+        // The version IS supported, so a missing jar is a real problem worth failing on.
         throw new Error(`ValerisClient mod not found. ${ValerisClientBuildHint(config.minecraftVersion)}`)
       }
-      primeModInstalled = true
-      emitLaunchProgress({ phase: 'mods', detail: `ValerisClient mod installed: ${primeJar}`, percent: 15 })
+      if (primeJar) {
+        primeModInstalled = true
+        emitLaunchProgress({ phase: 'mods', detail: `ValerisClient mod installed: ${primeJar}`, percent: 15 })
+      }
     }
 
     const settings = await settingsStore.load()

@@ -56,9 +56,42 @@ export function resolveTarget(minecraftVersion: string | null | undefined): Mine
   return soft ?? DEFAULT_MINECRAFT_TARGET
 }
 
-export function isSupportedValerisVersion(minecraftVersion: string | null | undefined): boolean {
+/**
+ * The target for this Minecraft version, or {@code null} when no Valeris layer
+ * exists for it.
+ *
+ * <p>Use this anywhere the answer decides whether to ship the mod. {@link
+ * resolveTarget} deliberately falls back to the recommended target so callers
+ * that only need a jar prefix or build hint always get one -- but relying on
+ * that fallback to gate injection would put, say, the 26.2 jar into a 1.20.1
+ * instance and crash the game on launch with an unexplained mixin error.</p>
+ */
+export function findTarget(minecraftVersion: string | null | undefined): MinecraftTarget | null {
   const raw = (minecraftVersion ?? '').trim()
-  return MINECRAFT_TARGETS.some((t) => t.mcVersion === raw || t.id === raw)
+  if (!raw) {
+    return null
+  }
+  const exact = MINECRAFT_TARGETS.find(
+    (t) => t.mcVersion === raw || t.id === raw || t.localBuildDir === raw
+  )
+  if (exact) {
+    return exact
+  }
+  // Same soft match as resolveTarget: "1.21.11-rc" is still 1.21.11.
+  return (
+    MINECRAFT_TARGETS.find(
+      (t) => raw.startsWith(`${t.mcVersion}.`) || raw.startsWith(`${t.mcVersion}-`)
+    ) ?? null
+  )
+}
+
+export function isSupportedValerisVersion(minecraftVersion: string | null | undefined): boolean {
+  return findTarget(minecraftVersion) !== null
+}
+
+/** Minecraft versions that currently have a Valeris client layer. */
+export function supportedValerisVersions(): string[] {
+  return MINECRAFT_TARGETS.map((t) => t.mcVersion)
 }
 
 export function primeJarPrefix(minecraftVersion: string | null | undefined): string {

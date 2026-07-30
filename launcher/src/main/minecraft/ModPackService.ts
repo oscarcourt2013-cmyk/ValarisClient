@@ -9,8 +9,10 @@ import {
 } from '../../shared/githubRelease'
 import {
   allValerisJarPrefixes,
+  findTarget,
   parseValerisJarSemVer,
   resolveTarget,
+  supportedValerisVersions,
   type MinecraftTarget
 } from '../../shared/minecraft-targets'
 import { getInstanceModsDir, getRepoRoot } from './paths'
@@ -380,12 +382,25 @@ async function ensureFabricApi(config: InstanceLaunchConfig, modsDir: string): P
 export async function installInstanceMods(
   instanceId: string,
   config: InstanceLaunchConfig
-): Promise<{ primeJar: string | null; fabricApiJar: string | null }> {
+): Promise<{ primeJar: string | null; fabricApiJar: string | null; unsupportedVersion?: boolean }> {
   if (!config.includePrimeMod) {
     return { primeJar: null, fabricApiJar: null }
   }
 
-  const target = resolveTarget(config.minecraftVersion)
+  // No Valeris layer for this Minecraft version: launch it as plain Fabric
+  // rather than injecting a jar built against a different version, which would
+  // crash on load with a mixin error and no explanation.
+  const target = findTarget(config.minecraftVersion)
+  if (!target) {
+    emitLaunchProgress({
+      phase: 'mods',
+      detail:
+        `No ValerisClient build for Minecraft ${config.minecraftVersion} yet ` +
+        `(supported: ${supportedValerisVersions().join(', ')}) - launching without it.`,
+      percent: 30
+    })
+    return { primeJar: null, fabricApiJar: null, unsupportedVersion: true }
+  }
   const modsDir = getInstanceModsDir(instanceId)
   await mkdir(modsDir, { recursive: true })
 
