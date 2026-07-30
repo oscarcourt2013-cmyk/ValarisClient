@@ -1,0 +1,33 @@
+{
+	"required": true,
+	"package": "dev.valerisclient.v26_2.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"refmap": "valerisclient-refmap.json",
+	"client": [
+		"GameRendererMixin",
+		"LivingEntityRendererMixin",
+		"EntityRendererMixin",
+		"DebugScreenOverlayMixin",
+		"ChatComponentMixin",
+		"CameraMixin",
+		"HudMixin",
+		"ScoreboardSidebarBoundsMixin",
+		"LevelMixin",
+		"LightmapMixin",
+		"ScreenEffectRendererMixin",
+		"LightmapRenderStateExtractorMixin",
+		"AvatarRendererMixin",
+		"AvatarRenderStateMixin",
+		"CapeLayerMixin",
+		"LivingEntityRendererAccessor",
+		"PlayerInfoMixin",
+		"TitleScreenMixin",
+		"PauseScreenMixin",
+		"MinecraftUserAccessor",
+		"ClientBrandRetrieverMixin",
+		"ServerListMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

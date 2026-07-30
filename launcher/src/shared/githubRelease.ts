@@ -15,7 +15,7 @@ export interface GitHubRelease {
 
 const GITHUB_API_HEADERS = {
   Accept: 'application/vnd.github+json',
-  'User-Agent': 'stellar-client-launcher'
+  'User-Agent': 'valeris-client-launcher'
 } as const
 
 export function isPrimeModJarAsset(name: string, prefix: string): boolean {
@@ -58,27 +58,27 @@ export function compareSemver(a: string, b: string): number {
   return 0
 }
 
-/** Expected asset name: stellar-client-launcher-Setup-0.9.7.exe */
+/** Expected asset name: valeris-client-launcher-Setup-0.9.7.exe */
 export function parseLauncherVersionFromAsset(name: string): string | null {
-  const match = name.match(/stellar-client-launcher-Setup-(\d+\.\d+\.\d+)/i)
+  const match = name.match(/valeris-client-launcher-Setup-(\d+\.\d+\.\d+)/i)
   return match?.[1] ?? null
 }
 
-/** Expected asset name: StellarClient-<target>-1.2.31.jar */
+/** Expected asset name: ValerisClient-<target>-1.2.31.jar */
 export function parseModVersionFromAsset(name: string, prefix?: string): string | null {
   if (prefix) {
     const escaped = prefix.replace(/\./g, '\\.')
     const match = name.match(new RegExp(`^${escaped}-(\\d+\\.\\d+\\.\\d+)\\.jar$`))
     return match?.[1] ?? null
   }
-  const match = name.match(/^StellarClient-[^-]+(?:\.[^-]+)*-(\d+\.\d+\.\d+)\.jar$/)
+  const match = name.match(/^ValerisClient-[^-]+(?:\.[^-]+)*-(\d+\.\d+\.\d+)\.jar$/)
   return match?.[1] ?? null
 }
 
 export function pickWindowsLauncherAsset(release: GitHubRelease): GitHubReleaseAsset | undefined {
   const assets = release.assets ?? []
   return (
-    assets.find((a) => /stellar-client-launcher-Setup-.*\.exe$/i.test(a.name)) ??
+    assets.find((a) => /valeris-client-launcher-Setup-.*\.exe$/i.test(a.name)) ??
     assets.find((a) => /setup.*\.exe$/i.test(a.name)) ??
     assets.find((a) => /\.exe$/i.test(a.name))
   )

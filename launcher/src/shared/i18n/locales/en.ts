@@ -1,6 +1,6 @@
 export const en = {
   app: {
-    name: 'StellarClient Launcher'
+    name: 'ValerisClient Launcher'
   },
   nav: {
     primary: 'Main navigation',
@@ -27,7 +27,7 @@ export const en = {
     settings: 'Settings'
   },
   boot: {
-    core: 'Initializing Prime Core…',
+    core: 'Initializing Valeris Core…',
     updates: 'Checking for updates…',
     minecraft: 'Loading Minecraft…',
     ready: 'Ready.'
@@ -40,8 +40,8 @@ export const en = {
     guest: 'Guest',
     never: 'Never',
     free: 'Free',
-    prime: 'Prime',
-    primePlus: 'Prime Plus',
+    prime: 'Valeris',
+    primePlus: 'Valeris Plus',
     active: 'Active',
     use: 'Use',
     add: 'Add',
@@ -61,13 +61,13 @@ export const en = {
   },
   dashboard: {
     signInTitle: 'Sign in to play',
-    signInHint: 'Connect Microsoft or use offline mode to launch StellarClient.',
+    signInHint: 'Connect Microsoft or use offline mode to launch ValerisClient.',
     addAccount: 'Add Account',
     welcomeBack: 'Welcome back',
     quickLaunch: 'Quick Launch',
     profile: 'Profile',
     instance: 'Instance',
-    primeAccount: 'Prime Account',
+    primeAccount: 'Valeris Account',
     lastSession: 'Last Session',
     news: 'News',
     moreNews: 'All news',
@@ -221,7 +221,7 @@ export const en = {
     },
     discordRpc: {
       label: 'Discord Rich Presence',
-      hint: 'Shows StellarClient Launcher on Discord (hands off to the mod in-game)',
+      hint: 'Shows ValerisClient Launcher on Discord (hands off to the mod in-game)',
       toggle: 'Discord RPC'
     },
     concurrentDownloads: {
@@ -237,19 +237,19 @@ export const en = {
     },
     groqKey: {
       label: 'Groq API key (optional override)',
-      hint: 'Leave empty — everyone uses the shared Prime backend proxy. Local key only for self-host / offline.',
+      hint: 'Leave empty — everyone uses the shared Valeris backend proxy. Local key only for self-host / offline.',
       placeholder: 'gsk_…',
       save: 'Save key',
       clear: 'Clear',
       statusOk: 'Local override ({masked})',
-      statusMissing: 'Using shared Prime AI (no personal key)',
-      statusProxy: 'Shared Prime AI online',
+      statusMissing: 'Using shared Valeris AI (no personal key)',
+      statusProxy: 'Shared Valeris AI online',
       statusDown: 'Shared AI offline — add a local key or retry later'
     },
     updateNotes: 'v{current} → latest v{latest} — {notes}'
   },
   ai: {
-    title: 'Prime Assistant',
+    title: 'Valeris Assistant',
     subtitle: 'Install mods & get advice for your instance',
     placeholder: 'e.g. Install Sodium, Lithium and Iris…',
     send: 'Send',
@@ -276,13 +276,13 @@ export const en = {
   updates: {
     modal: {
       title: 'Update available',
-      subtitle: 'A new version of StellarClient is ready. Install without leaving the launcher.'
+      subtitle: 'A new version of ValerisClient is ready. Install without leaving the launcher.'
     },
     launcher: {
-      label: 'StellarClient Launcher'
+      label: 'ValerisClient Launcher'
     },
     mod: {
-      label: 'StellarClient mod'
+      label: 'ValerisClient mod'
     },
     versionLine: 'v{current} → v{latest}',
     installLauncher: 'Install launcher',
@@ -303,7 +303,7 @@ export const en = {
       no_update: 'No update available to install.',
       game_running: 'Close Minecraft before updating the mod.',
       no_instance: 'No instance found — create one first.',
-      prime_mod_disabled: 'Prime mod is disabled on the default instance.',
+      prime_mod_disabled: 'Valeris mod is disabled on the default instance.',
       unknown: 'Update failed. Try again or download from GitHub.'
     }
   },
@@ -333,12 +333,12 @@ export const en = {
       subtitle: 'Import or install shader packs for the active instance.'
     },
     store: {
-      title: 'Prime Store',
-      subtitle: 'Unlock cosmetics and themes with Prime Coins — cloud sync when online.'
+      title: 'Valeris Store',
+      subtitle: 'Unlock cosmetics and themes with Valeris Coins — cloud sync when online.'
     },
     skins: {
       title: 'Skins',
-      subtitle: 'Preview your character, equip Prime capes & wings, keep your look ready to play.'
+      subtitle: 'Preview your character, equip Valeris capes & wings, keep your look ready to play.'
     },
     library: {
       title: 'Library',
@@ -346,7 +346,7 @@ export const en = {
     },
     cosmetics: {
       title: 'Cosmetics',
-      subtitle: 'Real capes & wings — visible to you and other StellarClient players.'
+      subtitle: 'Real capes & wings — visible to you and other ValerisClient players.'
     },
     servers: {
       title: 'Server Hub',
@@ -354,7 +354,7 @@ export const en = {
     },
     friends: {
       title: 'Friends',
-      subtitle: 'Prime friends synced launcher ↔ game — live presence and requests.'
+      subtitle: 'Valeris friends synced launcher ↔ game — live presence and requests.'
     },
     chat: {
       title: 'Chat',
@@ -383,7 +383,7 @@ export const en = {
   },
   modals: {
     login: {
-      title: 'Sign in to Prime',
+      title: 'Sign in to Valeris',
       subtitle: 'Use your Microsoft account for official Minecraft, or play offline with a custom username.',
       microsoft: 'Sign in with Microsoft',
       offlineDivider: '— or offline —',
@@ -396,22 +396,22 @@ export const en = {
     instance: {
       createTitle: 'New Instance',
       editTitle: 'Configure Instance',
-      subtitle: 'Stored locally in AppData — pick a type and Minecraft version. Prime installs the matching mod jar automatically.',
+      subtitle: 'Stored locally in AppData — pick a type and Minecraft version. Valeris installs the matching mod jar automatically.',
       kind: 'Instance type',
-      kindPrimeHint: 'Fabric + StellarClient mod',
+      kindPrimeHint: 'Fabric + ValerisClient mod',
       kindFabricHint: 'Fabric loader only',
       kindVanillaHint: 'No mods / loader',
       recommended: 'Recommended',
       primeJarHint: 'Installs {prefix}-*.jar',
       javaHint: 'Java {major}+ recommended',
-      primeAutoNote: 'Prime always includes Fabric API and the version-matched StellarClient mod.',
+      primeAutoNote: 'Valeris always includes Fabric API and the version-matched ValerisClient mod.',
       showAdvanced: 'Show advanced options',
       hideAdvanced: 'Hide advanced options',
       name: 'Name',
       minecraftVersion: 'Minecraft version',
       loader: 'Loader',
       fabricLoader: 'Fabric loader',
-      includePrimeMod: 'Include StellarClient mod (+ Fabric API)',
+      includePrimeMod: 'Include ValerisClient mod (+ Fabric API)',
       ram: 'RAM (MB)',
       jvmArgs: 'JVM args (one per line)',
       javaPath: 'Java path (optional)',
@@ -465,7 +465,7 @@ export const en = {
     addAccount: 'Add account',
     activeProfile: 'Active profile',
     editSkin: 'Edit skin',
-    primeAccount: 'Prime Account',
+    primeAccount: 'Valeris Account',
     quickAdd: 'Quick Add',
     quickAddHint: 'Microsoft opens a secure login window (Xbox Live → Minecraft Services).',
     signInMicrosoft: 'Sign in with Microsoft',
@@ -523,7 +523,7 @@ export const en = {
     notePlaceholder: 'Edit note…',
     saveNote: 'Save',
     remove: 'Remove',
-    empty: 'No friends yet. Both players must open Prime once.',
+    empty: 'No friends yet. Both players must open Valeris once.',
     offline: 'Offline',
     addFailed: 'Could not add friend.',
     refreshStatus: 'Refresh status',
@@ -606,7 +606,7 @@ export const en = {
     noShaders: 'No shader packs yet. Install Iris (mod) first, then add packs here.',
     noDownloads: 'No downloads yet.',
     noDownloadsHint: 'No recent downloads. Launch Minecraft to see progress here.',
-    noScreenshots: 'No media yet. Press F2 for screenshots, or record clips with StellarClient (Creator → Clip Recorder).',
+    noScreenshots: 'No media yet. Press F2 for screenshots, or record clips with ValerisClient (Creator → Clip Recorder).',
     loadingInstance: 'Loading instance…'
   },
   resources: {
@@ -635,7 +635,7 @@ export const en = {
     chunks: '{count} chunks'
   },
   store: {
-    coins: '{balance} Prime Coins',
+    coins: '{balance} Valeris Coins',
     unlocked: '{name} unlocked! Equip cosmetics from the Cosmetics page.',
     purchaseFailed: 'Purchase failed.',
     coinsPrice: '{price} coins',
@@ -648,7 +648,7 @@ export const en = {
     promoPlaceholder: 'Promo code',
     redeem: 'Redeem',
     redeemed: 'Redeemed',
-    promoOk: '+{coins} Prime Coins added.',
+    promoOk: '+{coins} Valeris Coins added.',
     promoFailed: 'Could not redeem promo.',
     syncSynced: 'Synced',
     syncLocal: 'Local',
@@ -667,8 +667,8 @@ export const en = {
   },
   cosmetics: {
     characterPreview: 'Character Preview',
-    previewHint: 'Equipped loadout syncs into the game. Capes & wings render for Prime peers.',
-    peersNote: 'Visible on Prime peers (LAN / integrated)',
+    previewHint: 'Equipped loadout syncs into the game. Capes & wings render for Valeris peers.',
+    peersNote: 'Visible on Valeris peers (LAN / integrated)',
     all: 'All',
     capes: 'Capes',
     wings: 'Wings',
@@ -716,7 +716,7 @@ export const en = {
       theme: {
         short: 'Theme',
         title: 'Pick a look',
-        body: 'Applies to the launcher and syncs into your Prime game profile.'
+        body: 'Applies to the launcher and syncs into your Valeris game profile.'
       },
       ram: {
         short: 'RAM',
@@ -726,7 +726,7 @@ export const en = {
       folder: {
         short: 'Folder',
         title: 'Instances folder',
-        body: 'Where Prime stores Minecraft instances on disk.'
+        body: 'Where Valeris stores Minecraft instances on disk.'
       },
       account: {
         short: 'Account',
@@ -771,12 +771,12 @@ export const en = {
   instances: {
     vanilla: 'Vanilla',
     fabric: 'Fabric',
-    StellarClient: 'StellarClient',
-    primeBadge: 'Prime',
+    ValerisClient: 'ValerisClient',
+    primeBadge: 'Valeris',
     newInstance: 'New instance',
     import: 'Import',
-    createPrime26: 'Prime 26.2',
-    createPrime121: 'Prime 1.21.11',
+    createPrime26: 'Valeris 26.2',
+    createPrime121: 'Valeris 1.21.11',
     play: 'Play',
     default: 'Default',
     setDefault: 'Set as default',
@@ -786,12 +786,12 @@ export const en = {
     ramBadge: '{mb} MB RAM',
     modsBadge: '{count} mods',
     emptyTitle: 'No instances yet',
-    emptyDesc: 'Create a StellarClient install to get started.'
+    emptyDesc: 'Create a ValerisClient install to get started.'
   },
   media: {
     openFolder: 'Open clips folder',
     refresh: 'Refresh',
-    replaysNote: 'Replays and clips appear here when exported by StellarClient (config/stellarclient/clips).'
+    replaysNote: 'Replays and clips appear here when exported by ValerisClient (config/valerisclient/clips).'
   },
   logs: {
     title: 'Launch logs',
@@ -812,20 +812,20 @@ export const en = {
     sessionDuration: 'Session lasted {duration}',
     context: 'Context:',
     screen: 'Screen:',
-    primeInvolved: 'StellarClient involved',
+    primeInvolved: 'ValerisClient involved',
     suggestion: 'Suggested fix',
     openReport: 'Open crash report',
     openLogs: 'Open logs',
-    sendReport: 'Send to Prime',
+    sendReport: 'Send to Valeris',
     askAi: 'Ask AI',
     dismiss: 'Dismiss',
     fix: {
       blurOnce:
-        'A GUI rendering conflict occurred (blur limit). Update StellarClient to the latest version — this issue is fixed in recent builds.',
+        'A GUI rendering conflict occurred (blur limit). Update ValerisClient to the latest version — this issue is fixed in recent builds.',
       outOfMemory:
         'Java ran out of memory. Increase RAM in Instance settings or close other heavy applications.',
       primeMod:
-        'The crash originates from StellarClient ({location}). Try updating the mod or disabling recently changed modules.',
+        'The crash originates from ValerisClient ({location}). Try updating the mod or disabling recently changed modules.',
       modConflict:
         'A mod conflict is likely. Disable recently added mods and test again.',
       modConflictNamed:

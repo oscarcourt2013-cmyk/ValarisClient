@@ -22,8 +22,8 @@ export const SERVER_CATALOG: ServerCatalogEntry[] = [
     name: 'Elysia SMP',
     description: 'Survival multiplayer officiel — économie, claims, events.',
     fullDescription:
-      'Elysia SMP est le serveur partenaire officiel de StellarClient. Survival semi-vanilla, ' +
-      'communauté active, boutique et votes. Rejoins avec le client Prime pour le badge et les cosmétiques.',
+      'Elysia SMP est le serveur partenaire officiel de ValerisClient. Survival semi-vanilla, ' +
+      'communauté active, boutique et votes. Rejoins avec le client Valeris pour le badge et les cosmétiques.',
     bannerUrl:
       'https://api.mcstatus.io/v2/widget/java/elysiasmp.fr?theme=dark&width=800&height=160',
     versionHint: '1.21+',

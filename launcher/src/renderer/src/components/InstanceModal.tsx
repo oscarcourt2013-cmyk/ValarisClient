@@ -34,7 +34,7 @@ function kindFromInstance(inst: GameInstance): InstanceKind {
 }
 
 function defaultNameFor(kind: InstanceKind, target: MinecraftTarget): string {
-  if (kind === 'prime') return `StellarClient ${target.mcVersion}`
+  if (kind === 'prime') return `ValerisClient ${target.mcVersion}`
   if (kind === 'fabric') return `Fabric ${target.mcVersion}`
   return `Vanilla ${target.mcVersion}`
 }
@@ -177,7 +177,7 @@ export function InstanceModal({
         <div className="instance-modal__cards">
           {(
             [
-              ['prime', t('instances.StellarClient')],
+              ['prime', t('instances.ValerisClient')],
               ['fabric', t('instances.fabric')],
               ['vanilla', t('instances.vanilla')]
             ] as const

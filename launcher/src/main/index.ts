@@ -41,7 +41,7 @@ function createWindow(): void {
     show: false,
     frame: false,
     backgroundColor: '#060608',
-    title: 'StellarClient Launcher',
+    title: 'ValerisClient Launcher',
     ...(icon ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),

@@ -8,7 +8,7 @@ import { normalizePrimeTheme } from '../../shared/theme'
 import { applyPerfPresetToModules } from '../../shared/perf-preset-modules'
 import type { PerformancePreset } from '../../shared/content-types'
 
-/** Maps launcher cosmetic IDs to StellarClient mod slot + catalog ID (1:1). */
+/** Maps launcher cosmetic IDs to ValerisClient mod slot + catalog ID (1:1). */
 const MOD_COSMETIC_MAP: Record<string, { slot: string; modId: string }> = {
   'cape-prime': { slot: 'CAPE', modId: 'cape-prime' },
   'cape-star': { slot: 'CAPE', modId: 'cape-star' },
@@ -28,15 +28,15 @@ function launcherSkinsDir(): string {
 }
 
 /**
- * Writes launcher state into the instance game dir so StellarClient mod picks it up
- * on next launch (`config/stellarclient/profiles/default.json`).
+ * Writes launcher state into the instance game dir so ValerisClient mod picks it up
+ * on next launch (`config/valerisclient/profiles/default.json`).
  */
 export class LauncherBridgeService {
   async syncToInstance(instanceId: string): Promise<{ ok: boolean; error?: string }> {
     try {
       const [db, settings] = await Promise.all([ecosystemStore.load(), settingsStore.load()])
       const gameDir = getInstanceGameDir(instanceId)
-      const primeDir = join(gameDir, 'config', 'StellarClient')
+      const primeDir = join(gameDir, 'config', 'ValerisClient')
       const profilePath = join(primeDir, 'profiles', 'default.json')
       const customSkinPath = join(primeDir, 'custom_skin.png')
 

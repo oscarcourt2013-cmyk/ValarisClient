@@ -183,7 +183,7 @@ export class ServerService {
     try {
       const start = Date.now()
       const response = await fetch(`https://api.mcstatus.io/v2/status/java/${host}:${port}`, {
-        headers: { Accept: 'application/json', 'User-Agent': 'stellar-client-launcher' }
+        headers: { Accept: 'application/json', 'User-Agent': 'valeris-client-launcher' }
       })
       const ping = Date.now() - start
 

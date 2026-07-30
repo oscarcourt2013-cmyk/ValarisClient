@@ -5,7 +5,7 @@ import type { LaunchOptions } from 'minecraft-java-core'
 import type { InstanceLaunchConfig } from './constants'
 import { resolveJavaPath } from './JavaService'
 import { ensureBundledJava } from './JavaManager'
-import { installInstanceMods, StellarClientBuildHint } from './ModPackService'
+import { installInstanceMods, ValerisClientBuildHint } from './ModPackService'
 import { resolveLaunchAuthenticator } from './LaunchAuth'
 import { formatLaunchError } from './formatLaunchError'
 import { emitLaunchError, emitLaunchProgress } from './launchProgress'
@@ -113,7 +113,7 @@ async function handleGameExit(code: number | null, signal: NodeJS.Signals | null
       launchLogService.append('error', `Screen: ${crash.screen}`, 'crashed')
     }
     if (crash.primeInvolved && crash.primeLocation) {
-      launchLogService.append('warn', `StellarClient: ${crash.primeLocation}`, 'crashed')
+      launchLogService.append('warn', `ValerisClient: ${crash.primeLocation}`, 'crashed')
     }
   } else {
     const detail =
@@ -363,10 +363,10 @@ export class MinecraftEngine {
     if (config.loader === 'fabric' && config.includePrimeMod) {
       const { primeJar } = await installInstanceMods(instanceId, config)
       if (!primeJar) {
-        throw new Error(`StellarClient mod not found. ${StellarClientBuildHint(config.minecraftVersion)}`)
+        throw new Error(`ValerisClient mod not found. ${ValerisClientBuildHint(config.minecraftVersion)}`)
       }
       primeModInstalled = true
-      emitLaunchProgress({ phase: 'mods', detail: `StellarClient mod installed: ${primeJar}`, percent: 15 })
+      emitLaunchProgress({ phase: 'mods', detail: `ValerisClient mod installed: ${primeJar}`, percent: 15 })
     }
 
     const settings = await settingsStore.load()

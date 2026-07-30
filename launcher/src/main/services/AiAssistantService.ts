@@ -183,7 +183,7 @@ export class AiAssistantService {
 
 function systemPrompt(): string {
   return [
-    'Tu es Prime Assistant, l’IA du launcher StellarClient (Minecraft Fabric).',
+    'Tu es Valeris Assistant, l’IA du launcher ValerisClient (Minecraft Fabric).',
     'Tu aides à: installer des mods (Modrinth/CurseForge), conseils FPS/packs, ET dépanner crashes / erreurs de lancement.',
     'Dépannage:',
     '- Si crash, freeze, écran noir, "Minecraft a crashé", ou erreur de lancement → appelle d’abord diagnose_instance.',

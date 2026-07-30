@@ -13,7 +13,7 @@ import {
 
 /** Built-in local promo codes → bonus Prime Coins (offline fallback). */
 const LOCAL_PROMO_CODES: Record<string, { coins: number; label: string }> = {
-  PRIME2026: { coins: 100, label: 'Prime 2026' },
+  PRIME2026: { coins: 100, label: 'Valeris 2026' },
   WELCOME: { coins: 50, label: 'Welcome bonus' },
   ELYSIA: { coins: 75, label: 'Elysia partner' }
 }

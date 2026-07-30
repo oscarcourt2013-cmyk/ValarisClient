@@ -7,7 +7,7 @@ export interface PerfPresetModulePlan {
 }
 
 /**
- * Maps launcher performance presets to StellarClient module IDs.
+ * Maps launcher performance presets to ValerisClient module IDs.
  * Heavy HUD overlays are turned off on competitive/low presets.
  */
 export const PERF_PRESET_MODULES: Record<PerformancePreset, PerfPresetModulePlan> = {

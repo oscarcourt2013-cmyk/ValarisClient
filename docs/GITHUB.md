@@ -19,8 +19,8 @@ git push origin v0.8.1
 
 La workflow [`.github/workflows/release.yml`](../.github/workflows/release.yml) build automatiquement :
 
-- **StellarClient** mod jar (`mc-1.21.11`)
-- **StellarClient Launcher** installeur Windows (`.exe`)
+- **ValerisClient** mod jar (`mc-1.21.11`)
+- **ValerisClient Launcher** installeur Windows (`.exe`)
 
 Assets attachés à la GitHub Release du tag.
 
@@ -48,13 +48,13 @@ Settings → **Check for updates** interroge l’API publique :
 cd launcher
 npm install
 npm run dist
-# Sortie : launcher/release/stellar-client-launcher-Setup-0.8.0.exe
+# Sortie : launcher/release/valeris-client-launcher-Setup-0.8.0.exe
 ```
 
 ## Nom du repo
 
 | GitHub | Valeur |
 |--------|--------|
-| Slug URL | `StellarClient` |
-| Nom affiché | StellarClient |
+| Slug URL | `ValerisClient` |
+| Nom affiché | ValerisClient |
 | Owner | `oscarcourt2013-cmyk` |

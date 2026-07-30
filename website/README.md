@@ -1,6 +1,6 @@
-# StellarClient — Site web
+# ValerisClient — Site web
 
-Landing page marketing pour [StellarClient](https://github.com/oscarcourt2013-cmyk/StellarClient).
+Landing page marketing pour [ValerisClient](https://github.com/oscarcourt2013-cmyk/StellarClient).
 
 **URL (GitHub Pages)** : `https://oscarcourt2013-cmyk.github.io/StellarClient/`
 
@@ -10,7 +10,7 @@ Landing page marketing pour [StellarClient](https://github.com/oscarcourt2013-cm
 cd website
 npm install
 npm run dev
-# → http://localhost:4321/StellarClient/
+# → http://localhost:4321/ValerisClient/
 ```
 
 ## Build
@@ -32,7 +32,7 @@ Le bouton **Télécharger** interroge l'API GitHub :
 
 `GET api.github.com/repos/oscarcourt2013-cmyk/StellarClient/releases/latest`
 
-Il cible le fichier `stellar-client-launcher-Setup-*.exe` attaché à la release.
+Il cible le fichier `valeris-client-launcher-Setup-*.exe` attaché à la release.
 
 Au clic, le site envoie aussi un ping anonyme `POST {PUBLIC_API_URL}/v1/stats/download` (par défaut `http://194.9.172.102:26005`). Le hero affiche `GET /v1/stats` → compteur **Téléchargements**.
 

@@ -1,4 +1,4 @@
-# StellarClient
+# ValerisClient
 
 Client Minecraft All-in-One : PvP, Performance, QoL, Création de contenu, Personnalisation.
 Alternative professionnelle à Lunar / Badlion / Feather — 100 % légitime (visuel, confort, performance ; aucun cheat).
@@ -17,7 +17,7 @@ Alternative professionnelle à Lunar / Badlion / Feather — 100 % légitime (vi
 ## Structure
 
 ```
-StellarClient/
+ValerisClient/
 â”œâ”€─ core/          Common Core — Java pur, zéro dépendance Minecraft
 │                  (modules, events, config, thèmes, HUD model, utils)
 â”œâ”€─ mc-1.21.11/    Couche version 1.21.11 (mod Fabric)
@@ -25,7 +25,7 @@ StellarClient/
 ```
 
 Règle d'or : le core ne touche jamais une classe Minecraft. Tout passe par les
-interfaces `dev.stellarclient.core.adapter.*`, implémentées dans chaque couche.
+interfaces `dev.valerisclient.core.adapter.*`, implémentées dans chaque couche.
 Détails : [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 API serveurs partenaires (plugins) : [docs/SERVER_API.md](docs/SERVER_API.md).
@@ -48,7 +48,7 @@ API serveurs partenaires (plugins) : [docs/SERVER_API.md](docs/SERVER_API.md).
 Jars finaux dans `mc-*/build/libs/` (le core est embarqué en Jar-in-Jar).
 Prérequis : JDK 25 (compile aussi la cible 21 via `--release`).
 
-## StellarClient Launcher
+## ValerisClient Launcher
 
 Le launcher officiel Electron vit dans [`launcher/`](launcher/) (v0.9). Releases : [GitHub](https://github.com/oscarcourt2013-cmyk/StellarClient) · [Site web](https://oscarcourt2013-cmyk.github.io/StellarClient/) · [docs/GITHUB.md](docs/GITHUB.md)
 

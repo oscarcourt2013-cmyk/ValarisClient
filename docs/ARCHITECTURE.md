@@ -1,4 +1,4 @@
-# StellarClient — Architecture
+# ValerisClient — Architecture
 
 ## Vue d'ensemble
 
@@ -11,7 +11,7 @@
 │  Themes · Notifications · Profiles · HUD Layout     │
 │  GUI Model · Utils                                  │
 │                                                     │
-│            dev.stellarclient.core.adapter.*           │
+│            dev.valerisclient.core.adapter.*           │
 │         (interfaces = contrat vers Minecraft)       │
 â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€┘
                        │ implémente
@@ -25,8 +25,8 @@
 â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€┘          â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€┘
 ```
 
-Un seul mod id (`StellarClient`), deux jars distribués :
-`StellarClient-1.21.11-x.y.z.jar` et `StellarClient-26.2-x.y.z.jar`.
+Un seul mod id (`ValerisClient`), deux jars distribués :
+`ValerisClient-1.21.11-x.y.z.jar` et `ValerisClient-26.2-x.y.z.jar`.
 Le core est embarqué dans chaque jar via Jar-in-Jar (`include`).
 
 ## Règles absolues
@@ -45,11 +45,11 @@ Le core est embarqué dans chaque jar via Jar-in-Jar (`include`).
 
 ## Packages
 
-### `:core` — `dev.stellarclient.core`
+### `:core` — `dev.valerisclient.core`
 
 | Package | Rôle | Phase |
 |---|---|---|
-| `.` (racine) | `StellarClient` : bootstrap + accès aux managers | 1 |
+| `.` (racine) | `ValerisClient` : bootstrap + accès aux managers | 1 |
 | `adapter` | Contrats vers Minecraft (`MinecraftAdapter`, puis `RenderAdapter`, `InputAdapter`, `ChatAdapter`, `PlayerAdapter`…) | 1+ |
 | `event` | Event bus + événements client abstraits | 3 |
 | `module` | `Module`, `ModuleManager`, `Setting<T>` typés, catégories | 4 |
@@ -57,18 +57,18 @@ Le core est embarqué dans chaque jar via Jar-in-Jar (`include`).
 | `keybind` | Keybinds abstraits (codes GLFW, indépendants de la version) | 2 |
 | `theme` | Thèmes (palettes, polices, animations) | 2 |
 | `notification` | File de notifications HUD | 2 |
-| `serverapi` | Canal `StellarClient:main` (handshake, XP, rewards, debug) | — |
+| `serverapi` | Canal `ValerisClient:main` (handshake, XP, rewards, debug) | — |
 | `servers` | Serveurs partenaires épinglés (ex. Elysia SMP) | — |
 | `profile` | Profils utilisateurs (pvp.json, survival.json…) | 2 |
 | `hud` | Modèle de layout HUD (positions, ancres, échelle) — le rendu passe par `RenderAdapter` | 5 |
 | `gui` | Modèle ClickGUI (arbre de composants abstraits) | 6 |
 | `util` | Maths, couleurs, timing, caches | 1+ |
 
-### Couches version — `dev.stellarclient.v1_21_11` / `dev.stellarclient.v26_2`
+### Couches version — `dev.valerisclient.v1_21_11` / `dev.valerisclient.v26_2`
 
 | Contenu | Rôle |
 |---|---|
-| `StellarClientEntrypoint` | `ClientModInitializer` → `StellarClient.bootstrap(adapter)` |
+| `ValerisClientEntrypoint` | `ClientModInitializer` → `ValerisClient.bootstrap(adapter)` |
 | `VersionAdapter` | Implémentation de `MinecraftAdapter` |
 | `network/` | Payloads Fabric (`presence`, `main`) |
 | `mixin/` | Mixins UI / render / server list partenaires |

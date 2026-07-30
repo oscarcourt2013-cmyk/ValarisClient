@@ -13,7 +13,7 @@ import {
   pickWindowsLauncherAsset,
   type GitHubRelease
 } from '../../shared/githubRelease'
-import { allStellarJarPrefixes, primeJarPrefix, resolveTarget } from '../../shared/minecraft-targets'
+import { allValerisJarPrefixes, primeJarPrefix, resolveTarget } from '../../shared/minecraft-targets'
 import type { UpdateInstallResultDto, UpdateProgressDto, UpdateStatusDto } from '../../shared/ipc'
 import { getInstanceModsDir } from '../minecraft/paths'
 import { minecraftEngine } from '../minecraft/MinecraftEngine'
@@ -97,7 +97,7 @@ async function getInstalledModVersion(instanceId: string, jarPrefix: string): Pr
 }
 
 function isAnyPrimeJar(fileName: string): boolean {
-  return allStellarJarPrefixes().some((prefix) => isPrimeModJarAsset(fileName, prefix))
+  return allValerisJarPrefixes().some((prefix) => isPrimeModJarAsset(fileName, prefix))
 }
 
 async function removeStalePrimeJars(modsDir: string, keepFileName: string): Promise<void> {
@@ -275,7 +275,7 @@ export class UpdateService {
       return { ok: false, errorKey: 'no_update' }
     }
 
-    const fileName = status.launcher.fileName ?? `stellar-client-launcher-Setup-${status.launcher.latest}.exe`
+    const fileName = status.launcher.fileName ?? `valeris-client-launcher-Setup-${status.launcher.latest}.exe`
     const dest = join(app.getPath('temp'), fileName)
 
     try {

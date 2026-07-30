@@ -103,11 +103,11 @@ export function parseCrashReport(content: string): ParsedCrashReport {
   while ((match = framePattern.exec(content)) !== null) {
     const className = match[1].trim()
     const line = Number.parseInt(match[3], 10)
-    if (className.includes('StellarClient') || className.includes('dev.stellarclient')) {
+    if (className.includes('ValerisClient') || className.includes('dev.valerisclient')) {
       parsed.primeFrames.push({ className, line: Number.isFinite(line) ? line : undefined })
     }
     const modMatch = className.match(/dev\.([a-z0-9_]+)\./i)
-    if (modMatch && !modMatch[1].startsWith('StellarClient')) {
+    if (modMatch && !modMatch[1].startsWith('ValerisClient')) {
       parsed.modIds.push(modMatch[1])
     }
   }

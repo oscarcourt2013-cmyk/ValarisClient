@@ -8,8 +8,8 @@ import {
   type GitHubRelease
 } from '../../shared/githubRelease'
 import {
-  allStellarJarPrefixes,
-  parseStellarJarSemVer,
+  allValerisJarPrefixes,
+  parseValerisJarSemVer,
   resolveTarget,
   type MinecraftTarget
 } from '../../shared/minecraft-targets'
@@ -55,7 +55,7 @@ function modCacheManifestPath(): string {
 }
 
 function parseJarVersion(fileName: string, jarPrefix: string): SemVer | null {
-  return parseStellarJarSemVer(fileName, jarPrefix)
+  return parseValerisJarSemVer(fileName, jarPrefix)
 }
 
 function compareSemVer(a: SemVer, b: SemVer): number {
@@ -210,7 +210,7 @@ async function downloadPrimeModFromRelease(
 
   emitLaunchProgress({
     phase: 'mods',
-    detail: `Downloading StellarClient ${release.tag_name} from GitHub…`,
+    detail: `Downloading ValerisClient ${release.tag_name} from GitHub…`,
     percent: 38
   })
 
@@ -224,8 +224,8 @@ async function downloadPrimeModFromRelease(
   return candidateFromPath(dest, 'github-download', jarPrefix)
 }
 
-/** Resolves the newest StellarClient jar across dev build, instance, cache and GitHub. */
-async function resolveStellarClientSource(
+/** Resolves the newest ValerisClient jar across dev build, instance, cache and GitHub. */
+async function resolveValerisClientSource(
   instanceId: string,
   target: MinecraftTarget
 ): Promise<JarCandidate | null> {
@@ -261,7 +261,7 @@ async function resolveStellarClientSource(
   if (shouldCheckGitHub) {
     emitLaunchProgress({
       phase: 'mods',
-      detail: 'Checking GitHub Releases for StellarClient mod…',
+      detail: 'Checking GitHub Releases for ValerisClient mod…',
       percent: 36
     })
 
@@ -292,7 +292,7 @@ async function resolveStellarClientSource(
   } else if (best) {
     emitLaunchProgress({
       phase: 'mods',
-      detail: `Using StellarClient ${best.version.join('.')} (cached, no remote check)`,
+      detail: `Using ValerisClient ${best.version.join('.')} (cached, no remote check)`,
       percent: 38
     })
   }
@@ -300,7 +300,7 @@ async function resolveStellarClientSource(
   if (best) {
     emitLaunchProgress({
       phase: 'mods',
-      detail: `Using StellarClient ${best.version.join('.')} (${best.source})`,
+      detail: `Using ValerisClient ${best.version.join('.')} (${best.source})`,
       percent: 39
     })
   }
@@ -309,7 +309,7 @@ async function resolveStellarClientSource(
 }
 
 function isAnyPrimeJar(fileName: string): boolean {
-  return allStellarJarPrefixes().some((prefix) => isPrimeModJarAsset(fileName, prefix))
+  return allValerisJarPrefixes().some((prefix) => isPrimeModJarAsset(fileName, prefix))
 }
 
 async function removeStalePrimeJars(modsDir: string, keepFileName: string): Promise<void> {
@@ -376,7 +376,7 @@ async function ensureFabricApi(config: InstanceLaunchConfig, modsDir: string): P
   return dest
 }
 
-/** Installs StellarClient + Fabric API when includePrimeMod is enabled. */
+/** Installs ValerisClient + Fabric API when includePrimeMod is enabled. */
 export async function installInstanceMods(
   instanceId: string,
   config: InstanceLaunchConfig
@@ -397,7 +397,7 @@ export async function installInstanceMods(
 
   const fabricApiJar = await ensureFabricApi(config, modsDir)
 
-  const primeCandidate = await resolveStellarClientSource(instanceId, target)
+  const primeCandidate = await resolveValerisClientSource(instanceId, target)
   if (!primeCandidate) {
     return { primeJar: null, fabricApiJar }
   }
@@ -417,14 +417,14 @@ export async function installInstanceMods(
 
   emitLaunchProgress({
     phase: 'mods',
-    detail: `Installing StellarClient mod ${primeCandidate.version.join('.')}…`,
+    detail: `Installing ValerisClient mod ${primeCandidate.version.join('.')}…`,
     percent: 40
   })
   await copyFile(primeCandidate.path, primeDest)
   return { primeJar: primeDest, fabricApiJar }
 }
 
-export function StellarClientBuildHint(minecraftVersion?: string): string {
+export function ValerisClientBuildHint(minecraftVersion?: string): string {
   const target = resolveTarget(minecraftVersion)
   return (
     `Build the mod with \`.\\gradlew :${target.localBuildDir}:build\`, set PRIME_CLIENT_JAR, ` +

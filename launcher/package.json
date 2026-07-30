@@ -1,9 +1,9 @@
 {
-  "name": "stellar-client-launcher",
+  "name": "valeris-client-launcher",
   "version": "1.0.0",
-  "description": "Official launcher for StellarClient â€” premium Minecraft platform",
+  "description": "Official launcher for Valeris Client — premium Minecraft platform",
   "main": "./out/main/index.js",
-  "author": "StellarClient",
+  "author": "Valeris Client",
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
@@ -49,9 +49,9 @@
     "vite": "^7.0.4"
   },
   "build": {
-    "appId": "gg.stellarclient.launcher",
-    "productName": "StellarClient Launcher",
-    "copyright": "Copyright Â© StellarClient",
+    "appId": "gg.valerisclient.launcher",
+    "productName": "Valeris Client Launcher",
+    "copyright": "Copyright © Valeris Client",
     "directories": {
       "output": "release",
       "buildResources": "resources"
@@ -81,7 +81,7 @@
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
-      "artifactName": "stellar-client-launcher-Setup-${version}.${ext}"
+      "artifactName": "valeris-client-launcher-Setup-${version}.${ext}"
     },
     "publish": {
       "provider": "github",

@@ -1,6 +1,6 @@
-# Guide StellarClient v1.1
+# Guide ValerisClient v1.1
 
-Bienvenue sur **StellarClient** — client Minecraft premium (Fabric) pour le PvP, la performance, le QoL et la personnalisation.
+Bienvenue sur **ValerisClient** — client Minecraft premium (Fabric) pour le PvP, la performance, le QoL et la personnalisation.
 
 ---
 
@@ -17,7 +17,7 @@ cd "C:\Users\Zorat\Desktop\Plugins MC\Elysia Client"
 
 ### Premier lancement
 
-Au **premier démarrage**, StellarClient :
+Au **premier démarrage**, ValerisClient :
 
 1. Affiche le **splash** avec ton logo
 2. Active automatiquement un **pack HUD** (FPS, coords, keystrokes, crosshair, Discord RPC…)
@@ -114,7 +114,7 @@ Trois profils intégrés (module **Prime Profiles**) :
 | **pvp** | + Target HUD, combo, hit color, armure, potions |
 | **survival** | + waypoints, auto-respawn, item counter, sprint |
 
-Fichiers : `.minecraft/config/StellarClient/profiles/*.json`
+Fichiers : `.minecraft/config/ValerisClient/profiles/*.json`
 
 ---
 
@@ -161,7 +161,7 @@ Affiche : pseudo, IP serveur, ping, vie, biome, session, boutons.
 
 - Enregistrement auto de ta position
 - Trail + ghost en playback
-- **Save / Load** : `config/StellarClient/replays/`
+- **Save / Load** : `config/ValerisClient/replays/`
 
 ---
 
@@ -176,17 +176,17 @@ Coin haut-droit : toggles de modules, sync cloud, infos. Réglables dans la conf
 | Problème | Solution |
 |----------|----------|
 | Menu ne s’ouvre pas | Vérifie **Right Shift** dans Contrôles → Prime |
-| HUD vide | Active des modules dans **Modules** ou repasse par l’assistant (supprime `config/StellarClient` pour reset) |
+| HUD vide | Active des modules dans **Modules** ou repasse par l’assistant (supprime `config/ValerisClient` pour reset) |
 | Discord RPC absent | Discord ouvert + module activé + asset `prime_logo` uploadé |
 | Crosshair vanilla visible | Active **Crosshair Editor** |
-| Config perdue | Vérifie `config/StellarClient/profiles/default.json` |
+| Config perdue | Vérifie `config/ValerisClient/profiles/default.json` |
 
 ---
 
 ## Structure config
 
 ```
-.minecraft/config/StellarClient/
+.minecraft/config/ValerisClient/
   state.json              → profil actif
   profiles/
     default.json          → modules, HUD, thème, favoris…
@@ -198,7 +198,7 @@ Coin haut-droit : toggles de modules, sync cloud, infos. Réglables dans la conf
 
 ---
 
-## Philosophie StellarClient
+## Philosophie ValerisClient
 
 - **100 % visuel / QoL** — pas de triche gameplay
 - **Core pur Java** + layers Minecraft 1.21.11 / 26.2

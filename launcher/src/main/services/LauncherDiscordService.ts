@@ -73,7 +73,7 @@ export class LauncherDiscordService {
           details: 'Game crashed',
           state: payload.crash?.title ?? payload.detail ?? 'Minecraft crashed',
           largeImageKey: 'prime_logo',
-          largeImageText: `StellarClient Launcher v${app.getVersion()}`,
+          largeImageText: `ValerisClient Launcher v${app.getVersion()}`,
           smallImageKey: 'prime_logo',
           smallImageText: 'Crash detected',
           startTimestamp: this.sessionStart,
@@ -99,11 +99,11 @@ export class LauncherDiscordService {
     if (payload.phase === 'error') {
       void this.publish({
         details: 'Launch failed',
-        state: payload.detail ?? 'StellarClient Launcher',
+        state: payload.detail ?? 'ValerisClient Launcher',
         largeImageKey: 'prime_logo',
-        largeImageText: `StellarClient Launcher v${app.getVersion()}`,
+        largeImageText: `ValerisClient Launcher v${app.getVersion()}`,
         smallImageKey: 'prime_logo',
-        smallImageText: 'StellarClient Launcher',
+        smallImageText: 'ValerisClient Launcher',
         startTimestamp: this.sessionStart,
         buttons: defaultButtons()
       })
@@ -115,7 +115,7 @@ export class LauncherDiscordService {
         details: 'Launching Minecraft',
         state: payload.detail ?? 'Preparing…',
         largeImageKey: 'prime_logo',
-        largeImageText: `StellarClient Launcher v${app.getVersion()}`,
+        largeImageText: `ValerisClient Launcher v${app.getVersion()}`,
         smallImageKey: 'prime_logo',
         smallImageText: 'Launching',
         startTimestamp: this.sessionStart,
@@ -128,12 +128,12 @@ export class LauncherDiscordService {
     const account = await accountService.getStoredActiveAccount()
     const username = account?.username ?? 'Player'
     return {
-      details: 'StellarClient Launcher',
+      details: 'ValerisClient Launcher',
       state: `${username} • Ready to play`,
       largeImageKey: 'prime_logo',
-      largeImageText: `StellarClient Launcher v${app.getVersion()}`,
+      largeImageText: `ValerisClient Launcher v${app.getVersion()}`,
       smallImageKey: 'prime_logo',
-      smallImageText: 'StellarClient',
+      smallImageText: 'ValerisClient',
       startTimestamp: this.sessionStart,
       buttons: defaultButtons()
     }
@@ -205,7 +205,7 @@ export class LauncherDiscordService {
 
 function defaultButtons(): DiscordPresencePayload['buttons'] {
   return [
-    { label: 'StellarClient', url: APP_URL },
+    { label: 'ValerisClient', url: APP_URL },
     { label: 'Discord', url: DISCORD_APP_URL }
   ]
 }

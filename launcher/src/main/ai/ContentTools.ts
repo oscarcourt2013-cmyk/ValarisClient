@@ -108,7 +108,7 @@ export const AI_TOOL_DEFINITIONS: ToolDefinition[] = [
     type: 'function',
     function: {
       name: 'read_launcher_log',
-      description: 'Read recent StellarClient Launcher launch log lines (download/fabric/mod install errors).',
+      description: 'Read recent ValerisClient Launcher launch log lines (download/fabric/mod install errors).',
       parameters: {
         type: 'object',
         properties: {

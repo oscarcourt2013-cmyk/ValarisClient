@@ -1,4 +1,4 @@
-import logoUrl from '../../assets/stellar-logo.png'
+import logoUrl from '../../assets/valeris-logo.png'
 import './PrimeLogo.css'
 
 interface PrimeLogoProps {

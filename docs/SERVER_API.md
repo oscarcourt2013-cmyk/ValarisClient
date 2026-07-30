@@ -1,15 +1,15 @@
-# StellarClient Server API
+# ValerisClient Server API
 
-Custom payload channel for partner Minecraft servers to detect and integrate with **StellarClient**.
+Custom payload channel for partner Minecraft servers to detect and integrate with **ValerisClient**.
 
 | | |
 |--|--|
-| Channel | `StellarClient:main` |
+| Channel | `ValerisClient:main` |
 | Protocol | `1` |
 | Transport | Fabric `CustomPacketPayload` / plugin messaging |
 | Direction | C2S handshake + profile · S2C sync / XP / rewards / notify |
 
-> Handshake proves the player runs StellarClient. **Do not trust the client for grants, economy, or permissions** — always validate rewards server-side.
+> Handshake proves the player runs ValerisClient. **Do not trust the client for grants, economy, or permissions** — always validate rewards server-side.
 
 ## Handshake
 
@@ -18,7 +18,7 @@ On join, when the server advertises the channel, the client sends:
 ```json
 {
   "t": "HANDSHAKE",
-  "client": "StellarClient",
+  "client": "ValerisClient",
   "version": "2.0.0",
   "protocol": 1,
   "account": "<player-uuid>"
@@ -60,7 +60,7 @@ Unknown `t` values are ignored (forward compatible).
 
 ## Partner servers
 
-StellarClient pins partner entries in the multiplayer list (non-removable):
+ValerisClient pins partner entries in the multiplayer list (non-removable):
 
 - **Elysia SMP** — `elysiasmp.fr`
 
@@ -71,7 +71,7 @@ Production plugin (recommended): [`prime-plugin/`](../prime-plugin/) — Paper/P
 Minimal listener sketch:
 ```java
 public final class PrimeBridge implements PluginMessageListener {
-    public static final String CHANNEL = "StellarClient:main";
+    public static final String CHANNEL = "ValerisClient:main";
 
     public void register(JavaPlugin plugin) {
         var messenger = Bukkit.getMessenger();
@@ -111,7 +111,7 @@ ServerPlayNetworking.registerGlobalReceiver(MainPayload.TYPE, (payload, context)
 
 ## Compatibility
 
-- Minecraft **1.21.x** and **26.2** StellarClient jars
+- Minecraft **1.21.x** and **26.2** ValerisClient jars
 - Protocol `1` — bump only on breaking changes; keep old servers working by ignoring unknown fields
 
 ## Debug

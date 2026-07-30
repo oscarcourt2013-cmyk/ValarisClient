@@ -116,7 +116,7 @@ export function InstancesPage() {
   }
 
   function loaderLabel(inst: GameInstance): string {
-    if (inst.includePrimeMod) return t('instances.StellarClient')
+    if (inst.includePrimeMod) return t('instances.ValerisClient')
     if (inst.loader === 'fabric') return t('instances.fabric')
     return t('instances.vanilla')
   }

@@ -2,7 +2,7 @@
 // Everything version-independent lives here: module system, event bus, config,
 // themes, notifications, profiles, HUD layout model, utils.
 // Minecraft access goes exclusively through the adapter interfaces in
-// dev.stellarclient.core.adapter, implemented by each version layer.
+// dev.valerisclient.core.adapter, implemented by each version layer.
 plugins {
 	id 'java-library'
 }
@@ -11,20 +11,20 @@ repositories {
 	mavenCentral()
 }
 
-/** Keeps {@code StellarVersion.VERSION} identical to root {@code mod_version}. */
-tasks.register("generateStellarVersion") {
-	def versionFile = layout.projectDirectory.file("src/main/java/dev/stellarclient/core/design/StellarVersion.java")
+/** Keeps {@code ValerisVersion.VERSION} identical to root {@code mod_version}. */
+tasks.register("generateValerisVersion") {
+	def versionFile = layout.projectDirectory.file("src/main/java/dev/valerisclient/core/design/ValerisVersion.java")
 	inputs.property("modVersion", rootProject.mod_version)
 	outputs.file(versionFile)
 	doLast {
 		versionFile.asFile.text = """\
-package dev.stellarclient.core.design;
+package dev.valerisclient.core.design;
 
 /** Build-time version — synced from gradle.properties {@code mod_version}. Do not hand-edit. */
-public final class StellarVersion {
+public final class ValerisVersion {
     public static final String VERSION = "${rootProject.mod_version}";
 
-    private StellarVersion() {
+    private ValerisVersion() {
     }
 }
 """
@@ -32,7 +32,7 @@ public final class StellarVersion {
 }
 
 tasks.named("compileJava").configure {
-	dependsOn("generateStellarVersion")
+	dependsOn("generateValerisVersion")
 }
 
 dependencies {

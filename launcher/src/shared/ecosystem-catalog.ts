@@ -3,19 +3,19 @@ import type { NewsItem } from './types'
 
 /** Static store catalog — purchases unlock locally (Prime Coins, no payment server). */
 export const STORE_CATALOG: StoreItem[] = [
-  { id: 'cape-prime', name: 'Prime Cape', description: 'Official StellarClient cape — visible to Prime peers.', price: 0, category: 'cosmetic', owned: true },
-  { id: 'cape-star', name: 'Star Cape', description: 'Gold star cape for Prime peers.', price: 200, category: 'cosmetic', owned: false },
+  { id: 'cape-prime', name: 'Valeris Cape', description: 'Official ValerisClient cape — visible to Valeris peers.', price: 0, category: 'cosmetic', owned: true },
+  { id: 'cape-star', name: 'Star Cape', description: 'Gold star cape for Valeris peers.', price: 200, category: 'cosmetic', owned: false },
   { id: 'cape-crimson', name: 'Crimson Cape', description: 'Signature crimson cape.', price: 250, category: 'cosmetic', owned: false },
   { id: 'cape-midnight', name: 'Midnight Cape', description: 'Indigo midnight cape.', price: 200, category: 'cosmetic', owned: false },
-  { id: 'wings-aurora', name: 'Aurora Wings', description: 'Animated aurora wings — visible to Prime peers.', price: 0, category: 'cosmetic', owned: true },
+  { id: 'wings-aurora', name: 'Aurora Wings', description: 'Animated aurora wings — visible to Valeris peers.', price: 0, category: 'cosmetic', owned: true },
   { id: 'wings-ember', name: 'Ember Wings', description: 'Animated fiery wings.', price: 400, category: 'cosmetic', owned: false },
-  { id: 'theme-crimson', name: 'Crimson Theme', description: 'Signature red Prime theme.', price: 0, category: 'theme', owned: true },
+  { id: 'theme-crimson', name: 'Crimson Theme', description: 'Signature red Valeris theme.', price: 0, category: 'theme', owned: true },
   { id: 'theme-midnight', name: 'Midnight Theme', description: 'Cool indigo theme.', price: 0, category: 'theme', owned: true },
   { id: 'theme-aurora', name: 'Aurora Theme', description: 'Cyan aurora theme.', price: 0, category: 'theme', owned: true },
   {
     id: 'theme-obsidian',
     name: 'Obsidian Theme',
-    description: 'Signature black & champagne gold — elevated Prime look.',
+    description: 'Signature black & champagne gold — elevated Valeris look.',
     price: 0,
     category: 'theme',
     owned: true
@@ -23,7 +23,7 @@ export const STORE_CATALOG: StoreItem[] = [
   {
     id: 'theme-ember',
     name: 'Ember Theme',
-    description: 'Copper glow on deep charcoal — elevated Prime look.',
+    description: 'Copper glow on deep charcoal — elevated Valeris look.',
     price: 0,
     category: 'theme',
     owned: true
@@ -33,7 +33,7 @@ export const STORE_CATALOG: StoreItem[] = [
 ]
 
 export const COSMETIC_CATALOG: Omit<CosmeticItem, 'equipped'>[] = [
-  { id: 'cape-prime', name: 'Prime Cape', type: 'cape', rarity: 'legendary' },
+  { id: 'cape-prime', name: 'Valeris Cape', type: 'cape', rarity: 'legendary' },
   { id: 'cape-star', name: 'Star Cape', type: 'cape', rarity: 'epic' },
   { id: 'cape-crimson', name: 'Crimson Cape', type: 'cape', rarity: 'epic' },
   { id: 'cape-midnight', name: 'Midnight Cape', type: 'cape', rarity: 'rare' },
@@ -55,14 +55,14 @@ export const STORE_TO_COSMETIC: Record<string, string> = {
 export const BUNDLED_NEWS: NewsItem[] = [
   {
     id: 'n1',
-    title: 'StellarClient v1.1 — Premium Update',
+    title: 'ValerisClient v1.1 — Premium Update',
     summary: 'New title screen, Discord RPC, onboarding wizard, and 50 modules shipped.',
     date: '2026-07-11',
     tag: 'update'
   },
   {
     id: 'n2',
-    title: 'StellarClient Launcher v0.8',
+    title: 'ValerisClient Launcher v0.8',
     summary: 'Local store, cosmetics, friends list, performance optimizer, and settings persistence.',
     date: '2026-07-11',
     tag: 'announcement'
@@ -77,7 +77,7 @@ export const BUNDLED_NEWS: NewsItem[] = [
   {
     id: 'n4',
     title: 'Local sync only',
-    summary: 'Prime profile and configs stay on this PC. No cloud account required.',
+    summary: 'Valeris profile and configs stay on this PC. No cloud account required.',
     date: '2026-07-01',
     tag: 'announcement'
   }

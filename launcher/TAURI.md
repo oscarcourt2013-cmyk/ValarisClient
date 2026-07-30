@@ -1,4 +1,4 @@
-# StellarClient Launcher â€” Rust (Tauri)
+# ValerisClient Launcher — Rust (Tauri)
 
 Pixel-identical React UI. Shell is **Rust + WebView2** (low RAM). Electron remains available as `npm run dev`.
 
@@ -23,7 +23,7 @@ npm run dev:tauri
 | Modrinth + CurseForge search/install | Rust |
 | Import mods / resource packs / shaders | Rust dialogs |
 | Resource packs & shaders activate/remove | Rust (`options.txt`) |
-| Friends / chat (+ image upload) / party | Rust â†’ Prime backend |
+| Friends / chat (+ image upload) / party | Rust → Prime backend |
 | Store / cosmetics / servers | Rust (`ecosystem.json`) |
 | Performance presets / Java discovery | Rust |
 | Downloads history / launch logs | Rust |
@@ -33,7 +33,7 @@ npm run dev:tauri
 
 ## Data
 
-`%APPDATA%\stellar-client-launcher\` â€” shared with the Electron build.
+`%APPDATA%\valeris-client-launcher\` — shared with the Electron build.
 
 **Note:** Microsoft accounts created in Electron (msmc blob) need a **one-time re-login** in Tauri (new OAuth tokens).
 

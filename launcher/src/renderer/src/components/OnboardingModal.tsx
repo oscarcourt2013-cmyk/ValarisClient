@@ -170,7 +170,7 @@ export function OnboardingModal({ onDone }: OnboardingModalProps) {
       >
         <header className="onboard-wizard__header">
           <p className="onboard-wizard__eyebrow">{t('onboarding.eyebrow')}</p>
-          <h1 className="onboard-wizard__brand">Prime</h1>
+          <h1 className="onboard-wizard__brand">Valeris</h1>
           <p className="onboard-wizard__subtitle">{t('onboarding.subtitle')}</p>
         </header>
 

@@ -171,7 +171,7 @@ export class AccountService {
       : undefined
 
     if (!active) {
-      return { ok: false, lastSync: '', message: 'Sign in to sync your Prime profile.' }
+      return { ok: false, lastSync: '', message: 'Sign in to sync your Valeris profile.' }
     }
 
     if (active.type === 'microsoft' && active.msRefreshToken) {
@@ -190,7 +190,7 @@ export class AccountService {
     return {
       ok: true,
       lastSync: now,
-      message: 'Prime profile synced locally (no cloud server — data stays on this PC).'
+      message: 'Valeris profile synced locally (no cloud server — data stays on this PC).'
     }
   }
 

@@ -1,6 +1,6 @@
 # Prime Backend
 
-Unified **social + voice** server for StellarClient (friends / DM / party / presence), plus cloud-sync helpers for profiles, store, cosmetics, and settings.
+Unified **social + voice** server for ValerisClient (friends / DM / party / presence), plus cloud-sync helpers for profiles, store, cosmetics, and settings.
 
 **Version:** `2.1.4` — SQLite persistence, MS profile verify (optional), party invites, friend notes, block list, profiles, Prime Coins store, cosmetics/settings sync, crash index, **public download/launch stats**.
 

@@ -5,13 +5,13 @@ export function formatTier(tier: AccountTier | string, locale: Locale = 'en'): s
   const labels: Record<Locale, Record<string, string>> = {
     en: {
       free: 'Free',
-      prime: 'Prime',
-      prime_plus: 'Prime Plus'
+      prime: 'Valeris',
+      prime_plus: 'Valeris Plus'
     },
     fr: {
       free: 'Gratuit',
-      prime: 'Prime',
-      prime_plus: 'Prime Plus'
+      prime: 'Valeris',
+      prime_plus: 'Valeris Plus'
     }
   }
   return labels[locale][tier] ?? tier

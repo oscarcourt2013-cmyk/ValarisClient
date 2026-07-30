@@ -6,7 +6,7 @@ import type { InstanceDatabase, StoredInstance } from './instance-types'
 
 const PRIME_DEFAULT: StoredInstance = {
   id: 'prime-fabric',
-  name: 'StellarClient',
+  name: 'ValerisClient',
   minecraftVersion: DEFAULT_MINECRAFT_TARGET.mcVersion,
   loader: 'fabric',
   fabricLoaderVersion: DEFAULT_MINECRAFT_TARGET.fabricLoader,

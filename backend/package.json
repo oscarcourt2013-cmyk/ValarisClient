@@ -1,5 +1,5 @@
 {
-  "name": "stellar-client-backend",
+  "name": "valeris-client-backend",
   "private": true,
   "version": "1.0.0",
   "description": "Unified Prime social + voice backend (SQLite, friends, chat, party, presence, voice)",

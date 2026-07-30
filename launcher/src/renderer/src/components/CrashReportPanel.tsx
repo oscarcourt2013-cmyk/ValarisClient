@@ -29,7 +29,7 @@ function fixSuggestion(
     case 'outOfMemory':
       return t('crash.fix.outOfMemory')
     case 'primeMod':
-      return t('crash.fix.primeMod', { location: crash.primeLocation ?? 'StellarClient' })
+      return t('crash.fix.primeMod', { location: crash.primeLocation ?? 'ValerisClient' })
     case 'modConflict':
       return crash.modIds.length > 0
         ? t('crash.fix.modConflictNamed', { mods: crash.modIds.join(', ') })

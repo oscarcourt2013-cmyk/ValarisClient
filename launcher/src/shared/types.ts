@@ -97,7 +97,7 @@ export interface BootStep {
 }
 
 export const BOOT_STEPS: BootStep[] = [
-  { id: 'core', label: 'Initializing Prime Core...' },
+  { id: 'core', label: 'Initializing Valeris Core...' },
   { id: 'updates', label: 'Checking Updates...' },
   { id: 'minecraft', label: 'Loading Minecraft...' },
   { id: 'ready', label: 'Ready.' }
@@ -159,7 +159,7 @@ export const NAV_ITEMS: NavItem[] = [
   { id: 'dashboard', label: 'Home', phase: 3 },
   { id: 'instances', label: 'Instances', phase: 3 },
   { id: 'skins', label: 'Skins', phase: 3 },
-  { id: 'store', label: 'Prime Store', phase: 3 },
+  { id: 'store', label: 'Valeris Store', phase: 3 },
   { id: 'library', label: 'Library', phase: 3 },
   { id: 'servers', label: 'Servers', phase: 3 },
   { id: 'friends', label: 'Friends', phase: 3 },

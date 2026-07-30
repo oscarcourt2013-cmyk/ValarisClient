@@ -1,4 +1,4 @@
-/** Supported Minecraft targets for StellarClient instances. */
+/** Supported Minecraft targets for ValerisClient instances. */
 
 export interface MinecraftTarget {
   id: string
@@ -17,7 +17,7 @@ export const MINECRAFT_TARGETS: readonly MinecraftTarget[] = [
   {
     id: '26.2',
     mcVersion: '26.2',
-    jarPrefix: 'stellar-client-26.2',
+    jarPrefix: 'valeris-client-26.2',
     localBuildDir: 'mc-26.2',
     fabricApi: '0.154.2+26.2',
     fabricLoader: '0.19.3',
@@ -27,7 +27,7 @@ export const MINECRAFT_TARGETS: readonly MinecraftTarget[] = [
   {
     id: '1.21.11',
     mcVersion: '1.21.11',
-    jarPrefix: 'stellar-client-1.21.11',
+    jarPrefix: 'valeris-client-1.21.11',
     localBuildDir: 'mc-1.21.11',
     fabricApi: '0.141.4+1.21.11',
     fabricLoader: '0.19.3',
@@ -37,7 +37,7 @@ export const MINECRAFT_TARGETS: readonly MinecraftTarget[] = [
 
 export const DEFAULT_MINECRAFT_TARGET = MINECRAFT_TARGETS[0]
 
-/** Normalize user input and resolve a known Stellar target (falls back to recommended). */
+/** Normalize user input and resolve a known Valeris target (falls back to recommended). */
 export function resolveTarget(minecraftVersion: string | null | undefined): MinecraftTarget {
   const raw = (minecraftVersion ?? '').trim()
   if (!raw) {
@@ -56,7 +56,7 @@ export function resolveTarget(minecraftVersion: string | null | undefined): Mine
   return soft ?? DEFAULT_MINECRAFT_TARGET
 }
 
-export function isSupportedStellarVersion(minecraftVersion: string | null | undefined): boolean {
+export function isSupportedValerisVersion(minecraftVersion: string | null | undefined): boolean {
   const raw = (minecraftVersion ?? '').trim()
   return MINECRAFT_TARGETS.some((t) => t.mcVersion === raw || t.id === raw)
 }
@@ -65,8 +65,8 @@ export function primeJarPrefix(minecraftVersion: string | null | undefined): str
   return resolveTarget(minecraftVersion).jarPrefix
 }
 
-/** Parse `stellar-client-<target>-1.2.63.jar` → [1,2,63]. */
-export function parseStellarJarSemVer(fileName: string, jarPrefix: string): [number, number, number] | null {
+/** Parse `valeris-client-<target>-1.2.63.jar` → [1,2,63]. */
+export function parseValerisJarSemVer(fileName: string, jarPrefix: string): [number, number, number] | null {
   const escaped = jarPrefix.replace(/\./g, '\\.')
   const match = fileName.match(new RegExp(`^${escaped}-(\\d+)\\.(\\d+)\\.(\\d+)\\.jar$`))
   if (!match) {
@@ -75,7 +75,7 @@ export function parseStellarJarSemVer(fileName: string, jarPrefix: string): [num
   return [Number(match[1]), Number(match[2]), Number(match[3])]
 }
 
-/** All known Stellar jar prefixes (for cleaning stale jars when switching MC version). */
-export function allStellarJarPrefixes(): string[] {
+/** All known Valeris jar prefixes (for cleaning stale jars when switching MC version). */
+export function allValerisJarPrefixes(): string[] {
   return MINECRAFT_TARGETS.map((t) => t.jarPrefix)
 }

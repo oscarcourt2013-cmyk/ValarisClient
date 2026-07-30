@@ -38,7 +38,7 @@ export class NewsService {
 
     try {
       const res = await fetch(`${apiBase()}/v1/news`, {
-        headers: { Accept: 'application/json', 'User-Agent': 'stellar-client-launcher' }
+        headers: { Accept: 'application/json', 'User-Agent': 'valeris-client-launcher' }
       })
       if (res.ok) {
         const data = (await res.json()) as { items?: NewsItem[] }
@@ -54,7 +54,7 @@ export class NewsService {
 
     try {
       const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO_SLUG}/releases?per_page=3`, {
-        headers: { Accept: 'application/vnd.github+json', 'User-Agent': 'stellar-client-launcher' }
+        headers: { Accept: 'application/vnd.github+json', 'User-Agent': 'valeris-client-launcher' }
       })
       if (response.ok) {
         const releases = (await response.json()) as GitHubRelease[]

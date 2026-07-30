@@ -256,7 +256,7 @@ export class DiscordIpcClient {
 
     activity.assets = {
       large_image: snapshot.largeImageKey ?? 'prime_logo',
-      large_text: trim(snapshot.largeImageText ?? 'StellarClient', 128),
+      large_text: trim(snapshot.largeImageText ?? 'ValerisClient', 128),
       small_image: snapshot.smallImageKey ?? 'prime_logo',
       ...(snapshot.smallImageText ? { small_text: trim(snapshot.smallImageText, 128) } : {})
     }

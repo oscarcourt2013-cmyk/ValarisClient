@@ -6,7 +6,7 @@ const REQUEST_TIMEOUT_MS = 8_000
 /** Cloud promo codes — mirrors backend/lib/storeCatalog.js. */
 export const CLOUD_PROMO_CODES: Record<string, { coins: number; label: string }> = {
   WELCOME100: { coins: 100, label: 'Welcome bonus' },
-  PRIME500: { coins: 500, label: 'Prime starter pack' },
+  PRIME500: { coins: 500, label: 'Valeris starter pack' },
   ELYSIA250: { coins: 250, label: 'Elysia promo' },
   FOUNDER1000: { coins: 1000, label: 'Founder gift' }
 }

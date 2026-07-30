@@ -19,7 +19,7 @@ Dans **Rich Presence → Art Assets**, upload le logo avec cette clé exacte :
 
 | Asset key | Fichier |
 |-----------|---------|
-| `prime_logo` | `mc-1.21.11/src/main/resources/assets/stellarclient/textures/gui/logo.png` |
+| `prime_logo` | `mc-1.21.11/src/main/resources/assets/valerisclient/textures/gui/logo.png` |
 
 Sans cet asset, la présence peut s’afficher sans image ou être rejetée.
 
@@ -34,12 +34,12 @@ Sans cet asset, la présence peut s’afficher sans image ou être rejetée.
 
 | Contexte | Affichage |
 |----------|-----------|
-| Launcher ouvert (sans jeu) | `StellarClient Launcher` · `Joueur • Ready to play` |
+| Launcher ouvert (sans jeu) | `ValerisClient Launcher` · `Joueur • Ready to play` |
 | Téléchargement / lancement | `Launching Minecraft` |
 | Jeu lancé | Launcher efface sa présence → le **mod** prend le relais |
 | In-game (défaut) | **details** `Elysia SMP` · **state** `♥ 20/20 · 50ms` (+ elapsed) |
 | Menu | **details** `In Main Menu` · **state** `Minecraft 26.2 · Prime v…` |
-| Jeu fermé | Retour `StellarClient Launcher` |
+| Jeu fermé | Retour `ValerisClient Launcher` |
 
 Présence in-game volontairement courte : pas de pseudo, PREMIUM, biome, item ou compteur modules par défaut (toggles dans le module Discord RPC). Boutons : **Website** / **Download**, ou **Server Status** en multi.
 

@@ -88,7 +88,7 @@ async function scanDir(
   return items
 }
 
-/** Scans screenshots, StellarClient replays, and exported clips. */
+/** Scans screenshots, ValerisClient replays, and exported clips. */
 export class MediaService {
   async list(instanceId?: string): Promise<MediaItem[]> {
     const id = await resolveInstanceId(instanceId)
@@ -101,8 +101,8 @@ export class MediaService {
 
     const [screenshots, replays, clips] = await Promise.all([
       scanDir(join(gameDir, 'screenshots'), 'screenshot', /\.(png|jpg|jpeg)$/i),
-      scanDir(join(gameDir, 'config', 'StellarClient', 'replays'), 'replay', /\.json$/i),
-      scanDir(join(gameDir, 'config', 'StellarClient', 'clips'), 'clip', /\.(mp4|webm|mkv)$/i)
+      scanDir(join(gameDir, 'config', 'ValerisClient', 'replays'), 'replay', /\.json$/i),
+      scanDir(join(gameDir, 'config', 'ValerisClient', 'clips'), 'clip', /\.(mp4|webm|mkv)$/i)
     ])
 
     return [...screenshots, ...replays, ...clips].sort((a, b) => b.date.localeCompare(a.date))
@@ -113,7 +113,7 @@ export class MediaService {
     if (!id) {
       return
     }
-    const dir = join(getInstanceGameDir(id), 'config', 'StellarClient', 'clips')
+    const dir = join(getInstanceGameDir(id), 'config', 'ValerisClient', 'clips')
     await shell.openPath(dir)
   }
 

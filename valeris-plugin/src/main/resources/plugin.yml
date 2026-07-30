@@ -1,0 +1,31 @@
+name: ValerisClient
+version: '${version}'
+main: com.valerisclient.ValerisClientPlugin
+api-version: '1.21'
+authors: [Prime]
+description: Official ValerisClient server bridge — detection, XP, rewards, network.
+website: https://github.com/oscarcourt2013-cmyk/StellarClient
+softdepend: [PlaceholderAPI, LuckPerms, Vault]
+
+commands:
+  prime:
+    description: ValerisClient profile and admin tools
+    usage: /prime [reload|info|rewards|achievements]
+    aliases: [ValerisClient, pclient]
+
+permissions:
+  ValerisClient.verified:
+    description: Verified ValerisClient user badge
+    default: false
+  ValerisClient.admin:
+    description: Full admin access
+    default: op
+  ValerisClient.reload:
+    description: Reload configuration
+    default: op
+  ValerisClient.info:
+    description: View other players' Prime profiles
+    default: op
+  ValerisClient.use:
+    description: Open /prime GUI
+    default: true
