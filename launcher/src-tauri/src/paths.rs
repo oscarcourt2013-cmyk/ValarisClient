@@ -1,10 +1,10 @@
 use std::path::PathBuf;
 
-/// Same folder as Electron: `%APPDATA%/stellar-client-launcher` on Windows.
+/// Same folder as Electron: `%APPDATA%/valeris-client-launcher` on Windows.
 pub fn user_data_dir() -> PathBuf {
     dirs::data_dir()
         .unwrap_or_else(|| PathBuf::from("."))
-        .join("stellar-client-launcher")
+        .join("valeris-client-launcher")
 }
 
 pub fn settings_path() -> PathBuf {

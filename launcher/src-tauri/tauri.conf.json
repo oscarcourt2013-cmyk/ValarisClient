@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "StellarClient Launcher",
+  "productName": "ValerisClient Launcher",
   "version": "2.1.4",
-  "identifier": "gg.stellarclient.launcher",
+  "identifier": "gg.valerisclient.launcher",
   "build": {
     "beforeDevCommand": "npm run dev:ui",
     "devUrl": "http://localhost:1420",
@@ -14,7 +14,7 @@
     "windows": [
       {
         "label": "main",
-        "title": "StellarClient Launcher",
+        "title": "ValerisClient Launcher",
         "width": 1320,
         "height": 860,
         "minWidth": 1100,

@@ -1,6 +1,6 @@
 # GitHub — Releases & mises à jour
 
-Repo public : **[github.com/oscarcourt2013-cmyk/StellarClient](https://github.com/oscarcourt2013-cmyk/StellarClient)**
+Repo public : **[github.com/oscarcourt2013-cmyk/ValerisClient](https://github.com/oscarcourt2013-cmyk/ValerisClient)**
 
 Aucun serveur Prime requis — GitHub héberge le code et les binaires.
 
@@ -30,7 +30,7 @@ Le site marketing vit dans [`website/`](../website/). Déployé automatiquement 
 
 | | |
 |--|--|
-| URL | `https://oscarcourt2013-cmyk.github.io/StellarClient/` |
+| URL | `https://oscarcourt2013-cmyk.github.io/ValerisClient/` |
 | Dev local | `cd website && npm install && npm run dev` |
 | Téléchargement | Bouton relié à `releases/latest` → `.exe` du launcher |
 
@@ -40,7 +40,7 @@ Active **Settings → Pages → GitHub Actions** sur le repo une première fois.
 
 Settings → **Check for updates** interroge l’API publique :
 
-`GET api.github.com/repos/oscarcourt2013-cmyk/StellarClient/releases/latest`
+`GET api.github.com/repos/oscarcourt2013-cmyk/ValerisClient/releases/latest`
 
 ## Build local de l’installeur
 

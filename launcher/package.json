@@ -86,7 +86,7 @@
     "publish": {
       "provider": "github",
       "owner": "oscarcourt2013-cmyk",
-      "repo": "StellarClient"
+      "repo": "ValerisClient"
     }
   }
 }

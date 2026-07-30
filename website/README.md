@@ -1,8 +1,8 @@
 # ValerisClient — Site web
 
-Landing page marketing pour [ValerisClient](https://github.com/oscarcourt2013-cmyk/StellarClient).
+Landing page marketing pour [ValerisClient](https://github.com/oscarcourt2013-cmyk/ValerisClient).
 
-**URL (GitHub Pages)** : `https://oscarcourt2013-cmyk.github.io/StellarClient/`
+**URL (GitHub Pages)** : `https://oscarcourt2013-cmyk.github.io/ValerisClient/`
 
 ## Développement
 
@@ -30,7 +30,7 @@ Dans les paramètres du repo GitHub : **Settings → Pages → Source : GitHub A
 
 Le bouton **Télécharger** interroge l'API GitHub :
 
-`GET api.github.com/repos/oscarcourt2013-cmyk/StellarClient/releases/latest`
+`GET api.github.com/repos/oscarcourt2013-cmyk/ValerisClient/releases/latest`
 
 Il cible le fichier `valeris-client-launcher-Setup-*.exe` attaché à la release.
 

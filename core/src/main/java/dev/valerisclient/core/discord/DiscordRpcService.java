@@ -19,8 +19,8 @@ public final class DiscordRpcService {
 
     public static final String APPLICATION_ID = "1525574680994648174";
 
-    private static final String WEBSITE_URL = "https://oscarcourt2013-cmyk.github.io/StellarClient/";
-    private static final String DOWNLOAD_URL = "https://github.com/oscarcourt2013-cmyk/StellarClient/releases/latest";
+    private static final String WEBSITE_URL = "https://oscarcourt2013-cmyk.github.io/ValerisClient/";
+    private static final String DOWNLOAD_URL = "https://github.com/oscarcourt2013-cmyk/ValerisClient/releases/latest";
     private static final String STATE_SEP = " · ";
 
     private final DiscordIpcClient ipc = new DiscordIpcClient(APPLICATION_ID);

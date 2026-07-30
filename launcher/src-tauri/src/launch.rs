@@ -74,7 +74,7 @@ async fn launch_inner(
     let _ = bridge::sync_instance(&instance_id);
     let _ = app.emit(
         "launch:progress",
-        json!({ "phase": "mods", "detail": "Installing StellarClient & Fabric APIâ€¦", "percent": 12 }),
+        json!({ "phase": "mods", "detail": "Installing ValerisClient & Fabric APIâ€¦", "percent": 12 }),
     );
     logs::append("info", "Ensuring modsâ€¦", Some("mods"));
     if let Err(e) = modpack::ensure_instance_mods(&instance_id).await {

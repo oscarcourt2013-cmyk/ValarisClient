@@ -2,7 +2,7 @@
 
 Official launcher for **ValerisClient** — premium Minecraft platform.
 
-> Releases & updates via [GitHub](https://github.com/oscarcourt2013-cmyk/StellarClient) — see [docs/GITHUB.md](../docs/GITHUB.md)
+> Releases & updates via [GitHub](https://github.com/oscarcourt2013-cmyk/ValerisClient) — see [docs/GITHUB.md](../docs/GITHUB.md)
 
 ## Stack
 

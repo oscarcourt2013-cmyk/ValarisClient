@@ -6,12 +6,12 @@ use crate::settings;
 use serde_json::{json, Map, Value};
 use std::fs;
 
-/// Writes `{game}/config/StellarClient/profiles/default.json` for the mod.
+/// Writes `{game}/config/ValerisClient/profiles/default.json` for the mod.
 pub fn sync_instance(instance_id: &str) -> Result<(), AppError> {
     let game = paths::instance_game_dir(instance_id);
     let profile = game
         .join("config")
-        .join("StellarClient")
+        .join("ValerisClient")
         .join("profiles")
         .join("default.json");
     if let Some(parent) = profile.parent() {

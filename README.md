@@ -50,7 +50,7 @@ Prérequis : JDK 25 (compile aussi la cible 21 via `--release`).
 
 ## ValerisClient Launcher
 
-Le launcher officiel Electron vit dans [`launcher/`](launcher/) (v0.9). Releases : [GitHub](https://github.com/oscarcourt2013-cmyk/StellarClient) · [Site web](https://oscarcourt2013-cmyk.github.io/StellarClient/) · [docs/GITHUB.md](docs/GITHUB.md)
+Le launcher officiel Electron vit dans [`launcher/`](launcher/) (v0.9). Releases : [GitHub](https://github.com/oscarcourt2013-cmyk/ValerisClient) · [Site web](https://oscarcourt2013-cmyk.github.io/ValerisClient/) · [docs/GITHUB.md](docs/GITHUB.md)
 
 ```bash
 cd launcher

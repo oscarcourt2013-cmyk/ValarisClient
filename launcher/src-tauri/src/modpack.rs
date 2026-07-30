@@ -1,4 +1,4 @@
-//! Installs Fabric API + StellarClient jar before launch (same behaviour as Electron ModPackService).
+//! Installs Fabric API + ValerisClient jar before launch (same behaviour as Electron ModPackService).
 use crate::error::AppError;
 use crate::instances;
 use crate::minecraft_targets::{
@@ -12,11 +12,11 @@ use std::path::{Path, PathBuf};
 
 const FABRIC_API_PROJECT: &str = "P7dR8mSH";
 const OWNER: &str = "oscarcourt2013-cmyk";
-const REPO: &str = "StellarClient";
+const REPO: &str = "ValerisClient";
 
 fn client() -> Result<reqwest::Client, AppError> {
     reqwest::Client::builder()
-        .user_agent("stellar-client-launcher/0.9.11")
+        .user_agent("valeris-client-launcher/0.9.11")
         .build()
         .map_err(|e| AppError::Message(e.to_string()))
 }
@@ -239,7 +239,7 @@ pub async fn ensure_instance_mods(instance_id: &str) -> Result<(), AppError> {
     let file_name = source
         .file_name()
         .and_then(|n| n.to_str())
-        .unwrap_or("StellarClient.jar")
+        .unwrap_or("ValerisClient.jar")
         .to_string();
     remove_stale_prime(&mods, &file_name);
     let dest = mods.join(&file_name);

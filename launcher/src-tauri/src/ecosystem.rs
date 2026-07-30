@@ -62,7 +62,7 @@ pub fn save(db: &EcosystemDb) -> Result<(), AppError> {
 }
 
 const STORE: &[(&str, &str, &str, i64, &str)] = &[
-    ("cape-prime", "Prime Cape", "Official StellarClient cape.", 0, "cosmetic"),
+    ("cape-prime", "Prime Cape", "Official ValerisClient cape.", 0, "cosmetic"),
     ("theme-crimson", "Crimson Theme", "Signature red Prime theme.", 0, "theme"),
     ("bg-nebula", "Nebula Background", "Animated space background.", 150, "background"),
     ("badge-founder", "Founder Badge", "Limited edition profile badge.", 500, "badge"),
@@ -251,7 +251,7 @@ async fn refresh_one(server: &mut FavoriteServer) {
     let start = Instant::now();
     let client = reqwest::Client::builder()
         .timeout(std::time::Duration::from_secs(5))
-        .user_agent("stellar-client-launcher")
+        .user_agent("valeris-client-launcher")
         .build();
     let Ok(client) = client else { return };
     match client.get(&url).send().await {

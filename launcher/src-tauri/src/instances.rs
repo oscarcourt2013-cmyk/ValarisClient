@@ -47,7 +47,7 @@ impl Default for InstanceDatabase {
             version: 1,
             instances: vec![StoredInstance {
                 id: "prime-fabric".into(),
-                name: "StellarClient".into(),
+                name: "ValerisClient".into(),
                 minecraft_version: DEFAULT_MC_VERSION.into(),
                 loader: "fabric".into(),
                 fabric_loader_version: Some(DEFAULT_FABRIC_LOADER.into()),

@@ -47,7 +47,7 @@ fn getrandom_fill(buf: &mut [u8]) {
 fn http_client() -> Result<reqwest::Client, AppError> {
     reqwest::Client::builder()
         .timeout(Duration::from_secs(60))
-        .user_agent("stellar-client-launcher/0.9.11")
+        .user_agent("valeris-client-launcher/0.9.11")
         .build()
         .map_err(|e| AppError::Message(e.to_string()))
 }

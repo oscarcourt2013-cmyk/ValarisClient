@@ -8,11 +8,11 @@ use std::path::PathBuf;
 use tauri::Emitter;
 
 const OWNER: &str = "oscarcourt2013-cmyk";
-const REPO: &str = "StellarClient";
+const REPO: &str = "ValerisClient";
 
 pub async fn check(current_launcher: &str) -> Result<Value, AppError> {
     let client = reqwest::Client::builder()
-        .user_agent("stellar-client-launcher")
+        .user_agent("valeris-client-launcher")
         .build()
         .map_err(|e| AppError::Message(e.to_string()))?;
     let url = format!("https://api.github.com/repos/{OWNER}/{REPO}/releases/latest");
@@ -50,7 +50,7 @@ pub async fn check(current_launcher: &str) -> Result<Value, AppError> {
     let launcher_asset = assets.iter().find(|a| {
         a.get("name")
             .and_then(|n| n.as_str())
-            .map(|n| n.starts_with("stellar-client-launcher-Setup-") && n.ends_with(".exe"))
+            .map(|n| n.starts_with("valeris-client-launcher-Setup-") && n.ends_with(".exe"))
             .unwrap_or(false)
     });
     // Prefer recommended target jar; fall back to any known Prime jar.
@@ -67,7 +67,7 @@ pub async fn check(current_launcher: &str) -> Result<Value, AppError> {
             assets.iter().find(|a| {
                 a.get("name")
                     .and_then(|n| n.as_str())
-                    .map(|n| n.starts_with("StellarClient-") && n.ends_with(".jar"))
+                    .map(|n| n.starts_with("ValerisClient-") && n.ends_with(".jar"))
                     .unwrap_or(false)
             })
         });
@@ -128,7 +128,7 @@ pub async fn install_launcher(app: tauri::AppHandle, current: &str) -> Result<Va
             .get("fileName")
             .and_then(|v| v.as_str())
             .map(str::to_string)
-            .unwrap_or_else(|| format!("stellar-client-launcher-Setup-{}.exe", launcher.get("latest").and_then(|v| v.as_str()).unwrap_or("latest")));
+            .unwrap_or_else(|| format!("valeris-client-launcher-Setup-{}.exe", launcher.get("latest").and_then(|v| v.as_str()).unwrap_or("latest")));
         let latest = launcher
             .get("latest")
             .and_then(|v| v.as_str())
@@ -146,7 +146,7 @@ pub async fn install_launcher(app: tauri::AppHandle, current: &str) -> Result<Va
         );
 
         let bytes = reqwest::Client::builder()
-            .user_agent("stellar-client-launcher")
+            .user_agent("valeris-client-launcher")
             .build()
             .map_err(|e| AppError::Message(e.to_string()))?
             .get(&download_url)
@@ -191,7 +191,7 @@ pub async fn install_launcher(app: tauri::AppHandle, current: &str) -> Result<Va
 
 pub async fn install_mod(download_url: String, file_name: String, instance_id: String) -> Result<Value, AppError> {
     let client = reqwest::Client::builder()
-        .user_agent("stellar-client-launcher")
+        .user_agent("valeris-client-launcher")
         .build()
         .map_err(|e| AppError::Message(e.to_string()))?;
     let bytes = client
@@ -212,7 +212,7 @@ pub async fn install_mod(download_url: String, file_name: String, instance_id: S
     if let Ok(rd) = fs::read_dir(&mods) {
         for e in rd.flatten() {
             let n = e.file_name().to_string_lossy().to_string();
-            if n.starts_with("StellarClient-") && n.ends_with(".jar") {
+            if n.starts_with("ValerisClient-") && n.ends_with(".jar") {
                 let _ = fs::remove_file(e.path());
             }
         }

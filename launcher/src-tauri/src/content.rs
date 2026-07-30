@@ -13,7 +13,7 @@ use tauri_plugin_dialog::{DialogExt, FilePath};
 
 fn client() -> Result<reqwest::Client, AppError> {
     reqwest::Client::builder()
-        .user_agent("stellar-client-launcher/0.9.11")
+        .user_agent("valeris-client-launcher/0.9.11")
         .build()
         .map_err(|e| AppError::Message(e.to_string()))
 }

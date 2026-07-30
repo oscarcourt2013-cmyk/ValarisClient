@@ -1,4 +1,4 @@
-﻿import net from 'net'
+import net from 'net'
 import fs from 'fs'
 
 const APP_ID = '1525574680994648174'
@@ -66,14 +66,14 @@ async function fullTest(pipePath) {
         const ready = await readPacket(socket, buffer)
         const activity = {
           type: 0,
-          details: 'StellarClient Launcher test',
+          details: 'ValerisClient Launcher test',
           state: 'Testing RPC',
           assets: {
             large_image: 'prime_logo',
             large_text: 'Prime'
           },
           buttons: [
-            { label: 'StellarClient', url: 'https://discord.com/applications/' + APP_ID },
+            { label: 'ValerisClient', url: 'https://discord.com/applications/' + APP_ID },
             { label: 'Discord', url: 'https://discord.com/app' }
           ]
         }

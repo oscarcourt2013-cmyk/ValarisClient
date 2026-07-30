@@ -204,7 +204,7 @@ pub async fn news_list() -> Result<Vec<Value>, AppError> {
     let api = std::env::var("PRIME_API_BASE").unwrap_or_else(|_| "http://194.9.172.102:26005".into());
     let client = reqwest::Client::builder()
         .timeout(std::time::Duration::from_secs(8))
-        .user_agent("stellar-client-launcher")
+        .user_agent("valeris-client-launcher")
         .build()
         .map_err(|e| AppError::Message(e.to_string()))?;
     let mut items = vec![];

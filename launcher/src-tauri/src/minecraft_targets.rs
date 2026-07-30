@@ -12,7 +12,7 @@ pub struct MinecraftTarget {
 
 pub const TARGET_26_2: MinecraftTarget = MinecraftTarget {
     mc_version: "26.2",
-    jar_prefix: "stellar-client-26.2",
+    jar_prefix: "valeris-client-26.2",
     local_build_dir: "mc-26.2",
     fabric_api: "0.154.2+26.2",
     fabric_loader: "0.19.3",
@@ -21,7 +21,7 @@ pub const TARGET_26_2: MinecraftTarget = MinecraftTarget {
 
 pub const TARGET_1_21_11: MinecraftTarget = MinecraftTarget {
     mc_version: "1.21.11",
-    jar_prefix: "stellar-client-1.21.11",
+    jar_prefix: "valeris-client-1.21.11",
     local_build_dir: "mc-1.21.11",
     fabric_api: "0.141.4+1.21.11",
     fabric_loader: "0.19.3",

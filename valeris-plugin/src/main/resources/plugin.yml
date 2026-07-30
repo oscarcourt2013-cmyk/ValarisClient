@@ -4,7 +4,7 @@ main: com.valerisclient.ValerisClientPlugin
 api-version: '1.21'
 authors: [Prime]
 description: Official ValerisClient server bridge — detection, XP, rewards, network.
-website: https://github.com/oscarcourt2013-cmyk/StellarClient
+website: https://github.com/oscarcourt2013-cmyk/ValerisClient
 softdepend: [PlaceholderAPI, LuckPerms, Vault]
 
 commands:

@@ -73,14 +73,14 @@ fn set_activity_idle() -> Result<(), AppError> {
             "args": {
                 "pid": pid,
                 "activity": {
-                    "details": "StellarClient Launcher",
+                    "details": "ValerisClient Launcher",
                     "state": "In the menu",
                     "assets": {
                         "large_image": "prime_logo",
-                        "large_text": "StellarClient"
+                        "large_text": "ValerisClient"
                     },
                     "buttons": [
-                        { "label": "StellarClient", "url": format!("https://discord.com/applications/{APP_ID}") },
+                        { "label": "ValerisClient", "url": format!("https://discord.com/applications/{APP_ID}") },
                         { "label": "Discord", "url": "https://discord.com/app" }
                     ]
                 }
@@ -100,9 +100,9 @@ fn set_activity_idle() -> Result<(), AppError> {
             "args": {
                 "pid": std::process::id(),
                 "activity": {
-                    "details": "StellarClient Launcher",
+                    "details": "ValerisClient Launcher",
                     "state": "In the menu",
-                    "assets": { "large_image": "prime_logo", "large_text": "StellarClient" }
+                    "assets": { "large_image": "prime_logo", "large_text": "ValerisClient" }
                 }
             },
             "nonce": uuid::Uuid::new_v4().to_string()
