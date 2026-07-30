@@ -19,8 +19,11 @@ public final class DiscordRpcService {
 
     public static final String APPLICATION_ID = "1525574680994648174";
 
-    private static final String WEBSITE_URL = "https://oscarcourt2013-cmyk.github.io/ValerisClient/";
-    private static final String DOWNLOAD_URL = "https://github.com/oscarcourt2013-cmyk/ValerisClient/releases/latest";
+    // The Pages site was removed with the launcher, so the repo is the only page
+    // that actually resolves; pointing "website" at a dead Pages URL would just
+    // 404 from inside the game.
+    private static final String WEBSITE_URL = "https://github.com/oscarcourt2013-cmyk/ValarisClient";
+    private static final String DOWNLOAD_URL = "https://github.com/oscarcourt2013-cmyk/ValarisClient/releases/latest";
     private static final String STATE_SEP = " · ";
 
     private final DiscordIpcClient ipc = new DiscordIpcClient(APPLICATION_ID);
