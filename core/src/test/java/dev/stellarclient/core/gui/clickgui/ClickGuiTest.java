@@ -164,29 +164,35 @@ class ClickGuiTest {
     }
 
     @Test
-    void leftClickOnRowTogglesModule() {
+    void detailPanelListsSettingsWithoutAnExpandStep() {
+        // The header already names the module, so row 0 is the first setting
+        // rather than a second copy of the name behind a right-click expand.
+        assertFalse(module.flag.get());
         assertTrue(gui.mousePressed(PANEL_X + 10, FIRST_ROW_Y + 5, 0));
-        assertTrue(module.isEnabled());
+        assertTrue(module.flag.get(), "row 0 should be the boolean setting");
         gui.mouseReleased();
 
-        assertTrue(gui.mousePressed(PANEL_X + 10, FIRST_ROW_Y + 5, 0));
-        assertFalse(module.isEnabled());
+        // Row 1 is the int slider; clicking at its far right pins it to max.
+        double sliderRowY = FIRST_ROW_Y + Panel.ROW_HEIGHT;
+        assertTrue(gui.mousePressed(PANEL_X + Panel.WIDTH - 6, sliderRowY + 5, 0));
+        assertEquals(10, module.range.get(), "row 1 should be the int slider");
+        gui.mouseReleased();
     }
 
     @Test
-    void rightClickExpandsAndSettingRowsWork() {
-        assertTrue(gui.mousePressed(PANEL_X + 10, FIRST_ROW_Y + 5, 1));
+    void legacyCategoryPanelKeepsRowAndExpandBehaviour() {
+        // Category / favourites / search panels list many modules, so they keep the
+        // module row (click to toggle, right-click to expand its settings).
+        double rowY = HEADER_Y + Panel.HEADER_HEIGHT;
+        assertTrue(gui.pressCategoryPanel(ModuleCategory.QOL, LEGACY_PANEL_X + 10, rowY + 5, 0));
+        assertTrue(module.isEnabled(), "left click on a legacy row toggles the module");
         gui.mouseReleased();
 
-        double flagRowY = FIRST_ROW_Y + 16;
-        assertTrue(gui.mousePressed(PANEL_X + 10, flagRowY + 5, 0));
-        assertTrue(module.flag.get());
+        assertTrue(gui.pressCategoryPanel(ModuleCategory.QOL, LEGACY_PANEL_X + 10, rowY + 5, 1));
         gui.mouseReleased();
-
-        double sliderRowY = flagRowY + 16;
-        assertTrue(gui.mousePressed(PANEL_X + Panel.WIDTH - 6, sliderRowY + 5, 0));
-        assertEquals(10, module.range.get());
-        gui.mouseReleased();
+        double flagRowY = rowY + Panel.ROW_HEIGHT;
+        assertTrue(gui.pressCategoryPanel(ModuleCategory.QOL, LEGACY_PANEL_X + 10, flagRowY + 5, 0));
+        assertTrue(module.flag.get(), "expanded legacy panel exposes the setting rows");
     }
 
     @Test

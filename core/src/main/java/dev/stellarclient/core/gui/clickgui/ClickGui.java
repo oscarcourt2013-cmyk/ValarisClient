@@ -216,7 +216,7 @@ public final class ClickGui implements ConfigBinding {
         if (selectedModulePanel == null || !selectedModulePanel.hasModule(sel)) {
             ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(screenWidth, screenHeight);
             selectedModulePanel = new Panel(sel.name(), List.of(sel), favorites,
-                    layout.settingsPanelX(), layout.settingsPanelY());
+                    layout.settingsPanelX(), layout.settingsPanelY(), true);
             selectedModulePanel.collapsed = false;
         }
     }

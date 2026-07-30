@@ -178,6 +178,7 @@
   "prime.gui.account.invalid": "Invalid or duplicate name.",
   "prime.gui.account.switched": "Switched to",
   "prime.gui.account.failed": "Could not apply session.",
+  "prime.gui.clickgui.no_options": "No options",
   "prime.gui.clickgui.favorites": "Favorites",
   "prime.gui.clickgui.search.placeholder": "Type to search...",
   "prime.gui.clickgui.search.panel": "Search (%d)",

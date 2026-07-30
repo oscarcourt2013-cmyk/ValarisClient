@@ -178,6 +178,7 @@
   "prime.gui.account.invalid": "Pseudo invalide ou déjà utilisé.",
   "prime.gui.account.switched": "Connecté en tant que",
   "prime.gui.account.failed": "Impossible d'appliquer la session.",
+  "prime.gui.clickgui.no_options": "Aucune option",
   "prime.gui.clickgui.favorites": "Favoris",
   "prime.gui.clickgui.search.placeholder": "Tapez pour rechercher…",
   "prime.gui.clickgui.search.panel": "Recherche (%d)",

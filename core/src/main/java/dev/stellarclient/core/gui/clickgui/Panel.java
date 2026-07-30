@@ -31,6 +31,12 @@ final class Panel {
     private final String title;
     private final List<Module> modules;
     private final FavoritesManager favorites;
+    /**
+     * Single-module detail panel: the header already names the module, so the
+     * redundant module row is skipped and its settings are listed directly
+     * instead of hiding behind a right-click expand.
+     */
+    private final boolean detail;
 
     float x;
     float y;
@@ -43,12 +49,22 @@ final class Panel {
     private float collapseProgress = 1f;
 
     Panel(String title, List<Module> modules, FavoritesManager favorites, float x, float y) {
+        this(title, modules, favorites, x, y, false);
+    }
+
+    Panel(String title, List<Module> modules, FavoritesManager favorites, float x, float y, boolean detail) {
         this.title = title;
         this.modules = modules;
         this.favorites = favorites;
         this.x = x;
         this.y = y;
+        this.detail = detail;
         this.collapseProgress = collapsed ? 0f : 1f;
+    }
+
+    /** Settings of the single module in a detail panel. */
+    private List<Setting> detailSettings() {
+        return modules.isEmpty() ? List.of() : modules.get(0).settings();
     }
 
     String title() {
@@ -69,6 +85,10 @@ final class Panel {
     }
 
     private int rowCount() {
+        if (detail) {
+            // One row per setting, or a single row for the "no options" note.
+            return Math.max(1, detailSettings().size());
+        }
         int count = modules.size();
         if (expanded != null && modules.contains(expanded)) {
             count += expanded.settings().size();
@@ -97,24 +117,44 @@ final class Panel {
             int visibleRows = Math.round(rowCount() * collapseProgress);
             int rowY = py + HEADER_HEIGHT;
             int drawn = 0;
-            for (Module module : modules) {
-                if (drawn >= visibleRows) {
-                    break;
-                }
-                renderModuleRow(ctx, theme, module, px, rowY, mouseX, mouseY);
-                rowY += ROW_HEIGHT;
-                drawn++;
 
-                if (module == expanded) {
-                    for (Setting setting : module.settings()) {
-                        if (drawn >= visibleRows) {
-                            break;
+            if (detail) {
+                List<Setting> settings = detailSettings();
+                if (settings.isEmpty() && visibleRows > 0) {
+                    ctx.fillRect(px, rowY, WIDTH, ROW_HEIGHT, theme.background());
+                    GuiLayout.label(ctx, PrimeLang.get("prime.gui.clickgui.no_options", "No options"),
+                            px + PADDING, rowY + (ROW_HEIGHT - ctx.uiFontHeight()) / 2 + 1,
+                            theme.foregroundMuted());
+                }
+                for (Setting setting : settings) {
+                    if (drawn >= visibleRows) {
+                        break;
+                    }
+                    ctx.fillRect(px, rowY, WIDTH, ROW_HEIGHT, theme.background());
+                    renderSetting(ctx, theme, setting, px, rowY);
+                    rowY += ROW_HEIGHT;
+                    drawn++;
+                }
+            } else {
+                for (Module module : modules) {
+                    if (drawn >= visibleRows) {
+                        break;
+                    }
+                    renderModuleRow(ctx, theme, module, px, rowY, mouseX, mouseY);
+                    rowY += ROW_HEIGHT;
+                    drawn++;
+
+                    if (module == expanded) {
+                        for (Setting setting : module.settings()) {
+                            if (drawn >= visibleRows) {
+                                break;
+                            }
+                            ctx.fillRect(px, rowY, WIDTH, ROW_HEIGHT, theme.background());
+                            ctx.fillRect(px + SETTING_INDENT - 4, rowY, 1, ROW_HEIGHT, theme.accent() & 0x60FFFFFF);
+                            renderSetting(ctx, theme, setting, px, rowY);
+                            rowY += ROW_HEIGHT;
+                            drawn++;
                         }
-                        ctx.fillRect(px, rowY, WIDTH, ROW_HEIGHT, theme.background());
-                        ctx.fillRect(px + SETTING_INDENT - 4, rowY, 1, ROW_HEIGHT, theme.accent() & 0x60FFFFFF);
-                        renderSetting(ctx, theme, setting, px, rowY);
-                        rowY += ROW_HEIGHT;
-                        drawn++;
                     }
                 }
             }
@@ -239,6 +279,15 @@ final class Panel {
         }
 
         int rowIndex = (int) ((mouseY - (py + HEADER_HEIGHT)) / ROW_HEIGHT);
+
+        if (detail) {
+            List<Setting> settings = detailSettings();
+            if (rowIndex >= 0 && rowIndex < settings.size()) {
+                return settingPressed(settings.get(rowIndex), mouseX, px);
+            }
+            return Hit.CONSUMED;
+        }
+
         int cursor = 0;
         for (Module module : modules) {
             if (cursor == rowIndex) {
