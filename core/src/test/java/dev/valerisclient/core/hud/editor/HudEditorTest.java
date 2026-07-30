@@ -335,9 +335,9 @@ class HudEditorTest {
             editor.renderOverlay(ctx, 0, 0);
 
             // On a 400x300 canvas the dock stacks its sliders, so it is 106px tall
-            // and starts at y=176. The visibility button sits on its first row at
-            // x=192..232, y=181..195.
-            assertTrue(editor.mousePressed(208, 188));
+            // and starts at y=165 (300 - 25 hint reserve - 106 - 4). The visibility
+            // button sits on its first row at x=192..232, y=170..184.
+            assertTrue(editor.mousePressed(208, 177));
             assertFalse(box.isVisible());
         }
 

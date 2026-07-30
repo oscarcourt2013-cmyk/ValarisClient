@@ -36,8 +36,18 @@ final class HudEditorUi {
     }
 
     private static final int PANEL_TOP = 34;
-    private static final int HINT_RESERVE = 14;
     private static final int SWATCH = 12;
+
+    /**
+     * Vertical space kept clear for the hint bar.
+     *
+     * <p>Derived from the bar it has to hold. It was a flat 14 while the bar is
+     * {@code fontH + 8} tall, so the bar ran off the bottom of the screen and the
+     * hint -- the one thing telling you how to use the editor -- was clipped.</p>
+     */
+    private static int hintReserve(RenderContext ctx) {
+        return ctx.uiFontHeight() + 8 + 8;
+    }
 
     /** Below this a slider is too short to aim at, so the dock stacks instead. */
     private static final int SLIDER_MIN_WIDTH = 68;
@@ -56,6 +66,7 @@ final class HudEditorUi {
     private int buttonH = 14;
     private int listWidth;
     private int dockHeight = 74;
+    private int hintReserve = 25;
     private boolean listShown = true;
     private boolean stackedDock;
 
@@ -122,7 +133,7 @@ final class HudEditorUi {
     }
 
     int bottomDockTop(int screenHeight) {
-        return screenHeight - HINT_RESERVE - dockHeight - 4;
+        return screenHeight - hintReserve - dockHeight - 4;
     }
 
     /** Empty glass chrome on the panels — clicks pass through without deselecting. */
@@ -187,6 +198,7 @@ final class HudEditorUi {
         int sw = ctx.screenWidth();
         int sh = ctx.screenHeight();
         int fontH = ctx.uiFontHeight();
+        hintReserve = hintReserve(ctx);
 
         // Grow the click targets when there is vertical room. A cramped canvas
         // keeps the tight values rather than pushing content off the bottom.
@@ -217,7 +229,7 @@ final class HudEditorUi {
                 : 5 + Math.max(buttonH, sliderRowH) + 6 + Math.max(buttonH, SWATCH) + 5;
 
         // Never let the dock swallow the canvas; leave at least a third visible.
-        int maxDock = Math.max(40, (sh - PANEL_TOP - HINT_RESERVE) * 2 / 3);
+        int maxDock = Math.max(40, (sh - PANEL_TOP - hintReserve) * 2 / 3);
         dockHeight = Math.min(dockHeight, maxDock);
     }
 
@@ -407,8 +419,63 @@ final class HudEditorUi {
         }
         renderToolbar(ctx, theme, mouseX, mouseY);
         renderElementList(ctx, theme, mouseX, mouseY);
+        if (editor.selected() == null) {
+            renderGettingStarted(ctx, theme);
+        }
         renderProperties(ctx, theme, mouseX, mouseY);
         renderHints(ctx, theme);
+    }
+
+    /**
+     * Shown while nothing is selected.
+     *
+     * <p>With no selection the dock is empty, so the editor opened to a toolbar, a
+     * list of names and no indication that picking one is the first move. This
+     * spells out the three steps in the empty space where the dock will appear.</p>
+     */
+    private void renderGettingStarted(RenderContext ctx, Theme theme) {
+        // Kept short on purpose: at 320px wide anything longer gets truncated, and
+        // a half-sentence instruction is worse than none.
+        String[] lines = {
+                "Nothing selected",
+                "1. Click a name, or click the HUD",
+                "2. Drag to move · scroll to resize",
+                "3. Tune it in the panel below"
+        };
+        int fontH = ctx.uiFontHeight();
+        int pad = 10;
+        int lineGap = 3;
+
+        int textW = 0;
+        for (String line : lines) {
+            textW = Math.max(textW, ctx.uiTextWidth(line));
+        }
+
+        // Sit in the canvas the list does not already cover.
+        int areaX = listWidth + (listShown ? 12 : 6);
+        int areaW = ctx.screenWidth() - areaX - 6;
+        int areaY = PANEL_TOP;
+        int areaH = Math.max(0, ctx.screenHeight() - hintReserve - 4 - areaY);
+        int w = Math.min(areaW, textW + pad * 2);
+        int h = lines.length * fontH + (lines.length - 1) * lineGap + pad * 2;
+        if (w < 60 || h > areaH) {
+            // Not enough room to say it without covering everything; the hint bar
+            // still carries the essentials.
+            return;
+        }
+        int x = areaX + (areaW - w) / 2;
+        int y = areaY + (areaH - h) / 2;
+
+        UiChrome.editorPanel(ctx, theme, x, y, w, h);
+        int ty = y + pad;
+        for (int i = 0; i < lines.length; i++) {
+            String line = truncate(ctx, lines[i], w - pad * 2);
+            int color = i == 0 ? theme.foreground()
+                    : ColorUtil.withAlpha(theme.foregroundMuted(), 0.95f);
+            int tx = i == 0 ? x + (w - ctx.uiTextWidth(line)) / 2 : x + pad;
+            ctx.drawUiText(line, tx, ty, color);
+            ty += fontH + lineGap;
+        }
     }
 
     private void renderToolbar(RenderContext ctx, Theme theme, double mouseX, double mouseY) {
@@ -470,11 +537,26 @@ final class HudEditorUi {
         int x = 6;
         int dockTop = editor.selected() != null
                 ? bottomDockTop(ctx.screenHeight())
-                : ctx.screenHeight() - HINT_RESERVE - 4;
+                : ctx.screenHeight() - hintReserve - 4;
         int h = Math.max(40, dockTop - PANEL_TOP - 4);
         listPanel = new Rect(x, PANEL_TOP, listWidth, h);
         UiChrome.editorPanel(ctx, theme, x, PANEL_TOP, listWidth, h);
         ctx.drawUiText("Elements", x + 8, PANEL_TOP + 6, theme.foregroundMuted());
+        // Shown/total on the same line as the header, so it costs no row space.
+        // Most elements ship hidden, and a wall of grey names with no count reads
+        // as broken rather than as "these are switched off".
+        int shownCount = 0;
+        for (HudElement element : listElements) {
+            if (element.isVisible()) {
+                shownCount++;
+            }
+        }
+        String count = shownCount + "/" + listElements.size();
+        int countW = ctx.uiTextWidth(count);
+        if (countW + 8 < listWidth - 8 - ctx.uiTextWidth("Elements") - 6) {
+            ctx.drawUiText(count, x + listWidth - 8 - countW, PANEL_TOP + 6,
+                    ColorUtil.withAlpha(theme.foregroundMuted(), 0.7f));
+        }
         int viewY = PANEL_TOP + 6 + ctx.uiFontHeight() + 4;
         listView = new Rect(x + 4, viewY, listWidth - 8, PANEL_TOP + h - viewY - 6);
         listContentHeight = listElements.size() * rowHeight;
@@ -497,8 +579,17 @@ final class HudEditorUi {
                         : ColorUtil.withAlpha(theme.foregroundMuted(), 0.7f);
                 ctx.drawUiText(truncate(ctx, element.name(), listView.w() - 20),
                         listView.x() + 3, rowY + (rowHeight - ctx.uiFontHeight()) / 2, nameColor);
-                int dot = element.isVisible() ? theme.success() : ColorUtil.withAlpha(theme.error(), 0.8f);
-                ctx.fillRoundedRect(listView.x() + listView.w() - 9, rowY + (rowHeight - 5) / 2, 5, 5, 2, dot);
+                // Filled when shown, hollow when hidden. The state was carried by
+                // colour alone, which is unreadable to anyone who does not already
+                // know which colour means what.
+                int dotX = listView.x() + listView.w() - 10;
+                int dotY = rowY + (rowHeight - 6) / 2;
+                if (element.isVisible()) {
+                    ctx.fillRoundedRect(dotX, dotY, 6, 6, 3, theme.success());
+                } else {
+                    ctx.fillRoundedBorder(dotX, dotY, 6, 6, 3, 1,
+                            ColorUtil.withAlpha(theme.foregroundMuted(), 0.8f), 0x00000000);
+                }
             }
             rowY += rowHeight;
         }
@@ -668,8 +759,12 @@ final class HudEditorUi {
         String shown = truncate(ctx, line, maxW - 20);
         int w = Math.min(maxW, ctx.uiTextWidth(shown) + 20);
         int x = (ctx.screenWidth() - w) / 2;
-        int y = ctx.screenHeight() - fontH - 6;
-        hintBar = new Rect(x, y - 3, w, fontH + 8);
+        // Anchor the bar off the bottom edge rather than off the text baseline, so
+        // the whole bar sits inside the screen instead of hanging off it.
+        int barH = fontH + 8;
+        int barY = ctx.screenHeight() - barH - 6;
+        int y = barY + 4;
+        hintBar = new Rect(x, barY, w, barH);
         ctx.fillRoundedRect(hintBar.x(), hintBar.y(), hintBar.w(), hintBar.h(),
                 ValerisDesign.RADIUS_SM, ColorUtil.withAlpha(theme.surfaceElevated(), 0.55f));
         ctx.drawUiText(shown, x + 10, y, ColorUtil.withAlpha(theme.foregroundMuted(), 0.9f));
