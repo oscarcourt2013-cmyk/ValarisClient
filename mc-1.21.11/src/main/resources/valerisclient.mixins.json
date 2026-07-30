@@ -26,6 +26,8 @@
 		"TitleScreenMixin",
 		"PauseScreenMixin",
 		"OptionsScreenMixin",
+		"AbstractButtonMixin",
+		"ScreenBackgroundMixin",
 		"MinecraftUserAccessor",
 		"ClientBrandRetrieverMixin",
 		"ServerListMixin"

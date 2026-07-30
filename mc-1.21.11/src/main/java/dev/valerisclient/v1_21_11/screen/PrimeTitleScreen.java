@@ -9,7 +9,7 @@ import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 
 /** ValerisClient title screen — replaces vanilla {@code TitleScreen}. */
-public final class PrimeTitleScreen extends Screen {
+public final class PrimeTitleScreen extends Screen implements ValerisStyledScreen {
 
     private static final int OVERLAY = 0x28000000;
 

@@ -9,7 +9,7 @@ import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 
 /** ValerisClient pause / game menu — replaces vanilla {@code PauseScreen}. */
-public final class PrimePauseScreen extends Screen {
+public final class PrimePauseScreen extends Screen implements ValerisStyledScreen {
 
     private final GuiRenderContext renderContext = new GuiRenderContext();
     private final GameMenu gameMenu = new GameMenu(ValerisClient.get().adapter());

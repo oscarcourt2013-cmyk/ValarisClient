@@ -288,6 +288,17 @@ public final class ValerisClient {
         return current;
     }
 
+    /**
+     * The client, or {@code null} when it has not bootstrapped yet.
+     *
+     * <p>For code that can run before the entrypoint completes -- vanilla screens
+     * render during resource reload, so a throwing accessor there would take the
+     * game down on startup.</p>
+     */
+    public static ValerisClient getOrNull() {
+        return instance;
+    }
+
     public MinecraftAdapter adapter() { return adapter; }
     public EventBus events() { return eventBus; }
     public ConfigManager config() { return configManager; }

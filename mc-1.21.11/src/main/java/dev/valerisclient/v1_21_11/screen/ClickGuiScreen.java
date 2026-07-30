@@ -15,7 +15,7 @@ import net.minecraft.network.chat.Component;
 /**
  * ClickGUI screen for 1.21.11. Thin shell around the core {@link ClickGui}.
  */
-public final class ClickGuiScreen extends Screen {
+public final class ClickGuiScreen extends Screen implements ValerisStyledScreen {
 
     private static final int DIM_COLOR = 0x60000000;
 

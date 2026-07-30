@@ -23,7 +23,7 @@ import java.util.Deque;
  * sub-screens. One screen hosts a stack of {@link OptionsPage}s, so "back"
  * unwinds to the parent page and only the outermost page closes the screen.
  */
-public final class ValerisOptionsScreen extends Screen {
+public final class ValerisOptionsScreen extends Screen implements ValerisStyledScreen {
 
     private final Screen parent;
     private final OptionsMenuRenderer renderer = new OptionsMenuRenderer();

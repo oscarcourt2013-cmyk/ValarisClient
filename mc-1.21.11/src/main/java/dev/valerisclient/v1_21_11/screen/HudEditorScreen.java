@@ -15,7 +15,7 @@ import net.minecraft.network.chat.Component;
 /**
  * HUD editor: flat dim backdrop (no world/blur) + lightweight vanilla HUD layers only.
  */
-public final class HudEditorScreen extends Screen {
+public final class HudEditorScreen extends Screen implements ValerisStyledScreen {
 
     /** Dim over flat backdrop — vanilla HUD draws on top. */
     private static final int WORLD_DIM = 0x68000000;
