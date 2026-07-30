@@ -55,5 +55,5 @@ Utilise n'importe quel launcher compatible Fabric.
 - [x] Phase 7 — 50 modules v1.0 (PvP×15, Performance×10, QoL×15, Creator×5, Valaris×5) · ponts Fabric chat/combat/santé, mixin FOV zoom, adapters étendus
 - [x] Phase 8 — Menu principal ClickGUI, favoris, animations, rotation/transparence HUD Editor, mixins hit color & caméra cinématique, tests unitaires
 - [x] Phase 9 — v1.1 Premium : design system, Crosshair Editor (presets + profils serveur), Replay Tools (save/load), Cloud sync, Cosmetics (cape mixin), Color Picker, Text Input, Hit Particles, menu premium cartes, Settings/Cosmetics/Configurations, onboarding, loading screen, notifications premium, tooltips
-- [x] Phase 10 — Discord Rich Presence (App ID `1525574680994648174`), auto-sync cloud, notifications toggle modules, Valaris Account tier
+- [x] Phase 10 — Discord Rich Presence (app id à configurer — voir `DiscordRpcService.APPLICATION_ID`), auto-sync cloud, notifications toggle modules, Valaris Account tier
 - [x] Phase 11 — First-run experience (HUD starter, onboarding interactif, splash, favoris)

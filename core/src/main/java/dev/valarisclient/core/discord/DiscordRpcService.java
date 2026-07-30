@@ -17,7 +17,24 @@ import java.util.List;
 /** Builds and publishes Discord Rich Presence from live game state. */
 public final class DiscordRpcService {
 
-    public static final String APPLICATION_ID = "1525574680994648174";
+    /**
+     * Discord application this client publishes presence as.
+     *
+     * <p>Blank until ValarisClient has its own. The previous value was inherited
+     * from the codebase this was forked from and belongs to someone else, so
+     * every user running this was advertising a stranger's application: the
+     * "Playing ..." line shows that application's name, and its owner can change
+     * it at any time. Publishing under it was not ours to do.</p>
+     *
+     * <p>To enable: create an application at discord.com/developers, upload an
+     * art asset keyed {@code valaris_logo}, and put the id here.</p>
+     */
+    public static final String APPLICATION_ID = "";
+
+    /** Whether a Discord application has been configured for this build. */
+    public static boolean isConfigured() {
+        return !APPLICATION_ID.isBlank();
+    }
 
     // The Pages site was removed with the launcher, so the repo is the only page
     // that actually resolves; pointing "website" at a dead Pages URL would just
@@ -40,7 +57,8 @@ public final class DiscordRpcService {
     }
 
     public void start() {
-        if (running) {
+        if (running || !isConfigured()) {
+            // No application id: stay quiet rather than connect as someone else.
             return;
         }
         running = true;
