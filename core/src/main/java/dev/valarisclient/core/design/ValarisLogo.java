@@ -8,7 +8,7 @@ public final class ValarisLogo {
     public static final String TEXTURE = "textures/gui/logo.png";
     /** Must match the real pixel size of the texture or it renders stretched. */
     public static final int SRC_WIDTH = 512;
-    public static final int SRC_HEIGHT = 518;
+    public static final int SRC_HEIGHT = 512;
 
     private ValarisLogo() {
     }
