@@ -51,7 +51,7 @@
 
 /* Variants */
 .prime-btn--primary {
-  background: linear-gradient(135deg, var(--prime-red-bright), var(--prime-red));
+  background: var(--prime-red);
   color: #fff;
   box-shadow: 0 8px 28px color-mix(in srgb, var(--prime-red-bright) 35%, transparent);
 }

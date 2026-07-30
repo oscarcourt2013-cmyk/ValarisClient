@@ -11,9 +11,7 @@
   align-items: center;
   gap: var(--space-4);
   padding: var(--space-6);
-  background:
-    radial-gradient(ellipse 70% 50% at 50% 70%, var(--prime-red-subtle), transparent 65%),
-    var(--prime-surface);
+  background: var(--prime-surface);
   border: 1px solid var(--prime-border);
   border-radius: var(--radius-xl);
 }
@@ -142,7 +140,7 @@
   width: 100%;
   height: 110px;
   border-radius: var(--radius-lg);
-  background: linear-gradient(160deg, var(--prime-surface-3), var(--prime-surface-2));
+  background: var(--prime-surface-2);
   display: flex;
   align-items: flex-end;
   justify-content: center;

@@ -48,7 +48,7 @@
   height: 200px;
   bottom: 10px;
   border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--prime-red-bright) 28%, transparent), transparent 70%);
+  background: color-mix(in srgb, var(--prime-red-bright) 16%, transparent);
   filter: blur(12px);
   pointer-events: none;
 }

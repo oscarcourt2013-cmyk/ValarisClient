@@ -92,17 +92,11 @@ a {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, var(--prime-white) 0%, var(--prime-muted) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--prime-white);
 }
 
 .text-gradient-red {
-  background: linear-gradient(135deg, var(--prime-red-bright) 0%, var(--prime-red) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--prime-red-bright);
 }
 
 /* Animations */

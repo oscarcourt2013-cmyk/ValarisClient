@@ -6,10 +6,7 @@
   align-items: center;
   justify-content: center;
   padding: 28px;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% -10%, color-mix(in srgb, var(--prime-red-bright) 28%, transparent), transparent 60%),
-    radial-gradient(ellipse 50% 40% at 100% 100%, color-mix(in srgb, var(--prime-red) 12%, transparent), transparent 50%),
-    color-mix(in srgb, var(--prime-black) 92%, #000);
+  background: color-mix(in srgb, var(--prime-black) 92%, #000);
 }
 
 .onboard-wizard__glow {

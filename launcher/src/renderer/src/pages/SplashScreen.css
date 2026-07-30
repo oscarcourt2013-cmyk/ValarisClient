@@ -13,10 +13,7 @@
 .splash__bg {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(circle at 50% 40%, rgba(225, 29, 46, 0.15), transparent 50%),
-    radial-gradient(circle at 20% 80%, rgba(225, 29, 46, 0.08), transparent 40%),
-    var(--prime-black);
+  background: var(--prime-black);
 }
 
 .splash__particles {
@@ -53,7 +50,7 @@
 .splash__glow {
   position: absolute;
   inset: -40px;
-  background: radial-gradient(circle, var(--prime-red-glow), transparent 70%);
+  background: var(--prime-red-subtle);
   animation: prime-glow-pulse 3s ease-in-out infinite;
   pointer-events: none;
 }

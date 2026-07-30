@@ -24,9 +24,7 @@
 }
 
 .skin-viewer3d--backdrop-soft {
-  background:
-    radial-gradient(ellipse 70% 55% at 50% 72%, color-mix(in srgb, var(--prime-red-bright) 18%, transparent), transparent 70%),
-    color-mix(in srgb, var(--prime-surface) 55%, transparent);
+  background: color-mix(in srgb, var(--prime-surface) 55%, transparent);
 }
 
 .skin-viewer3d--backdrop-grid {

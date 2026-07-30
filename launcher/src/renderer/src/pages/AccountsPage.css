@@ -25,7 +25,7 @@
   position: absolute;
   inset: -8px;
   border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--prime-red-bright) 32%, transparent), transparent 70%);
+  background: color-mix(in srgb, var(--prime-red-bright) 18%, transparent);
   filter: blur(10px);
   pointer-events: none;
 }

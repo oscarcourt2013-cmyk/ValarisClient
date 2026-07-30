@@ -36,9 +36,7 @@
 .server-card__banner {
   position: relative;
   height: 110px;
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--prime-red-bright) 22%, transparent), transparent 60%),
-    var(--prime-surface-2, #121218);
+  background: var(--prime-surface-2, #121218);
   background-size: cover;
   background-position: center;
 }
@@ -130,9 +128,7 @@
 
 .server-info__banner {
   height: 150px;
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--prime-red-bright) 28%, transparent), transparent 55%),
-    var(--prime-surface-2, #121218);
+  background: var(--prime-surface-2, #121218);
   background-size: cover;
   background-position: center;
 }

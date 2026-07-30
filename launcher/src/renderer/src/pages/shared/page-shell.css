@@ -148,7 +148,7 @@
 .tile__preview {
   height: 100px;
   border-radius: var(--radius-md);
-  background: linear-gradient(135deg, var(--prime-surface-3), var(--prime-surface-2));
+  background: var(--prime-surface-2);
   margin-bottom: var(--space-3);
   display: flex;
   align-items: center;

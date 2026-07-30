@@ -23,7 +23,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at top left, var(--prime-red-subtle), transparent 60%);
+  background: var(--prime-red-subtle);
   pointer-events: none;
 }
 
