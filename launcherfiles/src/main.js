@@ -8,6 +8,7 @@ const { pipeline } = require("stream/promises");
 const { Store } = require("./store");
 const minecraft = require("./minecraft");
 const modrinth = require("./modrinth");
+const valaris = require("./valaris");
 const { DiscordIpcClient } = require("./discordIpcClient");
 const auth = require("./auth");
 
@@ -126,6 +127,7 @@ function saveProfile(profile) {
     memory: Math.max(1024, Math.min(32768, Number(profile.memory || store.data.settings.memory))),
     gameDirectory: profile.gameDirectory || "",
     modpack: profile.modpack || null,
+    valaris: profile.valaris || null,
     createdAt: profile.createdAt || new Date().toISOString()
   };
   const index = store.data.profiles.findIndex((item) => item.id === clean.id);
@@ -317,11 +319,22 @@ ipcMain.handle("auth:microsoft-begin", async () => {
 
 ipcMain.handle("external:open", (_, url) => shell.openExternal(url));
 
-ipcMain.handle("modpacks:search", (_, query) => modrinth.searchModpacks(query));
+ipcMain.handle("modpacks:search", (_, query, offset) => modrinth.searchModpacks(query, offset));
 ipcMain.handle("modpacks:versions", (_, projectId) => modrinth.getModpackVersions(projectId));
 
 ipcMain.handle("modpacks:install", async (_, project) => {
   const profile = await modrinth.installModpack(project, minecraftRoot(), store.data.settings, (progress) => send("minecraft:progress", progress));
+  saveProfile(profile);
+  store.data.activeProfileId = profile.id;
+  store.save();
+  await refreshDiscord();
+  return publicState();
+});
+
+ipcMain.handle("valaris:versions", () => valaris.supportedVersions());
+
+ipcMain.handle("valaris:create-profile", async (_, options) => {
+  const profile = await valaris.installProfile(options, minecraftRoot(), store.data.settings, (progress) => send("minecraft:progress", progress));
   saveProfile(profile);
   store.data.activeProfileId = profile.id;
   store.save();

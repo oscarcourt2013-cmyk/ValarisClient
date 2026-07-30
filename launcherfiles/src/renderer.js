@@ -10,6 +10,17 @@ let versionFilter = "all";
 let modpacks = null;
 let modpackSearch = "";
 let modpackLoading = false;
+let modpackLoadingMore = false;
+let modpackObserver = null;
+let pickerTab = "valaris";
+let pickerSearch = "";
+let valarisVersions = null;
+const LIBRARY_PAGE = 60;
+let libraryLimit = LIBRARY_PAGE;
+let libraryObserver = null;
+const PICKER_PAGE = 60;
+let pickerLimit = PICKER_PAGE;
+let pickerObserver = null;
 let installedProfiles = {};
 let partneredServers = [];
 let partnersLoading = false;
@@ -176,6 +187,11 @@ function setupHint(profile, account) {
   return `Minecraft ${profileVersion(profile)} - ${profile.name}`;
 }
 
+// How far the highlight bar extends past each end of the label.
+const NAV_BAR_OVERHANG = 3;
+// Minimum gap from the pill's edge, so the bar clears its rounded corners.
+const NAV_BAR_MIN_INSET = 9;
+
 function updateNavLiquid() {
   const liquid = document.querySelector("#navLiquid");
   const active = document.querySelector(`.nav-item[data-page="${currentPage}"]`);
@@ -183,6 +199,30 @@ function updateNavLiquid() {
   if (!liquid || !active || !box) return;
   liquid.style.width = `${active.offsetWidth}px`;
   liquid.style.transform = `translateX(${active.offsetLeft}px)`;
+
+  // Measure the icon and the label together so the bar spans the whole content
+  // rather than the pill's full width.
+  const rects = [...active.childNodes].map((node) => {
+    if (node.nodeType === Node.ELEMENT_NODE) return node.getBoundingClientRect();
+    if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+      const range = document.createRange();
+      range.selectNodeContents(node);
+      return range.getBoundingClientRect();
+    }
+    return null;
+  }).filter((rect) => rect && rect.width);
+  if (!rects.length) {
+    liquid.style.removeProperty("--bar-left");
+    liquid.style.removeProperty("--bar-width");
+    return;
+  }
+  const item = active.getBoundingClientRect();
+  const rawLeft = Math.min(...rects.map((rect) => rect.left)) - item.left - NAV_BAR_OVERHANG;
+  const rawRight = Math.max(...rects.map((rect) => rect.right)) - item.left + NAV_BAR_OVERHANG;
+  const barLeft = Math.max(NAV_BAR_MIN_INSET, rawLeft);
+  const barRight = Math.min(item.width - NAV_BAR_MIN_INSET, rawRight);
+  liquid.style.setProperty("--bar-left", `${barLeft}px`);
+  liquid.style.setProperty("--bar-width", `${Math.max(0, barRight - barLeft)}px`);
 }
 
 function disposeSkinViewer() {
@@ -250,6 +290,12 @@ function render(direction = "forward") {
   updateNavLiquid();
   injectIcons(root);
   bindPage();
+  if (currentPage === "modpacks") observeModpackSentinel();
+  else { modpackObserver?.disconnect(); modpackObserver = null; }
+  if (currentPage === "library") observeLibrarySentinel();
+  else { libraryObserver?.disconnect(); libraryObserver = null; }
+  if (currentPage === "profiles") observePickerSentinel();
+  else { pickerObserver?.disconnect(); pickerObserver = null; }
   if (currentPage === "home") requestAnimationFrame(setupSkinViewer);
   if (currentPage === "home") refreshActiveInstallState().catch(() => {});
 }
@@ -315,7 +361,124 @@ function renderProfiles() {
       <div class="profile-body"><div class="tag-row"><span class="tag accent">${escapeHtml(profileVersion(profile))}</span><span class="tag">${escapeHtml(profileLoader(profile))}</span>${profile.modpack ? `<span class="tag">${escapeHtml(profile.modpack.modpackVersion || "Modrinth")}</span>` : ""}</div><div class="tag-row"><span class="tag">${icon("java")} Auto Java</span><span class="tag">${icon("memory")} ${profile.memory} MB</span></div></div>
       <div class="profile-actions"><button data-action="play-profile" data-id="${profile.id}">${icon("play")} Play</button><button data-action="install-profile" data-id="${profile.id}">${icon("download")} Install</button><button data-action="edit-profile" data-id="${profile.id}">${icon("edit")} Edit</button><button data-action="activate-profile" data-id="${profile.id}">${profile.id === state.activeProfileId ? "Selected" : "Select"}</button><button data-action="delete-profile" data-id="${profile.id}" title="Delete">${icon("trash")}</button></div>
     </article>`).join("");
-  return `${pageHead("Profiles", "Manage game versions and configurations", "folder", action)}${cards ? `<div class="profile-grid">${cards}</div>` : `<div class="empty-state"><div><div class="head-icon">${icon("folder")}</div><h2>No profiles yet</h2><p>Create a profile and choose any Minecraft Java version.</p><button class="primary" data-action="new-profile">${icon("plus")} Create profile</button></div></div>`}`;
+  return `${pageHead("Profiles", "Manage game versions and configurations", "folder", action)}
+    ${cards ? `<div class="profile-grid">${cards}</div>` : `<div class="empty-state compact"><div><div class="head-icon">${icon("folder")}</div><h2>No profiles yet</h2><p>Pick a version below to create your first profile.</p></div></div>`}
+    ${renderVersionPicker()}`;
+}
+
+// Same tab set as the Library page, so the two pages filter identically.
+const VERSION_TABS = [["all", "All"], ["valaris", "Valaris"], ["release", "Release"], ["snapshot", "Snapshot"], ["old_beta", "Beta"], ["old_alpha", "Alpha"]];
+
+const TAB_SUBTITLE = {
+  all: "Every Minecraft Java version, plus the Valaris client.",
+  valaris: "Minecraft versions the Valaris client supports.",
+  release: "Official full releases.",
+  snapshot: "Development snapshots.",
+  old_beta: "Historical beta builds.",
+  old_alpha: "Historical alpha builds."
+};
+
+function renderVersionPicker() {
+  const tabs = VERSION_TABS
+    .map(([id, label]) => `<button class="${pickerTab === id ? "active" : ""}" data-picker-tab="${id}">${label}</button>`).join("");
+  const head = `<div class="picker-head">
+      <div><h2>Create a profile</h2><p>${TAB_SUBTITLE[pickerTab] || ""}</p></div>
+      <div class="picker-tools">${pickerTab === "valaris" ? "" : `<input class="field" id="pickerSearch" value="${escapeHtml(pickerSearch)}" placeholder="Search versions">`}<div class="segmented">${tabs}</div></div>
+    </div>`;
+  const total = pickerTab === "valaris" ? 0 : pickerVersions().length;
+  const sentinel = pickerTab !== "valaris" && versions
+    ? `<div class="modpack-sentinel" id="pickerSentinel">${pickerLimit >= total ? `All ${total} versions shown.` : ""}</div>`
+    : "";
+  return `<section class="picker">${head}<div class="picker-grid">${pickerCards()}</div>${sentinel}</section>`;
+}
+
+function pickerCards() {
+  if (pickerTab === "valaris") return valarisPickerCards();
+  // "All" leads with the Valaris entries, then the whole Mojang catalog.
+  const valaris = pickerTab === "all" ? valarisPickerCards(true) : "";
+  return valaris + vanillaPickerCards();
+}
+
+function valarisPickerCards(embedded = false) {
+  // Embedded in "All", the Mojang list carries the empty/loading messaging.
+  if (!valarisVersions) return embedded ? "" : `<p class="picker-empty">Checking which versions the client ships for…</p>`;
+  if (!valarisVersions.length) return embedded ? "" : `<p class="picker-empty">The Valaris client has no supported versions yet.</p>`;
+  if (embedded && pickerSearch.trim() && !"valaris".includes(pickerSearch.trim().toLowerCase())) return "";
+  return valarisVersions.map((entry) => {
+    const existing = state.profiles.find((item) => item.type === "valaris" && item.baseVersion === entry.minecraftVersion);
+    const note = entry.available
+      ? `Fabric loader, Fabric API and the client are installed for you.`
+      : `Client jar not found. Build it with <code>gradlew :mc-${entry.minecraftVersion}:build</code>.`;
+    return `<article class="picker-card valaris ${entry.available ? "" : "unavailable"}">
+      <div class="picker-badge">${icon("shield")}</div>
+      <div class="picker-copy"><strong>Minecraft ${escapeHtml(entry.minecraftVersion)}</strong><span>Valaris client ${escapeHtml(entry.clientVersion)}</span><p>${note}</p></div>
+      ${existing
+        ? `<button class="secondary" data-action="activate-profile" data-id="${existing.id}">${existing.id === state.activeProfileId ? "Selected" : "Select"}</button>`
+        : `<button class="primary" data-action="create-valaris-profile" data-version="${escapeHtml(entry.minecraftVersion)}" ${entry.available ? "" : "disabled"}>${icon("plus")} Create</button>`}
+    </article>`;
+  }).join("");
+}
+
+// Every Minecraft version, snapshots and historical builds included. The
+// showSnapshots / showHistorical settings are not applied here: the picker is
+// where you go to choose any version, so hiding most of them defeats the point.
+function pickerVersions() {
+  const query = pickerSearch.trim().toLowerCase();
+  return (versions?.versions || []).filter((version) => {
+    if (pickerTab !== "all" && version.type !== pickerTab) return false;
+    return !query || version.id.toLowerCase().includes(query);
+  });
+}
+
+function vanillaPickerCards() {
+  if (!versions) return `<p class="picker-empty">Loading the official Minecraft version catalog…</p>`;
+  const all = pickerVersions();
+  if (!all.length) return `<p class="picker-empty">No versions match “${escapeHtml(pickerSearch)}”.</p>`;
+  return all.slice(0, pickerLimit).map(pickerVersionCard).join("");
+}
+
+const VERSION_TYPE_ICON = { release: "package", snapshot: "refresh", old_beta: "harddrive", old_alpha: "harddrive" };
+
+function pickerVersionCard(version) {
+  const existing = state.profiles.find((item) => item.version === version.id && item.type !== "valaris");
+  const latest = version.id === versions.latest?.release;
+  const date = new Date(version.releaseTime || version.time).toLocaleDateString();
+  const typeLabel = version.type.replace("_", " ");
+  return `<article class="picker-card">
+      <div class="picker-badge">${icon(VERSION_TYPE_ICON[version.type] || "download")}</div>
+      <div class="picker-copy"><strong>Minecraft ${escapeHtml(version.id)}</strong><span>${escapeHtml(typeLabel)}${latest ? " · latest" : ""}</span><p>Vanilla Minecraft, released ${date}.</p></div>
+      ${existing
+        ? `<button class="secondary" data-action="activate-profile" data-id="${existing.id}">${existing.id === state.activeProfileId ? "Selected" : "Select"}</button>`
+        : `<button class="primary" data-action="profile-from-version" data-version="${escapeHtml(version.id)}">${icon("plus")} Create</button>`}
+    </article>`;
+}
+
+function loadMorePicker() {
+  const all = pickerVersions();
+  if (pickerLimit >= all.length) return;
+  const next = all.slice(pickerLimit, pickerLimit + PICKER_PAGE);
+  pickerLimit += next.length;
+  const grid = document.querySelector(".picker-grid");
+  if (grid) {
+    const holder = document.createElement("div");
+    holder.innerHTML = next.map(pickerVersionCard).join("");
+    while (holder.firstElementChild) grid.appendChild(holder.firstElementChild);
+    injectIcons(grid);
+  }
+  const sentinel = document.querySelector("#pickerSentinel");
+  if (sentinel) sentinel.textContent = pickerLimit >= all.length ? `All ${all.length} versions shown.` : "";
+}
+
+function observePickerSentinel() {
+  pickerObserver?.disconnect();
+  pickerObserver = null;
+  const sentinel = document.querySelector("#pickerSentinel");
+  const root = document.querySelector("#page");
+  if (!sentinel || !root) return;
+  pickerObserver = new IntersectionObserver((entries) => {
+    if (entries.some((entry) => entry.isIntersecting)) loadMorePicker();
+  }, { root, rootMargin: "600px 0px" });
+  pickerObserver.observe(sentinel);
 }
 
 function renderModpacks() {
@@ -323,31 +486,43 @@ function renderModpacks() {
   if (modpackLoading) {
     return `${pageHead("Modpacks", "Install Fabric packs from Modrinth into clean Valaris folders", "package", controls)}<div class="empty-state"><div><div class="head-icon">${icon("package")}</div><h2>Loading Modrinth</h2><p>Finding packs that can be installed into Valaris.</p></div></div>`;
   }
-  const cards = (modpacks?.hits || []).map((pack) => {
-    const iconMarkup = pack.iconUrl ? `<img src="${escapeHtml(pack.iconUrl)}" alt="">` : icon("package");
-    const categories = (pack.categories || []).slice(0, 4).map((item) => `<span class="tag">${escapeHtml(item)}</span>`).join("");
-    return `<article class="modpack-card">
+  const cards = (modpacks?.hits || []).map(modpackCard).join("");
+  return `${pageHead("Modpacks", "Install Fabric packs from Modrinth into clean Valaris folders", "package", controls)}
+    <section class="modpack-note"><strong>Modrinth packs install as profiles.</strong><span>Valaris reads the .mrpack metadata, creates an instance folder, installs Fabric, then downloads the pack files and overrides.</span></section>
+    ${cards ? `<section class="modpack-grid">${cards}</section><div class="modpack-sentinel" id="modpackSentinel">${modpackSentinelLabel()}</div>` : `<div class="empty-state"><div><div class="head-icon">${icon("package")}</div><h2>No packs loaded</h2><p>Search for a Fabric modpack from Modrinth.</p><button class="primary" data-action="search-modpacks">${icon("refresh")} Load packs</button></div></div>`}`;
+}
+
+function modpackCard(pack) {
+  const iconMarkup = pack.iconUrl ? `<img src="${escapeHtml(pack.iconUrl)}" alt="">` : icon("package");
+  const categories = (pack.categories || []).slice(0, 4).map((item) => `<span class="tag">${escapeHtml(item)}</span>`).join("");
+  return `<article class="modpack-card">
       <div class="modpack-top"><span class="modpack-icon">${iconMarkup}</span><div><h2>${escapeHtml(pack.title)}</h2><p>by ${escapeHtml(pack.author || "Modrinth creator")}</p></div></div>
       <p class="modpack-copy">${escapeHtml(pack.description || "No description provided.")}</p>
       <div class="tag-row">${categories}<span class="tag accent">${Number(pack.downloads || 0).toLocaleString()} downloads</span></div>
       <div class="modpack-actions"><button class="primary" data-action="install-modpack" data-id="${escapeHtml(pack.projectId)}">${icon("download")} Install</button></div>
     </article>`;
-  }).join("");
-  return `${pageHead("Modpacks", "Install Fabric packs from Modrinth into clean Valaris folders", "package", controls)}
-    <section class="modpack-note"><strong>Modrinth packs install as profiles.</strong><span>Valaris reads the .mrpack metadata, creates an instance folder, installs Fabric, then downloads the pack files and overrides.</span></section>
-    ${cards ? `<section class="modpack-grid">${cards}</section>` : `<div class="empty-state"><div><div class="head-icon">${icon("package")}</div><h2>No packs loaded</h2><p>Search for a Fabric modpack from Modrinth.</p><button class="primary" data-action="search-modpacks">${icon("refresh")} Load packs</button></div></div>`}`;
+}
+
+function modpackSentinelLabel() {
+  if (modpackLoadingMore) return "Loading more packs…";
+  return modpacksExhausted() ? "That's every Fabric pack on Modrinth." : "";
+}
+
+function modpacksExhausted() {
+  if (!modpacks) return false;
+  return modpacks.hits.length >= (modpacks.totalHits || 0);
 }
 
 function libraryVersions() {
   const items = versions?.versions || [];
   const query = versionSearch.trim().toLowerCase();
+  // Every tab here is an explicit request, so the showSnapshots / showHistorical
+  // settings do not apply: "All" means all 900+ versions, not a filtered subset.
   return items.filter((version) => {
     if (versionFilter !== "all" && version.type !== versionFilter) return false;
-    if (version.type === "snapshot" && !state.settings.showSnapshots && versionFilter !== "snapshot") return false;
-    if ((version.type === "old_alpha" || version.type === "old_beta") && !state.settings.showHistorical && versionFilter !== version.type) return false;
     if (query && !version.id.toLowerCase().includes(query)) return false;
     return true;
-  }).slice(0, 80);
+  });
 }
 
 function renderLibrary() {
@@ -357,15 +532,37 @@ function renderLibrary() {
     old_beta: versions?.versions?.filter((item) => item.type === "old_beta").length || 0,
     old_alpha: versions?.versions?.filter((item) => item.type === "old_alpha").length || 0
   };
-  const controls = `<div class="library-tools"><input class="field" id="versionSearch" value="${escapeHtml(versionSearch)}" placeholder="Search versions"><div class="segmented">
-    ${[["all", "All"], ["release", "Release"], ["snapshot", "Snapshot"], ["old_beta", "Beta"], ["old_alpha", "Alpha"]].map(([id, label]) => `<button class="${versionFilter === id ? "active" : ""}" data-version-filter="${id}">${label}</button>`).join("")}
+  const tabs = [["all", "All"], ["valaris", "Valaris"], ["release", "Release"], ["snapshot", "Snapshot"], ["old_beta", "Beta"], ["old_alpha", "Alpha"]];
+  const controls = `<div class="library-tools">${versionFilter === "valaris" ? "" : `<input class="field" id="versionSearch" value="${escapeHtml(versionSearch)}" placeholder="Search versions">`}<div class="segmented">
+    ${tabs.map(([id, label]) => `<button class="${versionFilter === id ? "active" : ""}" data-version-filter="${id}">${label}</button>`).join("")}
   </div></div>`;
+  const summary = `<section class="library-summary">
+      <div class="stat"><strong>${valarisVersions?.length ?? "—"}</strong><span>Valaris</span></div>
+      <div class="stat"><strong>${counts.release}</strong><span>Releases</span></div>
+      <div class="stat"><strong>${counts.snapshot}</strong><span>Snapshots</span></div>
+      <div class="stat"><strong>${counts.old_beta}</strong><span>Beta</span></div>
+      <div class="stat"><strong>${counts.old_alpha}</strong><span>Alpha</span></div>
+    </section>`;
+
+  if (versionFilter === "valaris") {
+    return `${pageHead("Library", "Minecraft versions the Valaris client supports", "download", controls)}
+      ${summary}
+      <section class="version-list">${valarisLibraryRows()}</section>`;
+  }
   if (!versions) {
     return `${pageHead("Library", "Loading the official Minecraft version catalog", "download", controls)}<div class="empty-state"><div><div class="head-icon">${icon("refresh")}</div><h2>Loading versions</h2><p>Valaris is reaching Mojang's catalog.</p></div></div>`;
   }
-  const rows = libraryVersions().map((version) => {
-    const profile = state.profiles.find((item) => item.version === version.id);
-    return `<article class="version-row">
+  const all = libraryVersions();
+  const rows = all.slice(0, libraryLimit).map(versionRow).join("");
+  return `${pageHead("Library", `All ${all.length} official Minecraft Java versions`, "download", controls)}
+    ${summary}
+    <section class="version-list">${rows || `<div class="empty-state"><div><h2>No versions found</h2><p>Nothing matches “${escapeHtml(versionSearch)}”.</p></div></div>`}</section>
+    ${rows ? `<div class="modpack-sentinel" id="librarySentinel">${libraryLimit >= all.length ? `All ${all.length} versions shown.` : ""}</div>` : ""}`;
+}
+
+function versionRow(version) {
+  const profile = state.profiles.find((item) => item.version === version.id && item.type !== "valaris");
+  return `<article class="version-row">
       <div class="version-main"><strong>${escapeHtml(version.id)}</strong><span>${escapeHtml(version.type.replace("_", " "))}</span></div>
       <div class="version-date">${new Date(version.releaseTime || version.time).toLocaleDateString()}</div>
       <div class="version-actions">
@@ -373,15 +570,23 @@ function renderLibrary() {
         <button class="primary" data-action="install-version" data-version="${escapeHtml(version.id)}">${icon("download")} Install</button>
       </div>
     </article>`;
+}
+
+function valarisLibraryRows() {
+  if (!valarisVersions) return `<div class="empty-state"><div><h2>Checking the Valaris client</h2><p>Looking for the versions it ships for.</p></div></div>`;
+  if (!valarisVersions.length) return `<div class="empty-state"><div><h2>No Valaris versions</h2><p>The client has no supported Minecraft versions yet.</p></div></div>`;
+  return valarisVersions.map((entry) => {
+    const profile = state.profiles.find((item) => item.type === "valaris" && item.baseVersion === entry.minecraftVersion);
+    return `<article class="version-row">
+      <div class="version-main"><strong>Valaris ${escapeHtml(entry.minecraftVersion)}</strong><span>client ${escapeHtml(entry.clientVersion)} · fabric</span></div>
+      <div class="version-date">${entry.available ? "Ready to install" : "Jar not built"}</div>
+      <div class="version-actions">
+        ${profile
+          ? `<button class="secondary" data-action="activate-profile" data-id="${profile.id}">${profile.id === state.activeProfileId ? "Selected" : "Use profile"}</button>`
+          : `<button class="primary" data-action="create-valaris-profile" data-version="${escapeHtml(entry.minecraftVersion)}" ${entry.available ? "" : "disabled"}>${icon("download")} Install</button>`}
+      </div>
+    </article>`;
   }).join("");
-  return `${pageHead("Library", "All official Minecraft Java versions", "download", controls)}
-    <section class="library-summary">
-      <div class="stat"><strong>${counts.release}</strong><span>Releases</span></div>
-      <div class="stat"><strong>${counts.snapshot}</strong><span>Snapshots</span></div>
-      <div class="stat"><strong>${counts.old_beta}</strong><span>Beta</span></div>
-      <div class="stat"><strong>${counts.old_alpha}</strong><span>Alpha</span></div>
-    </section>
-    <section class="version-list">${rows || `<div class="empty-state"><div><h2>No versions found</h2><p>Try another search or enable historical versions in Settings.</p></div></div>`}</section>`;
 }
 
 function renderAccounts() {
@@ -497,11 +702,40 @@ async function ensureVersions(force = false) {
   if (versions && !force) return versions;
   try {
     versions = await api.getVersions();
-    if (currentPage === "home" || currentPage === "library") render();
+    if (currentPage === "home" || currentPage === "library" || currentPage === "profiles") render();
     return versions;
   } catch (error) {
     toast(`Version catalog: ${error.message}`, "error");
     throw error;
+  }
+}
+
+async function ensureValarisVersions() {
+  if (valarisVersions) return valarisVersions;
+  try {
+    valarisVersions = await api.getValarisVersions();
+  } catch (error) {
+    valarisVersions = [];
+    toast(`Valaris client: ${error.message}`, "error");
+  }
+  if (currentPage === "profiles" || currentPage === "library") render();
+  return valarisVersions;
+}
+
+// The picker needs both catalogs; neither blocks the page from rendering.
+function primeProfilePicker() {
+  ensureValarisVersions().catch(() => {});
+  if (!versions) ensureVersions().catch(() => {});
+}
+
+async function createValarisProfile(minecraftVersion) {
+  try {
+    state = await api.createValarisProfile({ minecraftVersion });
+    updateTopAccount();
+    render();
+    toast(`Valaris ${minecraftVersion} profile created.`, "success");
+  } catch (error) {
+    toast(error.message || "The Valaris profile could not be created.", "error");
   }
 }
 
@@ -510,7 +744,7 @@ async function ensureModpacks(force = false) {
   try {
     modpackLoading = true;
     if (currentPage === "modpacks") render();
-    modpacks = await api.searchModpacks(modpackSearch);
+    modpacks = await api.searchModpacks(modpackSearch, 0);
     return modpacks;
   } catch (error) {
     toast(`Modrinth: ${error.message}`, "error");
@@ -519,6 +753,87 @@ async function ensureModpacks(force = false) {
     modpackLoading = false;
     if (currentPage === "modpacks") render();
   }
+}
+
+// Appends the next page in place; a full re-render would reset scroll and
+// immediately retrigger the observer.
+async function loadMoreModpacks() {
+  if (modpackLoading || modpackLoadingMore || !modpacks || modpacksExhausted()) return;
+  modpackLoadingMore = true;
+  updateModpackSentinel();
+  try {
+    const page = await api.searchModpacks(modpackSearch, modpacks.hits.length);
+    const seen = new Set(modpacks.hits.map((item) => item.projectId));
+    const fresh = (page.hits || []).filter((item) => !seen.has(item.projectId));
+    modpacks = {
+      ...modpacks,
+      totalHits: fresh.length ? (page.totalHits || modpacks.totalHits) : modpacks.hits.length,
+      hits: modpacks.hits.concat(fresh)
+    };
+    if (fresh.length && currentPage === "modpacks") {
+      const grid = document.querySelector(".modpack-grid");
+      if (grid) {
+        const holder = document.createElement("div");
+        holder.innerHTML = fresh.map(modpackCard).join("");
+        while (holder.firstElementChild) grid.appendChild(holder.firstElementChild);
+        injectIcons(grid);
+      }
+    }
+  } catch (error) {
+    // Stop here rather than let the observer retry the same failing page.
+    modpacks = { ...modpacks, totalHits: modpacks.hits.length };
+    toast(`Modrinth: ${error.message}`, "error");
+  } finally {
+    modpackLoadingMore = false;
+    updateModpackSentinel();
+  }
+}
+
+// Appends the next slice in place; a full re-render would reset scroll and
+// immediately retrigger the observer.
+function loadMoreLibrary() {
+  const all = libraryVersions();
+  if (libraryLimit >= all.length) return;
+  const next = all.slice(libraryLimit, libraryLimit + LIBRARY_PAGE);
+  libraryLimit += next.length;
+  const list = document.querySelector(".version-list");
+  if (list) {
+    const holder = document.createElement("div");
+    holder.innerHTML = next.map(versionRow).join("");
+    while (holder.firstElementChild) list.appendChild(holder.firstElementChild);
+    injectIcons(list);
+  }
+  const sentinel = document.querySelector("#librarySentinel");
+  if (sentinel) sentinel.textContent = libraryLimit >= all.length ? `All ${all.length} versions shown.` : "";
+}
+
+function observeLibrarySentinel() {
+  libraryObserver?.disconnect();
+  libraryObserver = null;
+  const sentinel = document.querySelector("#librarySentinel");
+  const root = document.querySelector("#page");
+  if (!sentinel || !root) return;
+  libraryObserver = new IntersectionObserver((entries) => {
+    if (entries.some((entry) => entry.isIntersecting)) loadMoreLibrary();
+  }, { root, rootMargin: "600px 0px" });
+  libraryObserver.observe(sentinel);
+}
+
+function updateModpackSentinel() {
+  const sentinel = document.querySelector("#modpackSentinel");
+  if (sentinel) sentinel.textContent = modpackSentinelLabel();
+}
+
+function observeModpackSentinel() {
+  modpackObserver?.disconnect();
+  modpackObserver = null;
+  const sentinel = document.querySelector("#modpackSentinel");
+  const root = document.querySelector("#page");
+  if (!sentinel || !root) return;
+  modpackObserver = new IntersectionObserver((entries) => {
+    if (entries.some((entry) => entry.isIntersecting)) loadMoreModpacks();
+  }, { root, rootMargin: "600px 0px" });
+  modpackObserver.observe(sentinel);
 }
 
 async function ensurePartneredServers(force = false) {
@@ -579,11 +894,9 @@ async function showProfileModal(existing) {
   modal(`<div class="modal-head"><h2>${existing ? "Edit profile" : "New profile"}</h2><button class="modal-close" data-action="close-modal">×</button></div><p class="modal-note">Loading the official Minecraft version catalog…</p>`);
   try {
     const catalog = await ensureVersions();
-    const filtered = catalog.versions.filter((version) => {
-      if (version.type === "snapshot" && !state.settings.showSnapshots) return false;
-      if ((version.type === "old_alpha" || version.type === "old_beta") && !state.settings.showHistorical) return false;
-      return true;
-    });
+    // Unfiltered: hiding types here can drop the profile's own version from the
+    // dropdown, which would silently reassign it on save.
+    const filtered = catalog.versions;
     modal(`<div class="modal-head"><h2>${existing ? "Edit profile" : "New profile"}</h2><button class="modal-close" data-action="close-modal">×</button></div>
       <form id="profileForm">
         <label class="label">Profile name</label><input class="field" name="name" value="${escapeHtml(existing?.name || `Minecraft ${catalog.latest.release}`)}" maxlength="40" required>
@@ -747,9 +1060,33 @@ function bindPage() {
       toast(error.message || "Theme could not be saved.", "error");
     }
   }));
-  document.querySelectorAll("[data-version-filter]").forEach((button) => button.addEventListener("click", () => { versionFilter = button.dataset.versionFilter; render(); }));
+  document.querySelectorAll("[data-version-filter]").forEach((button) => button.addEventListener("click", () => {
+    versionFilter = button.dataset.versionFilter;
+    libraryLimit = LIBRARY_PAGE;
+    if (versionFilter === "valaris") ensureValarisVersions().catch(() => {});
+    render();
+  }));
   const search = document.querySelector("#versionSearch");
-  search?.addEventListener("input", () => { versionSearch = search.value; render(); document.querySelector("#versionSearch")?.focus(); });
+  search?.addEventListener("input", () => {
+    versionSearch = search.value;
+    libraryLimit = LIBRARY_PAGE;
+    render();
+    const again = document.querySelector("#versionSearch");
+    if (again) { again.focus(); again.setSelectionRange(again.value.length, again.value.length); }
+  });
+  document.querySelectorAll("[data-picker-tab]").forEach((button) => button.addEventListener("click", () => {
+    pickerTab = button.dataset.pickerTab;
+    pickerLimit = PICKER_PAGE;
+    render();
+  }));
+  const pickSearch = document.querySelector("#pickerSearch");
+  pickSearch?.addEventListener("input", () => {
+    pickerSearch = pickSearch.value;
+    pickerLimit = PICKER_PAGE;
+    render();
+    const again = document.querySelector("#pickerSearch");
+    if (again) { again.focus(); again.setSelectionRange(again.value.length, again.value.length); }
+  });
   const modSearch = document.querySelector("#modpackSearch");
   modSearch?.addEventListener("change", () => { modpackSearch = modSearch.value; ensureModpacks(true).catch(() => {}); });
   document.querySelectorAll("[data-setting-toggle]").forEach((button) => button.addEventListener("click", async () => {
@@ -803,6 +1140,8 @@ document.addEventListener("click", async (event) => {
   if (button.dataset.window) return api[button.dataset.window]();
   if (button.dataset.page) {
     navigate(button.dataset.page);
+    if (currentPage === "profiles") primeProfilePicker();
+    if (currentPage === "library") ensureValarisVersions().catch(() => {});
     if (currentPage === "modpacks") ensureModpacks().catch(() => {});
     if (currentPage === "servers") ensurePartneredServers().catch(() => {});
     return;
@@ -811,7 +1150,8 @@ document.addEventListener("click", async (event) => {
   if (!action) return;
   try {
     if (action === "noop") return;
-    if (action === "new-profile") showProfileModal();
+    if (action === "new-profile") { navigate("profiles"); primeProfilePicker(); }
+    if (action === "create-valaris-profile") await createValarisProfile(button.dataset.version);
     if (action === "edit-profile") showProfileModal(state.profiles.find((item) => item.id === button.dataset.id));
     if (action === "delete-profile" && confirm("Delete this profile configuration? Downloaded shared game files will be kept.")) { state = await api.deleteProfile(button.dataset.id); render(); }
     if (action === "activate-profile") { state = await api.activateProfile(button.dataset.id); render(); toast("Active profile changed.", "success"); }

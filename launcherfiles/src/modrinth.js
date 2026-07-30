@@ -7,6 +7,7 @@ const minecraft = require("./minecraft");
 
 const API = "https://api.modrinth.com/v2";
 const USER_AGENT = "ValarisLauncher/1.0.0";
+const SEARCH_PAGE_SIZE = 24;
 const ALLOWED_DOWNLOAD_HOSTS = new Set([
   "cdn.modrinth.com",
   "github.com",
@@ -87,19 +88,22 @@ function extractOverrides(zip, folderName, instanceDir) {
   }
 }
 
-async function searchModpacks(query = "") {
-  const cacheKey = query.trim().toLowerCase();
+async function searchModpacks(query = "", offset = 0) {
+  const start = Math.max(0, Math.floor(Number(offset) || 0));
+  const cacheKey = `${query.trim().toLowerCase()}@${start}`;
   const cached = searchCache.get(cacheKey);
   if (cached && Date.now() - cached.time < 5 * 60 * 1000) return cached.value;
   const params = new URLSearchParams({
     facets: JSON.stringify([["project_type:modpack"], ["categories:fabric"]]),
     index: "downloads",
-    limit: "12"
+    limit: String(SEARCH_PAGE_SIZE),
+    offset: String(start)
   });
   if (query.trim()) params.set("query", query.trim());
   const data = await fetchJson(`${API}/search?${params.toString()}`);
   const value = {
     totalHits: data.total_hits || 0,
+    offset: start,
     hits: (data.hits || []).map((hit) => ({
       projectId: hit.project_id,
       slug: hit.slug,

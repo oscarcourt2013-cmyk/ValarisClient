@@ -157,13 +157,19 @@ svg { width: 20px; height: 20px; flex: 0 0 auto; }
   transition: transform .62s cubic-bezier(.17,.84,.28,1), width .62s cubic-bezier(.17,.84,.28,1);
   z-index: 0;
 }
+/* Highlight strip under the label. Sized to the label text by updateNavLiquid,
+   which sets --bar-left / --bar-width; the fallbacks only show pre-measure. */
 .nav-liquid::after {
   content: "";
   position: absolute;
-  inset: 7px 11px auto;
-  height: 10px;
+  bottom: 4px;
+  left: var(--bar-left, 6px);
+  width: var(--bar-width, calc(100% - 12px));
+  height: 9px;
   border-radius: 999px;
   background: rgba(255,255,255,.28);
+  pointer-events: none;
+  transition: left .62s cubic-bezier(.17,.84,.28,1), width .62s cubic-bezier(.17,.84,.28,1);
 }
 .nav-item {
   border: 0;
@@ -307,6 +313,11 @@ h1 { font-size: 29px; letter-spacing: 0; }
 .muted-chip { color: #fff; background: rgba(255,255,255,.1); border-color: var(--line); }
 .tag-row { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
 .tag {
+  /* inline-flex, not inline: an inline svg would sit on the text baseline
+     and read as floating above the label */
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   border: 1px solid var(--line);
   border-radius: 99px;
   padding: 6px 10px;
@@ -314,6 +325,7 @@ h1 { font-size: 29px; letter-spacing: 0; }
   color: rgba(255,255,255,.78);
   background: rgba(0,0,0,.28);
 }
+.tag svg { width: 14px; height: 14px; }
 .tag.accent { color: var(--accent); border-color: rgba(var(--accent-rgb),.7); background: rgba(var(--accent-rgb),.12); }
 
 .skin-stage {
@@ -398,7 +410,37 @@ h1 { font-size: 29px; letter-spacing: 0; }
 .profile-actions button:hover { color:#fff; background:rgba(255,255,255,.08); }
 
 .empty-state { min-height:360px; border:1px dashed rgba(255,255,255,.25); border-radius:22px; display:grid; place-items:center; text-align:center; background:rgba(0,0,0,.3); }
+.empty-state.compact { min-height:180px; margin-bottom:24px; }
 .empty-state .head-icon { margin:0 auto 15px; }
+
+/* Full-screen version picker on the Profiles page */
+.picker { margin-top:28px; }
+.picker-head { display:flex; align-items:flex-end; justify-content:space-between; gap:18px; flex-wrap:wrap; margin-bottom:18px; }
+.picker-head h2 { font-size:20px; }
+.picker-head p { color:var(--muted); font-size:13px; margin-top:4px; }
+.picker-tools { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.picker-tools .field { width:230px; }
+/* One uniform card size: Valaris and vanilla rows share the same layout. */
+.picker-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(340px, 1fr)); gap:14px; align-content:start; }
+.picker-card {
+  display:flex; align-items:center; gap:14px;
+  padding:16px; border-radius:14px;
+  border:1px solid var(--line);
+  background:linear-gradient(150deg, rgba(255,255,255,.09), rgba(0,0,0,.42));
+}
+.picker-card:hover { border-color:rgba(var(--accent-rgb),.55); }
+.picker-card.unavailable { opacity:.62; }
+.picker-card .picker-copy { flex:1; min-width:0; }
+.picker-card .picker-copy strong { display:block; font-size:15px; }
+.picker-card .picker-copy span { display:block; color:var(--muted); font-size:12px; margin-top:2px; }
+.picker-card .picker-copy p { color:var(--muted); font-size:12px; margin-top:6px; }
+.picker-card .picker-copy code { background:rgba(0,0,0,.5); padding:1px 5px; border-radius:4px; font-size:11px; }
+.picker-card button { flex:0 0 auto; }
+.picker-badge {
+  width:44px; height:44px; flex:0 0 auto; border-radius:12px; display:grid; place-items:center;
+  color:var(--text); background:rgba(255,255,255,.1); border:1px solid var(--line);
+}
+.picker-empty { color:var(--muted); grid-column:1 / -1; padding:26px 0; text-align:center; }
 .empty-state p { color:var(--muted); margin:8px 0 18px; }
 .wide-card { border-radius:22px; padding:25px; margin-bottom:22px; }
 .add-account-card { display:flex; align-items:center; min-height:140px; cursor:pointer; }
@@ -420,7 +462,8 @@ h1 { font-size: 29px; letter-spacing: 0; }
 .segmented { display: flex; padding: 4px; border: 1px solid var(--line); border-radius: 14px; background: rgba(0,0,0,.28); }
 .segmented button { border: 0; background: transparent; color: var(--muted); border-radius: 10px; padding: 9px 12px; cursor: pointer; font-weight: 750; }
 .segmented button.active, .segmented button:hover { background: #fff; color: #000; }
-.library-summary { border-radius: 21px; margin-bottom: 18px; }
+/* auto-fit: the stat count changes (Valaris tab adds one) */
+.library-summary { border-radius: 21px; margin-bottom: 18px; grid-template-columns: repeat(auto-fit, minmax(108px, 1fr)); }
 .version-list { display: grid; gap: 10px; }
 .version-row {
   border-radius: 6px;
@@ -448,6 +491,16 @@ h1 { font-size: 29px; letter-spacing: 0; }
   display: grid;
   grid-template-columns: repeat(3, minmax(270px, 1fr));
   gap: 18px;
+}
+/* Watched by the infinite-scroll observer; also the "end of list" caption. */
+.modpack-sentinel {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 0 4px;
+  color: var(--muted);
+  font-size: 13px;
 }
 .modpack-card {
   border-radius: 8px;
@@ -663,7 +716,7 @@ svg { width: 17px; height: 17px; }
 .wordmark { width: 190px; font-size: 17px; gap: 8px; }
 .wordmark-mark { width: 34px; height: 34px; }
 .nav-liquid { height: 38px; top: 12px; border-radius: 3px; }
-.nav-liquid::after { inset: 5px 8px auto; height: 7px; }
+.nav-liquid::after { bottom: 6px; height: 6px; }
 .nav-item { padding: 0 10px; gap: 7px; font-size: 13px; }
 .nav-tail { width: 220px; gap: 8px; }
 .icon-button { width: 34px; height: 34px; border-radius: 4px; }
@@ -769,11 +822,13 @@ h1 { font-size: 23px; }
   border-radius: 16px;
 }
 .home-grid {
-  width: min(1720px, 100%);
-  margin: 0 auto;
+  width: 100%;
   grid-template-columns: minmax(760px, 1fr) minmax(330px, 420px);
   gap: 28px;
+  /* fill the page; the min-height is a floor for short windows, not the size */
+  height: 100%;
   min-height: 620px;
+  align-items: stretch;
 }
 .hero-card {
   min-height: 620px;
