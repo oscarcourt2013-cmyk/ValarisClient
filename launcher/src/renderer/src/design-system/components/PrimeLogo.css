@@ -1,9 +1,0 @@
-.prime-logo {
-  display: block;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.prime-logo--compact {
-  object-fit: contain;
-}

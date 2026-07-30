@@ -21,14 +21,14 @@ ValerisClient/
 ├── core/          Common Core — Java pur, zéro dépendance Minecraft
 │                  (modules, events, config, thèmes, HUD model, utils)
 ├── mc-1.21.11/    Couche version 1.21.11 (mod Fabric)
-└── mc-26.2/       Couche version 26.2 (mod Fabric)
+├── mc-26.2/       Couche version 26.2 (mod Fabric)
+└── valeris-plugin/ Plugin serveur (canal `valerisclient:main`)
 ```
 
 Règle d'or : le core ne touche jamais une classe Minecraft. Tout passe par les
 interfaces `dev.valerisclient.core.adapter.*`, implémentées dans chaque couche.
-Détails : [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
-
-API serveurs partenaires (plugins) : [docs/SERVER_API.md](docs/SERVER_API.md).
+API serveurs partenaires : voir [`valeris-plugin/`](valeris-plugin/), le plugin
+serveur qui répond au canal `valerisclient:main` du client.
 
 ## Build & run
 
@@ -48,17 +48,10 @@ API serveurs partenaires (plugins) : [docs/SERVER_API.md](docs/SERVER_API.md).
 Jars finaux dans `mc-*/build/libs/` (le core est embarqué en Jar-in-Jar).
 Prérequis : JDK 25 (compile aussi la cible 21 via `--release`).
 
-## ValerisClient Launcher
+## Installation
 
-Le launcher officiel Electron vit dans [`launcher/`](launcher/) (v0.9). Releases : [GitHub](https://github.com/oscarcourt2013-cmyk/ValerisClient) · [Site web](https://oscarcourt2013-cmyk.github.io/ValerisClient/) · [docs/GITHUB.md](docs/GITHUB.md)
-
-```bash
-cd launcher
-npm install
-npm run dev
-```
-
-Voir [launcher/README.md](launcher/README.md) pour la roadmap complète.
+Fabric Loader + Fabric API, puis le jar de `mc-*/build/libs/` dans `.minecraft/mods/`.
+Utilise n'importe quel launcher compatible Fabric.
 
 ## Feuille de route
 
@@ -71,5 +64,5 @@ Voir [launcher/README.md](launcher/README.md) pour la roadmap complète.
 - [x] Phase 7 — 50 modules v1.0 (PvP×15, Performance×10, QoL×15, Creator×5, Prime×5) · ponts Fabric chat/combat/santé, mixin FOV zoom, adapters étendus
 - [x] Phase 8 — Menu principal ClickGUI, favoris, animations, rotation/transparence HUD Editor, mixins hit color & caméra cinématique, tests unitaires
 - [x] Phase 9 — v1.1 Premium : design system, Crosshair Editor (presets + profils serveur), Replay Tools (save/load), Cloud sync, Cosmetics (cape mixin), Color Picker, Text Input, Hit Particles, menu premium cartes, Settings/Cosmetics/Configurations, onboarding, loading screen, notifications premium, tooltips
-- [x] Phase 10 — Discord Rich Presence (App ID `1525574680994648174`), auto-sync cloud, notifications toggle modules, Prime Account tier — voir [docs/DISCORD_RPC.md](docs/DISCORD_RPC.md)
-- [x] Phase 11 — First-run experience (HUD starter, onboarding interactif, splash, favoris) — **[Guide utilisateur](docs/GUIDE_UTILISATEUR.md)**
+- [x] Phase 10 — Discord Rich Presence (App ID `1525574680994648174`), auto-sync cloud, notifications toggle modules, Prime Account tier
+- [x] Phase 11 — First-run experience (HUD starter, onboarding interactif, splash, favoris)

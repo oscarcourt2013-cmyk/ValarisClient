@@ -1,5 +1,4 @@
 {
   "mod": "1.0.0",
-  "launcher": "1.0.0",
-  "notes": "Single source of truth - bump here then sync gradle.properties / package.json / Cargo.toml"
+  "notes": "Single source of truth - bump here then sync gradle.properties"
 }

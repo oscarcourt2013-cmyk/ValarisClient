@@ -15,7 +15,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Java 21
+      # 21 builds the 1.21.11 layer, 25 the 26.2 layer.
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -23,33 +24,15 @@ jobs:
             21
             25
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: npm
-          cache-dependency-path: launcher/package-lock.json
-
       - name: Build ValerisClient mods
         shell: pwsh
         run: |
           .\gradlew :mc-1.21.11:build :mc-26.2:build --no-daemon
 
-      - name: Install launcher dependencies
-        working-directory: launcher
-        run: npm ci
-
-      - name: Build launcher installer
-        working-directory: launcher
-        run: npm run dist
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Collect release assets
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force -Path release-bundle | Out-Null
-          Copy-Item launcher/release/*.exe release-bundle/ -ErrorAction SilentlyContinue
           foreach ($dir in @('mc-1.21.11', 'mc-26.2')) {
             Get-ChildItem "$dir/build/libs/valeris-client-*.jar" |
               Where-Object { $_.Name -notmatch 'sources|dev' } |
