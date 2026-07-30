@@ -6,18 +6,18 @@ plugins {
 }
 
 base {
-	archivesName = 'stellar-client-1.21.11'
+	archivesName = 'valeris-client-1.21.11'
 }
 
 loom {
 	mods {
-		"stellarclient" {
+		"valerisclient" {
 			sourceSet sourceSets.main
 			sourceSet project(':core').sourceSets.main
 		}
 	}
 	mixin {
-		defaultRefmapName = "stellarclient-refmap.json"
+		defaultRefmapName = "valerisclient-refmap.json"
 	}
 }
 

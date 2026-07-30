@@ -25,6 +25,7 @@
 		"PlayerInfoMixin",
 		"TitleScreenMixin",
 		"PauseScreenMixin",
+		"OptionsScreenMixin",
 		"MinecraftUserAccessor",
 		"ClientBrandRetrieverMixin",
 		"ServerListMixin"
