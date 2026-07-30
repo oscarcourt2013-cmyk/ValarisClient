@@ -11,7 +11,7 @@ import dev.stellarclient.core.i18n.PrimeLang;
 import dev.stellarclient.core.theme.Theme;
 import dev.stellarclient.core.util.ColorUtil;
 
-/** In-client cosmetics inventory â€” cape + wings only (world-rendered). */
+/** In-client cosmetics inventory — cape + wings only (world-rendered). */
 public final class CosmeticsMenuRenderer {
 
     private static final CosmeticType[] SLOTS = {CosmeticType.CAPE, CosmeticType.WINGS};
@@ -89,7 +89,7 @@ public final class CosmeticsMenuRenderer {
         ctx.popClip();
 
         GuiLayout.label(ctx,
-                PrimeLang.get("prime.gui.cosmetics.footer", "Visible to you + Prime peers Â· Click to equip"),
+                PrimeLang.get("prime.gui.cosmetics.footer", "Visible to you + Prime peers · Click to equip"),
                 x + 12, y + h - 16, theme.foregroundMuted());
     }
 

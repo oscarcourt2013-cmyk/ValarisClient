@@ -48,7 +48,7 @@ public final class ClickGuiScreen extends Screen {
     @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
         if (minecraft.level != null) {
-            // In-world: dim overlay only â€” MC 1.21.11 allows one blur call per frame.
+            // In-world: dim overlay only — MC 1.21.11 allows one blur call per frame.
             BlurBackdrop.setActive(false);
         } else {
             renderPanorama(graphics, delta);
@@ -62,7 +62,7 @@ public final class ClickGuiScreen extends Screen {
 
     @Override
     public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
-        // Skip default blurred background â€” we draw our own backdrop in render().
+        // Skip default blurred background — we draw our own backdrop in render().
     }
 
     @Override

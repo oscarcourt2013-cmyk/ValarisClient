@@ -113,7 +113,7 @@ export class LauncherDiscordService {
     if (payload.phase === 'start' || payload.phase === 'download' || payload.phase === 'mods' || payload.phase === 'launch') {
       void this.publish({
         details: 'Launching Minecraft',
-        state: payload.detail ?? 'Preparingâ€¦',
+        state: payload.detail ?? 'Preparing…',
         largeImageKey: 'prime_logo',
         largeImageText: `StellarClient Launcher v${app.getVersion()}`,
         smallImageKey: 'prime_logo',
@@ -129,7 +129,7 @@ export class LauncherDiscordService {
     const username = account?.username ?? 'Player'
     return {
       details: 'StellarClient Launcher',
-      state: `${username} â€¢ Ready to play`,
+      state: `${username} • Ready to play`,
       largeImageKey: 'prime_logo',
       largeImageText: `StellarClient Launcher v${app.getVersion()}`,
       smallImageKey: 'prime_logo',
@@ -157,7 +157,7 @@ export class LauncherDiscordService {
       const reason = this.ipc.lastError ?? 'Discord Desktop not running'
       launchLogService.append(
         'warn',
-        `Discord RPC unavailable â€” ${reason} (App ID ${DISCORD_APPLICATION_ID})`,
+        `Discord RPC unavailable — ${reason} (App ID ${DISCORD_APPLICATION_ID})`,
         'start'
       )
     }
@@ -175,8 +175,8 @@ export class LauncherDiscordService {
       launchLogService.append(
         'warn',
         waiting
-          ? `${context}: waiting for Discord Desktopâ€¦ (Application ID ${DISCORD_APPLICATION_ID})`
-          : `${context}: Discord RPC failed â€” ${reason}`,
+          ? `${context}: waiting for Discord Desktop… (Application ID ${DISCORD_APPLICATION_ID})`
+          : `${context}: Discord RPC failed — ${reason}`,
         'start'
       )
     }

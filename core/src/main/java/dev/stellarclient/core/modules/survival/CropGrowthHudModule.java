@@ -39,7 +39,7 @@ public final class CropGrowthHudModule extends Module {
         int stage = adapter.cropGrowthStage();
         if (stage < 0) {
             String block = adapter.blockUnderPlayerName();
-            element.setText(block.isEmpty() ? "Crop: â€”" : "Block: " + block);
+            element.setText(block.isEmpty() ? "Crop: —" : "Block: " + block);
             return;
         }
         element.setText("Crop: " + stage + "/7");

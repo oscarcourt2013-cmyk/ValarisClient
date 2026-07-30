@@ -12,7 +12,7 @@ import net.minecraft.network.chat.Component;
 import org.lwjgl.glfw.GLFW;
 
 /**
- * HUD editor screen for 26.2. Flat dim backdrop â€” no live world/blur/vanilla GUI pass.
+ * HUD editor screen for 26.2. Flat dim backdrop — no live world/blur/vanilla GUI pass.
  */
 public final class HudEditorScreen extends Screen {
 
@@ -37,7 +37,7 @@ public final class HudEditorScreen extends Screen {
 
     @Override
     public void extractBackground(GuiGraphicsExtractor extractor, int mouseX, int mouseY, float delta) {
-        // Skip blurred world pass â€” HUD editor only needs a flat backdrop.
+        // Skip blurred world pass — HUD editor only needs a flat backdrop.
     }
 
     @Override

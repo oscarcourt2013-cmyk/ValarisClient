@@ -15,7 +15,7 @@ import java.util.function.Consumer;
  *
  * <p>Modules declare their event interests once, in the constructor, via
  * {@link #listen}. Listeners are attached to the {@link EventBus} only while
- * the module is enabled â€” a disabled module costs strictly nothing: no
+ * the module is enabled — a disabled module costs strictly nothing: no
  * listener on the bus, no tick, no render.</p>
  *
  * <p>Subclasses override {@link #onEnable()}/{@link #onDisable()} for state

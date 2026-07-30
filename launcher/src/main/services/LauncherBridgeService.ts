@@ -44,7 +44,7 @@ export class LauncherBridgeService {
       try {
         root = JSON.parse(await readFile(profilePath, 'utf8')) as Record<string, unknown>
       } catch {
-        // Mod will create full profile on first run â€” seed cosmetics section now.
+        // Mod will create full profile on first run — seed cosmetics section now.
       }
 
       const cosmetics: Record<string, string> = {}
@@ -56,7 +56,7 @@ export class LauncherBridgeService {
       }
 
       root.cosmetics = cosmetics
-      // Always write launcher theme â€” in-game poll reloads this section without wiping the rest.
+      // Always write launcher theme — in-game poll reloads this section without wiping the rest.
       root.theme = { active: normalizePrimeTheme(settings.theme) }
 
       let modules = (root.modules as Record<string, Record<string, unknown>> | undefined) ?? {}

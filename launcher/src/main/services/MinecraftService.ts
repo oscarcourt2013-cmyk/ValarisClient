@@ -1,13 +1,13 @@
 import type { FavoriteServer, NewsItem } from '../../shared/types'
 import { instanceService } from './InstanceService'
 
-/** Minecraft metadata â€” instances are managed by InstanceService. */
+/** Minecraft metadata — instances are managed by InstanceService. */
 export class MinecraftService {
   getNews(): NewsItem[] {
     return [
       {
         id: '1',
-        title: 'StellarClient v1.1 â€” Premium Update',
+        title: 'StellarClient v1.1 — Premium Update',
         summary: 'New title screen, Discord RPC, onboarding, and 50 modules.',
         date: '2026-07-11',
         tag: 'update'
@@ -15,7 +15,7 @@ export class MinecraftService {
       {
         id: '4',
         title: 'StellarClient Launcher Phase 5',
-        summary: 'Create, edit, and launch multiple local instances â€” no cloud required.',
+        summary: 'Create, edit, and launch multiple local instances — no cloud required.',
         date: '2026-07-11',
         tag: 'announcement'
       }
@@ -29,7 +29,7 @@ export class MinecraftService {
     ]
   }
 
-  /** @deprecated Use instance.list via IPC â€” kept for backward compat during boot. */
+  /** @deprecated Use instance.list via IPC — kept for backward compat during boot. */
   getInstances() {
     return instanceService.list()
   }

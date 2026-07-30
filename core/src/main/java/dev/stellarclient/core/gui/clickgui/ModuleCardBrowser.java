@@ -34,11 +34,21 @@ public final class ModuleCardBrowser {
     private final ModuleManager modules;
     private final FavoritesManager favorites;
 
+    private static final int SCROLLBAR_W = 4;
+    private static final int SCROLLBAR_MIN_THUMB = 16;
+
     private ModuleCategory activeCategory = ModuleCategory.PVP;
     private String searchQuery = "";
     private Module selected;
     private float scrollY;
     private float targetScrollY;
+
+    /** Drag state for the scrollbar thumb and for click-drag panning of the grid. */
+    private boolean draggingThumb;
+    private boolean draggingGrid;
+    private double dragAnchorY;
+    private float dragAnchorScroll;
+    private boolean dragMoved;
 
     public ModuleCardBrowser(ModuleManager modules, FavoritesManager favorites) {
         this.modules = modules;
@@ -111,6 +121,49 @@ public final class ModuleCardBrowser {
             }
         }
         ctx.popClip();
+
+        renderScrollbar(ctx, theme, x, contentY, width, contentH, maxScroll, mouseX, mouseY);
+    }
+
+    /**
+     * Visible scrollbar with a draggable thumb. Wheel-less input (touchpads without
+     * two-finger scroll, or click-drag) can still reach off-screen rows.
+     */
+    private void renderScrollbar(RenderContext ctx, Theme theme, int x, int contentY, int width,
+                                 int contentH, int maxScroll, double mouseX, double mouseY) {
+        if (maxScroll <= 0 || contentH <= 0 || width <= 0) {
+            return;
+        }
+        int trackX = x + width - SCROLLBAR_W;
+        ctx.fillRoundedRect(trackX, contentY, SCROLLBAR_W, contentH, SCROLLBAR_W / 2,
+                ColorUtil.withAlpha(theme.border(), 0.35f));
+
+        int thumbH = thumbHeight(contentH, maxScroll);
+        int thumbY = contentY + thumbOffset(contentH, maxScroll, thumbH);
+        boolean hot = draggingThumb
+                || (mouseX >= trackX - 2 && mouseX < trackX + SCROLLBAR_W + 2
+                    && mouseY >= contentY && mouseY < contentY + contentH);
+        ctx.fillRoundedRect(trackX, thumbY, SCROLLBAR_W, thumbH, SCROLLBAR_W / 2,
+                hot ? theme.accent() : ColorUtil.withAlpha(theme.foregroundMuted(), 0.8f));
+    }
+
+    private int thumbHeight(int contentH, int maxScroll) {
+        float visibleFraction = contentH / (float) (contentH + maxScroll);
+        return Math.max(SCROLLBAR_MIN_THUMB, Math.round(contentH * visibleFraction));
+    }
+
+    private int thumbOffset(int contentH, int maxScroll, int thumbH) {
+        if (maxScroll <= 0) {
+            return 0;
+        }
+        return Math.round((contentH - thumbH) * (scrollY / (float) maxScroll));
+    }
+
+    private int maxScrollFor(ClickGuiBrowseLayout layout) {
+        int contentH = Math.max(0, layout.gridH() - TAB_H - CARD_GAP);
+        int cols = Math.max(1, layout.columns());
+        int rows = (filteredModules().size() + cols - 1) / cols;
+        return Math.max(0, rows * (layout.cardH() + CARD_GAP) - contentH);
     }
 
     private void renderCategoryPills(RenderContext ctx, Theme theme, int x, int y, int width,
@@ -232,7 +285,29 @@ public final class ModuleCardBrowser {
         int cardH = layout.cardH();
         int cols = Math.max(1, layout.columns());
         int contentY = y + TAB_H + CARD_GAP;
+        int contentH = Math.max(0, layout.gridH() - TAB_H - CARD_GAP);
         int rowSpan = cardH + CARD_GAP;
+        int maxScroll = maxScrollFor(layout);
+
+        // Scrollbar thumb drag - the touchpad-friendly path.
+        if (button == 0 && maxScroll > 0) {
+            int trackX = x + width - SCROLLBAR_W;
+            if (mouseX >= trackX - 2 && mouseX < trackX + SCROLLBAR_W + 2
+                    && mouseY >= contentY && mouseY < contentY + contentH) {
+                int thumbH = thumbHeight(contentH, maxScroll);
+                int thumbY = contentY + thumbOffset(contentH, maxScroll, thumbH);
+                if (mouseY < thumbY || mouseY >= thumbY + thumbH) {
+                    // Click on empty track - jump so the thumb centres on the cursor.
+                    float f = (float) (mouseY - contentY - thumbH / 2.0) / Math.max(1, contentH - thumbH);
+                    targetScrollY = GuiLayout.clamp(Math.round(f * maxScroll), 0, maxScroll);
+                }
+                draggingThumb = true;
+                dragAnchorY = mouseY;
+                dragAnchorScroll = targetScrollY;
+                return true;
+            }
+        }
+
         List<Module> list = filteredModules();
         for (int i = 0; i < list.size(); i++) {
             int cx = x + (i % cols) * (cardW + CARD_GAP);
@@ -249,7 +324,75 @@ public final class ModuleCardBrowser {
                 return true;
             }
         }
+
+        // Empty space inside the grid: start a click-drag pan (touchpad friendly).
+        if (button == 0 && maxScroll > 0
+                && mouseX >= x && mouseX < x + width
+                && mouseY >= contentY && mouseY < contentY + contentH) {
+            draggingGrid = true;
+            dragMoved = false;
+            dragAnchorY = mouseY;
+            dragAnchorScroll = targetScrollY;
+            return true;
+        }
         return false;
+    }
+
+    /** Continues a scrollbar-thumb or grid pan drag. */
+    public void mouseDragged(double mouseY, ClickGuiBrowseLayout layout) {
+        int maxScroll = maxScrollFor(layout);
+        if (maxScroll <= 0) {
+            return;
+        }
+        int contentH = Math.max(0, layout.gridH() - TAB_H - CARD_GAP);
+        if (draggingThumb) {
+            int thumbH = thumbHeight(contentH, maxScroll);
+            int travel = Math.max(1, contentH - thumbH);
+            float delta = (float) (mouseY - dragAnchorY) / travel * maxScroll;
+            targetScrollY = GuiLayout.clamp(Math.round(dragAnchorScroll + delta), 0, maxScroll);
+            scrollY = targetScrollY;
+        } else if (draggingGrid) {
+            // Natural drag: content follows the finger.
+            float delta = (float) (dragAnchorY - mouseY);
+            if (Math.abs(delta) > 2) {
+                dragMoved = true;
+            }
+            targetScrollY = GuiLayout.clamp(Math.round(dragAnchorScroll + delta), 0, maxScroll);
+        }
+    }
+
+    public void mouseReleased() {
+        draggingThumb = false;
+        draggingGrid = false;
+        dragMoved = false;
+    }
+
+    public boolean isDragging() {
+        return draggingThumb || draggingGrid;
+    }
+
+    /** Keyboard scrolling so the grid is reachable without any pointer gesture. */
+    public boolean keyPressed(int glfwKey, ClickGuiBrowseLayout layout) {
+        int maxScroll = maxScrollFor(layout);
+        if (maxScroll <= 0) {
+            return false;
+        }
+        int page = Math.max(24, layout.gridH() - TAB_H - CARD_GAP);
+        int step = layout.cardH() + CARD_GAP;
+        Integer target = switch (glfwKey) {
+            case 264 -> Math.round(targetScrollY) + step;   // Down
+            case 265 -> Math.round(targetScrollY) - step;   // Up
+            case 267 -> Math.round(targetScrollY) + page;   // Page Down
+            case 266 -> Math.round(targetScrollY) - page;   // Page Up
+            case 268 -> 0;                                  // Home
+            case 269 -> maxScroll;                          // End
+            default -> null;
+        };
+        if (target == null) {
+            return false;
+        }
+        targetScrollY = GuiLayout.clamp(target, 0, maxScroll);
+        return true;
     }
 
     public boolean mouseScrolled(double amount, ClickGuiBrowseLayout layout) {

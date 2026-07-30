@@ -11,7 +11,7 @@ import dev.stellarclient.core.module.ModuleCategory;
 import dev.stellarclient.core.state.CapePhysicsState;
 import dev.stellarclient.core.state.CosmeticsState;
 
-/** Equip Prime cosmetics (capes and wings â€” world-rendered). */
+/** Equip Prime cosmetics (capes and wings — world-rendered). */
 public final class PrimeCosmeticsModule extends Module {
 
     private final EnumSetting<CosmeticType> slot =

@@ -27,14 +27,14 @@ export const en = {
     settings: 'Settings'
   },
   boot: {
-    core: 'Initializing Prime Coreâ€¦',
-    updates: 'Checking for updatesâ€¦',
-    minecraft: 'Loading Minecraftâ€¦',
+    core: 'Initializing Prime Core…',
+    updates: 'Checking for updates…',
+    minecraft: 'Loading Minecraft…',
     ready: 'Ready.'
   },
   common: {
     play: 'Play',
-    launching: 'Launchingâ€¦',
+    launching: 'Launching…',
     join: 'Join',
     saved: 'Saved',
     guest: 'Guest',
@@ -88,10 +88,10 @@ export const en = {
       singleplayer: 'Singleplayer / menu'
     },
     launchStatus: {
-      preparing: 'Preparingâ€¦',
-      download: 'Downloading filesâ€¦',
-      mods: 'Installing modsâ€¦',
-      starting: 'Starting Minecraftâ€¦',
+      preparing: 'Preparing…',
+      download: 'Downloading files…',
+      mods: 'Installing mods…',
+      starting: 'Starting Minecraft…',
       running: 'Game launched',
       inGame: 'In game',
       error: 'Launch failed'
@@ -103,14 +103,14 @@ export const en = {
     whatsNew: {
       title: "What's new",
       themes: 'Three themes synced across launcher and game (Crimson, Midnight, Aurora)',
-      fps: 'HUD performance pass â€” less frame tax with modules off',
+      fps: 'HUD performance pass — less frame tax with modules off',
       chat: 'Live social chat with real usernames',
       release: 'View latest GitHub release'
     }
   },
   settings: {
     title: 'Settings',
-    subtitle: 'Saved locally â€” no account or cloud required.',
+    subtitle: 'Saved locally — no account or cloud required.',
     sections: {
       general: 'General',
       appearance: 'Appearance',
@@ -126,11 +126,11 @@ export const en = {
       label: 'Language',
       hint: 'Launcher display language',
       en: 'English',
-      fr: 'FranÃ§ais'
+      fr: 'Français'
     },
     closeOnLaunch: {
       label: 'Minimize on game launch',
-      hint: 'Keeps the launcher running â€” only minimizes the window when Minecraft starts',
+      hint: 'Keeps the launcher running — only minimizes the window when Minecraft starts',
       toggle: 'Minimize on launch'
     },
     checkUpdates: {
@@ -191,11 +191,11 @@ export const en = {
     },
     gameResolution: {
       label: 'Game resolution',
-      hint: 'Window size at launch (width Ã— height in pixels)'
+      hint: 'Window size at launch (width × height in pixels)'
     },
     gameDisplayMode: {
       label: 'Display mode',
-      hint: 'How Minecraft starts â€” borderless is windowed at your chosen resolution',
+      hint: 'How Minecraft starts — borderless is windowed at your chosen resolution',
       windowed: 'Windowed',
       borderless: 'Borderless fullscreen',
       fullscreen: 'Fullscreen'
@@ -209,14 +209,14 @@ export const en = {
     },
     activeAccount: {
       label: 'Active account',
-      none: 'No account â€” add one to play'
+      none: 'No account — add one to play'
     },
     microsoftAccount: {
       label: 'Microsoft account'
     },
     analytics: {
       label: 'Analytics',
-      hint: 'Disabled by default â€” nothing is sent without a server',
+      hint: 'Disabled by default — nothing is sent without a server',
       toggle: 'Analytics'
     },
     discordRpc: {
@@ -229,7 +229,7 @@ export const en = {
     },
     jvmArgs: {
       label: 'JVM arguments',
-      hint: 'One per line â€” applied via Performance presets too'
+      hint: 'One per line — applied via Performance presets too'
     },
     developerMode: {
       label: 'Developer mode',
@@ -237,25 +237,25 @@ export const en = {
     },
     groqKey: {
       label: 'Groq API key (optional override)',
-      hint: 'Leave empty â€” everyone uses the shared Prime backend proxy. Local key only for self-host / offline.',
-      placeholder: 'gsk_â€¦',
+      hint: 'Leave empty — everyone uses the shared Prime backend proxy. Local key only for self-host / offline.',
+      placeholder: 'gsk_…',
       save: 'Save key',
       clear: 'Clear',
       statusOk: 'Local override ({masked})',
       statusMissing: 'Using shared Prime AI (no personal key)',
       statusProxy: 'Shared Prime AI online',
-      statusDown: 'Shared AI offline â€” add a local key or retry later'
+      statusDown: 'Shared AI offline — add a local key or retry later'
     },
-    updateNotes: 'v{current} â†’ latest v{latest} â€” {notes}'
+    updateNotes: 'v{current} → latest v{latest} — {notes}'
   },
   ai: {
     title: 'Prime Assistant',
     subtitle: 'Install mods & get advice for your instance',
-    placeholder: 'e.g. Install Sodium, Lithium and Irisâ€¦',
+    placeholder: 'e.g. Install Sodium, Lithium and Iris…',
     send: 'Send',
-    thinking: 'Thinkingâ€¦',
+    thinking: 'Thinking…',
     install: 'Install',
-    installing: 'Installingâ€¦',
+    installing: 'Installing…',
     installed: 'Installed',
     installFailed: 'Install failed',
     emptyTitle: 'Ask anything',
@@ -263,7 +263,7 @@ export const en = {
       'Install mods, get FPS tips, or troubleshoot crashes via latest.log & crash-reports.',
     needKey: 'Shared AI offline. Retry later, or add a local key (optional).',
     saveKey: 'Save',
-    keyPlaceholder: 'gsk_â€¦ (optional)',
+    keyPlaceholder: 'gsk_… (optional)',
     instance: 'Instance: {name} ({version})',
     sourceModrinth: 'Modrinth',
     sourceCurseforge: 'CurseForge',
@@ -284,16 +284,16 @@ export const en = {
     mod: {
       label: 'StellarClient mod'
     },
-    versionLine: 'v{current} â†’ v{latest}',
+    versionLine: 'v{current} → v{latest}',
     installLauncher: 'Install launcher',
     installMod: 'Install mod',
-    installing: 'Installingâ€¦',
-    checking: 'Checkingâ€¦',
+    installing: 'Installing…',
+    checking: 'Checking…',
     later: 'Later',
     upToDate: 'Up to date',
     phase: {
-      downloading: 'Downloadingâ€¦',
-      installing: 'Installingâ€¦',
+      downloading: 'Downloading…',
+      installing: 'Installing…',
       done: 'Done',
       error: 'Failed'
     },
@@ -302,7 +302,7 @@ export const en = {
       unsupported_platform: 'In-app launcher update is only supported on Windows.',
       no_update: 'No update available to install.',
       game_running: 'Close Minecraft before updating the mod.',
-      no_instance: 'No instance found â€” create one first.',
+      no_instance: 'No instance found — create one first.',
       prime_mod_disabled: 'Prime mod is disabled on the default instance.',
       unknown: 'Update failed. Try again or download from GitHub.'
     }
@@ -318,11 +318,11 @@ export const en = {
     },
     instances: {
       title: 'Instances',
-      subtitle: 'Your Minecraft installs â€” play, configure, keep it simple.'
+      subtitle: 'Your Minecraft installs — play, configure, keep it simple.'
     },
     mods: {
       title: 'Mods',
-      subtitle: 'Manage mods for the active instance â€” local files and Modrinth.'
+      subtitle: 'Manage mods for the active instance — local files and Modrinth.'
     },
     resources: {
       title: 'Resource Packs',
@@ -334,7 +334,7 @@ export const en = {
     },
     store: {
       title: 'Prime Store',
-      subtitle: 'Unlock cosmetics and themes with Prime Coins â€” cloud sync when online.'
+      subtitle: 'Unlock cosmetics and themes with Prime Coins — cloud sync when online.'
     },
     skins: {
       title: 'Skins',
@@ -342,11 +342,11 @@ export const en = {
     },
     library: {
       title: 'Library',
-      subtitle: 'Mods, packs, shaders, and tools for your active instance â€” without cluttering the sidebar.'
+      subtitle: 'Mods, packs, shaders, and tools for your active instance — without cluttering the sidebar.'
     },
     cosmetics: {
       title: 'Cosmetics',
-      subtitle: 'Real capes & wings â€” visible to you and other StellarClient players.'
+      subtitle: 'Real capes & wings — visible to you and other StellarClient players.'
     },
     servers: {
       title: 'Server Hub',
@@ -354,15 +354,15 @@ export const en = {
     },
     friends: {
       title: 'Friends',
-      subtitle: 'Prime friends synced launcher â†” game â€” live presence and requests.'
+      subtitle: 'Prime friends synced launcher ↔ game — live presence and requests.'
     },
     chat: {
       title: 'Chat',
-      subtitle: 'Private messages with friends â€” live, synced with the game.'
+      subtitle: 'Private messages with friends — live, synced with the game.'
     },
     news: {
       title: 'News',
-      subtitle: 'Bundled announcements â€” no remote news server.'
+      subtitle: 'Bundled announcements — no remote news server.'
     },
     media: {
       title: 'Media',
@@ -370,7 +370,7 @@ export const en = {
     },
     performance: {
       title: 'Performance',
-      subtitle: 'Hardware info and launch presets â€” RAM, render distance, JVM flags.'
+      subtitle: 'Hardware info and launch presets — RAM, render distance, JVM flags.'
     },
     downloads: {
       title: 'Downloads',
@@ -386,7 +386,7 @@ export const en = {
       title: 'Sign in to Prime',
       subtitle: 'Use your Microsoft account for official Minecraft, or play offline with a custom username.',
       microsoft: 'Sign in with Microsoft',
-      offlineDivider: 'â€” or offline â€”',
+      offlineDivider: '— or offline —',
       offlinePlaceholder: 'Offline username',
       offlineContinue: 'Continue Offline',
       cancel: 'Cancel',
@@ -396,7 +396,7 @@ export const en = {
     instance: {
       createTitle: 'New Instance',
       editTitle: 'Configure Instance',
-      subtitle: 'Stored locally in AppData â€” pick a type and Minecraft version. Prime installs the matching mod jar automatically.',
+      subtitle: 'Stored locally in AppData — pick a type and Minecraft version. Prime installs the matching mod jar automatically.',
       kind: 'Instance type',
       kindPrimeHint: 'Fabric + StellarClient mod',
       kindFabricHint: 'Fabric loader only',
@@ -418,15 +418,15 @@ export const en = {
       javaPathHint: 'Overrides global default for this instance',
       createFailed: 'Could not create instance.',
       saveFailed: 'Could not save instance.',
-      saving: 'Savingâ€¦',
+      saving: 'Saving…',
       create: 'Create'
     },
     browse: {
-      modsTitle: 'Browse â€” Mods',
-      resourcePacksTitle: 'Browse â€” Resource Packs',
-      shadersTitle: 'Browse â€” Shaders',
-      subtitle: 'Search Modrinth or CurseForge â€” downloads go to your active instance folder.',
-      searching: 'Searchingâ€¦',
+      modsTitle: 'Browse — Mods',
+      resourcePacksTitle: 'Browse — Resource Packs',
+      shadersTitle: 'Browse — Shaders',
+      subtitle: 'Search Modrinth or CurseForge — downloads go to your active instance folder.',
+      searching: 'Searching…',
       searchFailed: 'Search failed.',
       installFailed: 'Install failed.',
       close: 'Close',
@@ -441,11 +441,11 @@ export const en = {
       versionsFailed: 'Could not load versions.'
     },
     modrinth: {
-      modsTitle: 'Browse Modrinth â€” Mods',
-      resourcePacksTitle: 'Browse Modrinth â€” Resource Packs',
-      shadersTitle: 'Browse Modrinth â€” Shaders',
-      subtitle: 'Public Modrinth API â€” downloads go directly to your active instance folder.',
-      searching: 'Searchingâ€¦',
+      modsTitle: 'Browse Modrinth — Mods',
+      resourcePacksTitle: 'Browse Modrinth — Resource Packs',
+      shadersTitle: 'Browse Modrinth — Shaders',
+      subtitle: 'Public Modrinth API — downloads go directly to your active instance folder.',
+      searching: 'Searching…',
       searchFailed: 'Search failed.',
       installFailed: 'Install failed.',
       close: 'Close'
@@ -467,7 +467,7 @@ export const en = {
     editSkin: 'Edit skin',
     primeAccount: 'Prime Account',
     quickAdd: 'Quick Add',
-    quickAddHint: 'Microsoft opens a secure login window (Xbox Live â†’ Minecraft Services).',
+    quickAddHint: 'Microsoft opens a secure login window (Xbox Live → Minecraft Services).',
     signInMicrosoft: 'Sign in with Microsoft',
     offlinePlaceholder: 'Offline username',
     addOffline: 'Add offline',
@@ -478,7 +478,7 @@ export const en = {
     addOne: 'Add one',
     toPlay: 'to play.',
     level: 'Level {level}',
-    syncDescription: 'Configs, HUD, cosmetics and stats stay on this PC â€” local sync only.',
+    syncDescription: 'Configs, HUD, cosmetics and stats stay on this PC — local sync only.',
     syncButton: 'Sync profile',
     refreshMicrosoft: 'Refresh token',
     refreshSuccess: 'Microsoft token refreshed.',
@@ -520,7 +520,7 @@ export const en = {
     addFriend: 'Add Friend',
     usernamePrompt: 'Minecraft username',
     notePrompt: 'Note (optional)',
-    notePlaceholder: 'Edit noteâ€¦',
+    notePlaceholder: 'Edit note…',
     saveNote: 'Save',
     remove: 'Remove',
     empty: 'No friends yet. Both players must open Prime once.',
@@ -535,7 +535,7 @@ export const en = {
     partyJoinPrompt: 'Your party wants you to join',
     dismiss: 'Dismiss',
     shareServer: 'Share server with party',
-    shareServerPrompt: 'host:port or addressâ€¦',
+    shareServerPrompt: 'host:port or address…',
     shareServerFailed: 'Could not share server (party leader only)',
     partyInvite: 'Party invite',
     partyInviteUnknown: 'Someone invited you to a party',
@@ -552,7 +552,7 @@ export const en = {
     empty: 'No conversations yet. Open a DM from Friends to start chatting.',
     selectConversation: 'Pick a conversation',
     selectHint: 'Choose someone on the left to open your private thread.',
-    messagePlaceholder: 'Write a messageâ€¦',
+    messagePlaceholder: 'Write a message…',
     send: 'Send',
     image: 'Image',
     imagePathPrompt: 'Image file path',
@@ -560,16 +560,16 @@ export const en = {
     directMessage: 'Direct message',
     startTitle: 'Say hello',
     startBody: 'This is the beginning of your conversation with {name}.',
-    composerHint: 'Enter to send Â· images supported',
+    composerHint: 'Enter to send · images supported',
     today: 'Today',
     yesterday: 'Yesterday',
-    typing: '{name} is typingâ€¦'
+    typing: '{name} is typing…'
   },
   actions: {
     import: 'Import',
     browseModrinth: 'Browse Modrinth',
     browseContent: 'Browse online',
-    searchCurseForge: 'Search CurseForgeâ€¦',
+    searchCurseForge: 'Search CurseForge…',
     openFolder: 'Open Folder',
     configure: 'Configure',
     folder: 'Folder',
@@ -582,15 +582,15 @@ export const en = {
     claim: 'Claim',
     free: 'Free',
     applyPreset: 'Apply Preset',
-    applying: 'Applyingâ€¦',
+    applying: 'Applying…',
     clearCompleted: 'Clear completed',
     refresh: 'Refresh',
     cancel: 'Cancel',
     save: 'Save',
-    searchMods: 'Search modsâ€¦',
-    searchModrinth: 'Search Modrinthâ€¦',
+    searchMods: 'Search mods…',
+    searchModrinth: 'Search Modrinth…',
     install: 'Install',
-    installing: 'Installingâ€¦',
+    installing: 'Installing…',
     importJar: 'Import .jar',
     close: 'Close',
     create: 'Create'
@@ -606,8 +606,8 @@ export const en = {
     noShaders: 'No shader packs yet. Install Iris (mod) first, then add packs here.',
     noDownloads: 'No downloads yet.',
     noDownloadsHint: 'No recent downloads. Launch Minecraft to see progress here.',
-    noScreenshots: 'No media yet. Press F2 for screenshots, or record clips with StellarClient (Creator â†’ Clip Recorder).',
-    loadingInstance: 'Loading instanceâ€¦'
+    noScreenshots: 'No media yet. Press F2 for screenshots, or record clips with StellarClient (Creator → Clip Recorder).',
+    loadingInstance: 'Loading instance…'
   },
   resources: {
     importZip: 'Import .zip',
@@ -630,7 +630,7 @@ export const en = {
     ram: 'RAM',
     applySuccess: 'Preset applied to active instance (RAM + options.txt).',
     applyFailed: 'Failed to apply preset.',
-    detecting: 'Detecting hardwareâ€¦',
+    detecting: 'Detecting hardware…',
     systemRam: 'System RAM',
     chunks: '{count} chunks'
   },
@@ -639,7 +639,7 @@ export const en = {
     unlocked: '{name} unlocked! Equip cosmetics from the Cosmetics page.',
     purchaseFailed: 'Purchase failed.',
     coinsPrice: '{price} coins',
-    buyFor: 'Buy Â· {price} coins',
+    buyFor: 'Buy · {price} coins',
     preview: 'Preview',
     emptyTitle: 'Nothing here',
     emptyDesc: 'Try another category or check back later.',
@@ -673,7 +673,7 @@ export const en = {
     capes: 'Capes',
     wings: 'Wings',
     badges: 'Badges',
-    emptyOwned: 'No cosmetics owned yet â€” visit the Store.'
+    emptyOwned: 'No cosmetics owned yet — visit the Store.'
   },
   skins: {
     tabs: {
@@ -698,10 +698,10 @@ export const en = {
   },
   onboarding: {
     eyebrow: 'First-run setup',
-    subtitle: 'A few preferences, then youâ€™re ready to launch.',
+    subtitle: 'A few preferences, then you’re ready to launch.',
     next: 'Continue',
     back: 'Back',
-    finish: 'Letâ€™s play',
+    finish: 'Let’s play',
     skip: 'Skip for now',
     browseFolder: 'Choose folder',
     useDefaultFolder: 'Use default',
@@ -711,7 +711,7 @@ export const en = {
       language: {
         short: 'Language',
         title: 'Choose your language',
-        body: 'English or FranÃ§ais â€” you can change this later in Settings.'
+        body: 'English or Français — you can change this later in Settings.'
       },
       theme: {
         short: 'Theme',
@@ -738,15 +738,15 @@ export const en = {
   import: {
     title: 'Import instances',
     subtitle: 'Detect installs from other launchers and copy mods, packs, screenshots, and options.',
-    scanning: 'Scanning common launcher foldersâ€¦',
+    scanning: 'Scanning common launcher folders…',
     foundCount: '{count} found',
     notFound: 'Not detected',
     selectInstances: 'Select instances to import',
     selectAll: 'Select all',
     deselectAll: 'Deselect all',
-    loadingInstances: 'Loading instancesâ€¦',
+    loadingInstances: 'Loading instances…',
     emptySource: 'No instances found for this launcher.',
-    importing: 'Importingâ€¦',
+    importing: 'Importing…',
     importSelected: 'Import ({count})',
     success: 'Imported {count} instance(s).',
     errorDetect: 'Could not scan for other launchers.',
@@ -759,7 +759,7 @@ export const en = {
     title: 'Friends',
     onlineCount: '{count} online',
     emptyTitle: 'No friends yet',
-    emptyDesc: 'Add friends to see whoâ€™s online and join their server.',
+    emptyDesc: 'Add friends to see who’s online and join their server.',
     openFriends: 'Open Friends'
   },
   whatsNew: {
@@ -780,7 +780,7 @@ export const en = {
     play: 'Play',
     default: 'Default',
     setDefault: 'Set as default',
-    loading: 'Loading instancesâ€¦',
+    loading: 'Loading instances…',
     signInToPlay: 'Sign in',
     lastPlayed: 'Last played {date}',
     ramBadge: '{mb} MB RAM',
@@ -821,7 +821,7 @@ export const en = {
     dismiss: 'Dismiss',
     fix: {
       blurOnce:
-        'A GUI rendering conflict occurred (blur limit). Update StellarClient to the latest version â€” this issue is fixed in recent builds.',
+        'A GUI rendering conflict occurred (blur limit). Update StellarClient to the latest version — this issue is fixed in recent builds.',
       outOfMemory:
         'Java ran out of memory. Increase RAM in Instance settings or close other heavy applications.',
       primeMod:

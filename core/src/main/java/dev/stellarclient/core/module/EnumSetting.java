@@ -25,7 +25,7 @@ public final class EnumSetting<E extends Enum<E>> extends Setting {
         this.value = value;
     }
 
-    /** Cycles to the next constant â€” one-click toggling in the GUI. */
+    /** Cycles to the next constant — one-click toggling in the GUI. */
     public void cycle() {
         this.value = values[(value.ordinal() + 1) % values.length];
     }

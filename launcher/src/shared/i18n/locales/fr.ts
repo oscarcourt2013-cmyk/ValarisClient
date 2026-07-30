@@ -12,34 +12,34 @@ export const fr: LocaleCatalog = {
     profile: 'Profil',
     instances: 'Instances',
     skins: 'Skins',
-    library: 'BibliothÃ¨que',
+    library: 'Bibliothèque',
     mods: 'Mods',
     resources: 'Packs de ressources',
     shaders: 'Shaders',
     store: 'Boutique',
-    cosmetics: 'CosmÃ©tiques',
+    cosmetics: 'Cosmétiques',
     servers: 'Serveurs',
     friends: 'Amis',
     chat: 'Chat',
-    news: 'ActualitÃ©s',
-    media: 'MÃ©dias',
+    news: 'Actualités',
+    media: 'Médias',
     performance: 'Performances',
-    downloads: 'TÃ©lÃ©chargements',
+    downloads: 'Téléchargements',
     console: 'Console',
-    settings: 'ParamÃ¨tres'
+    settings: 'Paramètres'
   },
   boot: {
-    core: 'Initialisation du cÅ“ur Primeâ€¦',
-    updates: 'VÃ©rification des mises Ã  jourâ€¦',
-    minecraft: 'Chargement de Minecraftâ€¦',
-    ready: 'PrÃªt.'
+    core: 'Initialisation du cÅ“ur Prime…',
+    updates: 'Vérification des mises à jour…',
+    minecraft: 'Chargement de Minecraft…',
+    ready: 'Prêt.'
   },
   common: {
     play: 'Jouer',
-    launching: 'Lancementâ€¦',
+    launching: 'Lancement…',
     join: 'Rejoindre',
-    saved: 'EnregistrÃ©',
-    guest: 'InvitÃ©',
+    saved: 'Enregistré',
+    guest: 'Invité',
     never: 'Jamais',
     free: 'Gratuit',
     prime: 'Prime',
@@ -47,17 +47,17 @@ export const fr: LocaleCatalog = {
     active: 'Actif',
     use: 'Utiliser',
     add: 'Ajouter',
-    manage: 'GÃ©rer',
+    manage: 'Gérer',
     signIn: 'Se connecter',
     close: 'Fermer',
-    checkNow: 'VÃ©rifier',
-    downloadUpdate: 'TÃ©lÃ©charger la mise Ã  jour',
+    checkNow: 'Vérifier',
+    downloadUpdate: 'Télécharger la mise à jour',
     automatic: 'Automatique',
-    updateNow: 'Mettre Ã  jour'
+    updateNow: 'Mettre à jour'
   },
   newsTag: {
-    update: 'Mise Ã  jour',
-    event: 'Ã‰vÃ©nement',
+    update: 'Mise à jour',
+    event: 'Événement',
     announcement: 'Annonce',
     launcher: 'Launcher'
   },
@@ -70,18 +70,18 @@ export const fr: LocaleCatalog = {
     profile: 'Profil',
     instance: 'Instance',
     primeAccount: 'Compte Prime',
-    lastSession: 'DerniÃ¨re session',
-    news: 'ActualitÃ©s',
+    lastSession: 'Dernière session',
+    news: 'Actualités',
     moreNews: 'Toutes les actus',
     favoriteServers: 'Serveurs favoris',
-    friendsActivity: 'ActivitÃ© des amis',
+    friendsActivity: 'Activité des amis',
     noFriendsOnline: 'Aucun ami en ligne',
-    noFriendsOnlineHint: 'Ajoute des amis pour voir leur activitÃ© ici.',
+    noFriendsOnlineHint: 'Ajoute des amis pour voir leur activité ici.',
     friendOnline: 'En ligne',
     friendAway: 'Absent',
     friendInGame: 'En jeu',
-    noServers: 'Aucun serveur favori pour lâ€™instant.',
-    noServersHint: 'Ajoute un serveur pour le rejoindre depuis lâ€™accueil.',
+    noServers: 'Aucun serveur favori pour l’instant.',
+    noServersHint: 'Ajoute un serveur pour le rejoindre depuis l’accueil.',
     addServer: 'Ajouter un serveur',
     playHub: {
       account: 'Compte',
@@ -90,63 +90,63 @@ export const fr: LocaleCatalog = {
       singleplayer: 'Solo / menu'
     },
     launchStatus: {
-      preparing: 'PrÃ©parationâ€¦',
-      download: 'TÃ©lÃ©chargementâ€¦',
-      mods: 'Installation des modsâ€¦',
-      starting: 'DÃ©marrage de Minecraftâ€¦',
-      running: 'Jeu lancÃ©',
+      preparing: 'Préparation…',
+      download: 'Téléchargement…',
+      mods: 'Installation des mods…',
+      starting: 'Démarrage de Minecraft…',
+      running: 'Jeu lancé',
       inGame: 'En jeu',
-      error: 'Ã‰chec du lancement'
+      error: 'Échec du lancement'
     },
     timePlayed: 'Temps de jeu',
     mods: 'Mods',
     ram: 'RAM',
     version: 'Version',
     whatsNew: {
-      title: 'NouveautÃ©s',
-      themes: 'Trois thÃ¨mes synchronisÃ©s launcher et jeu (Crimson, Midnight, Aurora)',
-      fps: 'Optimisation HUD â€” moins de perte FPS avec les modules dÃ©sactivÃ©s',
+      title: 'Nouveautés',
+      themes: 'Trois thèmes synchronisés launcher et jeu (Crimson, Midnight, Aurora)',
+      fps: 'Optimisation HUD — moins de perte FPS avec les modules désactivés',
       chat: 'Chat social en direct avec vrais pseudos',
-      release: 'Voir la derniÃ¨re release GitHub'
+      release: 'Voir la dernière release GitHub'
     }
   },
   settings: {
-    title: 'ParamÃ¨tres',
-    subtitle: 'EnregistrÃ© localement â€” aucun compte ou cloud requis.',
+    title: 'Paramètres',
+    subtitle: 'Enregistré localement — aucun compte ou cloud requis.',
     sections: {
-      general: 'GÃ©nÃ©ral',
+      general: 'Général',
       appearance: 'Apparence',
       minecraft: 'Minecraft',
       performance: 'Performances',
       accounts: 'Comptes',
-      privacy: 'ConfidentialitÃ©',
-      downloads: 'TÃ©lÃ©chargements',
-      updates: 'Mises Ã  jour',
-      advanced: 'AvancÃ©'
+      privacy: 'Confidentialité',
+      downloads: 'Téléchargements',
+      updates: 'Mises à jour',
+      advanced: 'Avancé'
     },
     language: {
       label: 'Langue',
       hint: "Langue d'affichage du launcher",
       en: 'English',
-      fr: 'FranÃ§ais'
+      fr: 'Français'
     },
     closeOnLaunch: {
-      label: 'RÃ©duire au lancement du jeu',
-      hint: 'Le launcher reste ouvert â€” rÃ©duit seulement la fenÃªtre quand Minecraft dÃ©marre',
-      toggle: 'RÃ©duire au lancement'
+      label: 'Réduire au lancement du jeu',
+      hint: 'Le launcher reste ouvert — réduit seulement la fenêtre quand Minecraft démarre',
+      toggle: 'Réduire au lancement'
     },
     checkUpdates: {
-      label: 'Rechercher des mises Ã  jour',
-      hint: 'Comparer avec la derniÃ¨re release GitHub'
+      label: 'Rechercher des mises à jour',
+      hint: 'Comparer avec la dernière release GitHub'
     },
     autoUpdate: {
-      label: 'Mise Ã  jour automatique',
-      hint: 'VÃ©rifier GitHub au dÃ©marrage du launcher',
-      toggle: 'Mise Ã  jour auto'
+      label: 'Mise à jour automatique',
+      hint: 'Vérifier GitHub au démarrage du launcher',
+      toggle: 'Mise à jour auto'
     },
     theme: {
-      label: 'ThÃ¨me',
-      hint: 'Sâ€™applique au launcher et se synchronise dans le profil du jeu',
+      label: 'Thème',
+      hint: 'S’applique au launcher et se synchronise dans le profil du jeu',
       dark: 'Crimson',
       crimson: 'Crimson',
       midnight: 'Midnight',
@@ -156,69 +156,69 @@ export const fr: LocaleCatalog = {
       elevated: 'Pro'
     },
     hardwareAccel: {
-      label: 'AccÃ©lÃ©ration matÃ©rielle',
-      toggle: 'AccÃ©lÃ©ration matÃ©rielle'
+      label: 'Accélération matérielle',
+      toggle: 'Accélération matérielle'
     },
     backgroundNebula: {
-      label: 'Fond nÃ©buleuse',
-      hint: 'Fond animÃ© dÃ©bloquÃ© dans la Boutique',
-      toggle: 'Fond nÃ©buleuse'
+      label: 'Fond nébuleuse',
+      hint: 'Fond animé débloqué dans la Boutique',
+      toggle: 'Fond nébuleuse'
     },
     wallpaper: {
       label: 'Fond dâ€™Ã©cran',
-      hint: 'Image optionnelle derriÃ¨re le contenu',
+      hint: 'Image optionnelle derrière le contenu',
       browse: 'Choisir une image',
       clear: 'Retirer'
     },
     accent: {
-      label: 'Couleur dâ€™accent',
-      hint: 'Remplace lâ€™accent du thÃ¨me dans le launcher',
-      reset: 'RÃ©initialiser'
+      label: 'Couleur d’accent',
+      hint: 'Remplace l’accent du thème dans le launcher',
+      reset: 'Réinitialiser'
     },
     uiSounds: {
-      label: 'Sons dâ€™interface',
+      label: 'Sons d’interface',
       hint: 'Clics discrets sur Play et actions importantes',
-      toggle: 'Sons dâ€™interface'
+      toggle: 'Sons d’interface'
     },
-    restartRequired: 'RedÃ©marrage requis pour l\'accÃ©lÃ©ration matÃ©rielle.',
-    restartNow: 'RedÃ©marrer',
+    restartRequired: 'Redémarrage requis pour l\'accélération matérielle.',
+    restartNow: 'Redémarrer',
     javaPath: {
-      label: 'Chemin Java par dÃ©faut',
-      hint: 'JDK 21+ dÃ©tectÃ© automatiquement au lancement',
+      label: 'Chemin Java par défaut',
+      hint: 'JDK 21+ détecté automatiquement au lancement',
       addPath: 'Ajouter une path',
       browseFailed: 'Impossible d\'ajouter le chemin Java.'
     },
     defaultRam: {
-      label: 'Allocation RAM par dÃ©faut'
+      label: 'Allocation RAM par défaut'
     },
     gameResolution: {
-      label: 'RÃ©solution du jeu',
-      hint: 'Taille de la fenÃªtre au lancement (largeur Ã— hauteur en pixels)'
+      label: 'Résolution du jeu',
+      hint: 'Taille de la fenêtre au lancement (largeur × hauteur en pixels)'
     },
     gameDisplayMode: {
       label: "Mode d'affichage",
-      hint: 'DÃ©marrage de Minecraft â€” le mode sans bordure utilise la rÃ©solution choisie en fenÃªtrÃ©',
-      windowed: 'FenÃªtrÃ©',
-      borderless: 'Plein Ã©cran sans bordure',
-      fullscreen: 'Plein Ã©cran'
+      hint: 'Démarrage de Minecraft — le mode sans bordure utilise la résolution choisie en fenêtré',
+      windowed: 'Fenêtré',
+      borderless: 'Plein écran sans bordure',
+      fullscreen: 'Plein écran'
     },
     performancePreset: {
       label: 'Profil de performance au lancement',
       low: 'PC faible',
-      balanced: 'Ã‰quilibrÃ©',
+      balanced: 'Équilibré',
       performance: 'Performance',
       ultra: 'Ultra'
     },
     activeAccount: {
       label: 'Compte actif',
-      none: 'Aucun compte â€” ajoutez-en un pour jouer'
+      none: 'Aucun compte — ajoutez-en un pour jouer'
     },
     microsoftAccount: {
       label: 'Compte Microsoft'
     },
     analytics: {
       label: 'Analytiques',
-      hint: 'DÃ©sactivÃ© par dÃ©faut â€” rien n\'est envoyÃ© sans serveur',
+      hint: 'Désactivé par défaut — rien n\'est envoyé sans serveur',
       toggle: 'Analytiques'
     },
     discordRpc: {
@@ -227,45 +227,45 @@ export const fr: LocaleCatalog = {
       toggle: 'Discord RPC'
     },
     concurrentDownloads: {
-      label: 'TÃ©lÃ©chargements simultanÃ©s'
+      label: 'Téléchargements simultanés'
     },
     jvmArgs: {
       label: 'Arguments JVM',
-      hint: 'Un par ligne â€” aussi appliquÃ©s via les profils Performance'
+      hint: 'Un par ligne — aussi appliqués via les profils Performance'
     },
     developerMode: {
-      label: 'Mode dÃ©veloppeur',
-      toggle: 'Mode dÃ©veloppeur'
+      label: 'Mode développeur',
+      toggle: 'Mode développeur'
     },
     groqKey: {
-      label: 'ClÃ© Groq (override optionnel)',
-      hint: 'Laisse vide â€” tout le monde utilise le proxy Prime (clÃ© serveur). ClÃ© locale seulement pour self-host / hors ligne.',
-      placeholder: 'gsk_â€¦',
+      label: 'Clé Groq (override optionnel)',
+      hint: 'Laisse vide — tout le monde utilise le proxy Prime (clé serveur). Clé locale seulement pour self-host / hors ligne.',
+      placeholder: 'gsk_…',
       save: 'Enregistrer',
       clear: 'Effacer',
       statusOk: 'Override local ({masked})',
-      statusMissing: 'IA Prime partagÃ©e (pas de clÃ© perso)',
-      statusProxy: 'IA Prime partagÃ©e en ligne',
-      statusDown: 'IA partagÃ©e hors ligne â€” clÃ© locale ou rÃ©essaie plus tard'
+      statusMissing: 'IA Prime partagée (pas de clé perso)',
+      statusProxy: 'IA Prime partagée en ligne',
+      statusDown: 'IA partagée hors ligne — clé locale ou réessaie plus tard'
     },
-    updateNotes: 'v{current} â†’ derniÃ¨re v{latest} â€” {notes}'
+    updateNotes: 'v{current} → dernière v{latest} — {notes}'
   },
   ai: {
     title: 'Prime Assistant',
     subtitle: 'Installer des mods & conseils pour ton instance',
-    placeholder: 'Ex : Installe Sodium, Lithium et Irisâ€¦',
+    placeholder: 'Ex : Installe Sodium, Lithium et Iris…',
     send: 'Envoyer',
-    thinking: 'RÃ©flexionâ€¦',
+    thinking: 'Réflexion…',
     install: 'Installer',
-    installing: 'Installationâ€¦',
-    installed: 'InstallÃ©',
-    installFailed: 'Ã‰chec',
+    installing: 'Installation…',
+    installed: 'Installé',
+    installFailed: 'Échec',
     emptyTitle: 'Pose une question',
     emptyDesc:
-      'Installe des mods, tips FPS, ou dÃ©pannage crash via latest.log & crash-reports.',
-    needKey: 'IA partagÃ©e hors ligne. RÃ©essaie plus tard, ou ajoute une clÃ© locale (optionnel).',
+      'Installe des mods, tips FPS, ou dépannage crash via latest.log & crash-reports.',
+    needKey: 'IA partagée hors ligne. Réessaie plus tard, ou ajoute une clé locale (optionnel).',
     saveKey: 'Enregistrer',
-    keyPlaceholder: 'gsk_â€¦ (optionnel)',
+    keyPlaceholder: 'gsk_… (optionnel)',
     instance: 'Instance : {name} ({version})',
     sourceModrinth: 'Modrinth',
     sourceCurseforge: 'CurseForge',
@@ -277,8 +277,8 @@ export const fr: LocaleCatalog = {
   },
   updates: {
     modal: {
-      title: 'Mise Ã  jour disponible',
-      subtitle: 'Une nouvelle version de StellarClient est prÃªte. Installez-la sans quitter le launcher.'
+      title: 'Mise à jour disponible',
+      subtitle: 'Une nouvelle version de StellarClient est prête. Installez-la sans quitter le launcher.'
     },
     launcher: {
       label: 'StellarClient Launcher'
@@ -286,27 +286,27 @@ export const fr: LocaleCatalog = {
     mod: {
       label: 'Mod StellarClient'
     },
-    versionLine: 'v{current} â†’ v{latest}',
+    versionLine: 'v{current} → v{latest}',
     installLauncher: 'Installer le launcher',
     installMod: 'Installer le mod',
-    installing: 'Installationâ€¦',
-    checking: 'VÃ©rificationâ€¦',
+    installing: 'Installation…',
+    checking: 'Vérification…',
     later: 'Plus tard',
-    upToDate: 'Ã€ jour',
+    upToDate: 'À jour',
     phase: {
-      downloading: 'TÃ©lÃ©chargementâ€¦',
-      installing: 'Installationâ€¦',
-      done: 'TerminÃ©',
-      error: 'Ã‰chec'
+      downloading: 'Téléchargement…',
+      installing: 'Installation…',
+      done: 'Terminé',
+      error: 'Échec'
     },
     errors: {
-      dev_mode: "La mise Ã  jour intÃ©grÃ©e ne fonctionne qu'avec l'application installÃ©e, pas en mode dev.",
-      unsupported_platform: 'La mise Ã  jour intÃ©grÃ©e du launcher est disponible uniquement sur Windows.',
-      no_update: 'Aucune mise Ã  jour Ã  installer.',
-      game_running: 'Fermez Minecraft avant de mettre Ã  jour le mod.',
-      no_instance: 'Aucune instance â€” crÃ©ez-en une d\'abord.',
-      prime_mod_disabled: 'Le mod Prime est dÃ©sactivÃ© sur l\'instance par dÃ©faut.',
-      unknown: 'Ã‰chec de la mise Ã  jour. RÃ©essayez ou tÃ©lÃ©chargez depuis GitHub.'
+      dev_mode: "La mise à jour intégrée ne fonctionne qu'avec l'application installée, pas en mode dev.",
+      unsupported_platform: 'La mise à jour intégrée du launcher est disponible uniquement sur Windows.',
+      no_update: 'Aucune mise à jour à installer.',
+      game_running: 'Fermez Minecraft avant de mettre à jour le mod.',
+      no_instance: 'Aucune instance — créez-en une d\'abord.',
+      prime_mod_disabled: 'Le mod Prime est désactivé sur l\'instance par défaut.',
+      unknown: 'Échec de la mise à jour. Réessayez ou téléchargez depuis GitHub.'
     }
   },
   pages: {
@@ -320,11 +320,11 @@ export const fr: LocaleCatalog = {
     },
     instances: {
       title: 'Instances',
-      subtitle: 'Tes installs Minecraft â€” jouer, configurer, rester simple.'
+      subtitle: 'Tes installs Minecraft — jouer, configurer, rester simple.'
     },
     mods: {
       title: 'Mods',
-      subtitle: "GÃ©rez les mods de l'instance active â€” fichiers locaux et Modrinth."
+      subtitle: "Gérez les mods de l'instance active — fichiers locaux et Modrinth."
     },
     resources: {
       title: 'Packs de ressources',
@@ -336,79 +336,79 @@ export const fr: LocaleCatalog = {
     },
     store: {
       title: 'Boutique Prime',
-      subtitle: 'DÃ©bloquez cosmÃ©tiques et thÃ¨mes avec des Prime Coins â€” sync cloud en ligne.'
+      subtitle: 'Débloquez cosmétiques et thèmes avec des Prime Coins — sync cloud en ligne.'
     },
     skins: {
       title: 'Skins',
-      subtitle: 'AperÃ§u du personnage, capes et ailes Prime â€” ton look prÃªt Ã  jouer.'
+      subtitle: 'Aperçu du personnage, capes et ailes Prime — ton look prêt à jouer.'
     },
     library: {
-      title: 'BibliothÃ¨que',
-      subtitle: 'Mods, packs, shaders et outils pour lâ€™instance active â€” sans surcharger la sidebar.'
+      title: 'Bibliothèque',
+      subtitle: 'Mods, packs, shaders et outils pour l’instance active — sans surcharger la sidebar.'
     },
     cosmetics: {
-      title: 'CosmÃ©tiques',
-      subtitle: 'Vraies capes et ailes â€” visibles pour toi et les autres joueurs StellarClient.'
+      title: 'Cosmétiques',
+      subtitle: 'Vraies capes et ailes — visibles pour toi et les autres joueurs StellarClient.'
     },
     servers: {
       title: 'Hub Serveurs',
-      subtitle: 'BanniÃ¨res, joueurs en direct, ping et fiches serveur complÃ¨tes.'
+      subtitle: 'Bannières, joueurs en direct, ping et fiches serveur complètes.'
     },
     friends: {
       title: 'Amis',
-      subtitle: 'Amis Prime sync launcher â†” jeu â€” demandes et prÃ©sence en direct.'
+      subtitle: 'Amis Prime sync launcher ↔ jeu — demandes et présence en direct.'
     },
     chat: {
       title: 'Chat',
-      subtitle: 'Messages privÃ©s avec tes amis â€” en direct, sync avec le jeu.'
+      subtitle: 'Messages privés avec tes amis — en direct, sync avec le jeu.'
     },
     news: {
-      title: 'ActualitÃ©s',
-      subtitle: 'Annonces intÃ©grÃ©es â€” pas de serveur de news distant.'
+      title: 'Actualités',
+      subtitle: 'Annonces intégrées — pas de serveur de news distant.'
     },
     media: {
-      title: 'MÃ©dias',
+      title: 'Médias',
       subtitle: 'Captures et enregistrements du dossier instance.'
     },
     performance: {
       title: 'Performances',
-      subtitle: 'Infos matÃ©riel et profils â€” RAM, distance de rendu, flags JVM.'
+      subtitle: 'Infos matériel et profils — RAM, distance de rendu, flags JVM.'
     },
     downloads: {
-      title: 'TÃ©lÃ©chargements',
-      subtitle: 'Installations Modrinth et tÃ¢ches du launcher.'
+      title: 'Téléchargements',
+      subtitle: 'Installations Modrinth et tâches du launcher.'
     },
     console: {
       title: 'Console',
-      subtitle: 'Sortie de lancement, tÃ©lÃ©chargements, avertissements et erreurs en temps rÃ©el.'
+      subtitle: 'Sortie de lancement, téléchargements, avertissements et erreurs en temps réel.'
     }
   },
   modals: {
     login: {
-      title: 'Connexion Ã  Prime',
+      title: 'Connexion à Prime',
       subtitle: 'Utilisez votre compte Microsoft pour Minecraft officiel, ou jouez hors ligne.',
       microsoft: 'Se connecter avec Microsoft',
-      offlineDivider: 'â€” ou hors ligne â€”',
+      offlineDivider: '— ou hors ligne —',
       offlinePlaceholder: 'Pseudo hors ligne',
       offlineContinue: 'Continuer hors ligne',
       cancel: 'Annuler',
-      loginFailed: 'Ã‰chec de la connexion.',
-      offlineFailed: 'Impossible de crÃ©er le compte hors ligne.'
+      loginFailed: 'Échec de la connexion.',
+      offlineFailed: 'Impossible de créer le compte hors ligne.'
     },
     instance: {
       createTitle: 'Nouvelle instance',
       editTitle: 'Configurer l\'instance',
-      subtitle: 'StockÃ©e localement dans AppData â€” choisissez un type et une version Minecraft. Prime installe le bon jar automatiquement.',
+      subtitle: 'Stockée localement dans AppData — choisissez un type et une version Minecraft. Prime installe le bon jar automatiquement.',
       kind: 'Type d\'instance',
       kindPrimeHint: 'Fabric + mod StellarClient',
       kindFabricHint: 'Loader Fabric uniquement',
       kindVanillaHint: 'Sans mods / loader',
-      recommended: 'RecommandÃ©',
+      recommended: 'Recommandé',
       primeJarHint: 'Installe {prefix}-*.jar',
-      javaHint: 'Java {major}+ recommandÃ©',
-      primeAutoNote: 'Prime inclut toujours Fabric API et le mod StellarClient correspondant Ã  la version.',
-      showAdvanced: 'Afficher les options avancÃ©es',
-      hideAdvanced: 'Masquer les options avancÃ©es',
+      javaHint: 'Java {major}+ recommandé',
+      primeAutoNote: 'Prime inclut toujours Fabric API et le mod StellarClient correspondant à la version.',
+      showAdvanced: 'Afficher les options avancées',
+      hideAdvanced: 'Masquer les options avancées',
       name: 'Nom',
       minecraftVersion: 'Version Minecraft',
       loader: 'Loader',
@@ -418,38 +418,38 @@ export const fr: LocaleCatalog = {
       jvmArgs: 'Arguments JVM (un par ligne)',
       javaPath: 'Chemin Java (optionnel)',
       javaPathHint: 'Remplace le chemin global pour cette instance',
-      createFailed: 'Impossible de crÃ©er l\'instance.',
+      createFailed: 'Impossible de créer l\'instance.',
       saveFailed: 'Impossible d\'enregistrer l\'instance.',
-      saving: 'Enregistrementâ€¦',
-      create: 'CrÃ©er'
+      saving: 'Enregistrement…',
+      create: 'Créer'
     },
     browse: {
-      modsTitle: 'Parcourir â€” Mods',
-      resourcePacksTitle: 'Parcourir â€” Packs de ressources',
-      shadersTitle: 'Parcourir â€” Shaders',
-      subtitle: 'Recherchez sur Modrinth ou CurseForge â€” tÃ©lÃ©chargements vers l\'instance active.',
-      searching: 'Rechercheâ€¦',
-      searchFailed: 'Ã‰chec de la recherche.',
-      installFailed: 'Ã‰chec de l\'installation.',
+      modsTitle: 'Parcourir — Mods',
+      resourcePacksTitle: 'Parcourir — Packs de ressources',
+      shadersTitle: 'Parcourir — Shaders',
+      subtitle: 'Recherchez sur Modrinth ou CurseForge — téléchargements vers l\'instance active.',
+      searching: 'Recherche…',
+      searchFailed: 'Échec de la recherche.',
+      installFailed: 'Échec de l\'installation.',
       close: 'Fermer',
       chooseVersion: 'Choisir la version',
-      chooseVersionHint: 'SÃ©lectionnez la version Ã  installer pour cette instance.',
+      chooseVersionHint: 'Sélectionnez la version à installer pour cette instance.',
       versionLabel: 'Version',
       gameVersions: 'Versions MC',
       loaders: 'Loaders',
-      recommended: 'RecommandÃ©e',
+      recommended: 'Recommandée',
       back: 'Retour',
-      noVersions: 'Aucune version compatible trouvÃ©e.',
+      noVersions: 'Aucune version compatible trouvée.',
       versionsFailed: 'Impossible de charger les versions.'
     },
     modrinth: {
-      modsTitle: 'Modrinth â€” Mods',
-      resourcePacksTitle: 'Modrinth â€” Packs de ressources',
-      shadersTitle: 'Modrinth â€” Shaders',
-      subtitle: 'API Modrinth publique â€” tÃ©lÃ©chargements vers le dossier de l\'instance active.',
-      searching: 'Rechercheâ€¦',
-      searchFailed: 'Ã‰chec de la recherche.',
-      installFailed: 'Ã‰chec de l\'installation.',
+      modsTitle: 'Modrinth — Mods',
+      resourcePacksTitle: 'Modrinth — Packs de ressources',
+      shadersTitle: 'Modrinth — Shaders',
+      subtitle: 'API Modrinth publique — téléchargements vers le dossier de l\'instance active.',
+      searching: 'Recherche…',
+      searchFailed: 'Échec de la recherche.',
+      installFailed: 'Échec de l\'installation.',
       close: 'Fermer'
     }
   },
@@ -469,22 +469,22 @@ export const fr: LocaleCatalog = {
     editSkin: 'Modifier le skin',
     primeAccount: 'Compte Prime',
     quickAdd: 'Ajout rapide',
-    quickAddHint: 'Microsoft ouvre une fenÃªtre sÃ©curisÃ©e (Xbox Live â†’ Minecraft).',
+    quickAddHint: 'Microsoft ouvre une fenêtre sécurisée (Xbox Live → Minecraft).',
     signInMicrosoft: 'Se connecter avec Microsoft',
     offlinePlaceholder: 'Pseudo hors ligne',
     addOffline: 'Ajouter hors ligne',
     minecraftAccounts: 'Comptes Minecraft',
-    count: '{count} enregistrÃ©(s)',
+    count: '{count} enregistré(s)',
     noAccounts: 'Aucun compte',
     emptyHint: 'Connecte-toi avec Microsoft ou ajoute un profil hors ligne pour jouer.',
     addOne: 'Ajoutez-en un',
     toPlay: 'pour jouer.',
     level: 'Niveau {level}',
-    syncDescription: 'Configs, HUD, cosmÃ©tiques et stats restent sur ce PC â€” sync locale uniquement.',
+    syncDescription: 'Configs, HUD, cosmétiques et stats restent sur ce PC — sync locale uniquement.',
     syncButton: 'Sync profil',
-    refreshMicrosoft: 'RafraÃ®chir le token',
-    refreshSuccess: 'Token Microsoft rafraÃ®chi.',
-    refreshFailed: 'Ã‰chec du rafraÃ®chissement du token.',
+    refreshMicrosoft: 'Rafraîchir le token',
+    refreshSuccess: 'Token Microsoft rafraîchi.',
+    refreshFailed: 'Échec du rafraîchissement du token.',
     remove: 'Supprimer le compte',
     microsoft: 'Microsoft',
     offline: 'Hors ligne'
@@ -497,7 +497,7 @@ export const fr: LocaleCatalog = {
     remove: 'Supprimer',
     empty: 'Aucun serveur favori.',
     joinNeedsAccount: 'Connectez-vous pour rejoindre un serveur.',
-    added: 'Serveur ajoutÃ©.',
+    added: 'Serveur ajouté.',
     addFailed: 'Impossible d\'ajouter le serveur.',
     removeFailed: 'Impossible de supprimer le serveur.',
     info: 'Informations',
@@ -522,7 +522,7 @@ export const fr: LocaleCatalog = {
     addFriend: 'Ajouter un ami',
     usernamePrompt: 'Pseudo Minecraft',
     notePrompt: 'Note (optionnel)',
-    notePlaceholder: 'Modifier la noteâ€¦',
+    notePlaceholder: 'Modifier la note…',
     saveNote: 'Enregistrer',
     remove: 'Supprimer',
     empty: 'Aucun ami. Les deux joueurs doivent ouvrir Prime une fois.',
@@ -537,86 +537,86 @@ export const fr: LocaleCatalog = {
     partyJoinPrompt: 'Ta party veut que tu rejoignes',
     dismiss: 'Ignorer',
     shareServer: 'Partager un serveur avec la party',
-    shareServerPrompt: 'hÃ´te:port ou adresseâ€¦',
-    shareServerFailed: 'Impossible de partager (rÃ©servÃ© au leader)',
+    shareServerPrompt: 'hôte:port ou adresse…',
+    shareServerFailed: 'Impossible de partager (réservé au leader)',
     partyInvite: 'Invitation party',
-    partyInviteUnknown: 'Quelquâ€™un tâ€™a invitÃ© en party',
+    partyInviteUnknown: 'Quelqu’un t’a invité en party',
     acceptParty: 'Accepter',
     declineParty: 'Refuser',
     leaveParty: 'Quitter la party',
-    createParty: 'CrÃ©er une party',
+    createParty: 'Créer une party',
     partyMembers: 'Ta party',
     partyAlone: 'Toi seul'
   },
   chat: {
     refresh: 'Actualiser',
     conversations: 'Conversations',
-    empty: 'Aucune conversation pour lâ€™instant. Ouvre un DM depuis Amis.',
+    empty: 'Aucune conversation pour l’instant. Ouvre un DM depuis Amis.',
     selectConversation: 'Choisis une conversation',
-    selectHint: 'SÃ©lectionne quelquâ€™un Ã  gauche pour ouvrir le fil privÃ©.',
-    messagePlaceholder: 'Ã‰crire un messageâ€¦',
+    selectHint: 'Sélectionne quelqu’un à gauche pour ouvrir le fil privé.',
+    messagePlaceholder: 'Écrire un message…',
     send: 'Envoyer',
     image: 'Image',
     imagePathPrompt: 'Chemin du fichier image',
     live: 'En direct',
-    directMessage: 'Message privÃ©',
+    directMessage: 'Message privé',
     startTitle: 'Dis bonjour',
-    startBody: 'DÃ©but de ta conversation avec {name}.',
-    composerHint: 'EntrÃ©e pour envoyer Â· images supportÃ©es',
-    today: 'Aujourdâ€™hui',
+    startBody: 'Début de ta conversation avec {name}.',
+    composerHint: 'Entrée pour envoyer · images supportées',
+    today: 'Aujourd’hui',
     yesterday: 'Hier',
-    typing: '{name} est en train dâ€™Ã©crireâ€¦'
+    typing: '{name} est en train dâ€™Ã©crire…'
   },
   actions: {
     import: 'Importer',
     browseModrinth: 'Parcourir Modrinth',
     browseContent: 'Parcourir en ligne',
-    searchCurseForge: 'Rechercher sur CurseForgeâ€¦',
+    searchCurseForge: 'Rechercher sur CurseForge…',
     openFolder: 'Ouvrir le dossier',
     configure: 'Configurer',
     folder: 'Dossier',
     duplicate: 'Dupliquer',
     delete: 'Supprimer',
-    equip: 'Ã‰quiper',
+    equip: 'Équiper',
     unequip: 'Retirer',
-    owned: 'PossÃ©dÃ©',
+    owned: 'Possédé',
     buy: 'Acheter',
     claim: 'Obtenir',
     free: 'Gratuit',
     applyPreset: 'Appliquer le profil',
-    applying: 'Applicationâ€¦',
-    clearCompleted: 'Effacer terminÃ©s',
+    applying: 'Application…',
+    clearCompleted: 'Effacer terminés',
     refresh: 'Actualiser',
     cancel: 'Annuler',
     save: 'Enregistrer',
-    searchMods: 'Rechercher des modsâ€¦',
-    searchModrinth: 'Rechercher sur Modrinthâ€¦',
+    searchMods: 'Rechercher des mods…',
+    searchModrinth: 'Rechercher sur Modrinth…',
     install: 'Installer',
-    installing: 'Installationâ€¦',
+    installing: 'Installation…',
     importJar: 'Importer .jar',
     close: 'Fermer',
-    create: 'CrÃ©er'
+    create: 'Créer'
   },
   mods: {
     all: 'Tout',
-    enabled: 'ActivÃ©s',
-    disabled: 'DÃ©sactivÃ©s'
+    enabled: 'Activés',
+    disabled: 'Désactivés'
   },
   empty: {
     noMods: 'Aucun mod dans cette instance.',
     noResourcePacks: 'Aucun pack de ressources. Importez un .zip ou installez depuis Modrinth.',
     noShaders: 'Aucun shader. Installez Iris (mod) d\'abord, puis ajoutez des packs ici.',
-    noDownloads: 'Aucun tÃ©lÃ©chargement.',
-    noDownloadsHint: 'Aucun tÃ©lÃ©chargement rÃ©cent. Lancez Minecraft pour voir la progression.',
-    noScreenshots: 'Aucun mÃ©dia. F2 pour une capture, ou enregistrez un clip via StellarClient (CrÃ©ateur â†’ Clip Recorder).',
-    loadingInstance: 'Chargement de l\'instanceâ€¦'
+    noDownloads: 'Aucun téléchargement.',
+    noDownloadsHint: 'Aucun téléchargement récent. Lancez Minecraft pour voir la progression.',
+    noScreenshots: 'Aucun média. F2 pour une capture, ou enregistrez un clip via StellarClient (Créateur → Clip Recorder).',
+    loadingInstance: 'Chargement de l\'instance…'
   },
   resources: {
     importZip: 'Importer .zip',
     active: 'Actif'
   },
   confirm: {
-    deleteInstance: 'Supprimer Â« {name} Â» ? Les fichiers peuvent Ãªtre conservÃ©s ou supprimÃ©s.',
+    deleteInstance: 'Supprimer « {name} » ? Les fichiers peuvent être conservés ou supprimés.',
     deleteFiles: 'Supprimer aussi saves et mods sur le disque ?',
     removeMod: 'Supprimer {name} ?',
     removePack: 'Supprimer {name} ?',
@@ -626,33 +626,33 @@ export const fr: LocaleCatalog = {
     deleteInstance: 'Impossible de supprimer l\'instance.'
   },
   performance: {
-    detectedHardware: 'MatÃ©riel dÃ©tectÃ©',
+    detectedHardware: 'Matériel détecté',
     cpu: 'CPU',
     gpu: 'GPU',
     ram: 'RAM',
-    applySuccess: 'Profil appliquÃ© Ã  l\'instance active (RAM + options.txt).',
-    applyFailed: 'Ã‰chec de l\'application du profil.',
-    detecting: 'DÃ©tection du matÃ©rielâ€¦',
-    systemRam: 'RAM systÃ¨me',
+    applySuccess: 'Profil appliqué à l\'instance active (RAM + options.txt).',
+    applyFailed: 'Échec de l\'application du profil.',
+    detecting: 'Détection du matériel…',
+    systemRam: 'RAM système',
     chunks: '{count} chunks'
   },
   store: {
     coins: '{balance} Prime Coins',
-    unlocked: '{name} dÃ©bloquÃ© ! Ã‰quipez depuis CosmÃ©tiques.',
-    purchaseFailed: 'Achat Ã©chouÃ©.',
+    unlocked: '{name} débloqué ! Équipez depuis Cosmétiques.',
+    purchaseFailed: 'Achat échoué.',
     coinsPrice: '{price} coins',
-    buyFor: 'Acheter Â· {price} coins',
-    preview: 'AperÃ§u',
+    buyFor: 'Acheter · {price} coins',
+    preview: 'Aperçu',
     emptyTitle: 'Rien ici',
-    emptyDesc: 'Essayez une autre catÃ©gorie ou revenez plus tard.',
+    emptyDesc: 'Essayez une autre catégorie ou revenez plus tard.',
     historyEmptyTitle: 'Aucun achat',
-    historyEmptyDesc: 'Les articles dÃ©bloquÃ©s apparaÃ®tront ici.',
+    historyEmptyDesc: 'Les articles débloqués apparaîtront ici.',
     promoPlaceholder: 'Code promo',
     redeem: 'Utiliser',
-    redeemed: 'UtilisÃ©',
-    promoOk: '+{coins} Prime Coins ajoutÃ©s.',
+    redeemed: 'Utilisé',
+    promoOk: '+{coins} Prime Coins ajoutés.',
     promoFailed: 'Impossible d\'utiliser le code.',
-    syncSynced: 'SynchronisÃ©',
+    syncSynced: 'Synchronisé',
     syncLocal: 'Local',
     tabs: {
       catalog: 'Catalogue',
@@ -661,21 +661,21 @@ export const fr: LocaleCatalog = {
     },
     categories: {
       all: 'Tout',
-      cosmetic: 'CosmÃ©tiques',
-      theme: 'ThÃ¨mes',
+      cosmetic: 'Cosmétiques',
+      theme: 'Thèmes',
       background: 'Fonds',
       badge: 'Badges'
     }
   },
   cosmetics: {
-    characterPreview: 'AperÃ§u personnage',
-    previewHint: 'Le loadout Ã©quipÃ© se sync dans le jeu. Capes et ailes visibles pour les peers Prime.',
-    peersNote: 'Visible pour les peers Prime (LAN / intÃ©grÃ©)',
+    characterPreview: 'Aperçu personnage',
+    previewHint: 'Le loadout équipé se sync dans le jeu. Capes et ailes visibles pour les peers Prime.',
+    peersNote: 'Visible pour les peers Prime (LAN / intégré)',
     all: 'Tout',
     capes: 'Capes',
     wings: 'Ailes',
     badges: 'Badges',
-    emptyOwned: 'Aucun cosmÃ©tique â€” visitez la Boutique.'
+    emptyOwned: 'Aucun cosmétique — visitez la Boutique.'
   },
   skins: {
     tabs: {
@@ -690,83 +690,83 @@ export const fr: LocaleCatalog = {
       run: 'Courir'
     },
     addSkin: 'Importer PNG',
-    addSoon: 'Import de skins custom bientÃ´t',
+    addSoon: 'Import de skins custom bientôt',
     applySkin: 'Appliquer ce skin',
-    applyCosmetic: 'Appliquer le cosmÃ©tique',
+    applyCosmetic: 'Appliquer le cosmétique',
     changeCape: 'Changer cape',
     openStore: 'Ouvrir la Boutique',
     remove: 'Supprimer',
-    emptyCosmeticsHint: 'DÃ©bloque des cosmÃ©tiques dans la Boutique, puis Ã©quipe-les ici.'
+    emptyCosmeticsHint: 'Débloque des cosmétiques dans la Boutique, puis équipe-les ici.'
   },
   onboarding: {
     eyebrow: 'Configuration initiale',
-    subtitle: 'Quelques prÃ©fÃ©rences, puis vous Ãªtes prÃªt Ã  jouer.',
+    subtitle: 'Quelques préférences, puis vous êtes prêt à jouer.',
     next: 'Continuer',
     back: 'Retour',
-    finish: 'Câ€™est parti',
-    skip: 'Passer pour lâ€™instant',
+    finish: 'C’est parti',
+    skip: 'Passer pour l’instant',
     browseFolder: 'Choisir un dossier',
-    useDefaultFolder: 'Utiliser le dÃ©faut',
-    folderHint: 'Les instances et fichiers de jeu seront stockÃ©s ici. Gardez le dÃ©faut sauf besoin dâ€™un autre disque.',
-    signedIn: 'PrÃªt Ã  lancer',
+    useDefaultFolder: 'Utiliser le défaut',
+    folderHint: 'Les instances et fichiers de jeu seront stockés ici. Gardez le défaut sauf besoin d’un autre disque.',
+    signedIn: 'Prêt à lancer',
     steps: {
       language: {
         short: 'Langue',
         title: 'Choisis ta langue',
-        body: 'English ou FranÃ§ais â€” modifiable plus tard dans RÃ©glages.'
+        body: 'English ou Français — modifiable plus tard dans Réglages.'
       },
       theme: {
-        short: 'ThÃ¨me',
+        short: 'Thème',
         title: 'Choisis un style',
-        body: 'Sâ€™applique au launcher et se synchronise dans le profil Prime en jeu.'
+        body: 'S’applique au launcher et se synchronise dans le profil Prime en jeu.'
       },
       ram: {
         short: 'RAM',
-        title: 'MÃ©moire par dÃ©faut',
-        body: 'RAM allouÃ©e aux nouvelles instances. Modifiable par instance ensuite.'
+        title: 'Mémoire par défaut',
+        body: 'RAM allouée aux nouvelles instances. Modifiable par instance ensuite.'
       },
       folder: {
         short: 'Dossier',
         title: 'Dossier des instances',
-        body: 'Emplacement disque oÃ¹ Prime stocke les instances Minecraft.'
+        body: 'Emplacement disque où Prime stocke les instances Minecraft.'
       },
       account: {
         short: 'Compte',
         title: 'Connexion',
-        body: 'Microsoft est recommandÃ©. Les profils offline marchent en local.'
+        body: 'Microsoft est recommandé. Les profils offline marchent en local.'
       }
     }
   },
   import: {
     title: 'Importer des instances',
-    subtitle: 'DÃ©tecte dâ€™autres launchers et copie mods, packs, captures et options.',
-    scanning: 'Scan des dossiers courantsâ€¦',
-    foundCount: '{count} trouvÃ©(s)',
-    notFound: 'Non dÃ©tectÃ©',
-    selectInstances: 'SÃ©lectionne les instances Ã  importer',
-    selectAll: 'Tout sÃ©lectionner',
-    deselectAll: 'Tout dÃ©sÃ©lectionner',
-    loadingInstances: 'Chargement des instancesâ€¦',
+    subtitle: 'Détecte d’autres launchers et copie mods, packs, captures et options.',
+    scanning: 'Scan des dossiers courants…',
+    foundCount: '{count} trouvé(s)',
+    notFound: 'Non détecté',
+    selectInstances: 'Sélectionne les instances à importer',
+    selectAll: 'Tout sélectionner',
+    deselectAll: 'Tout désélectionner',
+    loadingInstances: 'Chargement des instances…',
     emptySource: 'Aucune instance pour ce launcher.',
-    importing: 'Importâ€¦',
+    importing: 'Import…',
     importSelected: 'Importer ({count})',
-    success: '{count} instance(s) importÃ©e(s).',
+    success: '{count} instance(s) importée(s).',
     errorDetect: 'Impossible de scanner les autres launchers.',
     errorList: 'Impossible de lister les instances.',
-    errorImport: 'Ã‰chec de lâ€™import.',
+    errorImport: 'Échec de l’import.',
     tagMods: 'mods',
     tagPacks: 'resource packs'
   },
   social: {
     title: 'Amis',
     onlineCount: '{count} en ligne',
-    emptyTitle: 'Pas encore dâ€™amis',
+    emptyTitle: 'Pas encore d’amis',
     emptyDesc: 'Ajoute des amis pour voir qui est en ligne et rejoindre leur serveur.',
     openFriends: 'Ouvrir Amis'
   },
   whatsNew: {
-    eyebrow: 'Mise Ã  jour',
-    title: 'NouveautÃ©s',
+    eyebrow: 'Mise à jour',
+    title: 'Nouveautés',
     gotIt: 'Compris',
     changelog: 'Changelog complet'
   },
@@ -780,15 +780,15 @@ export const fr: LocaleCatalog = {
     createPrime26: 'Prime 26.2',
     createPrime121: 'Prime 1.21.11',
     play: 'Jouer',
-    default: 'Par dÃ©faut',
-    setDefault: 'DÃ©finir par dÃ©faut',
-    loading: 'Chargement des instancesâ€¦',
+    default: 'Par défaut',
+    setDefault: 'Définir par défaut',
+    loading: 'Chargement des instances…',
     signInToPlay: 'Se connecter',
-    lastPlayed: 'DerniÃ¨re session {date}',
+    lastPlayed: 'Dernière session {date}',
     ramBadge: '{mb} Mo RAM',
     modsBadge: '{count} mods',
     emptyTitle: 'Aucune instance',
-    emptyDesc: 'CrÃ©e une install StellarClient pour commencer.'
+    emptyDesc: 'Crée une install StellarClient pour commencer.'
   },
   media: {
     openFolder: 'Ouvrir le dossier clips',
@@ -798,11 +798,11 @@ export const fr: LocaleCatalog = {
   logs: {
     title: 'Logs de lancement',
     tab: 'Console',
-    empty: 'Aucun log. Appuyez sur Jouer pour voir le tÃ©lÃ©chargement et le lancement ici.',
+    empty: 'Aucun log. Appuyez sur Jouer pour voir le téléchargement et le lancement ici.',
     openFolder: 'Ouvrir le dossier logs',
     clear: 'Effacer',
     copy: 'Tout copier',
-    copied: 'CopiÃ© !',
+    copied: 'Copié !',
     filterAll: 'Tous',
     filterInfo: 'Info',
     filterWarn: 'Warn',
@@ -810,32 +810,32 @@ export const fr: LocaleCatalog = {
     filterDebug: 'Debug'
   },
   crash: {
-    title: 'Minecraft a crashÃ©',
+    title: 'Minecraft a crashé',
     sessionDuration: 'Session de {duration}',
     context: 'Contexte :',
-    screen: 'Ã‰cran :',
-    primeInvolved: 'StellarClient impliquÃ©',
+    screen: 'Écran :',
+    primeInvolved: 'StellarClient impliqué',
     suggestion: 'Piste de correction',
     openReport: 'Ouvrir le crash report',
     openLogs: 'Ouvrir les logs',
-    sendReport: 'Envoyer Ã  Prime',
-    askAi: 'Demander Ã  lâ€™IA',
+    sendReport: 'Envoyer à Prime',
+    askAi: 'Demander à l’IA',
     dismiss: 'Fermer',
     fix: {
       blurOnce:
-        'Conflit de rendu GUI (limite de blur). Mettez StellarClient Ã  jour â€” ce bug est corrigÃ© dans les builds rÃ©cents.',
+        'Conflit de rendu GUI (limite de blur). Mettez StellarClient à jour — ce bug est corrigé dans les builds récents.',
       outOfMemory:
-        'Java manque de mÃ©moire. Augmentez la RAM dans les paramÃ¨tres de l\'instance ou fermez d\'autres applications.',
+        'Java manque de mémoire. Augmentez la RAM dans les paramètres de l\'instance ou fermez d\'autres applications.',
       primeMod:
-        'Le crash vient de StellarClient ({location}). Mettez le mod Ã  jour ou dÃ©sactivez les modules rÃ©cemment modifiÃ©s.',
+        'Le crash vient de StellarClient ({location}). Mettez le mod à jour ou désactivez les modules récemment modifiés.',
       modConflict:
-        'Conflit de mods probable. DÃ©sactivez les mods ajoutÃ©s rÃ©cemment et retestez.',
+        'Conflit de mods probable. Désactivez les mods ajoutés récemment et retestez.',
       modConflictNamed:
-        'Mods impliquÃ©s dans la stack trace : {mods}. DÃ©sactivez-les un par un.',
+        'Mods impliqués dans la stack trace : {mods}. Désactivez-les un par un.',
       loaderError:
-        'Fabric ou un mod n\'a pas pu se charger. VÃ©rifiez que les versions correspondent Ã  Minecraft.',
+        'Fabric ou un mod n\'a pas pu se charger. Vérifiez que les versions correspondent à Minecraft.',
       unknown:
-        'Ouvrez le crash report pour les dÃ©tails complets. Si le problÃ¨me persiste, partagez-le au support.'
+        'Ouvrez le crash report pour les détails complets. Si le problème persiste, partagez-le au support.'
     }
   }
 }

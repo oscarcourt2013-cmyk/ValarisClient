@@ -64,26 +64,26 @@ public final class ServerApiDebug {
 
     public String formatReport(int protocol, PrimeAccountManager account) {
         StringBuilder sb = new StringBuilder();
-        sb.append("Â§6Â§lPrime Server APIÂ§r\n");
-        sb.append("Â§7Channel: Â§f").append(ServerApiProtocol.CHANNEL).append('\n');
-        sb.append("Â§7Protocol: Â§f").append(protocol).append('\n');
-        sb.append("Â§7Compatible: Â§f").append(channelAvailable ? "yes" : "no / unknown").append('\n');
-        sb.append("Â§7Handshake: Â§f").append(handshake.name());
+        sb.append("§6§lPrime Server API§r\n");
+        sb.append("§7Channel: §f").append(ServerApiProtocol.CHANNEL).append('\n');
+        sb.append("§7Protocol: §f").append(protocol).append('\n');
+        sb.append("§7Compatible: §f").append(channelAvailable ? "yes" : "no / unknown").append('\n');
+        sb.append("§7Handshake: §f").append(handshake.name());
         if (handshake == HandshakeState.REJECTED && !lastRejectReason.isBlank()) {
-            sb.append(" Â§8(").append(lastRejectReason).append(')');
+            sb.append(" §8(").append(lastRejectReason).append(')');
         }
         sb.append('\n');
-        sb.append("Â§7Account: Â§fLv ").append(account.getLevel())
-                .append(" Â· ").append(account.getXP()).append(" XP")
-                .append(account.isLogged() ? " Â· logged" : "")
+        sb.append("§7Account: §fLv ").append(account.getLevel())
+                .append(" · ").append(account.getXP()).append(" XP")
+                .append(account.isLogged() ? " · logged" : "")
                 .append('\n');
-        sb.append("Â§7Recent packets:Â§r\n");
+        sb.append("§7Recent packets:§r\n");
         List<String> packets = recentPackets();
         if (packets.isEmpty()) {
-            sb.append("Â§8  (none)Â§r");
+            sb.append("§8  (none)§r");
         } else {
             for (String p : packets) {
-                sb.append("Â§8  ").append(p).append("Â§r\n");
+                sb.append("§8  ").append(p).append("§r\n");
             }
         }
         return sb.toString().trim();
@@ -94,6 +94,6 @@ public final class ServerApiDebug {
             return "";
         }
         String oneLine = s.replace('\n', ' ');
-        return oneLine.length() <= max ? oneLine : oneLine.substring(0, max) + "â€¦";
+        return oneLine.length() <= max ? oneLine : oneLine.substring(0, max) + "…";
     }
 }

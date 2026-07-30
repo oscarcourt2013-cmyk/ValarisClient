@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * In-game social overlay â€” Friends / Chat / Party tabs.
+ * In-game social overlay — Friends / Chat / Party tabs.
  * Same backend as the launcher.
  */
 public final class SocialHubUi {
@@ -127,7 +127,7 @@ public final class SocialHubUi {
 
         String footer = !status.isBlank()
                 ? status
-                : "Esc close  Â·  Same friends & chat as the launcher";
+                : "Esc close  ·  Same friends & chat as the launcher";
         ctx.drawSmoothText(footer, x + PAD, y + panelH - 18,
                 statusError ? 0xFFFF6B6B : theme.foregroundMuted(), 0.72f);
     }
@@ -149,7 +149,7 @@ public final class SocialHubUi {
         ctx.fillRoundedRect(x + PAD, cursorY, PANEL_W - PAD * 2 - 70, 22, PrimeDesign.RADIUS_SM,
                 ColorUtil.withAlpha(theme.background(), 0.55f));
         String addText = draftAdd.isEmpty()
-                ? "Add friend by usernameâ€¦"
+                ? "Add friend by username…"
                 : draftAdd + (System.currentTimeMillis() / 500 % 2 == 0 ? "|" : "");
         ctx.drawSmoothText(addText, x + PAD + 8, cursorY + 6,
                 draftAdd.isEmpty() ? theme.foregroundMuted() : theme.foreground(), 0.8f);
@@ -167,7 +167,7 @@ public final class SocialHubUi {
             ctx.drawSmoothText(connected ? "No friends yet" : "Not connected",
                     x + PAD + 12, listTop + 16, theme.foreground(), 0.92f);
             ctx.drawSmoothText(connected
-                            ? "Add a friend above â€” same list as the launcher"
+                            ? "Add a friend above — same list as the launcher"
                             : "Tap Refresh to connect",
                     x + PAD + 12, listTop + 34, theme.foregroundMuted(), 0.75f);
             return;
@@ -250,7 +250,7 @@ public final class SocialHubUi {
         ctx.fillRoundedRect(chatX, fieldY, chatW - 70, 22, PrimeDesign.RADIUS_SM,
                 ColorUtil.withAlpha(theme.background(), 0.55f));
         String field = draftChat.isEmpty()
-                ? "Messageâ€¦"
+                ? "Message…"
                 : draftChat + (System.currentTimeMillis() / 500 % 2 == 0 ? "|" : "");
         ctx.drawSmoothText(field, chatX + 8, fieldY + 6,
                 draftChat.isEmpty() ? theme.foregroundMuted() : theme.foreground(), 0.8f);
@@ -303,7 +303,7 @@ public final class SocialHubUi {
         }
 
         for (SocialClient.PartyMember m : party.members()) {
-            ctx.drawSmoothText((m.leader() ? "â˜… " : "  ") + m.username(),
+            ctx.drawSmoothText((m.leader() ? "★ " : "  ") + m.username(),
                     x + PAD, cursorY, theme.foreground(), 0.85f);
             cursorY += 14;
             if (cursorY > bottom - 8) break;
@@ -320,7 +320,7 @@ public final class SocialHubUi {
 
         if (hit(mouseX, mouseY, x + PANEL_W - PAD - 64, y + 10, 64, 18)) {
             refresh(true);
-            status = "Refreshingâ€¦";
+            status = "Refreshing…";
             statusError = false;
             return true;
         }
@@ -365,7 +365,7 @@ public final class SocialHubUi {
             String name = draftAdd.trim();
             if (name.length() >= 3) {
                 boolean ok = social.client().requestFriend(name);
-                status = ok ? "Request sent to " + name : "Add failed â€” they must open Prime once";
+                status = ok ? "Request sent to " + name : "Add failed — they must open Prime once";
                 statusError = !ok;
                 if (ok) draftAdd = "";
             }

@@ -8,7 +8,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 
-/** StellarClient pause / game menu â€” replaces vanilla {@code PauseScreen}. */
+/** StellarClient pause / game menu — replaces vanilla {@code PauseScreen}. */
 public final class PrimePauseScreen extends Screen {
 
     private final GuiRenderContext renderContext = new GuiRenderContext();

@@ -45,7 +45,7 @@ public final class HealthAlertModule extends Module {
         }
         if (!warned) {
             warned = true;
-            notifications.warning("Low HP", "Health at " + formatHealth(hp) + " â€” heal or pop!");
+            notifications.warning("Low HP", "Health at " + formatHealth(hp) + " — heal or pop!");
         }
     }
 

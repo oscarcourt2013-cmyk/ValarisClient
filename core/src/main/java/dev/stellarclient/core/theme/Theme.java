@@ -1,7 +1,7 @@
 package dev.stellarclient.core.theme;
 
 /**
- * A StellarClient color theme. Colors are packed ARGB ints (0xAARRGGBB) â€”
+ * A StellarClient color theme. Colors are packed ARGB ints (0xAARRGGBB) —
  * the format every renderer consumes directly, no conversion in render paths.
  */
 public record Theme(

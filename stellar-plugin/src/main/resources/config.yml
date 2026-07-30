@@ -1,4 +1,4 @@
-# StellarClient â€” Paper/Purpur server bridge
+# StellarClient — Paper/Purpur server bridge
 # Channel: stellarclient:main (must match the Fabric mod)
 
 server-id: elysia-smp
@@ -8,7 +8,7 @@ server-name: Elysia SMP
 protocol:
   min: 1
   max: 1
-  accept-message: "Welcome to Elysia SMP â€” StellarClient verified"
+  accept-message: "Welcome to Elysia SMP — StellarClient verified"
   reject-message: "Unsupported StellarClient protocol"
 
 database:
@@ -25,7 +25,7 @@ database:
 rewards:
   first_join:
     enabled: true
-    message: "<gold>âš¡</gold> <white>Merci d'utiliser <yellow>StellarClient</yellow> ! RÃ©compense dÃ©bloquÃ©e.</white>"
+    message: "<gold>⚡</gold> <white>Merci d'utiliser <yellow>StellarClient</yellow> ! Récompense débloquée.</white>"
     commands:
       - "eco give %player% 500"
       - "crate key give %player% vote 1"
@@ -37,9 +37,9 @@ xp:
   notify-client: true
 
 verified:
-  badge: "âš¡"
-  chat-format: "<gold>âš¡</gold> <gray>%player%</gray> <dark_gray>Â»</dark_gray> <white>%message%</white>"
-  tab-prefix: "<gold>âš¡ </gold>"
+  badge: "⚡"
+  chat-format: "<gold>⚡</gold> <gray>%player%</gray> <dark_gray>»</dark_gray> <white>%message%</white>"
+  tab-prefix: "<gold>⚡ </gold>"
   require-detection: true
   grant-permission: true
 
@@ -57,8 +57,8 @@ network:
 
 friends:
   notify-join: true
-  message: "<gold>âš¡</gold> <white>Votre ami <yellow>%friend%</yellow> vient de rejoindre le serveur</white>"
+  message: "<gold>⚡</gold> <white>Votre ami <yellow>%friend%</yellow> vient de rejoindre le serveur</white>"
 
 notifications:
   first-join-broadcast: false
-  broadcast: "<gold>âš¡</gold> <yellow>%player%</yellow> <gray>joue avec StellarClient</gray>"
+  broadcast: "<gold>⚡</gold> <yellow>%player%</yellow> <gray>joue avec StellarClient</gray>"

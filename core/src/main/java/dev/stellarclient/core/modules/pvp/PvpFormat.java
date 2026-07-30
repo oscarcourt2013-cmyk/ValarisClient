@@ -26,6 +26,6 @@ final class PvpFormat {
         if (fall > 0.05f) {
             return "LOW";
         }
-        return "â€”";
+        return "—";
     }
 }

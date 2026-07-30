@@ -7,7 +7,7 @@ import dev.stellarclient.core.module.EnumSetting;
 import dev.stellarclient.core.module.Module;
 import dev.stellarclient.core.module.ModuleCategory;
 
-/** In-game Groq assistant â€” {@code /ai} for module help and build advice. */
+/** In-game Groq assistant — {@code /ai} for module help and build advice. */
 public final class AiAssistantModule extends Module {
 
     private final AiAssistantService ai;

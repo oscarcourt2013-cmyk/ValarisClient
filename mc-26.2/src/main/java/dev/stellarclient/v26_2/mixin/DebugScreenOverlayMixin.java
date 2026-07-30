@@ -34,6 +34,6 @@ public abstract class DebugScreenOverlayMixin {
         long maxMb = runtime.maxMemory() / (1024L * 1024L);
         graphics.text(font, "Mem: " + usedMb + "/" + maxMb + " MB", 2, y, 0xFFE0E0E0, false);
         y += font.lineHeight;
-        graphics.text(font, "Stream Safe â€” coords hidden", 2, y, 0xFFE0E0E0, false);
+        graphics.text(font, "Stream Safe — coords hidden", 2, y, 0xFFE0E0E0, false);
     }
 }

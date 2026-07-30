@@ -19,8 +19,8 @@ import java.util.function.Supplier;
  */
 public final class AiAssistantService {
 
-    private static final String PREFIX = "Â§6[Prime AI] Â§f";
-    private static final String MUTED = "Â§7";
+    private static final String PREFIX = "§6[Prime AI] §f";
+    private static final String MUTED = "§7";
     private static final int MAX_HISTORY = 6;
     private static final int MAX_REPLY_LINES = 14;
     private static final int MAX_LINE = 100;
@@ -123,7 +123,7 @@ public final class AiAssistantService {
         }
 
         if (!enabled) {
-            say("Module AI Assistant dÃ©sactivÃ©. Active-le dans le ClickGUI (Prime).");
+            say("Module AI Assistant désactivé. Active-le dans le ClickGUI (Prime).");
             return true;
         }
 
@@ -137,35 +137,35 @@ public final class AiAssistantService {
         if (lower.startsWith("setkey")) {
             String key = rest.length() > 6 ? rest.substring(6).trim() : "";
             if (key.isBlank()) {
-                say("Usage: Â§f/ai setkey <groq_api_key> Â§7(optionnel â€” override local)");
-                say(MUTED + "Par dÃ©faut lâ€™IA utilise le serveur Prime (clÃ© non partagÃ©e).");
+                say("Usage: §f/ai setkey <groq_api_key> §7(optionnel — override local)");
+                say(MUTED + "Par défaut l’IA utilise le serveur Prime (clé non partagée).");
                 return true;
             }
             if (!key.startsWith("gsk_")) {
-                say("Â§cClÃ© invalide â€” une clÃ© Groq commence par gsk_");
+                say("§cClé invalide — une clé Groq commence par gsk_");
                 return true;
             }
             secrets.setGroqApiKey(key);
-            say("Â§aOverride local enregistrÃ© (self-host / hors ligne).");
+            say("§aOverride local enregistré (self-host / hors ligne).");
             return true;
         }
         if ("clearkey".equals(lower) || "unsetkey".equals(lower)) {
             secrets.setGroqApiKey("");
-            say("Override local effacÃ© â€” retour au proxy Prime.");
+            say("Override local effacé — retour au proxy Prime.");
             return true;
         }
         if ("clear".equals(lower) || "reset".equals(lower)) {
             synchronized (history) {
                 history.clear();
             }
-            say("Historique de conversation effacÃ©.");
+            say("Historique de conversation effacé.");
             return true;
         }
         if ("status".equals(lower)) {
-            say("ModÃ¨le: Â§f" + model.label + " Â§7(" + model.id + ")");
-            say("Proxy: Â§f" + resolveApiBase());
-            say("Override local: " + (secrets.hasKey() ? "Â§aoui" : "Â§7non (IA partagÃ©e)"));
-            say("Contexte client: " + (includeContext ? "Â§aoui" : "Â§coff"));
+            say("Modèle: §f" + model.label + " §7(" + model.id + ")");
+            say("Proxy: §f" + resolveApiBase());
+            say("Override local: " + (secrets.hasKey() ? "§aoui" : "§7non (IA partagée)"));
+            say("Contexte client: " + (includeContext ? "§aoui" : "§coff"));
             return true;
         }
 
@@ -174,33 +174,33 @@ public final class AiAssistantService {
     }
 
     private void printHelp() {
-        say("Assistant Prime â€” aide modules, builds, FPS, SMP.");
-        say("Â§f/ai <question> Â§7â€” poser une question");
-        say("Â§f/ai status Â§7â€” modÃ¨le + proxy");
-        say("Â§f/ai clear Â§7â€” reset historique");
-        say(MUTED + "Lâ€™IA tourne via le serveur Prime â€” pas besoin de clÃ©.");
+        say("Assistant Prime — aide modules, builds, FPS, SMP.");
+        say("§f/ai <question> §7— poser une question");
+        say("§f/ai status §7— modèle + proxy");
+        say("§f/ai clear §7— reset historique");
+        say(MUTED + "L’IA tourne via le serveur Prime — pas besoin de clé.");
         say(MUTED + "Ex: /ai comment activer Fullbright ?");
-        say(MUTED + "Ex: /ai pack recommandÃ© pour crystal PvP");
+        say(MUTED + "Ex: /ai pack recommandé pour crystal PvP");
     }
 
     private void ask(String question) {
         if (!busy.compareAndSet(false, true)) {
-            say("Â§eRÃ©ponse en coursâ€¦");
+            say("§eRéponse en cours…");
             return;
         }
 
-        say(MUTED + "RÃ©flexionâ€¦");
+        say(MUTED + "Réflexion…");
         List<GroqClient.Message> messages = buildMessages(question);
         GroqClient.chat(resolveApiBase(), secrets.groqApiKey(), model.id(), messages, 0.35, 700)
                 .whenComplete((result, err) -> adapter.runOnClientThread(() -> {
                     busy.set(false);
                     if (err != null) {
-                        say("Â§cErreur: " + err.getMessage());
+                        say("§cErreur: " + err.getMessage());
                         return;
                     }
                     if (result == null || !result.ok()) {
                         String msg = result == null ? "Unknown error" : result.error();
-                        say("Â§c" + (msg == null ? "Ã‰chec IA" : msg));
+                        say("§c" + (msg == null ? "Échec IA" : msg));
                         return;
                     }
                     remember(question, result.content());
@@ -231,14 +231,14 @@ public final class AiAssistantService {
 
     private String systemPrompt() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Tu es Prime AI, l'assistant intÃ©grÃ© Ã  StellarClient (mod Fabric Minecraft). ");
+        sb.append("Tu es Prime AI, l'assistant intégré à StellarClient (mod Fabric Minecraft). ");
         sb.append("Version client: ").append(StellarVersion.VERSION).append(". ");
-        sb.append("Tu aides sur: modules Prime, ClickGUI, HUD, performances, PvP/CPvP, survival, SMP Ã©conomie, stream privacy. ");
-        sb.append("RÃ©ponds de faÃ§on courte et actionnable (listes / Ã©tapes). ");
+        sb.append("Tu aides sur: modules Prime, ClickGUI, HUD, performances, PvP/CPvP, survival, SMP économie, stream privacy. ");
+        sb.append("Réponds de façon courte et actionnable (listes / étapes). ");
         sb.append("Cite les modules par leur nom exact. Ne invente pas de modules absents du catalogue. ");
-        sb.append("Ne demande jamais de clÃ© API. Ne rÃ©vÃ¨le jamais de secrets. ");
+        sb.append("Ne demande jamais de clé API. Ne révèle jamais de secrets. ");
         if (french) {
-            sb.append("RÃ©ponds en franÃ§ais sauf si l'utilisateur Ã©crit clairement en anglais. ");
+            sb.append("Réponds en français sauf si l'utilisateur écrit clairement en anglais. ");
         } else {
             sb.append("Reply in English unless the user writes in French. ");
         }
@@ -251,7 +251,7 @@ public final class AiAssistantService {
                     .append("- HARDCORE: survie hardcore\n")
                     .append("- SPEEDRUN: speedrun lite\n")
                     .append("- STREAMER: pack stream privacy\n")
-                    .append("AppliquÃ©s via le module Module Bundles.\n");
+                    .append("Appliqués via le module Module Bundles.\n");
         }
         return sb.toString();
     }
@@ -297,7 +297,7 @@ public final class AiAssistantService {
                         .append(compact(m.description())).append('\n');
                 count++;
                 if (count >= 160) {
-                    sb.append("â€¦ (catalogue tronquÃ©)\n");
+                    sb.append("… (catalogue tronqué)\n");
                     return sb.toString();
                 }
             }
@@ -318,7 +318,7 @@ public final class AiAssistantService {
     private void reply(String content) {
         String cleaned = content.replace("\r", "").trim();
         if (cleaned.isEmpty()) {
-            say("Â§cRÃ©ponse vide.");
+            say("§cRéponse vide.");
             return;
         }
         String[] paragraphs = cleaned.split("\n");
@@ -330,7 +330,7 @@ public final class AiAssistantService {
             }
             for (String chunk : wrap(p, MAX_LINE)) {
                 if (lines >= MAX_REPLY_LINES) {
-                    say(MUTED + "â€¦ (tronquÃ© â€” reformule pour plus de dÃ©tail)");
+                    say(MUTED + "… (tronqué — reformule pour plus de détail)");
                     return;
                 }
                 say(chunk);
@@ -369,6 +369,6 @@ public final class AiAssistantService {
             return "";
         }
         String one = value.replace('\n', ' ').trim();
-        return one.length() > 80 ? one.substring(0, 77) + "â€¦" : one;
+        return one.length() > 80 ? one.substring(0, 77) + "…" : one;
     }
 }

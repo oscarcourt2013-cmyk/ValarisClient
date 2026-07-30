@@ -1,6 +1,6 @@
 achievements:
   FIRST_CONNECTION:
-    name: "PremiÃ¨re connexion"
+    name: "Première connexion"
     description: "Se connecter avec StellarClient"
     xp: 25
   PLAYTIME_10_HOURS:

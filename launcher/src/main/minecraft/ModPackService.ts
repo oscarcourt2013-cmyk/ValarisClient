@@ -210,7 +210,7 @@ async function downloadPrimeModFromRelease(
 
   emitLaunchProgress({
     phase: 'mods',
-    detail: `Downloading StellarClient ${release.tag_name} from GitHubâ€¦`,
+    detail: `Downloading StellarClient ${release.tag_name} from GitHub…`,
     percent: 38
   })
 
@@ -261,7 +261,7 @@ async function resolveStellarClientSource(
   if (shouldCheckGitHub) {
     emitLaunchProgress({
       phase: 'mods',
-      detail: 'Checking GitHub Releases for StellarClient modâ€¦',
+      detail: 'Checking GitHub Releases for StellarClient mod…',
       percent: 36
     })
 
@@ -341,7 +341,7 @@ async function ensureFabricApi(config: InstanceLaunchConfig, modsDir: string): P
 
   emitLaunchProgress({
     phase: 'mods',
-    detail: 'Downloading Fabric API from Modrinthâ€¦',
+    detail: 'Downloading Fabric API from Modrinth…',
     percent: 35
   })
 
@@ -391,7 +391,7 @@ export async function installInstanceMods(
 
   emitLaunchProgress({
     phase: 'mods',
-    detail: `Preparing mods for Minecraft ${target.mcVersion}â€¦`,
+    detail: `Preparing mods for Minecraft ${target.mcVersion}…`,
     percent: 30
   })
 
@@ -417,7 +417,7 @@ export async function installInstanceMods(
 
   emitLaunchProgress({
     phase: 'mods',
-    detail: `Installing StellarClient mod ${primeCandidate.version.join('.')}â€¦`,
+    detail: `Installing StellarClient mod ${primeCandidate.version.join('.')}…`,
     percent: 40
   })
   await copyFile(primeCandidate.path, primeDest)

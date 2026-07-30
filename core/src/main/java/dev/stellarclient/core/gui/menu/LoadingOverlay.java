@@ -8,7 +8,7 @@ import dev.stellarclient.core.theme.Theme;
 import dev.stellarclient.core.util.ColorUtil;
 import dev.stellarclient.core.util.Easing;
 
-/** Animated boot splash â€” plays once, then dismisses so gameplay is unobstructed. */
+/** Animated boot splash — plays once, then dismisses so gameplay is unobstructed. */
 public final class LoadingOverlay {
 
     private enum Phase {

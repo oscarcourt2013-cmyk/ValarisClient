@@ -2,7 +2,7 @@
 
 Server-side bridge for the **StellarClient** Fabric mod.
 
-- Channel: `StellarClient:main` (protocol 1 â€” see [docs/SERVER_API.md](../docs/SERVER_API.md))
+- Channel: `StellarClient:main` (protocol 1 — see [docs/SERVER_API.md](../docs/SERVER_API.md))
 - Detects official clients via handshake (UUID + name + protocol checks)
 - SQLite (default) or MySQL
 - XP, rewards, achievements, missions, `/prime` GUI

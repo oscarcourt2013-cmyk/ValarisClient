@@ -88,10 +88,10 @@ app.whenReady().then(async () => {
   createWindow()
 
   void socialService.ensureSession().catch(() => {
-    // offline â€” social features degrade gracefully
+    // offline — social features degrade gracefully
   })
 
-  // Anonymous usage ping â€” fail silent
+  // Anonymous usage ping — fail silent
   void fetch(`${(process.env.PRIME_API_BASE || 'http://194.9.172.102:26005').replace(/\/$/, '')}/v1/stats/launch`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

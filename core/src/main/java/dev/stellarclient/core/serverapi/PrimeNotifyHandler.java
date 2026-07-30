@@ -32,7 +32,7 @@ public final class PrimeNotifyHandler {
         }
 
         if (chat && !message.isBlank()) {
-            adapter.displayClientMessage("Â§6[Prime] Â§f" + message);
+            adapter.displayClientMessage("§6[Prime] §f" + message);
         }
     }
 

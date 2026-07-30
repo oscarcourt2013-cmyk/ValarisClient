@@ -32,7 +32,7 @@ function trim(text: string, max: number): string {
   if (text.length <= max) {
     return text
   }
-  return `${text.slice(0, Math.max(0, max - 1))}â€¦`
+  return `${text.slice(0, Math.max(0, max - 1))}…`
 }
 
 function sleep(ms: number): Promise<void> {
@@ -60,7 +60,7 @@ function discordPipeCandidates(): string[] {
         return names.map((name) => `\\\\.\\pipe\\${name}`)
       }
     } catch {
-      // ignore â€” fall through to defaults
+      // ignore — fall through to defaults
     }
     return Array.from({ length: 10 }, (_, index) => `\\\\.\\pipe\\discord-ipc-${index}`)
   }
@@ -69,7 +69,7 @@ function discordPipeCandidates(): string[] {
   return Array.from({ length: 10 }, (_, index) => `${base}/discord-ipc-${index}`)
 }
 
-/** Minimal Discord Rich Presence IPC â€” Windows named pipes + Unix sockets. */
+/** Minimal Discord Rich Presence IPC — Windows named pipes + Unix sockets. */
 export class DiscordIpcClient {
   private socket: net.Socket | null = null
   private connected = false
@@ -119,7 +119,7 @@ export class DiscordIpcClient {
     const allMissing = errors.length > 0 && errors.every((entry) => isPipeMissingError(entry))
     if (allMissing || errors.length === 0) {
       this.lastError =
-        'Discord Desktop not detected â€” open Discord and restart the launcher.'
+        'Discord Desktop not detected — open Discord and restart the launcher.'
     } else if (errors.length > 0) {
       this.lastError = `${this.lastError} (tried ${paths.length} pipe(s))`
     }
@@ -335,7 +335,7 @@ export class DiscordIpcClient {
       if (err instanceof DiscordIpcError) {
         throw err
       }
-      // Non-JSON frame (DISPATCH) â€” success
+      // Non-JSON frame (DISPATCH) — success
     }
   }
 

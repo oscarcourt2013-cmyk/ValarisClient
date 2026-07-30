@@ -8,7 +8,7 @@ import dev.stellarclient.core.module.Module;
 import dev.stellarclient.core.module.ModuleCategory;
 import dev.stellarclient.core.theme.ThemeManager;
 
-/** Deaths this session â€” hardcore and SMP tracking. */
+/** Deaths this session — hardcore and SMP tracking. */
 public final class DeathCounterModule extends Module {
 
     private final SimpleLineHud element;

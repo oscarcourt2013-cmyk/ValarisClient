@@ -28,7 +28,7 @@ public final class PartnerServerList {
                             PartnerServers.displayName(partner),
                             partner.address(),
                             ServerData.Type.OTHER);
-                    // No save() during load â€” re-injected every load, avoids recursion.
+                    // No save() during load — re-injected every load, avoids recursion.
                     list.add(data, false);
                     existing = list.size() - 1;
                 } else {

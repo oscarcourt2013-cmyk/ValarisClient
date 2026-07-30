@@ -162,7 +162,7 @@ public final class VersionAdapter implements MinecraftAdapter {
             return;
         }
         // 26.2 chat API is signature-bound; surface debug/API lines as HUD toasts.
-        String plain = message.replaceAll("Â§.", "");
+        String plain = message.replaceAll("§.", "");
         Minecraft.getInstance().execute(() -> {
             try {
                 var notifications = StellarClient.get().notifications();

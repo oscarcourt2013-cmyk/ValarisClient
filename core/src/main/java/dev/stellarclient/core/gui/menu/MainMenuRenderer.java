@@ -12,7 +12,7 @@ import dev.stellarclient.core.util.ColorUtil;
 import dev.stellarclient.core.util.Easing;
 
 /**
- * Feather-style ClickGUI hub â€” compact stacked buttons over panorama/blur.
+ * Feather-style ClickGUI hub — compact stacked buttons over panorama/blur.
  */
 public final class MainMenuRenderer {
 
@@ -81,7 +81,7 @@ public final class MainMenuRenderer {
                     mouseX, mouseY, i == 0);
         }
 
-        String hint = PrimeLang.get("prime.gui.main_menu.hint", "Right Shift  Â·  H = HUD");
+        String hint = PrimeLang.get("prime.gui.main_menu.hint", "Right Shift  ·  H = HUD");
         int hintW = GuiLayout.labelWidth(ctx, hint);
         GuiLayout.label(ctx, hint,
                 (ctx.screenWidth() - hintW) / 2,

@@ -269,7 +269,7 @@ public interface MinecraftAdapter {
         return 0;
     }
 
-    /** Blocks fallen since last landing â€” used for mace smash and crits. */
+    /** Blocks fallen since last landing — used for mace smash and crits. */
     default float playerFallDistance() {
         return 0;
     }
@@ -306,13 +306,13 @@ public interface MinecraftAdapter {
         return -1;
     }
 
-    /** Food level 0â€“20. */
+    /** Food level 0–20. */
     default int playerFoodLevel() {
         return 20;
     }
 
     /**
-     * Item cooldown readiness 0â€“1 ({@code 1} = ready).
+     * Item cooldown readiness 0–1 ({@code 1} = ready).
      * Keys: {@code pearl}, {@code gapple}, {@code chorus}, {@code wind}.
      */
     default float itemCooldownReady(String key) {
@@ -324,7 +324,7 @@ public interface MinecraftAdapter {
         return 0;
     }
 
-    /** Count items in hotbar slots 0â€“8 matching {@code filter}. */
+    /** Count items in hotbar slots 0–8 matching {@code filter}. */
     default int countHotbarItemsMatching(String filter) {
         return 0;
     }
@@ -399,7 +399,7 @@ public interface MinecraftAdapter {
         return 0;
     }
 
-    /** Day time 0â€“23999. */
+    /** Day time 0–23999. */
     default long worldDayTime() {
         return 0;
     }
@@ -446,7 +446,7 @@ public interface MinecraftAdapter {
         return false;
     }
 
-    /** Block light 0â€“15 at the player's feet. */
+    /** Block light 0–15 at the player's feet. */
     default int blockLightLevel() {
         return 0;
     }
@@ -461,7 +461,7 @@ public interface MinecraftAdapter {
         return "";
     }
 
-    /** Crop age 0â€“7, or {@code -1} when the block below is not a crop. */
+    /** Crop age 0–7, or {@code -1} when the block below is not a crop. */
     default int cropGrowthStage() {
         return -1;
     }
@@ -699,12 +699,12 @@ public interface MinecraftAdapter {
         return false;
     }
 
-    /** Vanilla brightness slider value (0.0â€“1.0). */
+    /** Vanilla brightness slider value (0.0–1.0). */
     default float gamma() {
         return 0.5F;
     }
 
-    /** Sets the vanilla brightness slider (0.0â€“1.0). */
+    /** Sets the vanilla brightness slider (0.0–1.0). */
     default void setGamma(float gamma) {
     }
 

@@ -22,7 +22,7 @@ public final class TitleMenuTopBar {
     private static final int PAD = 10;
     private static final float ICON_SCALE = 0.88f;
 
-    /** Last render layout â€” hit-testing must match drawn chip width (smooth font). */
+    /** Last render layout — hit-testing must match drawn chip width (smooth font). */
     private static volatile Layout lastLayout;
 
     private TitleMenuTopBar() {
@@ -40,7 +40,7 @@ public final class TitleMenuTopBar {
 
         drawIconButton(ctx, theme, layout.discordX(), layout.y(), "D", mouseX, mouseY);
         drawIconButton(ctx, theme, layout.vanillaX(), layout.y(), "M", mouseX, mouseY);
-        drawIconButton(ctx, theme, layout.settingsX(), layout.y(), "âš™", mouseX, mouseY);
+        drawIconButton(ctx, theme, layout.settingsX(), layout.y(), "⚙", mouseX, mouseY);
 
         if (layout.profileW() > 0) {
             boolean hover = hit(mouseX, mouseY, layout.profileX(), layout.y(), layout.profileW(), BTN);
@@ -104,7 +104,7 @@ public final class TitleMenuTopBar {
 
     private static Layout layout(int screenWidth, String playerName, String accountType) {
         String label = profileLabel(playerName, accountType);
-        // Fallback estimate when no render context â€” prefer lastLayout when available.
+        // Fallback estimate when no render context — prefer lastLayout when available.
         int profileW = label.isEmpty() ? 0 : Math.max(72, (int) (label.length() * 5.6f) + 16);
         return layout(screenWidth, profileW, label);
     }
@@ -120,14 +120,14 @@ public final class TitleMenuTopBar {
     private static String profileLabel(String playerName, String accountType) {
         String suffix = accountTypeSuffix(accountType);
         if (playerName == null || playerName.isBlank()) {
-            String base = PrimeLang.get("prime.gui.account.chip", "â‡„ Account");
+            String base = PrimeLang.get("prime.gui.account.chip", "⇄ Account");
             return suffix.isEmpty() ? base : base + suffix;
         }
         String trimmed = playerName.trim();
         if (trimmed.length() > 12) {
-            return "â‡„ " + trimmed.substring(0, 11) + "â€¦" + suffix;
+            return "⇄ " + trimmed.substring(0, 11) + "…" + suffix;
         }
-        return "â‡„ " + trimmed + suffix;
+        return "⇄ " + trimmed + suffix;
     }
 
     private static String accountTypeSuffix(String accountType) {
@@ -135,8 +135,8 @@ public final class TitleMenuTopBar {
             return "";
         }
         return switch (accountType.toLowerCase(java.util.Locale.ROOT)) {
-            case "microsoft" -> " Â· MS";
-            case "offline" -> " Â· OFF";
+            case "microsoft" -> " · MS";
+            case "offline" -> " · OFF";
             default -> "";
         };
     }

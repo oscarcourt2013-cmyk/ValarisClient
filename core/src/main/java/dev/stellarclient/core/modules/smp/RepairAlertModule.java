@@ -56,7 +56,7 @@ public final class RepairAlertModule extends Module {
         }
         if (!warned) {
             warned = true;
-            notifications.warning("Repair Alert", "Armor at " + lowest + "% â€” repair soon");
+            notifications.warning("Repair Alert", "Armor at " + lowest + "% — repair soon");
         }
     }
 }

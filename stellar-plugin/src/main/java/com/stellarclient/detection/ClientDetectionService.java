@@ -108,7 +108,7 @@ public final class ClientDetectionService implements PluginMessageListener {
         if ("HANDSHAKE".equals(type)) {
             handleHandshake(player, obj);
         } else if ("PROFILE".equals(type)) {
-            // Client answered PROFILE_REQUEST â€” optional telemetry.
+            // Client answered PROFILE_REQUEST — optional telemetry.
             plugin.getLogger().fine("PROFILE from " + player.getName() + ": " + json);
         }
     }
@@ -154,7 +154,7 @@ public final class ClientDetectionService implements PluginMessageListener {
         JsonObject accept = new JsonObject();
         accept.addProperty("t", "SERVER_ACCEPTED");
         accept.addProperty("message", plugin.getConfig().getString(
-                "protocol.accept-message", "Welcome â€” StellarClient verified"));
+                "protocol.accept-message", "Welcome — StellarClient verified"));
         sendJson(player, accept);
 
         sendAccountSync(player);

@@ -15,7 +15,7 @@ import dev.stellarclient.core.theme.ThemeManager;
 import dev.stellarclient.core.util.ColorUtil;
 
 /**
- * Horizontal 4-slot armor strip: Helmet â†’ Chestplate â†’ Leggings â†’ Boots,
+ * Horizontal 4-slot armor strip: Helmet → Chestplate → Leggings → Boots,
  * with durability bars and critical !!! badges in Prime chrome.
  */
 public final class ArmorHudModule extends Module {
@@ -49,7 +49,7 @@ public final class ArmorHudModule extends Module {
     }
 
     private static final class Element extends HudElement {
-        /** Adapter order is bootsâ†’helmet; display order is helmetâ†’boots. */
+        /** Adapter order is boots→helmet; display order is helmet→boots. */
         private static final int[] DISPLAY_SLOTS = {3, 2, 1, 0};
 
         private static final int SLOT = 20;
@@ -147,7 +147,7 @@ public final class ArmorHudModule extends Module {
             }
             int remaining = adapter.armorDurability(slot);
             if (remaining >= max) {
-                return; // pristine â€” no bar
+                return; // pristine — no bar
             }
             float ratio = Math.clamp(remaining / (float) max, 0f, 1f);
             int barW = SLOT - PAD * 2;
@@ -163,7 +163,7 @@ public final class ArmorHudModule extends Module {
             if (ratio <= warn) {
                 return theme.error();
             }
-            // Green when healthy â†’ amber mid â†’ red near critical.
+            // Green when healthy → amber mid → red near critical.
             if (ratio >= 0.55f) {
                 return theme.success();
             }

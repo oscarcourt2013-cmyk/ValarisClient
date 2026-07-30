@@ -8,7 +8,7 @@ import dev.stellarclient.core.module.StringSetting;
 import dev.stellarclient.core.social.SocialService;
 import dev.stellarclient.core.social.SocialSettings;
 
-/** Friends, DM chat, party â€” synced with StellarClient Launcher via the unified backend. */
+/** Friends, DM chat, party — synced with StellarClient Launcher via the unified backend. */
 public final class SocialHubModule extends Module {
 
     private final SocialService social;
@@ -21,7 +21,7 @@ public final class SocialHubModule extends Module {
 
     public SocialHubModule(SocialService social) {
         super("social-hub", "Social Hub",
-                "Friends, private chat and party â€” synced with the launcher",
+                "Friends, private chat and party — synced with the launcher",
                 ModuleCategory.PRIME);
         this.social = social;
         listen(ClientTickEvent.class, event -> applySettings());
@@ -37,7 +37,7 @@ public final class SocialHubModule extends Module {
 
     @Override
     protected void onDisable() {
-        // Keep the live session â€” only the ClickGUI toggle goes off.
+        // Keep the live session — only the ClickGUI toggle goes off.
         // Disconnect happens on world leave.
         applySettings();
     }

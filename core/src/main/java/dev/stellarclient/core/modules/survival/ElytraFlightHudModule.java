@@ -38,14 +38,14 @@ public final class ElytraFlightHudModule extends Module {
     private void refresh() {
         int rockets = adapter.fireworkRocketCount();
         if (adapter.playerFallFlying()) {
-            element.setText("Elytra: GLIDING Â· " + rockets + " rockets");
+            element.setText("Elytra: GLIDING · " + rockets + " rockets");
             return;
         }
         String held = adapter.heldItemName();
         if (held.toLowerCase().contains("elytra")) {
-            element.setText("Elytra: ready Â· " + rockets + " rockets Â· jump+fall");
+            element.setText("Elytra: ready · " + rockets + " rockets · jump+fall");
             return;
         }
-        element.setText("Elytra: idle Â· " + rockets + " rockets");
+        element.setText("Elytra: idle · " + rockets + " rockets");
     }
 }

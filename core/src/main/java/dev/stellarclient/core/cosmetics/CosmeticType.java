@@ -6,6 +6,6 @@ public enum CosmeticType {
     WINGS,
     @Deprecated HAT,
     @Deprecated PARTICLES,
-    /** Launcher profile badges only â€” not world-rendered. */
+    /** Launcher profile badges only — not world-rendered. */
     BADGE
 }

@@ -16,7 +16,7 @@ import dev.stellarclient.core.theme.ThemeManager;
  */
 public final class TntTimerModule extends Module {
 
-    private static final String UNAVAILABLE = "TNT: waiting for entitiesâ€¦";
+    private static final String UNAVAILABLE = "TNT: waiting for entities…";
 
     private final SimpleLineHud element;
     private final MinecraftAdapter adapter;
@@ -55,7 +55,7 @@ public final class TntTimerModule extends Module {
         } else if (count == 1) {
             text = String.format(java.util.Locale.ROOT, "TNT %.1fs", fuse);
         } else {
-            text = String.format(java.util.Locale.ROOT, "TNT Ã—%d  %.1fs", count, fuse);
+            text = String.format(java.util.Locale.ROOT, "TNT ×%d  %.1fs", count, fuse);
         }
         if (!text.equals(lastText)) {
             lastText = text;

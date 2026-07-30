@@ -32,7 +32,7 @@ public final class ConfigManager {
     private final Map<String, ConfigBinding> bindings = new LinkedHashMap<>();
 
     /**
-     * Registers a binding. Fails fast on duplicate keys â€” two subsystems
+     * Registers a binding. Fails fast on duplicate keys — two subsystems
      * silently sharing a key would corrupt each other's state.
      */
     public void register(ConfigBinding binding) {
@@ -80,7 +80,7 @@ public final class ConfigManager {
         try {
             root = JsonParser.parseString(Files.readString(file, StandardCharsets.UTF_8)).getAsJsonObject();
         } catch (IOException | RuntimeException e) {
-            StellarClient.LOGGER.error("Failed to read config {} â€” keeping defaults", file, e);
+            StellarClient.LOGGER.error("Failed to read config {} — keeping defaults", file, e);
             return;
         }
         for (ConfigBinding binding : bindings.values()) {
@@ -91,7 +91,7 @@ public final class ConfigManager {
             try {
                 binding.loadConfig(section);
             } catch (RuntimeException e) {
-                StellarClient.LOGGER.error("Failed to load config section '{}' â€” keeping defaults", binding.configKey(), e);
+                StellarClient.LOGGER.error("Failed to load config section '{}' — keeping defaults", binding.configKey(), e);
             }
         }
     }

@@ -58,7 +58,7 @@ public final class LowStockAlertModule extends Module {
         }
         if (!warned) {
             warned = true;
-            notifications.warning("Low Stock", name + " x" + count + " â€” restock soon");
+            notifications.warning("Low Stock", name + " x" + count + " — restock soon");
         }
     }
 }

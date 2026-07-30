@@ -8,7 +8,7 @@ import dev.stellarclient.core.i18n.PrimeLang;
  *
  * <p>Sealed hierarchy: the GUI renders each setting with an exhaustive
  * pattern-matching switch, and every subclass stores its value as a primitive
- * field â€” reading a setting in a render/tick path never boxes.</p>
+ * field — reading a setting in a render/tick path never boxes.</p>
  *
  * <p>{@code fromJson} implementations are tolerant: invalid or missing data
  * keeps the current value, so old configs never crash a newer client.</p>

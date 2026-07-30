@@ -13,7 +13,7 @@ import dev.stellarclient.core.module.ModuleCategory;
 import dev.stellarclient.core.module.ModuleManager;
 
 /**
- * Discord Rich Presence â€” clean server context, compact stats, Prime branding.
+ * Discord Rich Presence — clean server context, compact stats, Prime branding.
  *
  * <p>Application ID: {@link DiscordRpcService#APPLICATION_ID}</p>
  */

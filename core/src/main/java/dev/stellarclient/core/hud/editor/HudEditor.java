@@ -59,7 +59,7 @@ public final class HudEditor {
     private boolean showGrid = false;
     private int tintPresetIndex;
 
-    /** Screen size seen by the last render/drag â€” keyboard nudges need it between frames. */
+    /** Screen size seen by the last render/drag — keyboard nudges need it between frames. */
     private int screenWidth = 854;
     private int screenHeight = 480;
 
@@ -261,7 +261,7 @@ public final class HudEditor {
         return keyPressed(glfwKey, false, false);
     }
 
-    /** G grid Â· S snap Â· V visibility Â· R tint Â· arrows nudge (Shift=10px) Â· Ctrl+Z/Y undo/redo. */
+    /** G grid · S snap · V visibility · R tint · arrows nudge (Shift=10px) · Ctrl+Z/Y undo/redo. */
     public boolean keyPressed(int glfwKey, boolean shiftDown, boolean ctrlDown) {
         if (ctrlDown && glfwKey == KEY_Z) {
             if (shiftDown) {

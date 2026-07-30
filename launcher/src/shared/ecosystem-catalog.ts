@@ -1,13 +1,13 @@
 import type { CosmeticItem, PerformancePresetInfo, StoreItem } from './content-types'
 import type { NewsItem } from './types'
 
-/** Static store catalog â€” purchases unlock locally (Prime Coins, no payment server). */
+/** Static store catalog — purchases unlock locally (Prime Coins, no payment server). */
 export const STORE_CATALOG: StoreItem[] = [
-  { id: 'cape-prime', name: 'Prime Cape', description: 'Official StellarClient cape â€” visible to Prime peers.', price: 0, category: 'cosmetic', owned: true },
+  { id: 'cape-prime', name: 'Prime Cape', description: 'Official StellarClient cape — visible to Prime peers.', price: 0, category: 'cosmetic', owned: true },
   { id: 'cape-star', name: 'Star Cape', description: 'Gold star cape for Prime peers.', price: 200, category: 'cosmetic', owned: false },
   { id: 'cape-crimson', name: 'Crimson Cape', description: 'Signature crimson cape.', price: 250, category: 'cosmetic', owned: false },
   { id: 'cape-midnight', name: 'Midnight Cape', description: 'Indigo midnight cape.', price: 200, category: 'cosmetic', owned: false },
-  { id: 'wings-aurora', name: 'Aurora Wings', description: 'Animated aurora wings â€” visible to Prime peers.', price: 0, category: 'cosmetic', owned: true },
+  { id: 'wings-aurora', name: 'Aurora Wings', description: 'Animated aurora wings — visible to Prime peers.', price: 0, category: 'cosmetic', owned: true },
   { id: 'wings-ember', name: 'Ember Wings', description: 'Animated fiery wings.', price: 400, category: 'cosmetic', owned: false },
   { id: 'theme-crimson', name: 'Crimson Theme', description: 'Signature red Prime theme.', price: 0, category: 'theme', owned: true },
   { id: 'theme-midnight', name: 'Midnight Theme', description: 'Cool indigo theme.', price: 0, category: 'theme', owned: true },
@@ -15,7 +15,7 @@ export const STORE_CATALOG: StoreItem[] = [
   {
     id: 'theme-obsidian',
     name: 'Obsidian Theme',
-    description: 'Signature black & champagne gold â€” elevated Prime look.',
+    description: 'Signature black & champagne gold — elevated Prime look.',
     price: 0,
     category: 'theme',
     owned: true
@@ -23,7 +23,7 @@ export const STORE_CATALOG: StoreItem[] = [
   {
     id: 'theme-ember',
     name: 'Ember Theme',
-    description: 'Copper glow on deep charcoal â€” elevated Prime look.',
+    description: 'Copper glow on deep charcoal — elevated Prime look.',
     price: 0,
     category: 'theme',
     owned: true
@@ -55,7 +55,7 @@ export const STORE_TO_COSMETIC: Record<string, string> = {
 export const BUNDLED_NEWS: NewsItem[] = [
   {
     id: 'n1',
-    title: 'StellarClient v1.1 â€” Premium Update',
+    title: 'StellarClient v1.1 — Premium Update',
     summary: 'New title screen, Discord RPC, onboarding wizard, and 50 modules shipped.',
     date: '2026-07-11',
     tag: 'update'
@@ -70,7 +70,7 @@ export const BUNDLED_NEWS: NewsItem[] = [
   {
     id: 'n3',
     title: 'Summer PvP Event (offline roster)',
-    summary: 'Track scrim dates locally â€” add friends and notes from the Friends page.',
+    summary: 'Track scrim dates locally — add friends and notes from the Friends page.',
     date: '2026-07-08',
     tag: 'event'
   },

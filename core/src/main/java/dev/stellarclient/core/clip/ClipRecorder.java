@@ -120,7 +120,7 @@ public final class ClipRecorder {
         }
 
         encoding.set(true);
-        notifications.info("Clip Recorder", "Encoding clipâ€¦");
+        notifications.info("Clip Recorder", "Encoding clip…");
 
         List<Path> frames = List.copyOf(capturedFrames);
         Path sessionDir = tempDir;
@@ -137,7 +137,7 @@ public final class ClipRecorder {
 
                 adapter.runOnClientThread(() -> notifications.success(
                         "Clip saved",
-                        mp4.getFileName().toString() + " â€” visible in StellarClient Launcher Media"));
+                        mp4.getFileName().toString() + " — visible in StellarClient Launcher Media"));
                 StellarClient.LOGGER.info("Clip exported to {}", mp4);
             } catch (IOException e) {
                 StellarClient.LOGGER.error("Clip encoding failed", e);

@@ -9,7 +9,7 @@ import dev.stellarclient.core.util.ColorUtil;
 import dev.stellarclient.core.util.Easing;
 
 /**
- * Prime pause menu â€” dark desaturated world, red/black chrome, centered GAME MENU panel.
+ * Prime pause menu — dark desaturated world, red/black chrome, centered GAME MENU panel.
  */
 public final class GameMenuRenderer {
 
@@ -32,7 +32,7 @@ public final class GameMenuRenderer {
     };
 
     private static final String[] GRID_ICONS = {
-            "â˜…", "â–®", "âœ‰", "âš‘", "âš™", "â¬¡"
+            "★", "▮", "✉", "⚑", "⚙", "⬡"
     };
 
     public void render(RenderContext ctx, Theme theme, MinecraftAdapter adapter,
@@ -98,12 +98,16 @@ public final class GameMenuRenderer {
     }
 
     private void renderBranding(RenderContext ctx, Theme theme, GameMenuLayout layout, float fade) {
+        if (!layout.brandingVisible()) {
+            // Not enough vertical room - the panel gets the space instead.
+            return;
+        }
         ctx.setDrawOpacity(fade);
         int centerX = ctx.screenWidth() / 2;
         PrimeLogo.drawCentered(ctx, centerX, layout.logoY(), layout.logoH(), 0xFFFFFFFF);
 
         float primeScale = 1.05f;
-        String prime = "PRIME";
+        String prime = "STELLAR";
         int primeW = ctx.smoothTextWidth(prime, primeScale);
         ctx.drawSmoothText(prime, centerX - primeW / 2, layout.brandY(), theme.foreground(), primeScale);
 
@@ -256,7 +260,7 @@ public final class GameMenuRenderer {
 
         String label = adapter.translate("menu.returnToMenu", "Save and Quit to Title")
                 .toUpperCase(java.util.Locale.ROOT);
-        // Multiplayer uses Disconnect â€” prefer that label when connected remotely
+        // Multiplayer uses Disconnect — prefer that label when connected remotely
         if (adapter.isMultiplayer()) {
             label = adapter.translate("menu.disconnect", "Disconnect")
                     .toUpperCase(java.util.Locale.ROOT);
@@ -286,9 +290,9 @@ public final class GameMenuRenderer {
 
         // Center slogans
         String[] slogans = {
-                "âš¡ OPTIMIZED PERFORMANCE",
+                "⚡ OPTIMIZED PERFORMANCE",
                 "ðŸ›¡ BUILT FOR COMPETITION",
-                "âŒ– MADE TO WIN"
+                "⌖ MADE TO WIN"
         };
         int sloganX = Math.max(120, w / 2 - 160);
         for (int i = 0; i < slogans.length; i++) {

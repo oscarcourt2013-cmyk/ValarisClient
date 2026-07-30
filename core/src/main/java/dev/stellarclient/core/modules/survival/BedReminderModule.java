@@ -39,7 +39,7 @@ public final class BedReminderModule extends Module {
         boolean night = SurvivalFormat.isNight(adapter.worldDayTime());
         if (night && !wasNight && !reminded) {
             reminded = true;
-            notifications.info("Bed Reminder", "Night is falling â€” consider sleeping");
+            notifications.info("Bed Reminder", "Night is falling — consider sleeping");
         }
         if (!night) {
             reminded = false;

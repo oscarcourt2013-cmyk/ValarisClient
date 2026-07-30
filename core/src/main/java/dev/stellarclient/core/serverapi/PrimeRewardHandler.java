@@ -31,7 +31,7 @@ public final class PrimeRewardHandler {
             adapter.openSocialHub();
         } else if ("notification".equalsIgnoreCase(action) || "message".equalsIgnoreCase(action)) {
             if (!message.isBlank()) {
-                adapter.displayClientMessage("Â§6[Prime] Â§f" + message);
+                adapter.displayClientMessage("§6[Prime] §f" + message);
             }
         }
 

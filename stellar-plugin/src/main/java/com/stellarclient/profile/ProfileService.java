@@ -35,20 +35,20 @@ public final class ProfileService {
     }
 
     public void openGui(Player player) {
-        Inventory inv = Bukkit.createInventory(player, 27, Text.mm("<gold>âš¡ StellarClient</gold>"));
+        Inventory inv = Bukkit.createInventory(player, 27, Text.mm("<gold>⚡ StellarClient</gold>"));
         PrimeProfile profile = database.findProfile(player.getUniqueId()).orElse(null);
         boolean connected = detection.isVerified(player.getUniqueId());
         String version = detection.getVersion(player.getUniqueId()).orElse(
-                profile != null ? profile.clientVersion() : "â€”");
+                profile != null ? profile.clientVersion() : "—");
         long playtime = profile != null ? profile.playtimeSeconds() : 0L;
         int xpAmount = profile != null ? profile.xp() : 0;
         int level = profile != null ? profile.level() : Text.levelForXp(xpAmount);
 
         inv.setItem(11, icon(Material.NETHER_STAR, "<gold>Statut</gold>",
-                List.of(connected ? "<green>âœ” ConnectÃ©</green>" : "<red>âœ˜ Non dÃ©tectÃ©</red>")));
+                List.of(connected ? "<green>✔ Connecté</green>" : "<red>✘ Non détecté</red>")));
         inv.setItem(12, icon(Material.BOOK, "<yellow>Version</yellow>",
-                List.of("<white>" + (version == null || version.isBlank() ? "â€”" : version) + "</white>")));
-        inv.setItem(13, icon(Material.CLOCK, "<aqua>Temps jouÃ©</aqua>",
+                List.of("<white>" + (version == null || version.isBlank() ? "—" : version) + "</white>")));
+        inv.setItem(13, icon(Material.CLOCK, "<aqua>Temps joué</aqua>",
                 List.of("<white>" + xp.formatHours(playtime) + " heures</white>")));
         inv.setItem(14, icon(Material.EXPERIENCE_BOTTLE, "<green>XP Prime</green>",
                 List.of("<white>" + xpAmount + "</white>")));
@@ -62,8 +62,8 @@ public final class ProfileService {
         PrimeProfile profile = database.findProfile(target.getUniqueId()).orElse(null);
         boolean connected = detection.isVerified(target.getUniqueId());
         String version = detection.getVersion(target.getUniqueId()).orElse(
-                profile != null ? profile.clientVersion() : "â€”");
-        Text.send(sender, "<gold>âš¡ Prime info â€” " + target.getName() + "</gold>");
+                profile != null ? profile.clientVersion() : "—");
+        Text.send(sender, "<gold>⚡ Prime info — " + target.getName() + "</gold>");
         Text.send(sender, "<gray>Statut:</gray> " + (connected ? "<green>Prime</green>" : "<red>Vanilla/autre</red>"));
         Text.send(sender, "<gray>Version:</gray> <white>" + version + "</white>");
         if (profile != null) {

@@ -22,7 +22,7 @@ import dev.stellarclient.core.theme.ThemeManager;
  */
 public final class ClipToolsModule extends Module {
 
-    /** GLFW_KEY_F8 â€” rebindable via Prime keybind config. */
+    /** GLFW_KEY_F8 — rebindable via Prime keybind config. */
     private static final int DEFAULT_RECORD_KEY = 297;
 
     private final BooleanSetting recordToggle =
@@ -126,7 +126,7 @@ public final class ClipToolsModule extends Module {
 
         private String label() {
             if (recorder.isEncoding()) {
-                return "CLIP ENCâ€¦";
+                return "CLIP ENC…";
             }
             return "REC " + formatTime(recorder.elapsedSeconds());
         }

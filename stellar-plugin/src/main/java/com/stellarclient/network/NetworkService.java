@@ -70,7 +70,7 @@ public final class NetworkService {
         }
         String mode = plugin.getConfig().getString("network.mode", "rest");
         if (!"rest".equalsIgnoreCase(mode)) {
-            // Redis reserved â€” log once at fine level.
+            // Redis reserved — log once at fine level.
             return;
         }
         String base = plugin.getConfig().getString("network.rest-url", "");

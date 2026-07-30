@@ -13,7 +13,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
- * Local filesystem cloud stub â€” versioned backups under {@code cloud/} until a remote API exists.
+ * Local filesystem cloud stub — versioned backups under {@code cloud/} until a remote API exists.
  */
 public final class LocalCloudClient implements CloudClient {
 

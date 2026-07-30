@@ -21,7 +21,7 @@ import java.util.Map;
  *
  * <p>Registering a module wires everything in one call: event bus injection,
  * a rebindable toggle keybind ({@code module.<id>}, unbound by default), a
- * {@link ModuleToggleEvent} on every toggle, and config persistence â€” settings
+ * {@link ModuleToggleEvent} on every toggle, and config persistence — settings
  * saved by an earlier registration order or client version are applied the
  * moment the module registers.</p>
  */

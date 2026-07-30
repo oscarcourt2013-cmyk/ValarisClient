@@ -49,7 +49,7 @@ public final class ItemPriceTagModule extends Module {
         SmpPriceTable table = SmpPriceTable.parse(config);
         String name = adapter.heldItemName();
         if (name.isEmpty()) {
-            element.setText("Price: â€”");
+            element.setText("Price: —");
             return;
         }
         double price = table.lookup(name);
@@ -64,7 +64,7 @@ public final class ItemPriceTagModule extends Module {
         private static final int PADDING = 3;
 
         private final ThemeManager themes;
-        private String text = "Price: â€”";
+        private String text = "Price: —";
 
         Element(ThemeManager themes) {
             super("item-price-tag", "Item Price Tag", HudAnchor.BOTTOM_RIGHT, -4, -52);

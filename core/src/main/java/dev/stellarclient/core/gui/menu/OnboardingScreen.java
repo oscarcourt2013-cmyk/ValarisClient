@@ -9,7 +9,7 @@ import dev.stellarclient.core.theme.Theme;
 /**
  * Interactive first-run wizard inside the ClickGUI.
  *
- * <p>Steps: theme â†’ profile preset â†’ keybinds â†’ finish.</p>
+ * <p>Steps: theme → profile preset → keybinds → finish.</p>
  */
 public final class OnboardingScreen {
 
@@ -36,7 +36,7 @@ public final class OnboardingScreen {
         }
 
         int displayStep = Math.min(step + 1, 4);
-        ctx.drawText(PrimeLang.get("prime.gui.onboarding.step_footer", "Step %1$d/4  Â·  Esc = skip", displayStep),
+        ctx.drawText(PrimeLang.get("prime.gui.onboarding.step_footer", "Step %1$d/4  ·  Esc = skip", displayStep),
                 x + 12, y + PANEL_H - 14, theme.foregroundMuted(), true);
     }
 
@@ -113,11 +113,11 @@ public final class OnboardingScreen {
         ctx.drawText(PrimeLang.get("prime.gui.onboarding.keybinds.title", "Essential shortcuts"),
                 x + 12, y + 36, theme.accent(), true);
         ctx.drawText(PrimeLang.get("prime.gui.onboarding.keybinds.menu",
-                        "Right Shift  â†’  Prime Menu (modules, settings)"),
+                        "Right Shift  →  Prime Menu (modules, settings)"),
                 x + 12, y + 56, theme.foreground(), true);
-        ctx.drawText(PrimeLang.get("prime.gui.onboarding.keybinds.hud", "H  â†’  HUD Editor (move elements)"),
+        ctx.drawText(PrimeLang.get("prime.gui.onboarding.keybinds.hud", "H  →  HUD Editor (move elements)"),
                 x + 12, y + 72, theme.foreground(), true);
-        ctx.drawText(PrimeLang.get("prime.gui.onboarding.keybinds.zoom", "C  â†’  Zoom (Zoom module, hold)"),
+        ctx.drawText(PrimeLang.get("prime.gui.onboarding.keybinds.zoom", "C  →  Zoom (Zoom module, hold)"),
                 x + 12, y + 88, theme.foregroundMuted(), true);
         drawPrimary(ctx, theme, x + 12, y + 112, PANEL_W - 24,
                 PrimeLang.get("prime.gui.onboarding.keybinds.got_it", "Got it!"), mouseX, mouseY);

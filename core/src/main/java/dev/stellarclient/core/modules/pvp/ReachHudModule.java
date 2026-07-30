@@ -9,7 +9,7 @@ import dev.stellarclient.core.module.Module;
 import dev.stellarclient.core.module.ModuleCategory;
 import dev.stellarclient.core.theme.ThemeManager;
 
-/** Distance in blocks to crosshair target â€” reach check for sword PvP. */
+/** Distance in blocks to crosshair target — reach check for sword PvP. */
 public final class ReachHudModule extends Module {
 
     private final SimpleLineHud element;
@@ -37,7 +37,7 @@ public final class ReachHudModule extends Module {
 
     private void refresh() {
         if (!adapter.hasTarget()) {
-            element.setText("Reach: â€”");
+            element.setText("Reach: —");
             return;
         }
         element.setText("Reach: " + String.format("%.1f", adapter.targetDistance()) + "m");

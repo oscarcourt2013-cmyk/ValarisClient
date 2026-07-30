@@ -239,7 +239,7 @@ public final class VersionAdapter implements MinecraftAdapter {
         Minecraft mc = Minecraft.getInstance();
         boolean local = mc.isLocalServer();
         if (local) {
-            // Shows saving progress then TitleScreen â€” TitleScreenMixin redirects to Prime.
+            // Shows saving progress then TitleScreen — TitleScreenMixin redirects to Prime.
             mc.disconnectWithSavingScreen();
         } else {
             mc.disconnect(new JoinMultiplayerScreen(new TitleScreen()), false);

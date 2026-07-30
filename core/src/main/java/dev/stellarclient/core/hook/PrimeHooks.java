@@ -243,7 +243,7 @@ public final class PrimeHooks {
     }
 
     /**
-     * Fabric {@code ALLOW_COMMAND} â€” the payload is the command <em>without</em>
+     * Fabric {@code ALLOW_COMMAND} — the payload is the command <em>without</em>
      * the leading {@code /}. Returns {@code false} to cancel sending to the server.
      */
     public static boolean allowOutgoingCommand(String command) {

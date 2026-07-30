@@ -30,6 +30,6 @@ public final class PrimeXpHandler {
             case ServerApiProtocol.XP_ACHIEVEMENT -> "Achievement";
             default -> "Event";
         };
-        notifications.success("Prime XP", "âš¡ +" + amount + " XP Prime (" + label + ")");
+        notifications.success("Prime XP", "⚡ +" + amount + " XP Prime (" + label + ")");
     }
 }

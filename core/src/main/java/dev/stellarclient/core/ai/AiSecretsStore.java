@@ -12,7 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
- * Local Groq API key storage â€” never synced with profiles/cloud.
+ * Local Groq API key storage — never synced with profiles/cloud.
  * File: {@code config/stellarclient/secrets.json}
  */
 public final class AiSecretsStore {

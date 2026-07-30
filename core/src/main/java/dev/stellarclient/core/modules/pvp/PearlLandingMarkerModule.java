@@ -43,7 +43,7 @@ public final class PearlLandingMarkerModule extends Module {
         String held = adapter.heldItemName().toLowerCase(Locale.ROOT);
         String off = adapter.offhandItemName().toLowerCase(Locale.ROOT);
         if (!held.contains("ender pearl") && !off.contains("ender pearl")) {
-            element.setText("Pearl: â€”");
+            element.setText("Pearl: —");
             return;
         }
         double[] hit = adapter.raycastLookBlock(MAX_RANGE);
@@ -52,7 +52,7 @@ public final class PearlLandingMarkerModule extends Module {
             return;
         }
         element.setText(String.format(Locale.ROOT,
-                "Pearl â†’ %.0f, %.0f, %.0f (%.1fm)",
+                "Pearl → %.0f, %.0f, %.0f (%.1fm)",
                 hit[0], hit[1], hit[2], hit[3]));
     }
 }

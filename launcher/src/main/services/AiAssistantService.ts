@@ -39,7 +39,7 @@ export interface AiConfirmInstallRequest {
   versionId?: string
 }
 
-/** Launcher AI â€” shared backend Groq proxy + local content tools. */
+/** Launcher AI — shared backend Groq proxy + local content tools. */
 export class AiAssistantService {
   async keyStatus(): Promise<AiKeyStatus> {
     const viaProxy = await aiProxyAvailable()
@@ -74,7 +74,7 @@ export class AiAssistantService {
         proposals: [],
         hasKey: false,
         viaProxy: false,
-        error: 'AI indisponible (backend hors ligne). RÃ©essaie plus tard.'
+        error: 'AI indisponible (backend hors ligne). Réessaie plus tard.'
       }
     }
 
@@ -152,7 +152,7 @@ export class AiAssistantService {
 
     return {
       ok: true,
-      reply: 'Jâ€™ai trouvÃ© des rÃ©sultats â€” confirme les installations ci-dessous.',
+      reply: 'J’ai trouvé des résultats — confirme les installations ci-dessous.',
       proposals: normalizeProposals(collected),
       hasKey: true,
       viaProxy: status.viaProxy
@@ -183,17 +183,17 @@ export class AiAssistantService {
 
 function systemPrompt(): string {
   return [
-    'Tu es Prime Assistant, lâ€™IA du launcher StellarClient (Minecraft Fabric).',
-    'Tu aides Ã : installer des mods (Modrinth/CurseForge), conseils FPS/packs, ET dÃ©panner crashes / erreurs de lancement.',
-    'DÃ©pannage:',
-    '- Si crash, freeze, Ã©cran noir, "Minecraft a crashÃ©", ou erreur de lancement â†’ appelle dâ€™abord diagnose_instance.',
+    'Tu es Prime Assistant, l’IA du launcher StellarClient (Minecraft Fabric).',
+    'Tu aides à: installer des mods (Modrinth/CurseForge), conseils FPS/packs, ET dépanner crashes / erreurs de lancement.',
+    'Dépannage:',
+    '- Si crash, freeze, écran noir, "Minecraft a crashé", ou erreur de lancement → appelle d’abord diagnose_instance.',
     '- Tu peux aussi list_crash_reports, read_crash_report, read_latest_log, read_launcher_log.',
-    '- Explique la cause probable (exception, mixin, OOM, conflit de mods, Fabric) avec des Ã©tapes concrÃ¨tes.',
-    '- Cite le fichier crash / lignes ERROR utiles. Propose dÃ©sactiver un mod prÃ©cis si identifiÃ©.',
+    '- Explique la cause probable (exception, mixin, OOM, conflit de mods, Fabric) avec des étapes concrètes.',
+    '- Cite le fichier crash / lignes ERROR utiles. Propose désactiver un mod précis si identifié.',
     '- Ne invente pas de stack traces absentes des tools.',
     'Install:',
-    '- Utilise search_mods / propose_install ; lâ€™utilisateur confirme dans lâ€™UI.',
-    '- PrefÃ¨re Modrinth. RÃ©ponds en franÃ§ais, concis et actionnable.'
+    '- Utilise search_mods / propose_install ; l’utilisateur confirme dans l’UI.',
+    '- Prefère Modrinth. Réponds en français, concis et actionnable.'
   ].join('\n')
 }
 

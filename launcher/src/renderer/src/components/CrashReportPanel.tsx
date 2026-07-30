@@ -91,16 +91,16 @@ export function CrashReportPanel({ crash, onDismiss }: CrashReportPanelProps) {
           icon={<Bot size={14} />}
           onClick={() => {
             const bits = [
-              'Minecraft a crashÃ©. Appelle diagnose_instance (et read_crash_report si besoin).',
+              'Minecraft a crashé. Appelle diagnose_instance (et read_crash_report si besoin).',
               `Titre: ${crash.title}`,
               crash.description ? `Description: ${crash.description}` : '',
               crash.exceptionType ? `Exception: ${crash.exceptionType}` : '',
               crash.exceptionMessage ? `Message: ${crash.exceptionMessage}` : '',
               crash.screen ? `Screen: ${crash.screen}` : '',
-              crash.primeInvolved ? `Prime impliquÃ©: ${crash.primeLocation ?? 'oui'}` : '',
+              crash.primeInvolved ? `Prime impliqué: ${crash.primeLocation ?? 'oui'}` : '',
               crash.modIds.length ? `Mods suspects: ${crash.modIds.join(', ')}` : '',
               crash.crashReportPath ? `Fichier: ${crash.crashReportPath}` : '',
-              'Dis-moi la cause probable et les Ã©tapes concrÃ¨tes pour corriger.'
+              'Dis-moi la cause probable et les étapes concrètes pour corriger.'
             ].filter(Boolean)
             askPrimeAssistant(bits.join('\n'))
           }}

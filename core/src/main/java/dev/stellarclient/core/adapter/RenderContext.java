@@ -4,7 +4,7 @@ package dev.stellarclient.core.adapter;
  * Version-independent 2D drawing surface for HUD and GUI rendering.
  *
  * <p>Backed by {@code GuiGraphics} on 1.21.11 and {@code GuiGraphicsExtractor}
- * on 26.2. One instance is reused every frame â€” implementations must be
+ * on 26.2. One instance is reused every frame — implementations must be
  * stateless between {@code prepare} calls and allocation-free during drawing
  * (except while GUI screens are open).</p>
  */
@@ -18,7 +18,7 @@ public interface RenderContext {
 
     void drawText(String text, int x, int y, int argb, boolean shadow);
 
-    /** Shadowless text with optional uniform scale â€” cleaner than vanilla MC labels. */
+    /** Shadowless text with optional uniform scale — cleaner than vanilla MC labels. */
     default void drawSmoothText(String text, int x, int y, int argb, float scale) {
         if (Math.abs(scale - 1f) < 0.01f) {
             drawUiText(text, x, y, argb);
@@ -98,7 +98,7 @@ public interface RenderContext {
     default void drawArmorGhost(int slot, int x, int y) {
     }
 
-    /** Vertical gradient fill (top â†’ bottom). Chunked â€” not one draw call per row. */
+    /** Vertical gradient fill (top → bottom). Chunked — not one draw call per row. */
     default void fillGradientVertical(int x, int y, int width, int height, int topArgb, int bottomArgb) {
         if (width <= 0 || height <= 0) {
             return;
@@ -114,7 +114,7 @@ public interface RenderContext {
         }
     }
 
-    /** Horizontal gradient fill (left â†’ right). Chunked â€” not one draw call per column. */
+    /** Horizontal gradient fill (left → right). Chunked — not one draw call per column. */
     default void fillGradientHorizontal(int x, int y, int width, int height, int leftArgb, int rightArgb) {
         if (width <= 0 || height <= 0) {
             return;

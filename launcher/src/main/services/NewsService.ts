@@ -49,7 +49,7 @@ export class NewsService {
         }
       }
     } catch {
-      // offline â€” continue
+      // offline — continue
     }
 
     try {

@@ -9,7 +9,7 @@ import dev.stellarclient.core.module.ModuleCategory;
 import dev.stellarclient.core.module.StringSetting;
 import dev.stellarclient.core.theme.ThemeManager;
 
-/** Sums item prices for hotbar slots only (0â€“8). */
+/** Sums item prices for hotbar slots only (0–8). */
 public final class HotbarValueModule extends Module {
 
     private static final int HOTBAR_SLOTS = 9;

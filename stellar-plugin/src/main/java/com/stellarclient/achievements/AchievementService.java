@@ -83,7 +83,7 @@ public final class AchievementService implements Listener {
         if (def.xp() > 0) {
             xp.addXp(player.getUniqueId(), def.xp(), "SERVER_ACHIEVEMENT");
         }
-        Text.send(player, "<gold>âš¡ SuccÃ¨s</gold> <white>" + def.name() + "</white> <gray>â€” " + def.description() + "</gray>");
+        Text.send(player, "<gold>⚡ Succès</gold> <white>" + def.name() + "</white> <gray>— " + def.description() + "</gray>");
         return true;
     }
 

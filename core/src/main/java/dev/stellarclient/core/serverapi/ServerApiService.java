@@ -58,7 +58,7 @@ public final class ServerApiService {
         this.outboundSender = sender;
     }
 
-    /** Wired by version-layer networking â€” {@code ClientPlayNetworking.canSend}. */
+    /** Wired by version-layer networking — {@code ClientPlayNetworking.canSend}. */
     public void setChannelProbe(BooleanSupplier probe) {
         this.channelProbe = probe;
     }
@@ -134,7 +134,7 @@ public final class ServerApiService {
             }
             case ServerApiProtocol.T_ACCOUNT_SYNC -> {
                 account.applyAccountSync(obj);
-                notifications.info("Prime", "Account synced Â· Lv " + account.getLevel());
+                notifications.info("Prime", "Account synced · Lv " + account.getLevel());
             }
             case ServerApiProtocol.T_XP, "SERVER_PLAYTIME", "SERVER_EVENT", "SERVER_ACHIEVEMENT" -> {
                 if (!ServerApiProtocol.T_XP.equals(type) && !obj.has("kind")) {
@@ -183,14 +183,14 @@ public final class ServerApiService {
         }
         String rest = text.length() > 6 ? text.substring(6).trim() : "";
         if (rest.isEmpty() || "help".equalsIgnoreCase(rest)) {
-            adapter.displayClientMessage("Â§6[Prime] Â§f/prime debug Â§7â€” Server API status");
+            adapter.displayClientMessage("§6[Prime] §f/prime debug §7— Server API status");
             return true;
         }
         if ("debug".equalsIgnoreCase(rest)) {
             adapter.displayClientMessage(debug.formatReport(ServerApiProtocol.PROTOCOL, account));
             return true;
         }
-        adapter.displayClientMessage("Â§6[Prime] Â§cUnknown subcommand. Try Â§f/prime debug");
+        adapter.displayClientMessage("§6[Prime] §cUnknown subcommand. Try §f/prime debug");
         return true;
     }
 
@@ -216,7 +216,7 @@ public final class ServerApiService {
                 continue;
             }
             notifications.info("Friends",
-                    "âš¡ " + f.username() + " joue actuellement sur Elysia SMP");
+                    "⚡ " + f.username() + " joue actuellement sur Elysia SMP");
             friendPresenceAnnounced = true;
             return;
         }
@@ -227,7 +227,7 @@ public final class ServerApiService {
             }
             if (PartnerServers.isPartnerAddress(f.serverAddress())) {
                 notifications.info("Friends",
-                        "âš¡ " + f.username() + " joue actuellement sur Elysia SMP");
+                        "⚡ " + f.username() + " joue actuellement sur Elysia SMP");
                 friendPresenceAnnounced = true;
                 return;
             }

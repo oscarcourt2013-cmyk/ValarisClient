@@ -130,7 +130,7 @@ final class Panel {
         int textY = rowY + (ROW_HEIGHT - ctx.uiFontHeight()) / 2 + 1;
         int cursorX = px + WIDTH - PADDING;
 
-        String star = favorites.isFavorite(module.id()) ? "â˜…" : "â˜†";
+        String star = favorites.isFavorite(module.id()) ? "★" : "☆";
         int starW = GuiLayout.labelWidth(ctx, star);
         cursorX -= starW;
         GuiLayout.label(ctx, star, cursorX, textY,
@@ -138,7 +138,7 @@ final class Panel {
 
         if (!module.settings().isEmpty()) {
             cursorX -= 4;
-            String expand = module == expanded ? "âˆ’" : "+";
+            String expand = module == expanded ? "−" : "+";
             int expandW = GuiLayout.labelWidth(ctx, expand);
             cursorX -= expandW;
             GuiLayout.label(ctx, expand, cursorX, textY, theme.foregroundMuted());

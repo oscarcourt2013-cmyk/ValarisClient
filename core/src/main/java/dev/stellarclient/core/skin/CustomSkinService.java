@@ -29,8 +29,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public final class CustomSkinService {
 
     public static final int MAX_BYTES = 128 * 1024;
-    private static final String PREFIX = "Â§6[Prime Skin] Â§f";
-    private static final String MUTED = "Â§7";
+    private static final String PREFIX = "§6[Prime Skin] §f";
+    private static final String MUTED = "§7";
     private static final byte[] PNG_MAGIC = {(byte) 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A};
 
     private static final HttpClient HTTP = HttpClient.newBuilder()
@@ -117,7 +117,7 @@ public final class CustomSkinService {
             applyLocal(bytes, false);
             lastFileMtime = mtime;
         } catch (IOException ignored) {
-            // Bridge race â€” retry next poll.
+            // Bridge race — retry next poll.
         }
     }
 
@@ -142,7 +142,7 @@ public final class CustomSkinService {
         }
 
         if (!enabled) {
-            say("Module Custom Skin dÃ©sactivÃ©. Active-le dans le ClickGUI (Prime).");
+            say("Module Custom Skin désactivé. Active-le dans le ClickGUI (Prime).");
             return true;
         }
 
@@ -155,7 +155,7 @@ public final class CustomSkinService {
         String lower = rest.toLowerCase(Locale.ROOT);
         if ("clear".equals(lower) || "reset".equals(lower) || "off".equals(lower)) {
             clearLocal(true);
-            say("Skin custom effacÃ© â€” retour au skin Mojang / dÃ©faut.");
+            say("Skin custom effacé — retour au skin Mojang / défaut.");
             return true;
         }
         if (lower.startsWith("url ") || lower.startsWith("set ")) {
@@ -169,58 +169,58 @@ public final class CustomSkinService {
         }
         if ("status".equals(lower)) {
             if (CustomSkinState.hasLocal()) {
-                say("Skin custom actif â€” hash Â§f" + shortHash(CustomSkinState.localHash()));
+                say("Skin custom actif — hash §f" + shortHash(CustomSkinState.localHash()));
                 say(MUTED + "Fichier: " + skinFile);
             } else {
-                say("Aucun skin custom â€” utilise Â§f/skin url <png>Â§7.");
+                say("Aucun skin custom — utilise §f/skin url <png>§7.");
             }
             return true;
         }
 
-        say("Â§cUsage inconnu. Â§7Tape Â§f/skinÂ§7 pour lâ€™aide.");
+        say("§cUsage inconnu. §7Tape §f/skin§7 pour l’aide.");
         return true;
     }
 
     private void printHelp() {
-        say("Skin custom Prime â€” visible pour toi et les peers Prime (offline OK).");
-        say("Â§f/skin url <https://...png> Â§7â€” tÃ©lÃ©charger un PNG (max 128 Ko)");
-        say("Â§f/skin clear Â§7â€” retirer le skin custom");
-        say("Â§f/skin status Â§7â€” hash + fichier");
+        say("Skin custom Prime — visible pour toi et les peers Prime (offline OK).");
+        say("§f/skin url <https://...png> §7— télécharger un PNG (max 128 Ko)");
+        say("§f/skin clear §7— retirer le skin custom");
+        say("§f/skin status §7— hash + fichier");
         say(MUTED + "Le launcher peut aussi copier le skin actif au lancement.");
     }
 
     private void downloadFromUrl(String url) {
         if (url == null || url.isBlank()) {
-            say("Usage: Â§f/skin url <http(s)://...png>");
+            say("Usage: §f/skin url <http(s)://...png>");
             return;
         }
         String trimmed = url.trim();
         if (!trimmed.regionMatches(true, 0, "http://", 0, 7)
                 && !trimmed.regionMatches(true, 0, "https://", 0, 8)) {
-            say("Â§cURL invalide â€” http(s) uniquement.");
+            say("§cURL invalide — http(s) uniquement.");
             return;
         }
         if (!downloading.compareAndSet(false, true)) {
-            say("Â§eTÃ©lÃ©chargement dÃ©jÃ  en coursâ€¦");
+            say("§eTéléchargement déjà en cours…");
             return;
         }
-        say(MUTED + "TÃ©lÃ©chargementâ€¦");
+        say(MUTED + "Téléchargement…");
         downloadPool.execute(() -> {
             try {
                 byte[] bytes = fetchPng(trimmed);
                 adapter.runOnClientThread(() -> {
                     try {
                         applyLocal(bytes, true);
-                        say("Â§aSkin appliquÃ© â€” visible localement et pour les peers Prime.");
+                        say("§aSkin appliqué — visible localement et pour les peers Prime.");
                     } catch (RuntimeException e) {
-                        say("Â§cÃ‰chec: " + e.getMessage());
+                        say("§cÉchec: " + e.getMessage());
                     } finally {
                         downloading.set(false);
                     }
                 });
             } catch (Exception e) {
                 adapter.runOnClientThread(() -> {
-                    say("Â§cTÃ©lÃ©chargement Ã©chouÃ©: " + e.getMessage());
+                    say("§cTéléchargement échoué: " + e.getMessage());
                     downloading.set(false);
                 });
             }
@@ -252,7 +252,7 @@ public final class CustomSkinService {
                 && !contentType.toLowerCase(Locale.ROOT).contains("png")
                 && !contentType.toLowerCase(Locale.ROOT).contains("octet-stream")
                 && !contentType.toLowerCase(Locale.ROOT).startsWith("image/")) {
-            throw new IOException("Content-Type attendu image/png (reÃ§u " + contentType + ")");
+            throw new IOException("Content-Type attendu image/png (reçu " + contentType + ")");
         }
         return bytes;
     }

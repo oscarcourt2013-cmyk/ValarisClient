@@ -135,7 +135,7 @@ public final class GuiRenderContext implements RenderContext {
     public void drawTexture(String texturePath, int x, int y, int width, int height,
                               int textureWidth, int textureHeight, int tintArgb) {
         Identifier id = Identifier.fromNamespaceAndPath(StellarClient.MOD_ID, normalizeTexturePath(texturePath));
-        // 1.21.6+ treats blit tint as ARGB â€” always pass an explicit opaque color (no-color overload breaks alpha).
+        // 1.21.6+ treats blit tint as ARGB — always pass an explicit opaque color (no-color overload breaks alpha).
         graphics.blit(RenderPipelines.GUI_TEXTURED, id, x, y, 0f, 0f, width, height,
                 textureWidth, textureHeight, textureTint(tintArgb));
     }
@@ -201,7 +201,7 @@ public final class GuiRenderContext implements RenderContext {
         return drawOpacity >= 0.999f ? argb : ColorUtil.withAlpha(argb, drawOpacity);
     }
 
-    /** 1.21.6+ blit tint is ARGB â€” RGB-only tints need an explicit alpha channel. */
+    /** 1.21.6+ blit tint is ARGB — RGB-only tints need an explicit alpha channel. */
     private int textureTint(int argb) {
         int tinted = applyOpacity(argb);
         if (((tinted >>> 24) & 0xFF) == 0) {

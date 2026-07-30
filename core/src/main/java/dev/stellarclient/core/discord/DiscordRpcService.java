@@ -21,7 +21,7 @@ public final class DiscordRpcService {
 
     private static final String WEBSITE_URL = "https://oscarcourt2013-cmyk.github.io/StellarClient/";
     private static final String DOWNLOAD_URL = "https://github.com/oscarcourt2013-cmyk/StellarClient/releases/latest";
-    private static final String STATE_SEP = " Â· ";
+    private static final String STATE_SEP = " · ";
 
     private final DiscordIpcClient ipc = new DiscordIpcClient(APPLICATION_ID);
     private final DiscordPresenceSettings settings = new DiscordPresenceSettings();
@@ -146,7 +146,7 @@ public final class DiscordRpcService {
         List<String> parts = new ArrayList<>(4);
 
         if (settings.showHealth()) {
-            parts.add("â™¥ " + Math.round(adapter.playerHealth())
+            parts.add("♥ " + Math.round(adapter.playerHealth())
                     + "/" + Math.round(adapter.playerMaxHealth()));
         }
         if (settings.showPing() && !singleplayer) {
@@ -182,7 +182,7 @@ public final class DiscordRpcService {
             }
         }
 
-        // Cap clutter: Discord state is one short line â€” keep at most 3 fragments.
+        // Cap clutter: Discord state is one short line — keep at most 3 fragments.
         if (parts.size() > 3) {
             parts = parts.subList(0, 3);
         }
@@ -194,7 +194,7 @@ public final class DiscordRpcService {
         String details = adapter.isScreenOpen()
                 ? PrimeLang.get("prime.discord.browsing_menus", "Browsing menus")
                 : PrimeLang.get("prime.discord.main_menu", "In Main Menu");
-        String state = PrimeLang.get("prime.discord.state_menu", "Minecraft %1$s Â· Prime v%2$s",
+        String state = PrimeLang.get("prime.discord.state_menu", "Minecraft %1$s · Prime v%2$s",
                 mcVersion, primeVersion);
         if (settings.showFps()) {
             state += STATE_SEP + PrimeLang.get("prime.discord.fps", "%d FPS", adapter.fps());
@@ -266,7 +266,7 @@ public final class DiscordRpcService {
         }
         int colon = s.indexOf(':');
         if (colon > 0) {
-            // Keep IPv6-ish intact; typical host:port â†’ host
+            // Keep IPv6-ish intact; typical host:port → host
             String after = s.substring(colon + 1);
             if (after.chars().allMatch(Character::isDigit)) {
                 s = s.substring(0, colon);

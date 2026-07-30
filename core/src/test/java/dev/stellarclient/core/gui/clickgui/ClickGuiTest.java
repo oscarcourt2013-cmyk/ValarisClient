@@ -128,7 +128,7 @@ class ClickGuiTest {
     private ClickGui gui;
     private TestModule module;
 
-    // Legacy category panel for QoL: PvP, Survival, Performance, then QoL â†’ index 3
+    // Legacy category panel for QoL: PvP, Survival, Performance, then QoL → index 3
     private static final double LEGACY_PANEL_X = 8 + 3 * (Panel.WIDTH + 8);
     private static final double PANEL_X = SCREEN_W - Panel.WIDTH - 12;
     private static final double HEADER_Y = 8;
@@ -283,6 +283,39 @@ class ClickGuiTest {
                 assertTrue(l.gridY() + l.gridH() <= l.dockY(), "grid overlaps dock " + at);
             }
         }
+    }
+
+    @Test
+    void gridIsScrollableWithoutAMouseWheel() {
+        // Enough modules to overflow one screen of cards.
+        for (int i = 0; i < 40; i++) {
+            int n = i;
+            modules.register(new Module("filler" + n, "Filler " + n, "", ModuleCategory.PVP) {
+            });
+        }
+        ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(SCREEN_W, 400, false);
+        ModuleCardBrowser browser = new ModuleCardBrowser(modules, favorites);
+        FakeRenderContext ctx = new FakeRenderContext(SCREEN_W, 400);
+
+        // Keyboard: Page Down / End must move, Home must return to the top.
+        assertTrue(browser.keyPressed(267, layout), "Page Down should scroll");
+        browser.tick(1f);
+        assertTrue(browser.keyPressed(269, layout), "End should scroll");
+        browser.tick(1f);
+        assertTrue(browser.keyPressed(268, layout), "Home should scroll");
+        browser.tick(1f);
+
+        // Click-drag panning on empty grid space, for touchpads without wheel gestures.
+        int emptyX = layout.gridX() + layout.gridW() - 20;
+        int emptyY = layout.gridY() + layout.gridH() - 4;
+        browser.render(ctx, new ThemeManager().active(), layout, -1, -1);
+        browser.mousePressed(ctx, layout, emptyX, emptyY, 0);
+        if (browser.isDragging()) {
+            browser.mouseDragged(emptyY - 40, layout);
+            browser.tick(1f);
+        }
+        browser.mouseReleased();
+        assertFalse(browser.isDragging(), "drag must end on release");
     }
 
     @Test

@@ -9,7 +9,7 @@ import dev.stellarclient.core.module.Module;
 import dev.stellarclient.core.module.ModuleCategory;
 import dev.stellarclient.core.theme.ThemeManager;
 
-/** Combined crystal PvP hotbar supply â€” obsidian + crystals + totems. */
+/** Combined crystal PvP hotbar supply — obsidian + crystals + totems. */
 public final class CpvpSupplyModule extends Module {
 
     private final SimpleLineHud element;

@@ -26,7 +26,8 @@ record GameMenuLayout(
         int quitW,
         int quitH,
         int footerY,
-        int footerH
+        int footerH,
+        boolean brandingVisible
 ) {
     static final int PANEL_W = 280;
     static final int PRIMARY_H = 28;
@@ -39,9 +40,9 @@ record GameMenuLayout(
     static final int LOGO_TO_BRAND = 4;
     /** PRIME + CLIENT stack height (two lines). */
     static final int BRAND_TEXT_H = 24;
-    /** Divider â†’ GAME MENU â†’ panel: keep as one tight block. */
+    /** Divider → GAME MENU → panel: keep as one tight block. */
     static final int DIVIDER_TO_TITLE = 4;
-    /** Glyph room for the GAME MENU line (top of text â†’ bottom of glyphs). */
+    /** Glyph room for the GAME MENU line (top of text → bottom of glyphs). */
     static final int TITLE_LINE_H = 9;
     /** Breath between GAME MENU glyphs and panel top edge. */
     static final int TITLE_TO_PANEL = 2;
@@ -56,39 +57,69 @@ record GameMenuLayout(
     static GameMenuLayout compute(int screenWidth, int screenHeight) {
         int footerH = FOOTER_H;
         int footerY = screenHeight - footerH;
-        // Usable area excludes the sticky footer â€” center within that band only.
+        // Usable area excludes the sticky footer — center within that band only.
         int usableH = Math.max(1, footerY);
 
-        int logoH = Math.max(22, Math.min(34, Math.round(screenHeight * 0.042f)));
-        int brandY = logoH + LOGO_TO_BRAND;
-        int dividerY = brandY + BRAND_TEXT_H;
-        int titleY = dividerY + DIVIDER_TO_TITLE;
-        // titleY is text top; reserve glyph height then a tight gap to the panel.
-        int header = titleY + TITLE_LINE_H + TITLE_TO_PANEL;
+        int panelW = Math.min(PANEL_W, Math.max(200, screenWidth - 24));
 
-        int panelInner = INNER_PAD * 2 + PRIMARY_H + GAP
-                + CELL_H * 3 + GAP * 2
-                + GAP + QUIT_H;
-        int panelH = panelInner;
-        int panelW = Math.min(PANEL_W, Math.max(240, screenWidth - 48));
+        // The composition is taller than the usable band at common GUI scales, so
+        // degrade in stages rather than letting the panel run under the footer:
+        // drop the branding block first, then tighten padding, then the rows.
+        int innerPad = INNER_PAD;
+        int gap = GAP;
+        int primaryH = PRIMARY_H;
+        int cellH = CELL_H;
+        int quitH = QUIT_H;
+        boolean branding = true;
+
+        int logoH = Math.max(22, Math.min(34, Math.round(screenHeight * 0.042f)));
+        int header = headerHeight(logoH, true);
+        int panelH = panelHeight(innerPad, gap, primaryH, cellH, quitH);
+
+        for (int stage = 0; stage < 6 && header + panelH > usableH - 4; stage++) {
+            switch (stage) {
+                case 0 -> branding = false;
+                case 1 -> innerPad = 8;
+                case 2 -> gap = 5;
+                case 3 -> {
+                    primaryH = 22;
+                    quitH = 20;
+                }
+                case 4 -> cellH = 20;
+                default -> {
+                    innerPad = 5;
+                    gap = 3;
+                    primaryH = 18;
+                    quitH = 17;
+                    cellH = 17;
+                }
+            }
+            header = headerHeight(logoH, branding);
+            panelH = panelHeight(innerPad, gap, primaryH, cellH, quitH);
+        }
+
+        int brandY = branding ? logoH + LOGO_TO_BRAND : 0;
+        int dividerY = branding ? brandY + BRAND_TEXT_H : 0;
+        int titleY = branding ? dividerY + DIVIDER_TO_TITLE : 0;
 
         int compositionH = header + panelH;
         int free = Math.max(0, usableH - compositionH);
         // True vertical center of usable area, then a small upward optical bias.
-        int startY = Math.max(6, (free / 2) - OPTICAL_UPWARD_BIAS);
-        // Keep a clear gap above the footer bar.
-        int maxStart = Math.max(6, usableH - compositionH - FOOTER_CLEARANCE);
+        int startY = Math.max(4, (free / 2) - OPTICAL_UPWARD_BIAS);
+        // Keep a clear gap above the footer bar when there is room to spare.
+        int clearance = free > FOOTER_CLEARANCE * 2 ? FOOTER_CLEARANCE : 0;
+        int maxStart = Math.max(4, usableH - compositionH - clearance);
         startY = Math.min(startY, maxStart);
 
         int panelX = (screenWidth - panelW) / 2;
         int panelY = startY + header;
-        int contentX = panelX + INNER_PAD;
-        int contentW = panelW - INNER_PAD * 2;
-        int primaryY = panelY + INNER_PAD;
-        int gridY = primaryY + PRIMARY_H + GAP;
-        int cellGapX = 8;
+        int contentX = panelX + innerPad;
+        int contentW = panelW - innerPad * 2;
+        int primaryY = panelY + innerPad;
+        int gridY = primaryY + primaryH + gap;
+        int cellGapX = Math.min(8, gap + 3);
         int cellW = (contentW - cellGapX) / 2;
-        int quitY = gridY + CELL_H * 3 + GAP * 2 + GAP;
+        int quitY = gridY + cellH * 3 + gap * 2 + gap;
 
         return new GameMenuLayout(
                 startY,
@@ -103,20 +134,34 @@ record GameMenuLayout(
                 contentX,
                 primaryY,
                 contentW,
-                PRIMARY_H,
+                primaryH,
                 contentX,
                 gridY,
                 cellW,
-                CELL_H,
+                cellH,
                 cellGapX,
-                GAP,
+                gap,
                 contentX,
                 quitY,
                 contentW,
-                QUIT_H,
+                quitH,
                 footerY,
-                footerH
+                footerH,
+                branding
         );
+    }
+
+    /** Height of the logo + wordmark + divider + title block above the panel. */
+    private static int headerHeight(int logoH, boolean branding) {
+        if (!branding) {
+            return 0;
+        }
+        return logoH + LOGO_TO_BRAND + BRAND_TEXT_H + DIVIDER_TO_TITLE
+                + TITLE_LINE_H + TITLE_TO_PANEL;
+    }
+
+    private static int panelHeight(int innerPad, int gap, int primaryH, int cellH, int quitH) {
+        return innerPad * 2 + primaryH + gap + cellH * 3 + gap * 2 + gap + quitH;
     }
 
     int gridCellX(int col) {

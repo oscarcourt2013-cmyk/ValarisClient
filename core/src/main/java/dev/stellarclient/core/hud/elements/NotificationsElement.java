@@ -92,9 +92,9 @@ public final class NotificationsElement extends HudElement implements Consumer<N
     private static String levelIcon(Notification notification) {
         return switch (notification.level()) {
             case INFO -> "i";
-            case SUCCESS -> "âœ“";
+            case SUCCESS -> "✓";
             case WARNING -> "!";
-            case ERROR -> "Ã—";
+            case ERROR -> "×";
         };
     }
 }

@@ -20,7 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Registers DynamicTextures for Prime custom skins and builds overridden PlayerSkin values.
  *
  * <p>Important: {@link ClientAsset.ResourceTexture}'s single-arg ctor remaps
- * {@code ns:path} â†’ {@code ns:textures/path.png}. DynamicTexture registrations must use the
+ * {@code ns:path} → {@code ns:textures/path.png}. DynamicTexture registrations must use the
  * two-arg ctor with identical {@code id} and {@code texturePath}, matching TextureManager.</p>
  */
 public final class CustomSkinTextures {

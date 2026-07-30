@@ -12,14 +12,14 @@ import java.util.Map;
 /**
  * Registry of {@link Theme}s and holder of the active one.
  *
- * <p>{@link #active()} is a plain field read â€” safe to call every frame.</p>
+ * <p>{@link #active()} is a plain field read — safe to call every frame.</p>
  *
  * <p>Shared IDs with the launcher: {@code prime-crimson}, {@code prime-midnight},
  * {@code prime-aurora}, {@code prime-obsidian}, {@code prime-ember}.</p>
  */
 public final class ThemeManager implements ConfigBinding {
 
-    /** Brand red â€” signature Prime look (default). */
+    /** Brand red — signature Prime look (default). */
     public static final Theme PRIME_CRIMSON = new Theme(
             "prime-crimson", "Prime Crimson",
             0xFFE11D2E, // accent
@@ -76,7 +76,7 @@ public final class ThemeManager implements ConfigBinding {
             0xFFFB7185  // error
     );
 
-    /** Elevated â€” champagne gold on deep black. */
+    /** Elevated — champagne gold on deep black. */
     public static final Theme PRIME_OBSIDIAN = new Theme(
             "prime-obsidian", "Prime Obsidian",
             0xFFF0D78C, // accent
@@ -95,7 +95,7 @@ public final class ThemeManager implements ConfigBinding {
             0xFFF87171  // error
     );
 
-    /** Elevated â€” copper ember on charcoal. */
+    /** Elevated — copper ember on charcoal. */
     public static final Theme PRIME_EMBER = new Theme(
             "prime-ember", "Prime Ember",
             0xFFFDBA74, // accent

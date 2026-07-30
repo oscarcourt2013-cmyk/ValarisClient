@@ -19,7 +19,7 @@ public interface ConfigBinding {
 
     /**
      * Restores state from a previously saved element. Implementations must
-     * tolerate missing or partial data (treat it as defaults) â€” configs
+     * tolerate missing or partial data (treat it as defaults) — configs
      * written by older client versions stay loadable.
      */
     void loadConfig(JsonElement element);

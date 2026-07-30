@@ -135,7 +135,7 @@ class DiscordRpcServiceTest {
         DiscordPresenceSnapshot snapshot = service.buildSnapshot(adapter, modules, account);
 
         assertEquals("play.hypixel.net", snapshot.details());
-        assertEquals("â™¥ 17/20 Â· 38ms", snapshot.state());
+        assertEquals("♥ 17/20 · 38ms", snapshot.state());
         assertFalse(snapshot.state().contains("Zorat"));
         assertFalse(snapshot.state().contains("Plains"));
         assertFalse(snapshot.state().contains("Diamond Sword"));
@@ -154,7 +154,7 @@ class DiscordRpcServiceTest {
         DiscordPresenceSnapshot snapshot = service.buildSnapshot(adapter, modules, new PrimeAccountService());
 
         assertEquals("Elysia SMP", snapshot.details());
-        assertTrue(snapshot.state().startsWith("â™¥ "));
+        assertTrue(snapshot.state().startsWith("♥ "));
     }
 
     @Test

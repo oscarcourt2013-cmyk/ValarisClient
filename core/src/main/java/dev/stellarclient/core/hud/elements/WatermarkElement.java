@@ -19,7 +19,7 @@ public final class WatermarkElement extends HudElement {
         super("watermark", "Watermark", HudAnchor.TOP_LEFT, 4, 4);
         this.themes = themes;
         this.suffix = " Client " + minecraftVersion;
-        // Hidden by default â€” enable via Stream Branding / HUD editor. Saves a draw every frame.
+        // Hidden by default — enable via Stream Branding / HUD editor. Saves a draw every frame.
         setVisible(false);
     }
 

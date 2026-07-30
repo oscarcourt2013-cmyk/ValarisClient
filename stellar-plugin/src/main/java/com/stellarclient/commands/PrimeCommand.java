@@ -48,7 +48,7 @@ public final class PrimeCommand implements CommandExecutor, TabCompleter {
                 return true;
             }
             if (!player.hasPermission("StellarClient.use")) {
-                Text.send(player, "<red>Permission refusÃ©e.</red>");
+                Text.send(player, "<red>Permission refusée.</red>");
                 return true;
             }
             profiles.openGui(player);
@@ -91,19 +91,19 @@ public final class PrimeCommand implements CommandExecutor, TabCompleter {
                     return true;
                 }
                 boolean claimed = rewards.hasClaimed(player, RewardService.FIRST_JOIN);
-                Text.send(player, "<gold>âš¡ Rewards</gold>");
+                Text.send(player, "<gold>⚡ Rewards</gold>");
                 Text.send(player, "<gray>first_join:</gray> " + (claimed ? "<green>claimed</green>" : "<yellow>available after Prime handshake</yellow>"));
             }
             case "achievements" -> {
                 if (!(sender instanceof Player player)) {
                     return true;
                 }
-                Text.send(player, "<gold>âš¡ Achievements</gold>");
+                Text.send(player, "<gold>⚡ Achievements</gold>");
                 var unlocked = achievements.unlocked(player);
                 for (var def : achievements.definitions().values()) {
                     boolean ok = unlocked.contains(def.id());
-                    Text.send(player, (ok ? "<green>âœ”</green> " : "<dark_gray>â˜</dark_gray> ")
-                            + "<white>" + def.name() + "</white> <gray>â€” " + def.description() + "</gray>");
+                    Text.send(player, (ok ? "<green>✔</green> " : "<dark_gray>â˜</dark_gray> ")
+                            + "<white>" + def.name() + "</white> <gray>— " + def.description() + "</gray>");
                 }
             }
             default -> sender.sendMessage("Usage: /prime [reload|info|rewards|achievements]");

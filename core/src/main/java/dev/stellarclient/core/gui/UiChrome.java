@@ -34,7 +34,7 @@ public final class UiChrome {
 
     /**
      * Flat panel for high-frequency screens (HUD editor): no soft shadow,
-     * no scanline gradients â€” a few fill calls instead of thousands.
+     * no scanline gradients — a few fill calls instead of thousands.
      */
     public static void editorPanel(RenderContext ctx, Theme theme, int x, int y, int w, int h) {
         int radius = PrimeDesign.RADIUS_MD;

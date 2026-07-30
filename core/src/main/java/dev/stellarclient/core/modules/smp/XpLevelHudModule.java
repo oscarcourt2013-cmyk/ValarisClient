@@ -8,7 +8,7 @@ import dev.stellarclient.core.module.Module;
 import dev.stellarclient.core.module.ModuleCategory;
 import dev.stellarclient.core.theme.ThemeManager;
 
-/** Shows XP level and progress â€” useful on economy servers with XP shops. */
+/** Shows XP level and progress — useful on economy servers with XP shops. */
 public final class XpLevelHudModule extends Module {
 
     private final SmpLineHud element;

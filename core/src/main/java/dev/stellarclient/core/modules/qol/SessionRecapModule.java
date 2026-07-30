@@ -64,7 +64,7 @@ public final class SessionRecapModule extends Module {
     private void showRecap() {
         long minutes = Math.max(1, (System.currentTimeMillis() - sessionStart) / 60_000L);
         notifications.info("Session Recap",
-                minutes + " min Â· " + deaths + " deaths Â· ~" + pearlsThrown + " pearls");
+                minutes + " min · " + deaths + " deaths · ~" + pearlsThrown + " pearls");
     }
 
     private void scanCrashReports() {

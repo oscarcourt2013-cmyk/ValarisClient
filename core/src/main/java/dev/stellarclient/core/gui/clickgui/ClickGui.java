@@ -503,6 +503,11 @@ public final class ClickGui implements ConfigBinding {
     }
 
     public void mouseDragged(double mouseX, double mouseY, int screenWidth, int screenHeight) {
+        if (view == ClickGuiView.BROWSE && cardBrowser.isDragging()) {
+            cardBrowser.mouseDragged(mouseY, ClickGuiBrowseLayout.compute(
+                    screenWidth, screenHeight, selectedModulePanel != null));
+            return;
+        }
         if (colorPicker != null) {
             colorPicker.mouseDragged(mouseX, mouseY, editorX, editorY);
             if (editingColor != null) {
@@ -520,6 +525,7 @@ public final class ClickGui implements ConfigBinding {
     }
 
     public void mouseReleased() {
+        cardBrowser.mouseReleased();
         if (draggingPanel != null) {
             draggingPanel.mouseReleased();
         }
@@ -568,6 +574,10 @@ public final class ClickGui implements ConfigBinding {
             return settingsMenu.captureKey(glfwKey, keybinds);
         }
         if (view == ClickGuiView.BROWSE && sidebar.keyPressed(glfwKey, profiles)) {
+            return true;
+        }
+        if (view == ClickGuiView.BROWSE && cardBrowser.keyPressed(glfwKey,
+                ClickGuiBrowseLayout.compute(screenWidth, screenHeight, selectedModulePanel != null))) {
             return true;
         }
         if (glfwKey == 256 && view == ClickGuiView.ONBOARDING) {

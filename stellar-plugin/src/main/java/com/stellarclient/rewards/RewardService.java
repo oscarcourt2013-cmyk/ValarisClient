@@ -44,7 +44,7 @@ public final class RewardService implements Listener {
         if (!database.claimReward(player.getUniqueId(), FIRST_JOIN)) {
             return;
         }
-        String message = section.getString("message", "<gold>âš¡</gold> <white>Prime reward unlocked!</white>");
+        String message = section.getString("message", "<gold>⚡</gold> <white>Prime reward unlocked!</white>");
         Text.send(player, message);
         notifications.rewardAvailable(player, "First Prime join reward claimed");
 
@@ -57,7 +57,7 @@ public final class RewardService implements Listener {
         if (plugin.getConfig().getBoolean("notifications.first-join-broadcast", false)) {
             String broadcast = plugin.getConfig().getString(
                     "notifications.broadcast",
-                    "<gold>âš¡</gold> <yellow>%player%</yellow> <gray>joue avec StellarClient</gray>");
+                    "<gold>⚡</gold> <yellow>%player%</yellow> <gray>joue avec StellarClient</gray>");
             Bukkit.getServer().sendMessage(Text.mm(Text.applyPlayer(broadcast, player)));
         }
     }

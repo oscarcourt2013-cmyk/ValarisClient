@@ -12,7 +12,7 @@ import dev.stellarclient.core.theme.ThemeManager;
 
 /**
  * Clicks-per-second counter. Press edges are detected per rendered frame and
- * timestamped into fixed ring buffers â€” no allocation, no tick listener.
+ * timestamped into fixed ring buffers — no allocation, no tick listener.
  */
 public final class CpsCounterModule extends Module {
 

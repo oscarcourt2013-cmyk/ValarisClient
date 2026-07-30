@@ -28,7 +28,7 @@ let exitHandled = false
 
 function isLikelyMinecraftProcess(command: unknown, args: unknown): boolean {
   const joined = Array.isArray(args) ? args.join(' ').toLowerCase() : ''
-  // Require MC/Fabric markers â€” bare `java` matches installers and breaks running sync.
+  // Require MC/Fabric markers — bare `java` matches installers and breaks running sync.
   return (
     joined.includes('net.minecraft') ||
     joined.includes('net.fabricmc') ||
@@ -193,7 +193,7 @@ async function resolveLaunchJava(config: InstanceLaunchConfig, settingsJavaPath?
   } catch {
     emitLaunchProgress({
       phase: 'launch',
-      detail: 'System Java not found. Downloading bundled Java 21â€¦',
+      detail: 'System Java not found. Downloading bundled Java 21…',
       percent: 70
     })
     return ensureBundledJava(21)
@@ -215,7 +215,7 @@ function attachLauncherEvents(
           : lower.includes(' warn') || lower.includes('/warn]')
             ? 'warn'
             : 'debug'
-      // Console page only â€” never push raw JVM lines into the Home progress strip.
+      // Console page only — never push raw JVM lines into the Home progress strip.
       launchLogService.append(level, detail, 'log')
     }
     if (detail.includes('Launching with arguments')) {
@@ -228,7 +228,7 @@ function attachLauncherEvents(
       typeof size === 'number' && size > 0 ? 20 + Math.round((progress / size) * 50) : undefined
     emitLaunchProgress({
       phase: 'download',
-      detail: typeof element === 'string' && element ? element : 'Downloading Minecraft filesâ€¦',
+      detail: typeof element === 'string' && element ? element : 'Downloading Minecraft files…',
       percent
     })
   })
@@ -295,7 +295,7 @@ export class MinecraftEngine {
     if (processAlive(activeGameProcess)) {
       return true
     }
-    // Process handle can be missing on some JVMs â€” trust the session until exit is handled.
+    // Process handle can be missing on some JVMs — trust the session until exit is handled.
     if (activeInstanceId != null && !exitHandled) {
       return true
     }
@@ -350,8 +350,8 @@ export class MinecraftEngine {
       throw new Error('No account selected.')
     }
 
-    emitLaunchProgress({ phase: 'start', detail: 'Preparing launchâ€¦', percent: 0 })
-    emitLaunchProgress({ phase: 'start', detail: 'Resolving Microsoft / offline sessionâ€¦', percent: 5 })
+    emitLaunchProgress({ phase: 'start', detail: 'Preparing launch…', percent: 0 })
+    emitLaunchProgress({ phase: 'start', detail: 'Resolving Microsoft / offline session…', percent: 5 })
 
     const authenticator = await resolveLaunchAuthenticator(account)
     const runtimeRoot = getRuntimeRoot()
@@ -377,7 +377,7 @@ export class MinecraftEngine {
       settings.gameHeight,
       settings.gameDisplayMode
     )
-    emitLaunchProgress({ phase: 'launch', detail: 'Locating Java 21+â€¦', percent: 68 })
+    emitLaunchProgress({ phase: 'launch', detail: 'Locating Java 21+…', percent: 68 })
     const javaPath = await resolveLaunchJava(config, settings.defaultJavaPath)
     emitLaunchProgress({ phase: 'launch', detail: `Using Java: ${javaPath}`, percent: 80 })
 
@@ -387,7 +387,7 @@ export class MinecraftEngine {
 
     emitLaunchProgress({
       phase: 'launch',
-      detail: `Starting Minecraft ${config.minecraftVersion} (${config.loader})â€¦`,
+      detail: `Starting Minecraft ${config.minecraftVersion} (${config.loader})…`,
       percent: 85
     })
 

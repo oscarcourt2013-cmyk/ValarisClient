@@ -8,7 +8,7 @@ import java.util.function.Consumer;
  * Queue of on-screen notifications.
  *
  * <p>No tick loop: expired entries are pruned lazily whenever the queue is
- * touched. The HUD iterates via {@link #forEachActive} â€” no list copies are
+ * touched. The HUD iterates via {@link #forEachActive} — no list copies are
  * allocated on the render path.</p>
  */
 public final class NotificationManager {

@@ -30,7 +30,7 @@ public final class PlayerConnectionListener implements Listener {
         plugin.xp().onJoin(player);
         plugin.missions().onJoin(player);
         plugin.network().reportJoin(player);
-        // Delay friend scan â€” detection may arrive after handshake.
+        // Delay friend scan — detection may arrive after handshake.
         Bukkit.getScheduler().runTaskLater(plugin, () -> plugin.friends().onPlayerJoin(player), 40L);
     }
 
@@ -67,7 +67,7 @@ public final class PlayerConnectionListener implements Listener {
         String plain = PlainTextComponentSerializer.plainText().serialize(event.message());
         String format = plugin.getConfig().getString(
                 "verified.chat-format",
-                "<gold>âš¡</gold> <gray>%player%</gray> <dark_gray>Â»</dark_gray> <white>%message%</white>");
+                "<gold>⚡</gold> <gray>%player%</gray> <dark_gray>»</dark_gray> <white>%message%</white>");
         event.renderer((source, sourceDisplayName, message, viewer) ->
                 Text.mm(format
                         .replace("%player%", player.getName())
@@ -75,7 +75,7 @@ public final class PlayerConnectionListener implements Listener {
     }
 
     private void applyTab(Player player) {
-        String prefix = plugin.getConfig().getString("verified.tab-prefix", "<gold>âš¡ </gold>");
+        String prefix = plugin.getConfig().getString("verified.tab-prefix", "<gold>⚡ </gold>");
         Scoreboard board = Bukkit.getScoreboardManager().getMainScoreboard();
         String teamName = ("pc_" + player.getUniqueId().toString().replace("-", "")).substring(0, 16);
         Team team = board.getTeam(teamName);

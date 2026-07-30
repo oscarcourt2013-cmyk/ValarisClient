@@ -53,7 +53,7 @@ public final class ChatOverlayState {
         }
         if (highlightMentions && !mentionPlayerName.isEmpty()
                 && text.toLowerCase(java.util.Locale.ROOT).contains(mentionPlayerName.toLowerCase(java.util.Locale.ROOT))) {
-            return "Â§e" + formatted;
+            return "§e" + formatted;
         }
         return formatted;
     }

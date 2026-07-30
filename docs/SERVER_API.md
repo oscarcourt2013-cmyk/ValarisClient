@@ -7,9 +7,9 @@ Custom payload channel for partner Minecraft servers to detect and integrate wit
 | Channel | `StellarClient:main` |
 | Protocol | `1` |
 | Transport | Fabric `CustomPacketPayload` / plugin messaging |
-| Direction | C2S handshake + profile Â· S2C sync / XP / rewards / notify |
+| Direction | C2S handshake + profile · S2C sync / XP / rewards / notify |
 
-> Handshake proves the player runs StellarClient. **Do not trust the client for grants, economy, or permissions** â€” always validate rewards server-side.
+> Handshake proves the player runs StellarClient. **Do not trust the client for grants, economy, or permissions** — always validate rewards server-side.
 
 ## Handshake
 
@@ -54,19 +54,19 @@ Unknown `t` values are ignored (forward compatible).
 
 ## Client managers
 
-- `PrimeAccountManager` â€” `getLevel()`, `getXP()`, `getFriends()`, `isLogged()`
-- HUD toasts via `NotificationManager` (e.g. `âš¡ +50 XP Prime`)
-- `/prime debug` â€” channel, handshake, protocol, last packets (client-only)
+- `PrimeAccountManager` — `getLevel()`, `getXP()`, `getFriends()`, `isLogged()`
+- HUD toasts via `NotificationManager` (e.g. `⚡ +50 XP Prime`)
+- `/prime debug` — channel, handshake, protocol, last packets (client-only)
 
 ## Partner servers
 
 StellarClient pins partner entries in the multiplayer list (non-removable):
 
-- **Elysia SMP** â€” `elysiasmp.fr`
+- **Elysia SMP** — `elysiasmp.fr`
 
 ## Paper / Spigot example (plugin messaging)
 
-Production plugin (recommended): [`prime-plugin/`](../prime-plugin/) â€” Paper/Purpur 1.21.11, SQLite/MySQL, XP, rewards, PAPI.
+Production plugin (recommended): [`prime-plugin/`](../prime-plugin/) — Paper/Purpur 1.21.11, SQLite/MySQL, XP, rewards, PAPI.
 
 Minimal listener sketch:
 ```java
@@ -83,7 +83,7 @@ public final class PrimeBridge implements PluginMessageListener {
     public void onPluginMessageReceived(String channel, Player player, byte[] message) {
         if (!CHANNEL.equals(channel)) return;
         String json = new String(message, StandardCharsets.UTF_8);
-        // Parse "t":"HANDSHAKE" â€¦ then:
+        // Parse "t":"HANDSHAKE" … then:
         player.sendPluginMessage(
             /* plugin */, CHANNEL,
             "{\"t\":\"SERVER_ACCEPTED\",\"message\":\"Welcome\"}".getBytes(StandardCharsets.UTF_8));
@@ -112,7 +112,7 @@ ServerPlayNetworking.registerGlobalReceiver(MainPayload.TYPE, (payload, context)
 ## Compatibility
 
 - Minecraft **1.21.x** and **26.2** StellarClient jars
-- Protocol `1` â€” bump only on breaking changes; keep old servers working by ignoring unknown fields
+- Protocol `1` — bump only on breaking changes; keep old servers working by ignoring unknown fields
 
 ## Debug
 

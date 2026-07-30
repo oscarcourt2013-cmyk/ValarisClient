@@ -38,7 +38,7 @@ public final class FpsCounterModule extends Module {
         private final ThemeManager themes;
         private final MinecraftAdapter adapter;
 
-        // Text rebuilt only when the value changes â€” render stays allocation-free.
+        // Text rebuilt only when the value changes — render stays allocation-free.
         private int lastFps = -1;
         private String text = "";
 

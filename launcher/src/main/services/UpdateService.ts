@@ -42,7 +42,7 @@ function modCacheManifestPath(): string {
 function offlineStatus(currentLauncher: string, currentMod: string, checkedAt: string): UpdateStatusDto {
   return {
     checkedAt,
-    notes: 'Offline â€” could not check GitHub Releases.',
+    notes: 'Offline — could not check GitHub Releases.',
     releaseUrl: GITHUB_RELEASES_URL,
     launcher: { current: currentLauncher, latest: currentLauncher, updateAvailable: false },
     mod: { current: currentMod, latest: currentMod, updateAvailable: false },

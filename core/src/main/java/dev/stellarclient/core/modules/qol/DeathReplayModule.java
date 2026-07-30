@@ -58,10 +58,10 @@ public final class DeathReplayModule extends Module {
         Snapshot first = buffer.peekFirst();
         Snapshot last = buffer.peekLast();
         String trail = first != null && last != null
-                ? String.format("from (%.0f,%.0f,%.0f) â†’ (%.0f,%.0f,%.0f)",
+                ? String.format("from (%.0f,%.0f,%.0f) → (%.0f,%.0f,%.0f)",
                 first.x, first.y, first.z, last.x, last.y, last.z)
                 : String.format("at (%.0f, %.0f, %.0f)", event.x(), event.y(), event.z());
-        notifications.info("Death Replay", trail + " Â· " + buffer.size() + " snapshots");
+        notifications.info("Death Replay", trail + " · " + buffer.size() + " snapshots");
         buffer.clear();
     }
 }

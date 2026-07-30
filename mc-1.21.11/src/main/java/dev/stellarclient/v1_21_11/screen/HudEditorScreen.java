@@ -17,7 +17,7 @@ import net.minecraft.network.chat.Component;
  */
 public final class HudEditorScreen extends Screen {
 
-    /** Dim over flat backdrop â€” vanilla HUD draws on top. */
+    /** Dim over flat backdrop — vanilla HUD draws on top. */
     private static final int WORLD_DIM = 0x68000000;
     /** Title / no level: same flat backdrop. */
     private static final int MENU_DIM = 0xE0101010;
@@ -40,7 +40,7 @@ public final class HudEditorScreen extends Screen {
 
     @Override
     public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
-        // Intentionally empty â€” super renders the 3D world + blur every frame (~10 FPS on servers).
+        // Intentionally empty — super renders the 3D world + blur every frame (~10 FPS on servers).
     }
 
     @Override

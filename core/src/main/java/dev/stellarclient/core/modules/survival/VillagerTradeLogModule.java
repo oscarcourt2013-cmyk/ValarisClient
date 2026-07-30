@@ -60,7 +60,7 @@ public final class VillagerTradeLogModule extends Module {
 
     private void refresh() {
         if (trades.isEmpty()) {
-            element.setText("Trades: â€”");
+            element.setText("Trades: —");
             return;
         }
         element.setText("Trade: " + trades.peekFirst());

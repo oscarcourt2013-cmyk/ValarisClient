@@ -23,7 +23,7 @@ function validateAddress(address: string): string | null {
 function validateName(name: string): string | null {
   const trimmed = name.trim()
   if (trimmed.length < 1 || trimmed.length > 48) {
-    return 'Name must be 1â€“48 characters.'
+    return 'Name must be 1–48 characters.'
   }
   return null
 }
@@ -42,7 +42,7 @@ function motdText(motd: McStatusPayload['motd']): string | undefined {
 }
 
 /**
- * Favorite servers â€” persisted locally with live status via mcstatus.io.
+ * Favorite servers — persisted locally with live status via mcstatus.io.
  * Last-known player counts are retained when a probe fails (anti-flicker).
  */
 export class ServerService {
@@ -177,7 +177,7 @@ export class ServerService {
 
     const previous = mergeCatalogMetadata(server)
     const { host, port } = parseServerAddress(server.address)
-    // Keep last-known counts by default â€” only overwrite on a successful online probe.
+    // Keep last-known counts by default — only overwrite on a successful online probe.
     let updated: FavoriteServer = { ...previous, online: false }
 
     try {

@@ -102,7 +102,7 @@ public final class StreamerPrivacyState {
         maskSelf = value;
     }
 
-    /** Clears all flags â€” for tests and shutdown. */
+    /** Clears all flags — for tests and shutdown. */
     public static void reset() {
         debugShield = false;
         chatRedact = false;

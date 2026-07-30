@@ -70,7 +70,7 @@ public final class CoordinatesModule extends Module {
 
         private void refresh() {
             if (StreamerPrivacyState.hudShield() || StreamerPrivacyState.blockLocationHud()) {
-                text = "Â§8[hidden]";
+                text = "§8[hidden]";
                 return;
             }
             if (!adapter.hasPlayer()) {

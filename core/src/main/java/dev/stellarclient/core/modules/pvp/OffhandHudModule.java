@@ -9,7 +9,7 @@ import dev.stellarclient.core.module.Module;
 import dev.stellarclient.core.module.ModuleCategory;
 import dev.stellarclient.core.theme.ThemeManager;
 
-/** Shows current offhand item â€” totem, shield, gapple, etc. */
+/** Shows current offhand item — totem, shield, gapple, etc. */
 public final class OffhandHudModule extends Module {
 
     private final SimpleLineHud element;

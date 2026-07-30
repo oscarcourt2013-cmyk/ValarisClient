@@ -17,7 +17,7 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-/** In-game account picker â€” title menu only (no world loaded). */
+/** In-game account picker — title menu only (no world loaded). */
 public final class AccountSwitcherUi {
 
     private static final int PANEL_W = 360;
@@ -62,7 +62,7 @@ public final class AccountSwitcherUi {
         String current = adapter.playerName();
         if (current != null && !current.isBlank()) {
             String type = adapter.sessionAccountType();
-            String chip = current + (type == null || type.isBlank() ? "" : " Â· " + typeLabel(type));
+            String chip = current + (type == null || type.isBlank() ? "" : " · " + typeLabel(type));
             int chipW = ctx.smoothTextWidth(chip, 0.78f) + 16;
             int chipX = x + PANEL_W - PAD - chipW;
             ctx.fillRoundedRect(chipX, y + 12, chipW, 18, PrimeDesign.RADIUS_SM,
@@ -117,12 +117,12 @@ public final class AccountSwitcherUi {
                         ? PrimeLang.get("prime.gui.account.type.microsoft", "Microsoft")
                         : PrimeLang.get("prime.gui.account.type.offline", "Offline");
                 if (active) {
-                    meta += " Â· " + PrimeLang.get("prime.gui.account.active", "Active");
+                    meta += " · " + PrimeLang.get("prime.gui.account.active", "Active");
                 }
                 ctx.drawSmoothText(meta, x + PAD + 40, rowY + 20, theme.foregroundMuted(), 0.72f);
 
                 if (hover && !busy) {
-                    String action = PrimeLang.get("prime.gui.account.use", "Use â†’");
+                    String action = PrimeLang.get("prime.gui.account.use", "Use →");
                     int aw = ctx.smoothTextWidth(action, 0.78f);
                     ctx.drawSmoothText(action, x + PANEL_W - PAD - 12 - aw, rowY + 12, theme.accent(), 0.78f);
                 }
@@ -134,7 +134,7 @@ public final class AccountSwitcherUi {
                 ColorUtil.withAlpha(theme.background(), 0.55f));
         ctx.fillRoundedBorder(x + PAD, fieldY, PANEL_W - PAD * 2 - 86, 28, PrimeDesign.RADIUS_SM, 1,
                 ColorUtil.withAlpha(theme.border(), 0.45f), ColorUtil.withAlpha(theme.background(), 0.55f));
-        String placeholder = PrimeLang.get("prime.gui.account.offline_hint", "Offline nameâ€¦");
+        String placeholder = PrimeLang.get("prime.gui.account.offline_hint", "Offline name…");
         String fieldText = draftName.isEmpty()
                 ? placeholder
                 : draftName + (System.currentTimeMillis() / 500 % 2 == 0 ? "|" : "");
@@ -153,11 +153,11 @@ public final class AccountSwitcherUi {
                     statusError ? 0xFFFF6B6B : theme.foregroundMuted(), 0.78f);
         } else if (busy) {
             ctx.drawSmoothText(
-                    PrimeLang.get("prime.gui.account.switching", "Switchingâ€¦"),
+                    PrimeLang.get("prime.gui.account.switching", "Switching…"),
                     x + PAD, y + panelH - 28, theme.accent(), 0.78f);
         } else {
             ctx.drawSmoothText(
-                    PrimeLang.get("prime.gui.account.hint", "Click an account Â· Esc to close"),
+                    PrimeLang.get("prime.gui.account.hint", "Click an account · Esc to close"),
                     x + PAD, y + panelH - 28, theme.foregroundMuted(), 0.78f);
         }
     }
@@ -296,18 +296,18 @@ public final class AccountSwitcherUi {
         String lower = raw.toLowerCase(Locale.ROOT);
         if (lower.contains("needs a launcher re-login") || lower.contains("refresh")) {
             return PrimeLang.get("prime.gui.account.relogin",
-                    "Microsoft session expired â€” sign in again in the launcher.");
+                    "Microsoft session expired — sign in again in the launcher.");
         }
         if (lower.contains("http 400") || lower.contains("invalid_grant") || lower.contains("aadsts")) {
             return PrimeLang.get("prime.gui.account.token_invalid",
-                    "Microsoft token invalid â€” re-login in the StellarClient Launcher.");
+                    "Microsoft token invalid — re-login in the StellarClient Launcher.");
         }
         if (lower.contains("http 401") || lower.contains("unauthorized")) {
             return PrimeLang.get("prime.gui.account.unauthorized",
-                    "Xbox / Minecraft auth failed â€” check the account owns Java.");
+                    "Xbox / Minecraft auth failed — check the account owns Java.");
         }
         if (raw.length() > 72) {
-            return raw.substring(0, 69) + "â€¦";
+            return raw.substring(0, 69) + "…";
         }
         return raw.isBlank() ? PrimeLang.get("prime.gui.account.failed", "Switch failed") : raw;
     }

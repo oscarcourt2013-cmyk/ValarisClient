@@ -55,7 +55,7 @@ public final class AfkAlertModule extends Module {
         if (idleMillis >= warnThreshold && !warned) {
             warned = true;
             long remainingMin = Math.max(1, idleMinutes.get() - (idleMillis / 60_000L));
-            notifications.warning("AFK Alert", "No input for a while â€” ~" + remainingMin + "m until kick?");
+            notifications.warning("AFK Alert", "No input for a while — ~" + remainingMin + "m until kick?");
         }
     }
 }

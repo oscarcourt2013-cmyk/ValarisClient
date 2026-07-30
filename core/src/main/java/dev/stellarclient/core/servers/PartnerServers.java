@@ -39,7 +39,7 @@ public final class PartnerServers {
 
     /** Display name used when injecting into the vanilla list. */
     public static String displayName(Entry entry) {
-        return entry.name() + " â˜…";
+        return entry.name() + " ★";
     }
 
     /**

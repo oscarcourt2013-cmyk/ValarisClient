@@ -147,19 +147,19 @@ export function InstancesPage() {
               <div className="instances__create-menu">
                 <button type="button" onClick={() => openCreate('prime', '26.2')}>
                   <strong>{t('instances.createPrime26')}</strong>
-                  <span>Minecraft 26.2 Â· Prime</span>
+                  <span>Minecraft 26.2 · Prime</span>
                 </button>
                 <button type="button" onClick={() => openCreate('prime', '1.21.11')}>
                   <strong>{t('instances.createPrime121')}</strong>
-                  <span>Minecraft 1.21.11 Â· Prime</span>
+                  <span>Minecraft 1.21.11 · Prime</span>
                 </button>
                 <button type="button" onClick={() => openCreate('fabric', '26.2')}>
                   <strong>{t('instances.fabric')}</strong>
-                  <span>Minecraft 26.2 Â· Fabric</span>
+                  <span>Minecraft 26.2 · Fabric</span>
                 </button>
                 <button type="button" onClick={() => openCreate('vanilla', '26.2')}>
                   <strong>{t('instances.vanilla')}</strong>
-                  <span>Minecraft 26.2 Â· Vanilla</span>
+                  <span>Minecraft 26.2 · Vanilla</span>
                 </button>
               </div>
             )}
@@ -199,11 +199,11 @@ export function InstancesPage() {
                   </div>
                   <p className="instances__meta">
                     MC {inst.minecraftVersion}
-                    <span>Â·</span>
+                    <span>·</span>
                     {loaderLabel(inst)}
-                    <span>Â·</span>
+                    <span>·</span>
                     {inst.ramMb} MB
-                    <span>Â·</span>
+                    <span>·</span>
                     {t('instances.modsBadge', { count: inst.modCount })}
                   </p>
                   {inst.lastPlayed && (

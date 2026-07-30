@@ -47,7 +47,7 @@ public final class ComboTimerModule extends Module {
 
     private void refresh() {
         if (!comboActive) {
-            element.setText("Combo: â€”");
+            element.setText("Combo: —");
             return;
         }
         long elapsed = System.currentTimeMillis() - lastHitMillis;

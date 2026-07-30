@@ -186,7 +186,7 @@ public final class StellarClient {
         if (freshInstall) {
             FirstRunConfigurator.applyStarter(client);
         }
-        // Social is always-on infrastructure â€” keep the module enabled so settings sync.
+        // Social is always-on infrastructure — keep the module enabled so settings sync.
         var socialHub = client.modules.get("social-hub");
         if (socialHub != null && !socialHub.isEnabled()) {
             socialHub.setEnabled(true);

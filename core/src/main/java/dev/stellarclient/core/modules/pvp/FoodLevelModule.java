@@ -10,7 +10,7 @@ import dev.stellarclient.core.module.Module;
 import dev.stellarclient.core.module.ModuleCategory;
 import dev.stellarclient.core.theme.ThemeManager;
 
-/** Hunger level â€” sprint and regen depend on it in long fights. */
+/** Hunger level — sprint and regen depend on it in long fights. */
 public final class FoodLevelModule extends Module {
 
     private final IntSetting warnBelow = addSetting(new IntSetting(

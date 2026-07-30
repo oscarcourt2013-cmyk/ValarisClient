@@ -5,7 +5,7 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Lightweight cloth-like cape pose boosts â€” pure math, no mesh soft-body.
+ * Lightweight cloth-like cape pose boosts — pure math, no mesh soft-body.
  * Modulates vanilla {@code capeFlap}/{@code capeLean}/{@code capeLean2} from movement.
  */
 public final class CapePhysics {
@@ -45,7 +45,7 @@ public final class CapePhysics {
     }
 
     /**
-     * Target boosts from motion â€” hang when rising / idle, flare when falling / sprinting,
+     * Target boosts from motion — hang when rising / idle, flare when falling / sprinting,
      * subtle idle sway. Cheap trig only; no allocations beyond the return record.
      */
     public static Boost computeBoost(Motion motion, float intensity) {

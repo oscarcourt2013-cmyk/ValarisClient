@@ -11,7 +11,7 @@ import net.minecraft.client.gui.GuiGraphics;
 
 /**
  * Draws only the vanilla HUD layers that map to visible {@link VanillaHudComponent}
- * proxies â€” no world, blur, chat, crosshair or other {@link Gui#render} work.
+ * proxies — no world, blur, chat, crosshair or other {@link Gui#render} work.
  */
 public final class VanillaHudLayerRenderer {
 

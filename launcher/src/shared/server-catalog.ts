@@ -1,6 +1,6 @@
 import type { FavoriteServer, ServerSocialLinks } from './types'
 
-/** Curated partner / featured servers â€” merged into favorites by address. */
+/** Curated partner / featured servers — merged into favorites by address. */
 export interface ServerCatalogEntry {
   address: string
   name: string
@@ -20,10 +20,10 @@ export const SERVER_CATALOG: ServerCatalogEntry[] = [
   {
     address: 'elysiasmp.fr',
     name: 'Elysia SMP',
-    description: 'Survival multiplayer officiel â€” Ã©conomie, claims, events.',
+    description: 'Survival multiplayer officiel — économie, claims, events.',
     fullDescription:
       'Elysia SMP est le serveur partenaire officiel de StellarClient. Survival semi-vanilla, ' +
-      'communautÃ© active, boutique et votes. Rejoins avec le client Prime pour le badge et les cosmÃ©tiques.',
+      'communauté active, boutique et votes. Rejoins avec le client Prime pour le badge et les cosmétiques.',
     bannerUrl:
       'https://api.mcstatus.io/v2/widget/java/elysiasmp.fr?theme=dark&width=800&height=160',
     versionHint: '1.21+',

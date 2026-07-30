@@ -13,7 +13,7 @@ import dev.stellarclient.core.theme.ThemeManager;
 
 /**
  * Visual WASD + mouse button overlay. Key state is polled per rendered frame
- * from GLFW through the adapter â€” a handful of native calls, no listeners.
+ * from GLFW through the adapter — a handful of native calls, no listeners.
  */
 public final class KeystrokesModule extends Module {
 

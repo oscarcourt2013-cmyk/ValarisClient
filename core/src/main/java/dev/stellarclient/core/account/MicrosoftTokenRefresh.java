@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
  *
  * <p>Supports both launcher auth stacks:
  * <ul>
- *   <li>Electron / msmc â€” Mojang client {@code 00000000402b5328} via {@code login.live.com}</li>
- *   <li>Tauri / Prism â€” Azure client {@code 1ce91f64-â€¦} via {@code login.microsoftonline.com}</li>
+ *   <li>Electron / msmc — Mojang client {@code 00000000402b5328} via {@code login.live.com}</li>
+ *   <li>Tauri / Prism — Azure client {@code 1ce91f64-…} via {@code login.microsoftonline.com}</li>
  * </ul>
  */
 public final class MicrosoftTokenRefresh {

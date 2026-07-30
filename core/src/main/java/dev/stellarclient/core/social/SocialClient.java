@@ -154,7 +154,7 @@ public final class SocialClient implements WebSocket.Listener {
             return;
         }
         state = ConnState.CONNECTING;
-        statusMessage = "Connectingâ€¦";
+        statusMessage = "Connecting…";
         final String connectUuid = uuid.trim();
         final String connectName = username.trim();
         final boolean connectOffline = offline;
@@ -197,7 +197,7 @@ public final class SocialClient implements WebSocket.Listener {
             }
             JsonObject json = JsonParser.parseString(res.body()).getAsJsonObject();
             token = json.get("token").getAsString();
-            statusMessage = "Opening socketâ€¦";
+            statusMessage = "Opening socket…";
             refreshFriendsBlocking();
             openSocket();
         } catch (Exception e) {
@@ -933,13 +933,13 @@ public final class SocialClient implements WebSocket.Listener {
         if (m == null || m.isBlank()) {
             m = e.getClass().getSimpleName();
         }
-        return m.length() > 64 ? m.substring(0, 64) + "â€¦" : m;
+        return m.length() > 64 ? m.substring(0, 64) + "…" : m;
     }
 
     private static String truncate(String s) {
         if (s == null) {
             return "";
         }
-        return s.length() > 120 ? s.substring(0, 120) + "â€¦" : s;
+        return s.length() > 120 ? s.substring(0, 120) + "…" : s;
     }
 }

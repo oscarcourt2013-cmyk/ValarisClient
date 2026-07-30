@@ -46,7 +46,7 @@ public enum HudAnchor {
 
     /**
      * The anchor whose screen third contains the point
-     * ({@code centerXFraction}, {@code centerYFraction}) â€” both in [0, 1].
+     * ({@code centerXFraction}, {@code centerYFraction}) — both in [0, 1].
      * Used by the HUD editor to re-anchor an element after a drag.
      */
     public static HudAnchor closest(float centerXFraction, float centerYFraction) {

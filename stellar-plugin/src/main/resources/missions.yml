@@ -8,7 +8,7 @@ missions:
     rewards:
       xp: 15
       commands: []
-      message: "<gold>âš¡</gold> Mission quotidienne accomplie !"
+      message: "<gold>⚡</gold> Mission quotidienne accomplie !"
   break_blocks:
     name: "Mineur"
     description: "Casser 64 blocs"
@@ -18,17 +18,17 @@ missions:
     rewards:
       xp: 10
       commands: []
-      message: "<gold>âš¡</gold> Mission Mineur accomplie !"
+      message: "<gold>⚡</gold> Mission Mineur accomplie !"
   player_kills:
     name: "Combattant"
-    description: "Ã‰liminer 3 joueurs"
+    description: "Éliminer 3 joueurs"
     type: kill_players
     target: 3
     reset: never
     rewards:
       xp: 20
       commands: []
-      message: "<gold>âš¡</gold> Mission Combattant accomplie !"
+      message: "<gold>⚡</gold> Mission Combattant accomplie !"
   join_server:
     name: "Bienvenue"
     description: "Rejoindre le serveur avec StellarClient"
@@ -38,4 +38,4 @@ missions:
     rewards:
       xp: 5
       commands: []
-      message: "<gold>âš¡</gold> Bienvenue sur le rÃ©seau Prime !"
+      message: "<gold>⚡</gold> Bienvenue sur le réseau Prime !"

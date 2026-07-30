@@ -25,7 +25,7 @@ public final class RoundedRect {
         fillCorner(ctx, x + width - radius, y + height - radius, radius, argb, false, false);
     }
 
-    /** Outer rounded rect minus inner â€” cheap 1px border. */
+    /** Outer rounded rect minus inner — cheap 1px border. */
     public static void border(RenderContext ctx, int x, int y, int width, int height,
                               int radius, int thickness, int borderArgb, int innerArgb) {
         fill(ctx, x, y, width, height, radius, borderArgb);
@@ -38,7 +38,7 @@ public final class RoundedRect {
      * Cheap drop shadow: two flat offset rects.
      * Avoids multi-layer rounded fills (thousands of draw calls on tall panels).
      *
-     * @param radius unused â€” kept for call-site compatibility with rounded panel API
+     * @param radius unused — kept for call-site compatibility with rounded panel API
      */
     public static void softShadow(RenderContext ctx, int x, int y, int width, int height,
                                   int radius, int shadowArgb) {
@@ -57,7 +57,7 @@ public final class RoundedRect {
         }
     }
 
-    /** One horizontal span per row â€” not 1Ã—1 pixels (radiusÂ² draw calls). */
+    /** One horizontal span per row — not 1×1 pixels (radius² draw calls). */
     private static void fillCorner(RenderContext ctx, int left, int top, int radius, int argb,
                                    boolean leftArc, boolean topArc) {
         float r2 = (float) radius * radius;

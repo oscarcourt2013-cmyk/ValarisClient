@@ -134,7 +134,7 @@ public final class HudManager implements ConfigBinding {
         return elementAt(x, y, false);
     }
 
-    /** Editor hit-test â€” includes hidden elements so they can be re-selected. */
+    /** Editor hit-test — includes hidden elements so they can be re-selected. */
     public HudElement elementAt(double x, double y, boolean includeHidden) {
         HudElement[] elements = this.renderList;
         for (int i = elements.length - 1; i >= 0; i--) {

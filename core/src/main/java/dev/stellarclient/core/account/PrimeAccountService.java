@@ -6,7 +6,7 @@ import dev.stellarclient.core.config.ConfigBinding;
 
 import java.util.UUID;
 
-/** Prime Account auth stub â€” ready for real OAuth/API. */
+/** Prime Account auth stub — ready for real OAuth/API. */
 public final class PrimeAccountService implements ConfigBinding {
 
     public enum Tier {

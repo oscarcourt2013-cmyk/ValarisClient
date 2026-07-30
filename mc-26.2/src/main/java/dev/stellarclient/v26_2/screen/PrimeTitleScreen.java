@@ -8,7 +8,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 
-/** StellarClient title screen â€” replaces vanilla {@code TitleScreen}. */
+/** StellarClient title screen — replaces vanilla {@code TitleScreen}. */
 public final class PrimeTitleScreen extends Screen {
 
     private static final int OVERLAY = 0x28000000;
@@ -42,7 +42,7 @@ public final class PrimeTitleScreen extends Screen {
 
     @Override
     public void extractBackground(GuiGraphicsExtractor extractor, int mouseX, int mouseY, float delta) {
-        // Skip default backdrop â€” panorama is drawn in extractRenderState.
+        // Skip default backdrop — panorama is drawn in extractRenderState.
     }
 
     @Override

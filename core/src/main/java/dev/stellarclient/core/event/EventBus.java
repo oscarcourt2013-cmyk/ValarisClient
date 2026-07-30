@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 /**
- * Typed event bus â€” no annotations, no reflection.
+ * Typed event bus — no annotations, no reflection.
  *
  * <p>Dispatch resolves the exact event class to a pre-sorted listener array:
  * {@link #post} is a map lookup plus an indexed loop, allocation-free.

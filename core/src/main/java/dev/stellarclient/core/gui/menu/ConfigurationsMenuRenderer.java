@@ -12,7 +12,7 @@ import dev.stellarclient.core.util.ColorUtil;
 import java.util.List;
 
 /**
- * Local configuration backups â€” upload / download / restore.
+ * Local configuration backups — upload / download / restore.
  * Storage is on-disk under the game dir (not a remote cloud).
  */
 public final class ConfigurationsMenuRenderer {
@@ -34,7 +34,7 @@ public final class ConfigurationsMenuRenderer {
 
         ctx.drawText(PrimeLang.get("prime.gui.configurations.title", "Configurations"),
                 x + 12, y + 12, theme.accent(), true);
-        ctx.drawText(PrimeLang.get("prime.gui.configurations.local_only", "Local backups only â€” stored on this PC"),
+        ctx.drawText(PrimeLang.get("prime.gui.configurations.local_only", "Local backups only — stored on this PC"),
                 x + 12, y + 28, theme.foregroundMuted(), true);
         ctx.drawText(PrimeLang.get("prime.gui.configurations.profile", "Profile: %s", profiles.activeProfile()),
                 x + 12, y + 44, theme.foreground(), true);
@@ -66,13 +66,13 @@ public final class ConfigurationsMenuRenderer {
                 ctx.fillRoundedRect(x + 12, rowY - 1, PANEL_W - 24, rowH + 2, 4,
                         ColorUtil.withAlpha(theme.accent(), sel ? 0.28f : 0.12f));
             }
-            ctx.drawText((sel ? "â€º " : "  ") + trimLabel(entry.label(), 40),
+            ctx.drawText((sel ? "› " : "  ") + trimLabel(entry.label(), 40),
                     x + 14, rowY + 1, sel ? theme.accent() : theme.foregroundMuted(), true);
             rowY += rowH + 2;
             shown++;
         }
         if (versions.isEmpty()) {
-            ctx.drawText(PrimeLang.get("prime.gui.configurations.empty", "No backups yet â€” tap Upload"),
+            ctx.drawText(PrimeLang.get("prime.gui.configurations.empty", "No backups yet — tap Upload"),
                     x + 16, rowY, theme.foregroundMuted(), true);
         }
 
@@ -172,7 +172,7 @@ public final class ConfigurationsMenuRenderer {
         if (label.length() <= max) {
             return label;
         }
-        return label.substring(0, Math.max(0, max - 1)) + "â€¦";
+        return label.substring(0, Math.max(0, max - 1)) + "…";
     }
 
     private static boolean hit(double mx, double my, int x, int y, int w, int h) {

@@ -23,7 +23,7 @@ public final class FastLoadingModule extends Module {
         savedRenderDistance = adapter.renderDistance();
         int boosted = Math.min(savedRenderDistance + RENDER_DISTANCE_BOOST, MAX_RENDER_DISTANCE);
         adapter.setRenderDistance(boosted);
-        adapter.sendChat("Fast loading tips enabled â€” stay near spawn while chunks generate.");
+        adapter.sendChat("Fast loading tips enabled — stay near spawn while chunks generate.");
     }
 
     @Override

@@ -47,7 +47,7 @@ public final class PrimePlaceholders extends PlaceholderExpansion {
         }
         return switch (params.toLowerCase()) {
             case "status" -> detection.isVerified(player.getUniqueId()) || player.hasPermission("StellarClient.verified")
-                    ? plugin.getConfig().getString("verified.badge", "âš¡")
+                    ? plugin.getConfig().getString("verified.badge", "⚡")
                     : "";
             case "version" -> detection.getVersion(player.getUniqueId()).orElse(
                     database.findProfile(player.getUniqueId()).map(p -> p.clientVersion()).orElse(""));

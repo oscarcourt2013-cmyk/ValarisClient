@@ -17,7 +17,7 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * Chat completions via Prime backend proxy ({@code POST /v1/ai/chat}).
- * The Groq API key stays on the server â€” never shipped to clients.
+ * The Groq API key stays on the server — never shipped to clients.
  * Optional local key only for self-host / offline fallback.
  */
 public final class GroqClient {
@@ -177,7 +177,7 @@ public final class GroqClient {
             }
         } catch (Exception ignored) {
         }
-        return raw.length() > 180 ? raw.substring(0, 180) + "â€¦" : raw;
+        return raw.length() > 180 ? raw.substring(0, 180) + "…" : raw;
     }
 
     private static String rootMessage(Throwable ex) {

@@ -9,7 +9,7 @@ import dev.stellarclient.core.module.Module;
 import dev.stellarclient.core.module.ModuleCategory;
 import dev.stellarclient.core.theme.ThemeManager;
 
-/** Current weather â€” useful before travel or mob farms. */
+/** Current weather — useful before travel or mob farms. */
 public final class WeatherHudModule extends Module {
 
     private final SimpleLineHud element;

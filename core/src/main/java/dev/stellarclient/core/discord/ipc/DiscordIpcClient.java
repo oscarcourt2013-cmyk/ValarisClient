@@ -303,6 +303,6 @@ public final class DiscordIpcClient {
         if (text.length() <= max) {
             return text;
         }
-        return text.substring(0, Math.max(0, max - 1)) + "â€¦";
+        return text.substring(0, Math.max(0, max - 1)) + "…";
     }
 }

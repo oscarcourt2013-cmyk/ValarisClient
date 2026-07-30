@@ -38,7 +38,7 @@ public final class ToolDurabilityModule extends Module {
     private void refresh() {
         int percent = adapter.heldItemDurabilityPercent();
         if (percent < 0) {
-            element.setText("Tool: â€”");
+            element.setText("Tool: —");
         } else {
             element.setText("Tool: " + percent + "%");
         }

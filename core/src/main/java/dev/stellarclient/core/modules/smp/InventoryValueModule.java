@@ -70,7 +70,7 @@ public final class InventoryValueModule extends Module {
         private static final int PADDING = 3;
 
         private final ThemeManager themes;
-        private String text = "Inv: â€”";
+        private String text = "Inv: —";
 
         Element(ThemeManager themes) {
             super("inventory-value", "Inventory Value", HudAnchor.TOP_LEFT, 4, 108);

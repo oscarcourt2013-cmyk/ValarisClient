@@ -89,7 +89,7 @@ final class HudEditorUi {
         return screenHeight - HINT_RESERVE - BOTTOM_DOCK_HEIGHT - 4;
     }
 
-    /** Empty glass chrome on the side panels â€” clicks pass through without deselecting. */
+    /** Empty glass chrome on the side panels — clicks pass through without deselecting. */
     boolean isPanelBackdrop(double mouseX, double mouseY) {
         if (listPanel.contains(mouseX, mouseY) && listRowIndexAt(mouseX, mouseY) < 0) {
             return true;
@@ -419,7 +419,7 @@ final class HudEditorUi {
                 (selected.opacity() - HudElement.MIN_OPACITY) / (HudElement.MAX_OPACITY - HudElement.MIN_OPACITY));
         float rotation = normalizedRotation(selected);
         trackRotation = renderSlider(ctx, theme, sliderX + (sliderW + 6) * 2, row1Y, sliderW, "Rot",
-                String.format("%.0fÂ°", rotation),
+                String.format("%.0f°", rotation),
                 (rotation + 180f) / 360f);
 
         int row2Y = y + h - SWATCH - 8;
@@ -492,7 +492,7 @@ final class HudEditorUi {
         if (ctx.uiTextWidth(text) <= maxWidth) {
             return text;
         }
-        String ellipsis = "â€¦";
+        String ellipsis = "…";
         int budget = maxWidth - ctx.uiTextWidth(ellipsis);
         if (budget <= 0) {
             return ellipsis;

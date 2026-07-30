@@ -183,13 +183,13 @@ public final class SettingsMenuRenderer {
                 String type = adapter.sessionAccountType();
                 row(ctx, theme, x + 12, rowY,
                         PrimeLang.get("prime.gui.settings.row.session", "Session"),
-                        type == null || type.isBlank() ? "â€”" : type);
+                        type == null || type.isBlank() ? "—" : type);
                 rowY += 22;
                 boolean canSwitch = !adapter.isInGame();
                 boolean hover = canSwitch && mouseX >= x + 12 && mouseX < x + 168
                         && mouseY >= rowY && mouseY < rowY + 20;
                 UiChrome.button(ctx, theme, x + 12, rowY, 156, 20, hover, canSwitch);
-                String btn = PrimeLang.get("prime.gui.settings.account.switch", "Switch accountâ€¦");
+                String btn = PrimeLang.get("prime.gui.settings.account.switch", "Switch account…");
                 GuiLayout.label(ctx, btn, x + 20, rowY + 6,
                         canSwitch ? theme.foreground() : theme.foregroundMuted());
                 rowY += 26;
@@ -220,7 +220,7 @@ public final class SettingsMenuRenderer {
 
         String footer = active == Category.CONTROLS
                 ? PrimeLang.get("prime.gui.settings.keybinds.footer",
-                "Click key to rebind Â· Backspace clears Â· Scroll for more")
+                "Click key to rebind · Backspace clears · Scroll for more")
                 : (search.isEmpty()
                 ? PrimeLang.get("prime.gui.settings.search.placeholder", "Search settings...")
                 : search.toString());
@@ -250,7 +250,7 @@ public final class SettingsMenuRenderer {
             ctx.fillRoundedRect(btnX, drawY, KEY_BTN_W, 14, PrimeDesign.RADIUS_SM,
                     listening ? theme.accent() : theme.backgroundLight());
             String label = listening
-                    ? PrimeLang.get("prime.gui.settings.keybinds.listening", "Press a keyâ€¦")
+                    ? PrimeLang.get("prime.gui.settings.keybinds.listening", "Press a key…")
                     : KeyNames.glfwName(bind.key());
             int textColor = listening ? theme.background() : theme.foreground();
             GuiLayout.label(ctx, GuiLayout.trimToWidth(ctx, label, KEY_BTN_W - 8),

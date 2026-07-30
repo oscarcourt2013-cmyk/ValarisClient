@@ -55,7 +55,7 @@ public final class ProfileManager {
 
     /**
      * Reloads cosmetics when the launcher bridge rewrites the active profile file.
-     * Called from the client tick â€” cheap mtime check every 2s.
+     * Called from the client tick — cheap mtime check every 2s.
      */
     public void pollExternalBridgeChanges() {
         long now = System.currentTimeMillis();
@@ -111,7 +111,7 @@ public final class ProfileManager {
         return activeProfile;
     }
 
-    /** Profiles present on disk. Scans the directory â€” not a hot path. */
+    /** Profiles present on disk. Scans the directory — not a hot path. */
     public List<String> listProfiles() {
         if (!Files.isDirectory(profilesDir)) {
             return List.of(activeProfile);
@@ -156,7 +156,7 @@ public final class ProfileManager {
                 return name.getAsString();
             }
         } catch (IOException | RuntimeException e) {
-            StellarClient.LOGGER.error("Failed to read {} â€” using default profile", stateFile, e);
+            StellarClient.LOGGER.error("Failed to read {} — using default profile", stateFile, e);
         }
         return DEFAULT_PROFILE;
     }

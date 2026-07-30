@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Unused remote cloud adapter â€” product currently uses {@link LocalCloudClient} only.
+ * Unused remote cloud adapter — product currently uses {@link LocalCloudClient} only.
  * Kept for a future optional remote sync backend.
  */
 public final class RemoteCloudClient implements CloudClient {

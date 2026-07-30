@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * Prime Voice â€” proximity chat (48 blocks) + voice groups between StellarClient users.
+ * Prime Voice — proximity chat (48 blocks) + voice groups between StellarClient users.
  *
  * <p>Like Simple Voice Chat: hear nearby Prime players, or join a group to talk at any distance.</p>
  */
@@ -127,7 +127,7 @@ public final class VoiceChatService {
         settings.setActiveGroupId(code);
         settings.setActiveGroupName(name);
         relay.sendGroup(code);
-        notify("Voice Group", "Created \"" + name + "\" â€” code: " + code);
+        notify("Voice Group", "Created \"" + name + "\" — code: " + code);
         return code;
     }
 
@@ -166,7 +166,7 @@ public final class VoiceChatService {
         }
         active.set(true);
         state = State.CONNECTING;
-        statusMessage = "Connectingâ€¦";
+        statusMessage = "Connecting…";
         String room = roomId(adapter.serverAddress());
         String group = settings.activeGroupId();
         relay.connect(settings.relayUrl(), room, playerId, adapter.playerName(), group,
@@ -306,7 +306,7 @@ public final class VoiceChatService {
         return settings.inGroup() && participant.inGroup(settings.activeGroupId());
     }
 
-    /** Linear falloff 0â€“range blocks; 0 beyond range (Simple Voice Chat style). */
+    /** Linear falloff 0–range blocks; 0 beyond range (Simple Voice Chat style). */
     private float proximityGain(VoiceParticipant participant) {
         if (participant == null || adapter == null) {
             return 0f;

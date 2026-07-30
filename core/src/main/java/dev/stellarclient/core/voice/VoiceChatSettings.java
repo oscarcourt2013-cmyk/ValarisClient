@@ -7,7 +7,7 @@ import dev.stellarclient.core.config.ConfigBinding;
 /** Persisted Prime Voice settings. */
 public final class VoiceChatSettings implements ConfigBinding {
 
-    /** Default relay â€” Prime Voice on production Ptero node. */
+    /** Default relay — Prime Voice on production Ptero node. */
     public static final String DEFAULT_RELAY = "ws://194.9.172.102:26005/voice";
 
     /** Simple Voice Chat default proximity radius. */

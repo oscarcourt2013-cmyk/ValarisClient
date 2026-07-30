@@ -26,13 +26,13 @@ import dev.stellarclient.core.voice.VoiceListenMode;
 import dev.stellarclient.core.voice.VoiceParticipant;
 
 /**
- * Prime Voice â€” proximity chat (48 blocks) + voice groups for StellarClient players.
+ * Prime Voice — proximity chat (48 blocks) + voice groups for StellarClient players.
  *
  * <p>Push-to-talk key is configurable in Prime Keybinds (default B, not V).</p>
  */
 public final class VoiceChatModule extends Module {
 
-    /** Default PTT â€” B avoids conflict with Simple Voice Chat (often V). */
+    /** Default PTT — B avoids conflict with Simple Voice Chat (often V). */
     private static final int DEFAULT_TALK_KEY = 66;
 
     private final StringSetting relayUrl =
@@ -193,11 +193,11 @@ public final class VoiceChatModule extends Module {
         void refresh() {
             VoiceChatService.State state = voice.state();
             line1 = switch (state) {
-                case CONNECTED -> "Voice Â· " + voice.nearbyCount() + " nearby Â· "
+                case CONNECTED -> "Voice · " + voice.nearbyCount() + " nearby · "
                         + voice.participantCount() + " Prime";
-                case CONNECTING -> "Voice Â· Connectingâ€¦";
-                case ERROR -> "Voice Â· " + voice.statusMessage();
-                default -> "Voice Â· Off";
+                case CONNECTING -> "Voice · Connecting…";
+                case ERROR -> "Voice · " + voice.statusMessage();
+                default -> "Voice · Off";
             };
             if (voice.settings().inGroup()) {
                 String name = voice.settings().activeGroupName();

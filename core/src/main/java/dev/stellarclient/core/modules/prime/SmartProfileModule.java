@@ -49,7 +49,7 @@ public final class SmartProfileModule extends Module {
         if (preset.isEmpty()) {
             return;
         }
-        notifications.info("Smart Profile", "Holding " + category + " â†’ try " + preset.toUpperCase() + " profile");
+        notifications.info("Smart Profile", "Holding " + category + " → try " + preset.toUpperCase() + " profile");
         if (autoApply.get()) {
             profiles.switchTo(preset);
         }

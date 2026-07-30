@@ -3,7 +3,7 @@ version: '${version}'
 main: com.stellarclient.StellarClientPlugin
 api-version: '1.21'
 authors: [Prime]
-description: Official StellarClient server bridge â€” detection, XP, rewards, network.
+description: Official StellarClient server bridge — detection, XP, rewards, network.
 website: https://github.com/oscarcourt2013-cmyk/StellarClient
 softdepend: [PlaceholderAPI, LuckPerms, Vault]
 

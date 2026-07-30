@@ -9,7 +9,7 @@ import dev.stellarclient.core.theme.Theme;
 import dev.stellarclient.core.util.ColorUtil;
 import dev.stellarclient.core.util.Easing;
 
-/** Feather-inspired title menu â€” compact stack over visible panorama. */
+/** Feather-inspired title menu — compact stack over visible panorama. */
 public final class TitleMenuRenderer {
 
     private static final int MENU_BUTTON_COUNT = 4;
@@ -41,7 +41,7 @@ public final class TitleMenuRenderer {
         renderFooter(ctx, theme, adapter.minecraftVersion(), PrimeDesign.VERSION, layout, eased);
     }
 
-    /** Edge vignette only â€” keeps the panorama visible in the center. */
+    /** Edge vignette only — keeps the panorama visible in the center. */
     private void renderVignette(RenderContext ctx, float fade) {
         int w = ctx.screenWidth();
         int h = ctx.screenHeight();
@@ -119,7 +119,7 @@ public final class TitleMenuRenderer {
     private void renderFooter(RenderContext ctx, Theme theme, String minecraftVersion,
                               String clientVersion, TitleMenuLayout layout, float fade) {
         ctx.setDrawOpacity(fade * 0.75f);
-        String footer = PrimeLang.get("prime.gui.title.footer", "StellarClient %1$s  Â·  Minecraft %2$s",
+        String footer = PrimeLang.get("prime.gui.title.footer", "StellarClient %1$s  ·  Minecraft %2$s",
                 clientVersion, minecraftVersion);
         float scale = 0.78f;
         int footerW = ctx.smoothTextWidth(footer, scale);

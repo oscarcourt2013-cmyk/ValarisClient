@@ -39,6 +39,6 @@ public final class CritIndicatorModule extends Module {
         boolean ready = !adapter.playerOnGround()
                 && adapter.playerFallDistance() > 0.05f
                 && adapter.attackCooldown() >= 0.95f;
-        element.setText(ready ? "Crit: READY" : "Crit: â€”");
+        element.setText(ready ? "Crit: READY" : "Crit: —");
     }
 }

@@ -39,7 +39,7 @@ public final class ShieldStatusModule extends Module {
         String self = adapter.playerBlocking() ? "Blocking" : "Open";
         String target = adapter.hasTarget()
                 ? (adapter.targetBlocking() ? "Target: Block" : "Target: Open")
-                : "Target: â€”";
+                : "Target: —";
         element.setText("Shield: " + self + " | " + target);
     }
 }

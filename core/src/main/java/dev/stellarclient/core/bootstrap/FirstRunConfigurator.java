@@ -40,7 +40,7 @@ public final class FirstRunConfigurator {
         applyPreset(client.modules(), client.favorites(), "default");
         seedGameplayProfiles(client);
         client.notifications().success("StellarClient",
-                "HUD premium activÃ© â€” Right Shift pour le menu");
+                "HUD premium activé — Right Shift pour le menu");
     }
 
     /** Writes default, pvp and survival profile files on first install. */

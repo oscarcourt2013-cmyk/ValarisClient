@@ -60,7 +60,7 @@ public final class TeamTagHudModule extends Module {
             if (i > 0) {
                 sb.append(", ");
             }
-            sb.append("Â§").append((char) ('a' + (i % 6))).append(names[i]);
+            sb.append("§").append((char) ('a' + (i % 6))).append(names[i]);
         }
         element.setText(sb.toString());
     }

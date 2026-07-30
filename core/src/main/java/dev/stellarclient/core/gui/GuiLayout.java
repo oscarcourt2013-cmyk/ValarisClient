@@ -2,7 +2,7 @@ package dev.stellarclient.core.gui;
 
 import dev.stellarclient.core.adapter.RenderContext;
 
-/** Layout helpers for Prime GUI â€” clipping, text trim, popup placement. */
+/** Layout helpers for Prime GUI — clipping, text trim, popup placement. */
 public final class GuiLayout {
 
     private GuiLayout() {
@@ -15,7 +15,7 @@ public final class GuiLayout {
         if (ctx.uiTextWidth(text) <= maxWidth) {
             return text;
         }
-        String ellipsis = "â€¦";
+        String ellipsis = "…";
         for (int i = text.length() - 1; i > 0; i--) {
             String candidate = text.substring(0, i) + ellipsis;
             if (ctx.uiTextWidth(candidate) <= maxWidth) {
