@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' http://localhost:* https://crafatar.com https://mc-heads.net https://cdn.modrinth.com data:; style-src 'self'; script-src 'self'">
+  <title>Valaris Launcher</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-background"></div>
+  <header class="titlebar">
+    <div class="titlebar-brand"><img class="mini-logo" src="../assets/logo.png" alt=""><span>Valaris Launcher</span></div>
+    <div class="window-controls">
+      <button data-window="minimize" aria-label="Minimize">−</button>
+      <button data-window="maximize" aria-label="Maximize">□</button>
+      <button data-window="close" class="close" aria-label="Close">×</button>
+    </div>
+  </header>
+  <div class="shell">
+    <nav class="nav glass">
+      <button class="wordmark" data-page="home"><span class="wordmark-mark"><img src="../assets/logo.png" alt=""></span><span>VALARIS</span></button>
+      <div class="nav-links">
+        <span class="nav-liquid" id="navLiquid"></span>
+        <button class="nav-item active" data-page="home"><span data-icon="home"></span>Home</button>
+        <button class="nav-item" data-page="profiles"><span data-icon="folder"></span>Profiles</button>
+        <button class="nav-item" data-page="library"><span data-icon="download"></span>Library</button>
+        <button class="nav-item" data-page="modpacks"><span data-icon="package"></span>Modpacks</button>
+        <button class="nav-item" data-page="accounts"><span data-icon="users"></span>Accounts</button>
+        <button class="nav-item" data-page="servers"><span data-icon="server"></span>Servers</button>
+        <button class="nav-item" data-page="settings"><span data-icon="settings"></span>Settings</button>
+      </div>
+      <div class="nav-tail">
+        <button class="icon-button" id="discordTop" title="Discord status"><span data-icon="discord"></span></button>
+        <button class="account-pill" data-page="accounts"><span class="avatar small" id="topAvatar">V</span><span id="topUsername">No account</span><span data-icon="chevron"></span></button>
+      </div>
+    </nav>
+    <main id="page"></main>
+    <footer><span>© 2026 Valaris. Not affiliated with Mojang or Microsoft.</span><span>Version <strong>1.0.0</strong></span></footer>
+  </div>
+  <div id="modalRoot"></div>
+  <div id="toastRoot"></div>
+  <script src="vendor/skinview3d.bundle.js"></script>
+  <script src="renderer.js"></script>
+</body>
+</html>

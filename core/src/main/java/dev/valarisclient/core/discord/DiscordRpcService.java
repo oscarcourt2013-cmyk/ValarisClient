@@ -20,16 +20,17 @@ public final class DiscordRpcService {
     /**
      * Discord application this client publishes presence as.
      *
-     * <p>Blank until ValarisClient has its own. The previous value was inherited
+     * <p>The previous value was inherited
      * from the codebase this was forked from and belongs to someone else, so
      * every user running this was advertising a stranger's application: the
      * "Playing ..." line shows that application's name, and its owner can change
      * it at any time. Publishing under it was not ours to do.</p>
      *
-     * <p>To enable: create an application at discord.com/developers, upload an
-     * art asset keyed {@code valaris_logo}, and put the id here.</p>
+     * <p>The art asset keyed {@code valaris_logo} must exist on the application
+     * for the icon to render; Discord shows no image rather than erroring when
+     * the key is missing.</p>
      */
-    public static final String APPLICATION_ID = "";
+    public static final String APPLICATION_ID = "1532388471795093656";
 
     /** Whether a Discord application has been configured for this build. */
     public static boolean isConfigured() {

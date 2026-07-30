@@ -1,0 +1,46 @@
+{
+  "name": "valaris-launcher",
+  "version": "1.0.0",
+  "description": "Valaris - a modern Minecraft Java Edition launcher",
+  "main": "src/main.js",
+  "author": "Valaris",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "check": "node --check src/main.js && node --check src/preload.js && node --check src/minecraft.js && node --check src/modrinth.js && node --check src/auth.js && node --check src/renderer.js",
+    "dist": "electron-builder --win nsis"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.16",
+    "discord-rpc": "^4.0.1",
+    "skinview3d": "^3.4.2"
+  },
+  "devDependencies": {
+    "electron": "^37.2.3",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.valaris.launcher",
+    "productName": "Valaris",
+    "asar": true,
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/logo.ico",
+      "artifactName": "Valaris-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}

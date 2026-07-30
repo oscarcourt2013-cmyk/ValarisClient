@@ -16,7 +16,10 @@ class DiscordIpcClientButtonsTest {
 
     @Test
     void serializesButtonsAsLabelUrlObjects() throws Exception {
-        DiscordIpcClient client = new DiscordIpcClient("1525574680994648174");
+        // Serialisation only -- nothing connects, so the id is arbitrary. Kept a
+        // dummy rather than the real one so no application id is duplicated here
+        // to go stale.
+        DiscordIpcClient client = new DiscordIpcClient("000000000000000000");
         Method build = DiscordIpcClient.class.getDeclaredMethod(
                 "buildSetActivity", DiscordPresenceSnapshot.class, boolean.class);
         build.setAccessible(true);
