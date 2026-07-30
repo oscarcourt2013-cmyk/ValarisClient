@@ -190,15 +190,22 @@ public final class ModuleCardBrowser {
 
     private void renderCard(RenderContext ctx, Theme theme, Module module, int x, int y,
                             int cardW, int cardH, double mouseX, double mouseY) {
+        boolean hasOptions = hasOptions(module);
         boolean sel = module == selected;
         boolean hover = mouseX >= x && mouseX < x + cardW && mouseY >= y && mouseY < y + cardH;
-        UiChrome.cardElevated(ctx, theme, x, y, cardW, cardH, sel || hover);
+        int[] options = optionsRect(cardW, cardH);
+        boolean optionsHover = hasOptions && hover && localHit(mouseX, mouseY, x, y, options);
+
+        // The card body is the enable/disable target, so it only highlights when the
+        // cursor is on the body - not when it is over the separate OPTIONS row.
+        UiChrome.cardElevated(ctx, theme, x, y, cardW, cardH, sel || (hover && !optionsHover));
 
         int[] pill = pillRect(cardW, cardH);
-        int[] options = optionsRect(cardW, cardH);
         int fontH = ctx.uiFontHeight();
-        int dividerY = options[1] - 3;
-        int titleY = Math.max(y + 2, dividerY - 2 - fontH) - y;
+        int titleY = hasOptions
+                ? options[1] - 3 - 2 - fontH
+                : pill[1] - 4 - fontH;
+        titleY = Math.max(2, titleY);
 
         // Icon fills the space above the title, scaled down on short cards.
         int iconZoneH = Math.max(0, titleY - 4);
@@ -215,18 +222,24 @@ public final class ModuleCardBrowser {
         GuiLayout.label(ctx, title, x + (cardW - GuiLayout.labelWidth(ctx, title)) / 2,
                 y + titleY, theme.foreground());
 
-        ctx.fillRect(x + SIDE_PAD, y + dividerY, Math.max(0, cardW - SIDE_PAD * 2), 1,
-                ColorUtil.withAlpha(theme.border(), 0.6f));
-
-        boolean optionsHover = hover && localHit(mouseX, mouseY, x, y, options);
-        int optionsColor = optionsHover ? theme.foreground() : theme.foregroundMuted();
-        int optionsTextY = y + options[1] + (options[3] - fontH) / 2 + 1;
-        String gear = "⚙";
-        int gearW = GuiLayout.labelWidth(ctx, gear);
-        String optionsLabel = GuiLayout.trimToWidth(ctx, "OPTIONS",
-                cardW - SIDE_PAD * 2 - gearW - 4);
-        GuiLayout.label(ctx, optionsLabel, x + SIDE_PAD, optionsTextY, optionsColor);
-        GuiLayout.label(ctx, gear, x + cardW - SIDE_PAD - gearW, optionsTextY, optionsColor);
+        // OPTIONS row is omitted entirely for modules that expose no settings.
+        if (hasOptions) {
+            ctx.fillRect(x + SIDE_PAD, y + options[1] - 3, Math.max(0, cardW - SIDE_PAD * 2), 1,
+                    ColorUtil.withAlpha(theme.border(), 0.6f));
+            if (optionsHover || sel) {
+                ctx.fillRoundedRect(x + 2, y + options[1], Math.max(0, cardW - 4), options[3],
+                        PrimeDesign.RADIUS_SM,
+                        ColorUtil.withAlpha(theme.accent(), optionsHover ? 0.22f : 0.12f));
+            }
+            int optionsColor = optionsHover || sel ? theme.foreground() : theme.foregroundMuted();
+            int optionsTextY = y + options[1] + (options[3] - fontH) / 2 + 1;
+            String gear = "⚙";
+            int gearW = GuiLayout.labelWidth(ctx, gear);
+            String optionsLabel = GuiLayout.trimToWidth(ctx, "OPTIONS",
+                    cardW - SIDE_PAD * 2 - gearW - 4);
+            GuiLayout.label(ctx, optionsLabel, x + SIDE_PAD, optionsTextY, optionsColor);
+            GuiLayout.label(ctx, gear, x + cardW - SIDE_PAD - gearW, optionsTextY, optionsColor);
+        }
 
         UiChrome.pillButton(ctx, theme, x + pill[0], y + pill[1], pill[2], pill[3], module.isEnabled());
         String pillLabel = GuiLayout.trimToWidth(ctx,
@@ -235,6 +248,10 @@ public final class ModuleCardBrowser {
                 x + pill[0] + (pill[2] - GuiLayout.labelWidth(ctx, pillLabel)) / 2,
                 y + pill[1] + (pill[3] - fontH) / 2 + 1,
                 module.isEnabled() ? 0xFFFFFFFF : theme.foregroundMuted());
+    }
+
+    private static boolean hasOptions(Module module) {
+        return !module.settings().isEmpty();
     }
 
     /** Card-relative {x, y, w, h} of the ENABLED/DISABLED pill. Package-visible for tests. */
@@ -316,11 +333,13 @@ public final class ModuleCardBrowser {
                 Module module = list.get(i);
                 if (button == 2) {
                     favorites.toggle(module.id());
-                } else if (button == 0 && localHit(mouseX, mouseY, cx, cy, pillRect(cardW, cardH))) {
-                    module.toggle();
-                } else {
-                    // Clicking the open card again closes its settings panel.
+                } else if (hasOptions(module)
+                        && localHit(mouseX, mouseY, cx, cy, optionsRect(cardW, cardH))) {
+                    // Only the OPTIONS row opens settings; clicking it again closes them.
                     selected = module == selected ? null : module;
+                } else {
+                    // The rest of the card - including the pill - is the on/off switch.
+                    module.toggle();
                 }
                 return true;
             }

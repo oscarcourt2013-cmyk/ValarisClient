@@ -290,6 +290,55 @@ class ClickGuiTest {
         }
     }
 
+    /** Centre of card {@code index} in a freshly laid-out grid. */
+    private static double[] cardCentre(ClickGuiBrowseLayout l, int index) {
+        int col = index % Math.max(1, l.columns());
+        int row = index / Math.max(1, l.columns());
+        double cx = l.gridX() + col * (l.cardW() + ClickGuiBrowseLayout.CARD_GAP);
+        double cy = l.gridY() + ModuleCardBrowser.TAB_H + ClickGuiBrowseLayout.CARD_GAP
+                + row * (l.cardH() + ClickGuiBrowseLayout.CARD_GAP);
+        return new double[]{cx, cy};
+    }
+
+    @Test
+    void cardBodyTogglesAndOptionsRowOpensSettings() {
+        Module plain = modules.register(new Module("plain", "Plain", "", ModuleCategory.PVP) {
+        });
+        ClickGuiBrowseLayout l = ClickGuiBrowseLayout.compute(SCREEN_W, 600);
+        ModuleCardBrowser browser = new ModuleCardBrowser(modules, favorites);
+        FakeRenderContext ctx = new FakeRenderContext(SCREEN_W, 600);
+
+        // PvP is the default category, and "plain" is its only module -> card 0.
+        double[] c = cardCentre(l, 0);
+        int[] options = ModuleCardBrowser.optionsRect(l.cardW(), l.cardH());
+        int[] pill = ModuleCardBrowser.pillRect(l.cardW(), l.cardH());
+
+        // A module with no settings has no OPTIONS row, so a click there still toggles.
+        browser.mousePressed(ctx, l, c[0] + options[2] / 2.0, c[1] + options[1] + options[3] / 2.0, 0);
+        assertTrue(plain.isEnabled(), "no-settings module should toggle from the OPTIONS band");
+        assertEquals(null, browser.selected(), "no-settings module must not open a panel");
+
+        // The pill is part of the body, so it toggles rather than opening settings.
+        browser.mousePressed(ctx, l, c[0] + pill[0] + pill[2] / 2.0, c[1] + pill[1] + pill[3] / 2.0, 0);
+        assertFalse(plain.isEnabled(), "pill should toggle back off");
+        assertEquals(null, browser.selected());
+
+        // A module WITH settings: OPTIONS opens the panel and does not toggle.
+        ModuleCardBrowser withSettings = new ModuleCardBrowser(modules, favorites);
+        // Point the browser at QoL (where "zoom" lives) without leaving it selected.
+        withSettings.selectForTests(module);
+        withSettings.selectForTests(null);
+        double[] q = cardCentre(l, 0);
+        boolean before = module.isEnabled();
+        withSettings.mousePressed(ctx, l, q[0] + options[2] / 2.0, q[1] + options[1] + options[3] / 2.0, 0);
+        assertEquals(module, withSettings.selected(), "OPTIONS should open the settings panel");
+        assertEquals(before, module.isEnabled(), "OPTIONS must not toggle the module");
+
+        // Clicking OPTIONS again closes it.
+        withSettings.mousePressed(ctx, l, q[0] + options[2] / 2.0, q[1] + options[1] + options[3] / 2.0, 0);
+        assertEquals(null, withSettings.selected(), "OPTIONS should close an open panel");
+    }
+
     @Test
     void gridIsScrollableWithoutAMouseWheel() {
         // Enough modules to overflow one screen of cards.
