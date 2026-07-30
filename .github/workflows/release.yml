@@ -15,29 +15,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 21 builds the 1.21.11 layer, 25 the 26.2 layer.
-      - name: Setup Java
+      - name: Setup Java 21
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: |
-            21
-            25
+          java-version: '21'
 
       - name: Build ValarisClient mods
         shell: pwsh
         run: |
-          .\gradlew :mc-1.21.11:build :mc-26.2:build --no-daemon
+          .\gradlew :mc-1.21.11:build --no-daemon
 
       - name: Collect release assets
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force -Path release-bundle | Out-Null
-          foreach ($dir in @('mc-1.21.11', 'mc-26.2')) {
-            Get-ChildItem "$dir/build/libs/valaris-client-*.jar" |
-              Where-Object { $_.Name -notmatch 'sources|dev' } |
-              Copy-Item -Destination release-bundle/
-          }
+          Get-ChildItem "mc-1.21.11/build/libs/valaris-client-*.jar" |
+            Where-Object { $_.Name -notmatch 'sources|dev' } |
+            Copy-Item -Destination release-bundle/
 
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2

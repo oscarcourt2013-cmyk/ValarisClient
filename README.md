@@ -8,11 +8,8 @@ Client professionnel — 100 % légitime (visuel, confort, performance ; aucun c
 | Minecraft | Module Gradle | Java | Loom | Mappings |
 |-----------|---------------|------|------|----------|
 | 1.21.11   | `mc-1.21.11`  | 21   | `fabric-loom-remap` | Mojang (remap intermediary) |
-| 26.2      | `mc-26.2`     | 25   | `fabric-loom`       | Mojang (runtime natif) |
 
-> Yarn s'arrête à 1.21.11 et n'existe pas pour 26.x (Fabric a migré vers les
-> mappings Mojang officiels). Les deux couches utilisent donc mojmap : mêmes
-> noms de classes partout, adapters quasi identiques.
+> Yarn s'arrête à 1.21.11 ; cette couche utilise les mappings Mojang officiels.
 
 ## Structure
 
@@ -21,7 +18,6 @@ ValarisClient/
 ├── core/          Common Core — Java pur, zéro dépendance Minecraft
 │                  (modules, events, config, thèmes, HUD model, utils)
 ├── mc-1.21.11/    Couche version 1.21.11 (mod Fabric)
-├── mc-26.2/       Couche version 26.2 (mod Fabric)
 └── valaris-plugin/ Plugin serveur (canal `valarisclient:main`)
 ```
 
@@ -33,20 +29,15 @@ serveur qui répond au canal `valarisclient:main` du client.
 ## Build & run
 
 ```bash
-# Tout compiler (les deux versions)
+# Compiler
 ./gradlew build
 
-# Une seule version
-./gradlew :mc-26.2:build
-./gradlew :mc-1.21.11:build
-
 # Lancer le client en dev
-./gradlew :mc-26.2:runClient
 ./gradlew :mc-1.21.11:runClient
 ```
 
-Jars finaux dans `mc-*/build/libs/` (le core est embarqué en Jar-in-Jar).
-Prérequis : JDK 25 (compile aussi la cible 21 via `--release`).
+Jar final dans `mc-1.21.11/build/libs/` (le core est embarqué en Jar-in-Jar).
+Prérequis : JDK 21.
 
 ## Installation
 

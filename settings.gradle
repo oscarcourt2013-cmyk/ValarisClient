@@ -14,10 +14,5 @@ rootProject.name = 'valaris-client'
 // Common core: pure Java, no Minecraft dependency, shared by every version layer.
 include 'core'
 
-// Version layers: one Fabric mod per supported Minecraft version.
+// Version layer: the Fabric mod for the supported Minecraft version.
 include 'mc-1.21.11'
-// TODO(1.21.1): not yet included -- the module is scaffolded and its dependencies
-// resolve, but it has no sources or fabric.mod.json, so remapJar cannot nest core
-// into it. Re-enable this line once the version layer is ported.
-//include 'mc-1.21.1'
-include 'mc-26.2'
