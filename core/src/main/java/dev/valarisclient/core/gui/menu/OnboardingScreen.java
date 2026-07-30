@@ -17,7 +17,39 @@ public final class OnboardingScreen {
     public static final int PANEL_W = 300;
     public static final int PANEL_H = 196;
 
+    private static final int INSET = 12;
+    private static final int ROW_H = 22;
+    private static final int CHOICE_GAP = 4;
+
+    /** Theme id, translation key, fallback label. */
+    private static final String[][] THEME_CHOICES = {
+        {"valaris-crimson", "valaris.gui.settings.theme.crimson", "Crimson"},
+        {"valaris-midnight", "valaris.gui.settings.theme.midnight", "Midnight"},
+        {"valaris-aurora", "valaris.gui.settings.theme.aurora", "Aurora"},
+        {"valaris-obsidian", "valaris.gui.settings.theme.obsidian", "Obsidian"},
+        {"valaris-ember", "valaris.gui.settings.theme.ember", "Ember"}
+    };
+
+    /** Profile id, translation key, fallback label. */
+    private static final String[][] PROFILE_CHOICES = {
+        {"default", "valaris.gui.onboarding.profile.balanced", "Balanced"},
+        {"pvp", "valaris.gui.onboarding.profile.pvp", "PvP"},
+        {"survival", "valaris.gui.onboarding.profile.survival", "Survival"}
+    };
+
     private OnboardingScreen() {
+    }
+
+    /**
+     * Width of one choice in a row of {@code count}, derived from the panel so a
+     * row can never run past the inset. Hardcoding these overflowed the panel.
+     */
+    private static int choiceWidth(int count) {
+        return (PANEL_W - INSET * 2 - CHOICE_GAP * (count - 1)) / count;
+    }
+
+    private static int choiceX(int panelX, int index, int count) {
+        return panelX + INSET + index * (choiceWidth(count) + CHOICE_GAP);
     }
 
     public static void render(RenderContext ctx, Theme theme, OnboardingManager onboarding,
@@ -67,44 +99,34 @@ public final class OnboardingScreen {
     private static void renderThemeStep(RenderContext ctx, Theme theme, OnboardingManager onboarding,
                                         int x, int y, double mouseX, double mouseY) {
         ctx.drawText(ValarisLang.get("valaris.gui.onboarding.theme.title", "Choose your theme"),
-                x + 12, y + 36, theme.accent(), true);
-        drawChoice(ctx, theme, x + 12, y + 54, 60,
-                ValarisLang.get("valaris.gui.settings.theme.crimson", "Crimson"),
-                "valaris-crimson".equals(onboarding.chosenTheme()), mouseX, mouseY);
-        drawChoice(ctx, theme, x + 76, y + 54, 60,
-                ValarisLang.get("valaris.gui.settings.theme.midnight", "Midnight"),
-                "valaris-midnight".equals(onboarding.chosenTheme()), mouseX, mouseY);
-        drawChoice(ctx, theme, x + 140, y + 54, 60,
-                ValarisLang.get("valaris.gui.settings.theme.aurora", "Aurora"),
-                "valaris-aurora".equals(onboarding.chosenTheme()), mouseX, mouseY);
-        drawChoice(ctx, theme, x + 204, y + 54, 60,
-                ValarisLang.get("valaris.gui.settings.theme.obsidian", "Obsidian"),
-                "valaris-obsidian".equals(onboarding.chosenTheme()), mouseX, mouseY);
-        drawChoice(ctx, theme, x + 268, y + 54, 60,
-                ValarisLang.get("valaris.gui.settings.theme.ember", "Ember"),
-                "valaris-ember".equals(onboarding.chosenTheme()), mouseX, mouseY);
+                x + INSET, y + 36, theme.accent(), true);
+        int themeWidth = choiceWidth(THEME_CHOICES.length);
+        for (int i = 0; i < THEME_CHOICES.length; i++) {
+            String[] choice = THEME_CHOICES[i];
+            drawChoice(ctx, theme, choiceX(x, i, THEME_CHOICES.length), y + 54, themeWidth,
+                    ValarisLang.get(choice[1], choice[2]),
+                    choice[0].equals(onboarding.chosenTheme()), mouseX, mouseY);
+        }
         ctx.drawText(ValarisLang.get("valaris.gui.onboarding.theme.hint", "Click an option then continue"),
-                x + 12, y + 86, theme.foregroundMuted(), true);
-        drawPrimary(ctx, theme, x + 12, y + 112, PANEL_W - 24,
+                x + INSET, y + 86, theme.foregroundMuted(), true);
+        drawPrimary(ctx, theme, x + INSET, y + 112, PANEL_W - INSET * 2,
                 ValarisLang.get("valaris.gui.onboarding.theme.continue", "Continue"), mouseX, mouseY);
     }
 
     private static void renderProfileStep(RenderContext ctx, Theme theme, OnboardingManager onboarding,
                                           int x, int y, double mouseX, double mouseY) {
         ctx.drawText(ValarisLang.get("valaris.gui.onboarding.profile.title", "Module profile"),
-                x + 12, y + 36, theme.accent(), true);
-        drawChoice(ctx, theme, x + 12, y + 56, 100,
-                ValarisLang.get("valaris.gui.onboarding.profile.balanced", "Balanced"),
-                "default".equals(onboarding.chosenProfile()), mouseX, mouseY);
-        drawChoice(ctx, theme, x + 120, y + 56, 100,
-                ValarisLang.get("valaris.gui.onboarding.profile.pvp", "PvP"),
-                "pvp".equals(onboarding.chosenProfile()), mouseX, mouseY);
-        drawChoice(ctx, theme, x + 228, y + 56, 100,
-                ValarisLang.get("valaris.gui.onboarding.profile.survival", "Survival"),
-                "survival".equals(onboarding.chosenProfile()), mouseX, mouseY);
+                x + INSET, y + 36, theme.accent(), true);
+        int profileWidth = choiceWidth(PROFILE_CHOICES.length);
+        for (int i = 0; i < PROFILE_CHOICES.length; i++) {
+            String[] choice = PROFILE_CHOICES[i];
+            drawChoice(ctx, theme, choiceX(x, i, PROFILE_CHOICES.length), y + 56, profileWidth,
+                    ValarisLang.get(choice[1], choice[2]),
+                    choice[0].equals(onboarding.chosenProfile()), mouseX, mouseY);
+        }
         ctx.drawText(ValarisLang.get("valaris.gui.onboarding.profile.hint", "FPS, coords, crosshair, Discord RPC included"),
-                x + 12, y + 88, theme.foregroundMuted(), true);
-        drawPrimary(ctx, theme, x + 12, y + 112, PANEL_W - 24,
+                x + INSET, y + 88, theme.foregroundMuted(), true);
+        drawPrimary(ctx, theme, x + INSET, y + 112, PANEL_W - INSET * 2,
                 ValarisLang.get("valaris.gui.onboarding.theme.continue", "Continue"), mouseX, mouseY);
     }
 
@@ -138,27 +160,14 @@ public final class OnboardingScreen {
     }
 
     private static boolean handleThemeClick(OnboardingManager onboarding, double mx, double my, int x, int y) {
-        if (hit(mx, my, x + 12, y + 54, 60, 22)) {
-            onboarding.setChosenTheme("valaris-crimson");
-            return true;
+        int width = choiceWidth(THEME_CHOICES.length);
+        for (int i = 0; i < THEME_CHOICES.length; i++) {
+            if (hit(mx, my, choiceX(x, i, THEME_CHOICES.length), y + 54, width, ROW_H)) {
+                onboarding.setChosenTheme(THEME_CHOICES[i][0]);
+                return true;
+            }
         }
-        if (hit(mx, my, x + 76, y + 54, 60, 22)) {
-            onboarding.setChosenTheme("valaris-midnight");
-            return true;
-        }
-        if (hit(mx, my, x + 140, y + 54, 60, 22)) {
-            onboarding.setChosenTheme("valaris-aurora");
-            return true;
-        }
-        if (hit(mx, my, x + 204, y + 54, 60, 22)) {
-            onboarding.setChosenTheme("valaris-obsidian");
-            return true;
-        }
-        if (hit(mx, my, x + 268, y + 54, 60, 22)) {
-            onboarding.setChosenTheme("valaris-ember");
-            return true;
-        }
-        if (hit(mx, my, x + 12, y + 112, PANEL_W - 24, 22)) {
+        if (hit(mx, my, x + INSET, y + 112, PANEL_W - INSET * 2, ROW_H)) {
             onboarding.nextStep();
             return true;
         }
@@ -166,19 +175,14 @@ public final class OnboardingScreen {
     }
 
     private static boolean handleProfileClick(OnboardingManager onboarding, double mx, double my, int x, int y) {
-        if (hit(mx, my, x + 12, y + 56, 100, 22)) {
-            onboarding.setChosenProfile("default");
-            return true;
+        int width = choiceWidth(PROFILE_CHOICES.length);
+        for (int i = 0; i < PROFILE_CHOICES.length; i++) {
+            if (hit(mx, my, choiceX(x, i, PROFILE_CHOICES.length), y + 56, width, ROW_H)) {
+                onboarding.setChosenProfile(PROFILE_CHOICES[i][0]);
+                return true;
+            }
         }
-        if (hit(mx, my, x + 120, y + 56, 100, 22)) {
-            onboarding.setChosenProfile("pvp");
-            return true;
-        }
-        if (hit(mx, my, x + 228, y + 56, 100, 22)) {
-            onboarding.setChosenProfile("survival");
-            return true;
-        }
-        if (hit(mx, my, x + 12, y + 112, PANEL_W - 24, 22)) {
+        if (hit(mx, my, x + INSET, y + 112, PANEL_W - INSET * 2, ROW_H)) {
             onboarding.nextStep();
             return true;
         }
@@ -187,12 +191,14 @@ public final class OnboardingScreen {
 
     private static void drawChoice(RenderContext ctx, Theme theme, int x, int y, int w, String label,
                                    boolean selected, double mouseX, double mouseY) {
-        boolean hover = hit(mouseX, mouseY, x, y, w, 22);
-        UiChrome.cardLite(ctx, theme, x, y, w, 22, selected || hover);
+        boolean hover = hit(mouseX, mouseY, x, y, w, ROW_H);
+        UiChrome.cardLite(ctx, theme, x, y, w, ROW_H, selected || hover);
         if (selected) {
-            ctx.fillRect(x + 2, y + 20, w - 4, 1, theme.accent());
+            ctx.fillRect(x + 2, y + ROW_H - 2, w - 4, 1, theme.accent());
         }
-        ctx.drawText(label, x + 6, y + 7, selected ? theme.accent() : theme.foreground(), true);
+        // Centred, not left-inset: these cards are sized from the panel and can be narrow.
+        int textX = x + Math.max(2, (w - ctx.textWidth(label)) / 2);
+        ctx.drawText(label, textX, y + 7, selected ? theme.accent() : theme.foreground(), true);
     }
 
     private static void drawPrimary(RenderContext ctx, Theme theme, int x, int y, int w, String label,
