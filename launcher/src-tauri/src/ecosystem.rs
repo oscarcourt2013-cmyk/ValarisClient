@@ -215,7 +215,7 @@ fn parse_address(address: &str) -> Result<(String, u16), AppError> {
 pub async fn servers_add(name: String, address: String) -> Result<Value, AppError> {
     let name = name.trim().to_string();
     if name.is_empty() || name.len() > 48 {
-        return Ok(json!({ "ok": false, "error": "Name must be 1â€“48 characters." }));
+        return Ok(json!({ "ok": false, "error": "Name must be 1–48 characters." }));
     }
     let (host, port) = match parse_address(&address) {
         Ok(v) => v,

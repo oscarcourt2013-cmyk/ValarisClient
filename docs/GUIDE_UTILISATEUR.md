@@ -46,18 +46,18 @@ Les modules peuvent avoir leurs propres raccourcis — assignables dans les para
 ## Menu principal (Right Shift)
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+┌─────────────────────────┐
 │      [Logo Prime]       │
 │         v1.1.0          │
 │      Ton pseudo         │
-â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€┤
+├─────────────────────────┤
 │  Play        → Fermer   │
 │  Modules     → Cartes   │
 │  HUD Editor  → Écran H  │
 │  Configurations → Cloud │
 │  Cosmetics   → Cape    │
 │  Settings    → Réglages │
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€┘
+└─────────────────────────┘
 Right Shift = menu • H = HUD Editor
 ```
 
@@ -98,7 +98,7 @@ Right Shift = menu • H = HUD Editor
 2. **Clic gauche + drag** → déplacer un élément
 3. **Molette** → redimensionner (Shift/Ctrl pour modes avancés)
 4. **G** → grille + snap (optionnel)
-5. Ferme lâ€™Ã©cran → positions **sauvegardées**
+5. Ferme l’écran → positions **sauvegardées**
 
 Éléments visibles par défaut au 1er lancement : watermark, FPS, CPS, coords, keystrokes, ping, crosshair custom.
 

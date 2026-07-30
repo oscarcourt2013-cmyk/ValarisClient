@@ -221,7 +221,7 @@ pub async fn news_list() -> Result<Vec<Value>, AppError> {
         items.push(json!({
             "id": "prime-platform",
             "title": "Prime Platform",
-            "summary": "Launcher + game + friends â€” one ecosystem.",
+            "summary": "Launcher + game + friends — one ecosystem.",
             "date": chrono::Utc::now().date_naive().to_string(),
             "tag": "launcher"
         }));

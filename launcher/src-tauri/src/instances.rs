@@ -152,7 +152,7 @@ pub fn create(input: serde_json::Value) -> Result<serde_json::Value, AppError> {
         .and_then(|v| v.as_str())
         .map(str::trim)
         .filter(|s| !s.is_empty() && s.len() <= 32)
-        .ok_or_else(|| AppError::Message("Name must be 1â€“32 characters.".into()))?;
+        .ok_or_else(|| AppError::Message("Name must be 1–32 characters.".into()))?;
     let loader = input
         .get("loader")
         .and_then(|v| v.as_str())
@@ -240,7 +240,7 @@ pub fn update(input: serde_json::Value) -> Result<serde_json::Value, AppError> {
     if let Some(name) = input.get("name").and_then(|v| v.as_str()) {
         let trimmed = name.trim();
         if trimmed.is_empty() || trimmed.len() > 32 {
-            return Ok(json!({ "ok": false, "error": "Name must be 1â€“32 characters." }));
+            return Ok(json!({ "ok": false, "error": "Name must be 1–32 characters." }));
         }
         inst.name = trimmed.to_string();
     }

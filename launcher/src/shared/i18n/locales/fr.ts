@@ -29,7 +29,7 @@ export const fr: LocaleCatalog = {
     settings: 'Paramètres'
   },
   boot: {
-    core: 'Initialisation du cÅ“ur Valeris…',
+    core: 'Initialisation du cœur Valeris…',
     updates: 'Vérification des mises à jour…',
     minecraft: 'Chargement de Minecraft…',
     ready: 'Prêt.'
@@ -165,7 +165,7 @@ export const fr: LocaleCatalog = {
       toggle: 'Fond nébuleuse'
     },
     wallpaper: {
-      label: 'Fond dâ€™Ã©cran',
+      label: 'Fond d’écran',
       hint: 'Image optionnelle derrière le contenu',
       browse: 'Choisir une image',
       clear: 'Retirer'
@@ -565,7 +565,7 @@ export const fr: LocaleCatalog = {
     composerHint: 'Entrée pour envoyer · images supportées',
     today: 'Aujourd’hui',
     yesterday: 'Hier',
-    typing: '{name} est en train dâ€™Ã©crire…'
+    typing: '{name} est en train d’écrire…'
   },
   actions: {
     import: 'Importer',

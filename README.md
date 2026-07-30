@@ -18,10 +18,10 @@ Alternative professionnelle à Lunar / Badlion / Feather — 100 % légitime (vi
 
 ```
 ValerisClient/
-â”œâ”€─ core/          Common Core — Java pur, zéro dépendance Minecraft
+├── core/          Common Core — Java pur, zéro dépendance Minecraft
 │                  (modules, events, config, thèmes, HUD model, utils)
-â”œâ”€─ mc-1.21.11/    Couche version 1.21.11 (mod Fabric)
-â””â”€─ mc-26.2/       Couche version 26.2 (mod Fabric)
+├── mc-1.21.11/    Couche version 1.21.11 (mod Fabric)
+└── mc-26.2/       Couche version 26.2 (mod Fabric)
 ```
 
 Règle d'or : le core ne touche jamais une classe Minecraft. Tout passe par les

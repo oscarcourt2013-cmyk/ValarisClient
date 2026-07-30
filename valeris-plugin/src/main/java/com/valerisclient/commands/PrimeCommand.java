@@ -102,7 +102,7 @@ public final class PrimeCommand implements CommandExecutor, TabCompleter {
                 var unlocked = achievements.unlocked(player);
                 for (var def : achievements.definitions().values()) {
                     boolean ok = unlocked.contains(def.id());
-                    Text.send(player, (ok ? "<green>✔</green> " : "<dark_gray>â˜</dark_gray> ")
+                    Text.send(player, (ok ? "<green>✔</green> " : "<dark_gray>☐</dark_gray> ")
                             + "<white>" + def.name() + "</white> <gray>— " + def.description() + "</gray>");
                 }
             }

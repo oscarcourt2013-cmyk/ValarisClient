@@ -269,7 +269,7 @@ public final class GameMenuRenderer {
         int textW = ctx.smoothTextWidth(label, scale);
         int start = x + (w - textW - 14) / 2;
         int textY = textTop(ctx, y, h, scale);
-        ctx.drawSmoothText("â»", start, textTop(ctx, y, h, 0.9f), theme.accent(), 0.9f);
+        ctx.drawSmoothText("⏻", start, textTop(ctx, y, h, 0.9f), theme.accent(), 0.9f);
         ctx.drawSmoothText(label, start + 14, textY, theme.foreground(), scale);
         ctx.setDrawOpacity(1f);
     }
@@ -291,7 +291,7 @@ public final class GameMenuRenderer {
         // Center slogans
         String[] slogans = {
                 "⚡ OPTIMIZED PERFORMANCE",
-                "ðŸ›¡ BUILT FOR COMPETITION",
+                "🛡 BUILT FOR COMPETITION",
                 "⌖ MADE TO WIN"
         };
         int sloganX = Math.max(120, w / 2 - 160);

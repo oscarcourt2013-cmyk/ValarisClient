@@ -1,7 +1,7 @@
 [package]
 name = "valeris-client-launcher"
 version = "2.1.4"
-description = "ValerisClient Launcher â€” Rust / Tauri shell (pixel-identical UI)"
+description = "ValerisClient Launcher — Rust / Tauri shell (pixel-identical UI)"
 authors = ["ValerisClient"]
 edition = "2021"
 rust-version = "1.77"

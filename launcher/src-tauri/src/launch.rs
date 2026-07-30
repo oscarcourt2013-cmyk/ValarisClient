@@ -30,7 +30,7 @@ fn bridge_script() -> Result<PathBuf, AppError> {
     candidates
         .into_iter()
         .find(|p| p.exists())
-        .ok_or_else(|| AppError::Message("launch-bridge/launch.js missing â€” run npm install in resources/launch-bridge".into()))
+        .ok_or_else(|| AppError::Message("launch-bridge/launch.js missing — run npm install in resources/launch-bridge".into()))
 }
 
 fn node_bin() -> String {
@@ -63,7 +63,7 @@ async fn launch_inner(
     let _ = app.emit("launch:log-append", &entry);
     let _ = app.emit(
         "launch:progress",
-        json!({ "phase": "start", "detail": "Preparingâ€¦", "percent": 2 }),
+        json!({ "phase": "start", "detail": "Preparing…", "percent": 2 }),
     );
 
     let stored = instances::get_stored(&instance_id)?
@@ -74,9 +74,9 @@ async fn launch_inner(
     let _ = bridge::sync_instance(&instance_id);
     let _ = app.emit(
         "launch:progress",
-        json!({ "phase": "mods", "detail": "Installing ValerisClient & Fabric APIâ€¦", "percent": 12 }),
+        json!({ "phase": "mods", "detail": "Installing ValerisClient & Fabric API…", "percent": 12 }),
     );
-    logs::append("info", "Ensuring modsâ€¦", Some("mods"));
+    logs::append("info", "Ensuring mods…", Some("mods"));
     if let Err(e) = modpack::ensure_instance_mods(&instance_id).await {
         let msg = e.to_string();
         logs::append("error", &msg, Some("mods"));
@@ -137,7 +137,7 @@ async fn launch_inner(
     if !bridge_dir.join("node_modules").exists() {
         let _ = app.emit(
             "launch:progress",
-            json!({ "phase": "start", "detail": "Installing launch bridgeâ€¦", "percent": 3 }),
+            json!({ "phase": "start", "detail": "Installing launch bridge…", "percent": 3 }),
         );
         let status = Command::new(node_bin().replace("node", "npm").replace("node.exe", "npm.cmd"))
             .arg("install")

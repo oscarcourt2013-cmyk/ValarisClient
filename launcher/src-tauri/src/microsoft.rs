@@ -1,4 +1,4 @@
-//! Microsoft â†’ Xbox Live â†’ Minecraft Services OAuth (Prism-compatible client).
+//! Microsoft → Xbox Live → Minecraft Services OAuth (Prism-compatible client).
 use crate::accounts::{save, load, StoredMinecraftAccount};
 use crate::error::{AppError, OkResult};
 use base64::{engine::general_purpose::URL_SAFE_NO_PAD, Engine};
@@ -85,7 +85,7 @@ pub fn login_interactive() -> Result<OkResult, AppError> {
                 .split('&')
                 .find_map(|p| p.strip_prefix("code=").map(|c| c.to_string()));
             let body = if code.is_some() {
-                "<html><body style='font-family:sans-serif;background:#060608;color:#fff;display:flex;align-items:center;justify-content:center;height:100vh'><div>Prime â€” you can close this tab.</div></body></html>"
+                "<html><body style='font-family:sans-serif;background:#060608;color:#fff;display:flex;align-items:center;justify-content:center;height:100vh'><div>Prime — you can close this tab.</div></body></html>"
             } else {
                 "<html><body>Login failed.</body></html>"
             };
@@ -188,7 +188,7 @@ async fn refresh_ms(refresh_token: &str) -> Result<MsTokens, AppError> {
     let access = body
         .get("access_token")
         .and_then(|v| v.as_str())
-        .ok_or_else(|| AppError::Message("Refresh failed â€” sign in again.".into()))?
+        .ok_or_else(|| AppError::Message("Refresh failed — sign in again.".into()))?
         .to_string();
     let refresh = body
         .get("refresh_token")
@@ -285,7 +285,7 @@ async fn xbox_minecraft(ms_access: &str) -> Result<(String, String, String, Opti
     let uuid = profile
         .get("id")
         .and_then(|v| v.as_str())
-        .ok_or_else(|| AppError::Message("No Minecraft profile â€” buy the game on this account.".into()))?
+        .ok_or_else(|| AppError::Message("No Minecraft profile — buy the game on this account.".into()))?
         .to_string();
     let name = profile
         .get("name")
@@ -346,7 +346,7 @@ pub fn refresh_account(account_id: &str) -> Result<OkResult, AppError> {
         return Ok(OkResult::err("Account not found."));
     };
     let Some(refresh) = account.ms_refresh_token.clone() else {
-        return Ok(OkResult::err("No Microsoft refresh token â€” sign in again."));
+        return Ok(OkResult::err("No Microsoft refresh token — sign in again."));
     };
     let rt = tokio::runtime::Runtime::new().map_err(|e| AppError::Message(e.to_string()))?;
     let tokens = rt.block_on(refresh_ms(&refresh))?;

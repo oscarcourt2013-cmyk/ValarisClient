@@ -19,19 +19,19 @@ Official launcher for **ValerisClient** — premium Minecraft platform.
 
 ```
 launcher/
-â”œâ”€─ src/
-│   â”œâ”€─ main/                 # Electron main process
-│   │   â”œâ”€─ index.ts          # Window, lifecycle
-│   │   â”œâ”€─ ipc/handlers.ts   # IPC registration
-│   │   â””â”€─ services/         # Backend services (stubs → full impl)
-│   â”œâ”€─ preload/              # Secure contextBridge API
-│   â”œâ”€─ shared/               # Types + IPC channels (main ↔ renderer)
-│   â””â”€─ renderer/
-│       â””â”€─ src/
-│           â”œâ”€─ design-system/   # Tokens, components, motion
-│           â”œâ”€─ layouts/         # TitleBar, Sidebar, AppShell
-│           â”œâ”€─ pages/           # Splash, Dashboard, placeholders
-│           â””â”€─ hooks/
+├── src/
+│   ├── main/                 # Electron main process
+│   │   ├── index.ts          # Window, lifecycle
+│   │   ├── ipc/handlers.ts   # IPC registration
+│   │   └── services/         # Backend services (stubs → full impl)
+│   ├── preload/              # Secure contextBridge API
+│   ├── shared/               # Types + IPC channels (main ↔ renderer)
+│   └── renderer/
+│       └── src/
+│           ├── design-system/   # Tokens, components, motion
+│           ├── layouts/         # TitleBar, Sidebar, AppShell
+│           ├── pages/           # Splash, Dashboard, placeholders
+│           └── hooks/
 ```
 
 ## Design System
