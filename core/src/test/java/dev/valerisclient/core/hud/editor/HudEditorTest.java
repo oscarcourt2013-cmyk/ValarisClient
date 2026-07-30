@@ -309,7 +309,9 @@ class HudEditorTest {
             box.setScale(2f);
             box.setVisible(false);
 
-            assertTrue(editor.mousePressed(281, 11)); // "Reset All" button
+            // "Reset All" sits at x=306..372, y=10..24 on a 400x300 canvas. The
+            // toolbar gained a "Hidden" toggle before it, so it moved right.
+            assertTrue(editor.mousePressed(339, 17));
             assertEquals(HudAnchor.TOP_LEFT, box.anchor());
             assertEquals(0f, box.offsetX());
             assertEquals(1f, box.scale(), 1e-5);

@@ -8,7 +8,10 @@ import dev.valerisclient.core.theme.Theme;
 import dev.valerisclient.core.util.ColorUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.IdentityHashMap;
 import java.util.List;
+import java.util.Set;
 
 /**
  * HUD editor chrome: top toolbar, element list (left), properties dock (bottom)
@@ -77,6 +80,7 @@ final class HudEditorUi {
     private Rect toolbar = Rect.EMPTY;
     private Rect btnGrid = Rect.EMPTY;
     private Rect btnSnap = Rect.EMPTY;
+    private Rect btnHidden = Rect.EMPTY;
     private Rect btnUndo = Rect.EMPTY;
     private Rect btnRedo = Rect.EMPTY;
     private Rect btnResetAll = Rect.EMPTY;
@@ -87,6 +91,26 @@ final class HudEditorUi {
     private final List<HudElement> listElements = new ArrayList<>();
     private float listScroll;
     private int listContentHeight;
+
+    /**
+     * Whether elements that are switched off are listed.
+     *
+     * <p>Around 80 HUD elements are registered and roughly eight are on. Listing
+     * all of them made the editor a scroll wall where almost every row was
+     * irrelevant to the arranging being done. Off by default: the list becomes the
+     * handful of things actually on screen, and the toolbar toggle brings the rest
+     * back when something needs switching on.</p>
+     */
+    private boolean showHidden;
+
+    /**
+     * Rows kept in the list after being switched off.
+     *
+     * <p>Without this, hiding an element while the filter is on makes its row
+     * vanish from under the cursor -- which reads as the element being deleted.
+     * Identity-based, and cleared whenever the filter is toggled.</p>
+     */
+    private final Set<HudElement> stickyRows = Collections.newSetFromMap(new IdentityHashMap<>());
 
     // Properties dock
     private Rect propsPanel = Rect.EMPTY;
@@ -158,6 +182,7 @@ final class HudEditorUi {
         toolbar = Rect.EMPTY;
         btnGrid = Rect.EMPTY;
         btnSnap = Rect.EMPTY;
+        btnHidden = Rect.EMPTY;
         btnUndo = Rect.EMPTY;
         btnRedo = Rect.EMPTY;
         btnResetAll = Rect.EMPTY;
@@ -246,6 +271,12 @@ final class HudEditorUi {
                 editor.toggleGrid();
             } else if (btnSnap.contains(mouseX, mouseY)) {
                 editor.toggleSnap();
+            } else if (btnHidden.contains(mouseX, mouseY)) {
+                showHidden = !showHidden;
+                // The stickies only exist to stop rows vanishing under the cursor
+                // while filtering; changing the filter is the point of forgetting.
+                stickyRows.clear();
+                listScroll = 0;
             } else if (btnUndo.contains(mouseX, mouseY)) {
                 editor.undo();
             } else if (btnRedo.contains(mouseX, mouseY)) {
@@ -260,6 +291,7 @@ final class HudEditorUi {
             if (index >= 0) {
                 HudElement element = listElements.get(index);
                 if (mouseX >= listView.x() + listView.w() - 14) {
+                    stickyRows.add(element);
                     editor.toggleVisibility(element);
                 } else {
                     editor.select(element);
@@ -271,6 +303,7 @@ final class HudEditorUi {
         if (editor.selected() != null && propsInteractiveHit(mouseX, mouseY)) {
             HudElement selected = editor.selected();
             if (btnVisibility.contains(mouseX, mouseY)) {
+                stickyRows.add(selected);
                 editor.toggleVisibility(selected);
             } else if (trackHit(trackScale, mouseX, mouseY)) {
                 activeSlider = Slider.SCALE;
@@ -480,7 +513,9 @@ final class HudEditorUi {
 
     private void renderToolbar(RenderContext ctx, Theme theme, double mouseX, double mouseY) {
         String title = "HUD Editor";
-        String[] labels = {"Grid", "Snap", "Undo", "Redo", "Reset All"};
+        // "Hidden" sits with the other view toggles rather than in the list header,
+        // so it does not push the rows down and is where the eye already is.
+        String[] labels = {"Grid", "Snap", "Hidden", "Undo", "Redo", "Reset All"};
         int pad = 6;
         int gap = 4;
         int titleW = ctx.uiTextWidth(title);
@@ -508,8 +543,8 @@ final class HudEditorUi {
             cursor += titleW + 10;
         }
         Rect[] rects = new Rect[labels.length];
-        boolean[] active = {editor.gridShown(), editor.snapOn(), false, false, false};
-        boolean[] enabled = {true, true, editor.canUndo(), editor.canRedo(), true};
+        boolean[] active = {editor.gridShown(), editor.snapOn(), showHidden, false, false, false};
+        boolean[] enabled = {true, true, true, editor.canUndo(), editor.canRedo(), true};
         for (int i = 0; i < labels.length; i++) {
             rects[i] = new Rect(cursor, y + 4, widths[i], buttonH);
             boolean hover = enabled[i] && rects[i].contains(mouseX, mouseY);
@@ -521,14 +556,22 @@ final class HudEditorUi {
         }
         btnGrid = rects[0];
         btnSnap = rects[1];
-        btnUndo = rects[2];
-        btnRedo = rects[3];
-        btnResetAll = rects[4];
+        btnHidden = rects[2];
+        btnUndo = rects[3];
+        btnRedo = rects[4];
+        btnResetAll = rects[5];
     }
 
     private void renderElementList(RenderContext ctx, Theme theme, double mouseX, double mouseY) {
         listElements.clear();
-        listElements.addAll(editor.hud().all());
+        int totalElements = 0;
+        for (HudElement element : editor.hud().all()) {
+            totalElements++;
+            if (showHidden || element.isVisible() || stickyRows.contains(element)
+                    || element == editor.selected()) {
+                listElements.add(element);
+            }
+        }
         if (!listShown) {
             listPanel = Rect.EMPTY;
             listView = Rect.EMPTY;
@@ -546,12 +589,12 @@ final class HudEditorUi {
         // Most elements ship hidden, and a wall of grey names with no count reads
         // as broken rather than as "these are switched off".
         int shownCount = 0;
-        for (HudElement element : listElements) {
+        for (HudElement element : editor.hud().all()) {
             if (element.isVisible()) {
                 shownCount++;
             }
         }
-        String count = shownCount + "/" + listElements.size();
+        String count = shownCount + "/" + totalElements;
         int countW = ctx.uiTextWidth(count);
         if (countW + 8 < listWidth - 8 - ctx.uiTextWidth("Elements") - 6) {
             ctx.drawUiText(count, x + listWidth - 8 - countW, PANEL_TOP + 6,
@@ -562,6 +605,17 @@ final class HudEditorUi {
         listContentHeight = listElements.size() * rowHeight;
         int maxScroll = Math.max(0, listContentHeight - listView.h());
         listScroll = HudEditor.clampSafe(listScroll, 0, maxScroll);
+
+        if (listElements.isEmpty()) {
+            // Otherwise an all-off HUD shows an empty box with no way out of it.
+            ctx.drawUiText(truncate(ctx, "Nothing on yet.", listWidth - 12),
+                    listView.x() + 3, listView.y(),
+                    ColorUtil.withAlpha(theme.foregroundMuted(), 0.9f));
+            ctx.drawUiText(truncate(ctx, "Press Hidden above.", listWidth - 12),
+                    listView.x() + 3, listView.y() + ctx.uiFontHeight() + 2,
+                    ColorUtil.withAlpha(theme.foregroundMuted(), 0.7f));
+            return;
+        }
 
         ctx.pushClip(listView.x(), listView.y(), listView.w(), listView.h());
         int rowY = listView.y() - Math.round(listScroll);
