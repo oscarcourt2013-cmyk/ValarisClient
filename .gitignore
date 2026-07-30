@@ -5,7 +5,7 @@ out/
 classes/
 
 # Node — path-agnostic on purpose. These used to be listed per project
-# (launcher/, backend/, voice-relay/), so ste-main/node_modules was not covered
+# (launcher/, backend/, voice-relay/), so launcherfiles/node_modules was not covered
 # and 8k dependency files were staged the first time npm install ran there.
 node_modules/
 dist/
