@@ -79,14 +79,38 @@ export class LaunchLogService {
     this.append(level, payload.detail, payload.phase)
   }
 
+  /**
+   * Queues one line at a time.
+   *
+   * <p>append() is called from high-frequency event handlers and does not await
+   * this, so writes used to overlap. Each appendFile opens, writes and closes
+   * the file, and on Windows concurrent opens of the same path fail with a
+   * sharing violation -- which the old catch discarded, so the log could go
+   * silent mid-launch with nothing to indicate it had. Chaining the writes keeps
+   * exactly one handle open at a time and preserves ordering.</p>
+   */
+  private writeQueue: Promise<void> = Promise.resolve()
+  private persistBroken = false
+
   private async persist(entry: LaunchLogEntryDto): Promise<void> {
-    try {
-      const file = await this.ensureLogFile()
-      const stamp = entry.timestamp.replace('T', ' ').slice(0, 19)
-      await appendFile(file, `[${stamp}] [${entry.level.toUpperCase()}] ${entry.message}\n`, 'utf8')
-    } catch {
-      // disk full / permissions — keep in-memory buffer
-    }
+    const stamp = entry.timestamp.replace('T', ' ').slice(0, 19)
+    const line = `[${stamp}] [${entry.level.toUpperCase()}] ${entry.message}\n`
+    this.writeQueue = this.writeQueue.then(async () => {
+      try {
+        const file = await this.ensureLogFile()
+        await appendFile(file, line, 'utf8')
+        this.persistBroken = false
+      } catch (err) {
+        // Report the first failure to stderr: silently dropping the log is what
+        // made an earlier launch failure impossible to diagnose. The in-memory
+        // buffer and the Console page are unaffected.
+        if (!this.persistBroken) {
+          this.persistBroken = true
+          console.error('[LaunchLogService] could not write launch.log:', err)
+        }
+      }
+    })
+    return this.writeQueue
   }
 
   private broadcast(entry?: LaunchLogEntryDto): void {

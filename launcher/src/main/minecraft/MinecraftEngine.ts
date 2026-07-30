@@ -144,6 +144,88 @@ async function handleGameExit(code: number | null, signal: NodeJS.Signals | null
   sessionStartedAt = 0
 }
 
+/**
+ * Records the exact command used to start the game.
+ *
+ * <p>When a launch fails before the game writes anything, this line is the only
+ * evidence of what was actually run -- which Java, which main class, which
+ * classpath. Reconstructing it after the fact means guessing.</p>
+ */
+function logGameCommand(command: unknown, args: unknown): void {
+  const exe = typeof command === 'string' ? command : String(command)
+  const list = Array.isArray(args) ? args.map((a) => String(a)) : []
+  launchLogService.append('info', `Spawning game process: ${exe}`, 'log')
+
+  // The classpath argument is thousands of characters of jar paths and would
+  // bury everything else, so summarise it and keep the rest verbatim.
+  const readable = list.map((arg, i) => {
+    const prev = i > 0 ? list[i - 1] : ''
+    if ((prev === '-cp' || prev === '-classpath') && arg.length > 200) {
+      return `<${arg.split(/[;:]/).filter(Boolean).length} classpath entries>`
+    }
+    return arg
+  })
+  launchLogService.append('debug', `Game arguments: ${readable.join(' ')}`, 'log')
+}
+
+/**
+ * Mirrors the game's own stdout/stderr into the launch log.
+ *
+ * <p>The launcher backend re-emits some of this as 'data' events, but when a
+ * launch dies early those events do not arrive, and the crash text is lost with
+ * them -- the process output is the only place a mixin failure or a JVM error
+ * ever appears. Reading the pipes directly does not interfere with the backend's
+ * own listener, since a stream can have several.</p>
+ */
+function captureGameOutput(proc: ChildProcess): void {
+  const pump = (stream: typeof proc.stdout, level: 'debug' | 'error') => {
+    if (!stream) {
+      return
+    }
+    let buffered = ''
+    stream.on('data', (chunk: Buffer | string) => {
+      buffered += String(chunk)
+      const lines = buffered.split(/\r?\n/)
+      // Trailing fragment is an incomplete line; hold it for the next chunk.
+      buffered = lines.pop() ?? ''
+      for (const line of lines) {
+        const text = line.trim()
+        if (!text) {
+          continue
+        }
+        const lower = text.toLowerCase()
+        const isError =
+          level === 'error' ||
+          lower.includes('/error]') ||
+          lower.includes('exception') ||
+          lower.includes('caused by')
+        launchLogService.append(isError ? 'error' : 'debug', text, 'log')
+      }
+    })
+    stream.on('end', () => {
+      const text = buffered.trim()
+      if (text) {
+        launchLogService.append(level, text, 'log')
+      }
+    })
+  }
+
+  pump(proc.stdout, 'debug')
+  pump(proc.stderr, 'error')
+
+  proc.once('error', (err) => {
+    launchLogService.append('error', `Game process failed to start: ${formatLaunchError(err)}`, 'log')
+  })
+
+  proc.once('exit', (code, signal) => {
+    launchLogService.append(
+      code === 0 ? 'info' : 'error',
+      `Game process exited with code ${code ?? 'null'}${signal ? ` (signal ${signal})` : ''}`,
+      'log'
+    )
+  })
+}
+
 function patchSpawnForJvmFlags(): void {
   if (spawnPatched) {
     return
@@ -166,6 +248,8 @@ function patchSpawnForJvmFlags(): void {
     }
     const proc = nativeSpawn(command, spawnArgs, options)
     if (isLikelyMinecraftProcess(command, spawnArgs)) {
+      logGameCommand(command, spawnArgs)
+      captureGameOutput(proc)
       trackGameProcess(proc)
     }
     return proc
