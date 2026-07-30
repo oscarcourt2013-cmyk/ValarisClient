@@ -2,7 +2,6 @@ import { AlertTriangle, Bot, ExternalLink, FileText, X } from 'lucide-react'
 import type { GameCrashAnalysisDto } from '@shared/ipc'
 import { Button } from '@renderer/design-system/components'
 import { useI18n } from '@renderer/context/I18nProvider'
-import { askPrimeAssistant } from '@renderer/lib/askPrimeAssistant'
 import './CrashReportPanel.css'
 
 interface CrashReportPanelProps {
@@ -85,28 +84,6 @@ export function CrashReportPanel({ crash, onDismiss }: CrashReportPanelProps) {
       </div>
 
       <div className="crash-panel__actions">
-        <Button
-          variant="primary"
-          size="sm"
-          icon={<Bot size={14} />}
-          onClick={() => {
-            const bits = [
-              'Minecraft a crashé. Appelle diagnose_instance (et read_crash_report si besoin).',
-              `Titre: ${crash.title}`,
-              crash.description ? `Description: ${crash.description}` : '',
-              crash.exceptionType ? `Exception: ${crash.exceptionType}` : '',
-              crash.exceptionMessage ? `Message: ${crash.exceptionMessage}` : '',
-              crash.screen ? `Screen: ${crash.screen}` : '',
-              crash.primeInvolved ? `Prime impliqué: ${crash.primeLocation ?? 'oui'}` : '',
-              crash.modIds.length ? `Mods suspects: ${crash.modIds.join(', ')}` : '',
-              crash.crashReportPath ? `Fichier: ${crash.crashReportPath}` : '',
-              'Dis-moi la cause probable et les étapes concrètes pour corriger.'
-            ].filter(Boolean)
-            askPrimeAssistant(bits.join('\n'))
-          }}
-        >
-          {t('crash.askAi')}
-        </Button>
         {crash.crashReportPath && (
           <Button
             variant="secondary"
@@ -117,36 +94,6 @@ export function CrashReportPanel({ crash, onDismiss }: CrashReportPanelProps) {
             {t('crash.openReport')}
           </Button>
         )}
-        <Button
-          variant="secondary"
-          size="sm"
-          onClick={() =>
-            void (async () => {
-              try {
-                const session = (await window.primeLauncher.chat.connect()) as { token?: string }
-                const token = session?.token
-                if (!token) return
-                const text = [crash.title, crash.description, crash.exceptionType, crash.exceptionMessage, crash.screen]
-                  .filter(Boolean)
-                  .join('\n')
-                const base = (import.meta as { env?: { VITE_PRIME_API?: string } }).env?.VITE_PRIME_API
-                  || 'http://194.9.172.102:26005'
-                await fetch(`${base.replace(/\/$/, '')}/v1/crash`, {
-                  method: 'POST',
-                  headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify({ title: crash.title, text })
-                })
-              } catch {
-                /* ignore */
-              }
-            })()
-          }
-        >
-          {t('crash.sendReport')}
-        </Button>
         <Button
           variant="ghost"
           size="sm"

@@ -3,7 +3,6 @@ package dev.valerisclient.core.serverapi;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import dev.valerisclient.core.social.SocialClient;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,16 +19,13 @@ public final class PrimeAccountManager {
     public record FriendView(String uuid, String username, String status, String serverAddress) {
     }
 
-    private final SocialClient socialClient;
-
     private volatile boolean logged;
     private volatile int level;
     private volatile int xp;
     private volatile List<String> availableRewards = List.of();
     private volatile List<FriendView> syncedFriends = List.of();
 
-    public PrimeAccountManager(SocialClient socialClient) {
-        this.socialClient = socialClient;
+    public PrimeAccountManager() {
     }
 
     public int getLevel() {
@@ -48,26 +44,8 @@ public final class PrimeAccountManager {
         return availableRewards;
     }
 
-    /**
-     * Friends currently online / in-game. Prefers live social cache;
-     * falls back to last {@code ACCOUNT_SYNC} payload.
-     */
+    /** Friends reported by the partner server in its last {@code ACCOUNT_SYNC} payload. */
     public List<FriendView> getFriends() {
-        Map<String, SocialClient.Friend> live = socialClient.friends();
-        if (!live.isEmpty()) {
-            List<FriendView> out = new ArrayList<>();
-            for (SocialClient.Friend f : live.values()) {
-                if (f.pending()) {
-                    continue;
-                }
-                String status = f.status() == null ? "offline" : f.status().toLowerCase(Locale.ROOT);
-                if (!"online".equals(status) && !"in-game".equals(status) && !"away".equals(status)) {
-                    continue;
-                }
-                out.add(new FriendView(f.uuid(), f.username(), status, f.serverAddress()));
-            }
-            return Collections.unmodifiableList(out);
-        }
         return syncedFriends;
     }
 

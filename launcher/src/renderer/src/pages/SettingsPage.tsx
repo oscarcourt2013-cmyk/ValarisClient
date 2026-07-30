@@ -67,21 +67,9 @@ export function SettingsPage() {
   const [ownsNebula, setOwnsNebula] = useState(false)
   const [javaInstalls, setJavaInstalls] = useState<JavaInstallationDto[]>([])
   const [restartRequired, setRestartRequired] = useState(false)
-  const [groqStatus, setGroqStatus] = useState<{
-    hasKey: boolean
-    maskedKey: string | null
-    viaProxy: boolean
-  }>({
-    hasKey: false,
-    maskedKey: null,
-    viaProxy: false
-  })
-  const [groqDraft, setGroqDraft] = useState('')
 
   const load = useCallback(async () => {
     const s = await window.primeLauncher.settings.get()
-    const keyStatus = await window.primeLauncher.ai.keyStatus()
-    setGroqStatus(keyStatus)
     setSettings({
       language: s.language,
       closeOnLaunch: s.closeOnLaunch,
@@ -735,63 +723,6 @@ export function SettingsPage() {
 
           {section === 'advanced' && (
             <>
-              <div className="settings__row">
-                <div>
-                  <div className="settings__label">{t('settings.groqKey.label')}</div>
-                  <div className="settings__hint">{t('settings.groqKey.hint')}</div>
-                  <div className="settings__hint" style={{ marginTop: 6 }}>
-                    {groqStatus.viaProxy
-                      ? t('settings.groqKey.statusProxy')
-                      : groqStatus.maskedKey
-                        ? t('settings.groqKey.statusOk', { masked: groqStatus.maskedKey })
-                        : groqStatus.hasKey
-                          ? t('settings.groqKey.statusMissing')
-                          : t('settings.groqKey.statusDown')}
-                  </div>
-                </div>
-              </div>
-              <div
-                style={{
-                  display: 'flex',
-                  gap: 8,
-                  margin: '0 16px 16px',
-                  alignItems: 'center'
-                }}
-              >
-                <input
-                  className="settings__input"
-                  style={{ flex: 1 }}
-                  type="password"
-                  value={groqDraft}
-                  placeholder={t('settings.groqKey.placeholder')}
-                  onChange={(e) => setGroqDraft(e.target.value)}
-                />
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  onClick={() => {
-                    void window.primeLauncher.ai.setKey(groqDraft.trim()).then((status) => {
-                      setGroqStatus(status)
-                      setGroqDraft('')
-                      setSaved(true)
-                      setTimeout(() => setSaved(false), 2000)
-                    })
-                  }}
-                >
-                  {t('settings.groqKey.save')}
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => {
-                    void window.primeLauncher.ai.clearKey().then((status) => {
-                      setGroqStatus(status)
-                    })
-                  }}
-                >
-                  {t('settings.groqKey.clear')}
-                </Button>
-              </div>
               <div className="settings__row">
                 <div>
                   <div className="settings__label">{t('settings.jvmArgs.label')}</div>

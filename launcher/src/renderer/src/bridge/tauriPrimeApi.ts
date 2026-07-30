@@ -104,7 +104,6 @@ export function createTauriPrimeApi() {
     },
     minecraft: {
       getInstances: () => invoke('instance_list'),
-      getNews: () => invoke('news_list'),
       getFavoriteServers: () => invoke('servers_list')
     },
     mod: {
@@ -208,56 +207,11 @@ export function createTauriPrimeApi() {
       purchase: (itemId: string) => invoke('store_purchase', { itemId }),
       history: async () => [],
       promos: async () => [],
-      redeem: async () => ({ ok: false, error: 'Not available in Tauri build yet.' }),
-      syncMode: async () => 'local' as const
+      redeem: async () => ({ ok: false, error: 'Not available in Tauri build yet.' })
     },
     cosmetic: {
       list: () => invoke('cosmetic_list'),
       toggle: (cosmeticId: string) => invoke('cosmetic_toggle', { cosmeticId })
-    },
-    friends: {
-      list: () => invoke('friends_list'),
-      add: (username: string, note?: string) => invoke('friends_add', { username, note }),
-      accept: (friendId: string) => invoke('friends_accept', { friendId }),
-      remove: (friendId: string) => invoke('friends_remove', { friendId }),
-      updateNote: (friendId: string, note: string) =>
-        invoke('friends_update_note', { friendId, note }),
-      refreshAll: () => invoke('friends_refresh_all'),
-      refresh: () => invoke('friends_list')
-    },
-    chat: {
-      connect: () => invoke('social_connect'),
-      conversations: () => invoke('chat_conversations'),
-      openDm: (uuid: string) => invoke('chat_open_dm', { uuid }),
-      messages: (conversationId: string) => invoke('chat_messages', { conversationId }),
-      send: (conversationId: string, text: string, imageUrl?: string | null) =>
-        invoke('chat_send', { conversationId, text, imageUrl }),
-      upload: (filePath: string) => invoke('chat_upload', { filePath })
-    },
-    social: {
-      connect: () => invoke('social_connect'),
-      sendTyping: (conversationId: string) => invoke('social_typing', { conversationId }),
-      onEvent: (listener: (event: Record<string, unknown>) => void): (() => void) => {
-        let unlisten: (() => void) | undefined
-        void listen<Record<string, unknown>>('social:event', (event) => {
-          listener(event.payload)
-        }).then((fn) => {
-          unlisten = fn
-        })
-        return () => unlisten?.()
-      }
-    },
-    party: {
-      get: () => invoke('party_get'),
-      create: () => invoke('party_create'),
-      invite: (uuid: string) => invoke('party_invite', { uuid }),
-      leave: () => invoke('party_leave'),
-      accept: (inviteId: string) => invoke('party_accept', { inviteId }),
-      decline: (inviteId: string) => invoke('party_decline', { inviteId }),
-      setServer: (serverAddress: string) => invoke('party_set_server', { serverAddress })
-    },
-    news: {
-      list: () => invoke('news_list')
     },
     servers: {
       list: () => invoke('servers_list'),

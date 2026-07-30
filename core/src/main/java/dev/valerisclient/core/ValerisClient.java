@@ -2,7 +2,6 @@ package dev.valerisclient.core;
 
 import dev.valerisclient.core.account.PrimeAccountService;
 import dev.valerisclient.core.adapter.MinecraftAdapter;
-import dev.valerisclient.core.ai.AiAssistantService;
 import dev.valerisclient.core.cloud.CloudSyncManager;
 import dev.valerisclient.core.cloud.LocalCloudClient;
 import dev.valerisclient.core.config.ConfigManager;
@@ -14,7 +13,6 @@ import dev.valerisclient.core.i18n.PrimeLang;
 import dev.valerisclient.core.bootstrap.FirstRunConfigurator;
 import dev.valerisclient.core.bootstrap.OnboardingFlow;
 import dev.valerisclient.core.discord.DiscordRpcService;
-import dev.valerisclient.core.voice.VoiceChatService;
 import dev.valerisclient.core.event.ClientTickEvent;
 import dev.valerisclient.core.event.EventBus;
 import dev.valerisclient.core.event.WorldJoinEvent;
@@ -37,7 +35,6 @@ import dev.valerisclient.core.notification.NotificationPreferences;
 import dev.valerisclient.core.presence.PrimePresenceService;
 import dev.valerisclient.core.serverapi.ServerApiService;
 import dev.valerisclient.core.skin.CustomSkinService;
-import dev.valerisclient.core.social.SocialService;
 import dev.valerisclient.core.profile.ProfileManager;
 import dev.valerisclient.core.replay.ReplaySession;
 import dev.valerisclient.core.replay.ReplayStorage;
@@ -86,11 +83,8 @@ public final class ValerisClient {
     private final ClipRecorder clipRecorder;
     private final TooltipRenderer tooltips;
     private final DiscordRpcService discordRpc;
-    private final VoiceChatService voiceChat;
     private final PrimePresenceService presence;
-    private final SocialService social;
     private final ServerApiService serverApi;
-    private final AiAssistantService ai;
     private final CustomSkinService customSkins;
 
     private boolean debutSession;
@@ -120,13 +114,10 @@ public final class ValerisClient {
         this.tooltips = new TooltipRenderer();
         this.account = new PrimeAccountService();
         this.discordRpc = new DiscordRpcService();
-        this.voiceChat = new VoiceChatService();
         this.presence = new PrimePresenceService(adapter);
-        this.social = new SocialService(adapter, notifications);
-        this.serverApi = new ServerApiService(adapter, notifications, social);
+        this.serverApi = new ServerApiService(adapter, notifications);
 
         Path modRoot = adapter.configDirectory().resolve(MOD_ID);
-        this.ai = new AiAssistantService(adapter, modules, modRoot, () -> social.settings().apiBase());
         this.customSkins = new CustomSkinService(adapter, modRoot);
         LocalCloudClient localCloud = new LocalCloudClient(modRoot.resolve("cloud"));
         this.cloudSync = new CloudSyncManager(localCloud, configManager, notifications);
@@ -153,8 +144,6 @@ public final class ValerisClient {
         configManager.register(account);
         configManager.register(notificationPrefs);
         configManager.register(discordRpc.settings());
-        configManager.register(voiceChat.settings());
-        configManager.register(social.settings());
 
         hud.register(new WatermarkElement(themes, adapter.minecraftVersion()));
         hud.register(new NotificationsElement(notifications, themes, notificationPrefs));
@@ -185,15 +174,6 @@ public final class ValerisClient {
         client.debutSession = freshInstall;
         if (freshInstall) {
             FirstRunConfigurator.applyStarter(client);
-        }
-        // Social is always-on infrastructure — keep the module enabled so settings sync.
-        var socialHub = client.modules.get("social-hub");
-        if (socialHub != null && !socialHub.isEnabled()) {
-            socialHub.setEnabled(true);
-        }
-        var aiAssistant = client.modules.get("ai-assistant");
-        if (aiAssistant != null && !aiAssistant.isEnabled()) {
-            aiAssistant.setEnabled(true);
         }
         var customSkin = client.modules.get("custom-skin");
         if (customSkin != null && !customSkin.isEnabled()) {
@@ -240,7 +220,6 @@ public final class ValerisClient {
         }
         tooltips.tick(50);
         profiles.pollExternalBridgeChanges();
-        social.tick();
         if (adapter.isScreenOpen()) {
             keybinds.releaseAll();
         } else {
@@ -256,7 +235,6 @@ public final class ValerisClient {
         }
         crosshairProfiles.applyForServer(adapter.serverAddress());
         presence.onWorldJoin();
-        social.onWorldJoin();
         serverApi.onWorldJoin();
         eventBus.post(WorldJoinEvent.INSTANCE);
     }
@@ -267,14 +245,11 @@ public final class ValerisClient {
             cloudSync.uploadNow(profiles.activeProfile());
         }
         presence.onWorldLeave();
-        social.onWorldLeave();
         serverApi.onWorldLeave();
         eventBus.post(WorldLeaveEvent.INSTANCE);
     }
 
     public void shutdown() {
-        voiceChat.shutdown();
-        social.onWorldLeave();
         discordRpc.shutdown();
         profiles.saveActive();
         LOGGER.info("{} shut down, config saved", NAME);
@@ -326,10 +301,7 @@ public final class ValerisClient {
     public ClipRecorder clipRecorder() { return clipRecorder; }
     public TooltipRenderer tooltips() { return tooltips; }
     public DiscordRpcService discordRpc() { return discordRpc; }
-    public VoiceChatService voiceChat() { return voiceChat; }
     public PrimePresenceService presence() { return presence; }
-    public SocialService social() { return social; }
     public ServerApiService serverApi() { return serverApi; }
-    public AiAssistantService ai() { return ai; }
     public CustomSkinService customSkins() { return customSkins; }
 }

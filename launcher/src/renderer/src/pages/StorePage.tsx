@@ -41,7 +41,6 @@ export function StorePage() {
   const [promos, setPromos] = useState<PromoRow[]>([])
   const [promoCode, setPromoCode] = useState('')
   const [balance, setBalance] = useState(0)
-  const [syncMode, setSyncMode] = useState<'synced' | 'local'>('local')
   const [message, setMessage] = useState<string | null>(null)
   const [preview, setPreview] = useState<StoreItem | null>(null)
 
@@ -72,12 +71,10 @@ export function StorePage() {
       window.primeLauncher.store.history(),
       window.primeLauncher.store.promos()
     ])
-    const mode = await window.primeLauncher.store.syncMode()
     setItems(catalog)
     setBalance(coins)
     setHistory(hist)
     setPromos(promoList)
-    setSyncMode(mode)
   }, [])
 
   useEffect(() => {
@@ -133,9 +130,6 @@ export function StorePage() {
       subtitle={t('pages.store.subtitle')}
       actions={
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <Badge variant={syncMode === 'synced' ? 'success' : 'default'}>
-            {syncMode === 'synced' ? t('store.syncSynced') : t('store.syncLocal')}
-          </Badge>
           <Badge variant="prime">{t('store.coins', { balance })}</Badge>
         </div>
       }

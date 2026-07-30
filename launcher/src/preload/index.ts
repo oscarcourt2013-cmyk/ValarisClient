@@ -89,7 +89,6 @@ const api = {
   },
   minecraft: {
     getInstances: () => ipcRenderer.invoke('minecraft:get-instances'),
-    getNews: () => ipcRenderer.invoke('minecraft:get-news'),
     getFavoriteServers: () => ipcRenderer.invoke('minecraft:get-favorite-servers')
   },
   mod: {
@@ -185,8 +184,7 @@ const api = {
     purchase: (itemId: string) => ipcRenderer.invoke(IPC.STORE_PURCHASE, itemId),
     history: () => ipcRenderer.invoke(IPC.STORE_HISTORY),
     promos: () => ipcRenderer.invoke(IPC.STORE_PROMOS),
-    redeem: (code: string) => ipcRenderer.invoke(IPC.STORE_REDEEM, code),
-    syncMode: () => ipcRenderer.invoke(IPC.STORE_SYNC_MODE) as Promise<'synced' | 'local'>
+    redeem: (code: string) => ipcRenderer.invoke(IPC.STORE_REDEEM, code)
   },
   cosmetic: {
     list: () => ipcRenderer.invoke(IPC.COSMETIC_LIST),
@@ -198,48 +196,6 @@ const api = {
     remove: (id: string) => ipcRenderer.invoke(IPC.SKIN_REMOVE, id),
     setActive: (id: string | null) => ipcRenderer.invoke(IPC.SKIN_SET_ACTIVE, id),
     activeData: () => ipcRenderer.invoke(IPC.SKIN_ACTIVE_DATA)
-  },
-  friends: {
-    list: () => ipcRenderer.invoke(IPC.FRIENDS_LIST),
-    add: (username: string, note?: string) => ipcRenderer.invoke(IPC.FRIENDS_ADD, username, note),
-    accept: (friendId: string) => ipcRenderer.invoke(IPC.FRIENDS_ACCEPT, friendId),
-    remove: (friendId: string) => ipcRenderer.invoke(IPC.FRIENDS_REMOVE, friendId),
-    updateNote: (friendId: string, note: string) =>
-      ipcRenderer.invoke(IPC.FRIENDS_UPDATE_NOTE, friendId, note),
-    refreshAll: () => ipcRenderer.invoke(IPC.FRIENDS_REFRESH_ALL),
-    refresh: (friendId: string) => ipcRenderer.invoke(IPC.FRIENDS_REFRESH, friendId)
-  },
-  chat: {
-    connect: () => ipcRenderer.invoke(IPC.SOCIAL_CONNECT),
-    conversations: () => ipcRenderer.invoke(IPC.CHAT_CONVERSATIONS),
-    openDm: (uuid: string) => ipcRenderer.invoke(IPC.CHAT_OPEN_DM, uuid),
-    messages: (conversationId: string) => ipcRenderer.invoke(IPC.CHAT_MESSAGES, conversationId),
-    send: (conversationId: string, text: string, imageUrl?: string | null) =>
-      ipcRenderer.invoke(IPC.CHAT_SEND, conversationId, text, imageUrl),
-    upload: (filePath: string) => ipcRenderer.invoke(IPC.CHAT_UPLOAD, filePath)
-  },
-  social: {
-    connect: () => ipcRenderer.invoke(IPC.SOCIAL_CONNECT),
-    sendTyping: (conversationId: string) => ipcRenderer.invoke(IPC.SOCIAL_TYPING, conversationId),
-    onEvent: (listener: (event: Record<string, unknown>) => void): (() => void) => {
-      const handler = (_event: IpcRendererEvent, payload: Record<string, unknown>): void => {
-        listener(payload)
-      }
-      ipcRenderer.on(IPC.SOCIAL_EVENT, handler)
-      return () => ipcRenderer.removeListener(IPC.SOCIAL_EVENT, handler)
-    }
-  },
-  party: {
-    get: () => ipcRenderer.invoke(IPC.PARTY_GET),
-    create: () => ipcRenderer.invoke(IPC.PARTY_CREATE),
-    invite: (uuid: string) => ipcRenderer.invoke(IPC.PARTY_INVITE, uuid),
-    leave: () => ipcRenderer.invoke(IPC.PARTY_LEAVE),
-    accept: (inviteId: string) => ipcRenderer.invoke(IPC.PARTY_ACCEPT, inviteId),
-    decline: (inviteId: string) => ipcRenderer.invoke(IPC.PARTY_DECLINE, inviteId),
-    setServer: (serverAddress: string) => ipcRenderer.invoke(IPC.PARTY_SET_SERVER, serverAddress)
-  },
-  news: {
-    list: () => ipcRenderer.invoke(IPC.NEWS_LIST)
   },
   servers: {
     list: () => ipcRenderer.invoke(IPC.SERVERS_LIST),
@@ -295,60 +251,6 @@ const api = {
       ipcRenderer.on(IPC.UPDATE_PROGRESS, handler)
       return () => ipcRenderer.removeListener(IPC.UPDATE_PROGRESS, handler)
     }
-  },
-  ai: {
-    keyStatus: () => ipcRenderer.invoke(IPC.AI_KEY_STATUS) as Promise<{
-      hasKey: boolean
-      maskedKey: string | null
-      viaProxy: boolean
-    }>,
-    hasKey: () => ipcRenderer.invoke(IPC.AI_HAS_KEY) as Promise<boolean>,
-    setKey: (key: string) =>
-      ipcRenderer.invoke(IPC.AI_SET_KEY, key) as Promise<{
-        hasKey: boolean
-        maskedKey: string | null
-        viaProxy: boolean
-      }>,
-    clearKey: () =>
-      ipcRenderer.invoke(IPC.AI_CLEAR_KEY) as Promise<{
-        hasKey: boolean
-        maskedKey: string | null
-        viaProxy: boolean
-      }>,
-    chat: (payload: {
-      message: string
-      instanceId?: string
-      history?: Array<{ role: 'user' | 'assistant'; content: string }>
-    }) =>
-      ipcRenderer.invoke(IPC.AI_CHAT, payload) as Promise<{
-        ok: boolean
-        reply: string
-        proposals: Array<{
-          projectId: string
-          title: string
-          source: 'modrinth' | 'curseforge'
-          type: 'mod' | 'resourcepack' | 'shader'
-          description?: string
-          downloads?: number
-          iconUrl?: string
-          slug?: string
-        }>
-        error?: string
-        hasKey: boolean
-      }>,
-    confirmInstall: (payload: {
-      projectId: string
-      title: string
-      source: 'modrinth' | 'curseforge'
-      type: 'mod' | 'resourcepack' | 'shader'
-      instanceId?: string
-      versionId?: string
-    }) =>
-      ipcRenderer.invoke(IPC.AI_CONFIRM_INSTALL, payload) as Promise<{
-        ok: boolean
-        error?: string
-        fileName?: string
-      }>
   }
 }
 

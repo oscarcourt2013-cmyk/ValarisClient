@@ -8,39 +8,24 @@ import { AccountProvider } from '@renderer/context/AccountProvider'
 import { I18nProvider } from '@renderer/context/I18nProvider'
 import { ThemeProvider } from '@renderer/context/ThemeProvider'
 import { useBootSequence } from '@renderer/hooks/useBootSequence'
-import type { FavoriteServer, NewsItem } from '@shared/types'
+import type { FavoriteServer } from '@shared/types'
 
 function LauncherApp() {
-  const [news, setNews] = useState<NewsItem[]>([])
   const [servers, setServers] = useState<FavoriteServer[]>([])
-  const [ready, setReady] = useState(false)
 
+  // Loaded after the first paint rather than gating it. Blocking render on this
+  // used to cost 500-800ms of blank window on every launch.
   useEffect(() => {
-    void (async () => {
-      try {
-        const [newsItems, favServers] = await Promise.all([
-          window.primeLauncher.news.list(),
-          window.primeLauncher.servers.list()
-        ])
-        setNews(newsItems)
-        setServers(favServers)
-      } catch {
-        setNews([])
-        setServers([])
-      } finally {
-        setReady(true)
-      }
-    })()
+    void window.primeLauncher.servers
+      .list()
+      .then(setServers)
+      .catch(() => setServers([]))
   }, [])
-
-  if (!ready) {
-    return null
-  }
 
   return (
     <HashRouter>
       <AppShell>
-        <AppRoutes news={news} servers={servers} />
+        <AppRoutes servers={servers} />
       </AppShell>
     </HashRouter>
   )

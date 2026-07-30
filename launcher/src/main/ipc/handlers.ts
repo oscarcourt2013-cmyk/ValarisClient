@@ -1,4 +1,4 @@
-import { ipcMain, shell, BrowserWindow } from 'electron'
+import { ipcMain, shell } from 'electron'
 import { IPC } from '../../shared/ipc'
 import { accountService } from '../services/AccountService'
 import { profileService } from '../services/ProfileService'
@@ -13,9 +13,6 @@ import { launchService } from '../services/LaunchService'
 import { launchLogService } from '../services/LaunchLogService'
 import { launcherBridgeService } from '../services/LauncherBridgeService'
 import { storeService } from '../services/StoreService'
-import { friendsService } from '../services/FriendsService'
-import { socialService } from '../services/SocialService'
-import { newsService } from '../services/NewsService'
 import { mediaService } from '../services/MediaService'
 import { performanceService } from '../services/PerformanceService'
 import { downloadService } from '../services/DownloadService'
@@ -24,7 +21,6 @@ import { listJavaInstallations } from '../minecraft/JavaService'
 import { minecraftEngine } from '../minecraft/MinecraftEngine'
 import { settingsService } from '../services/SettingsService'
 import { updateService } from '../services/UpdateService'
-import { aiAssistantService } from '../services/AiAssistantService'
 import type { PerformancePreset } from '../../shared/content-types'
 import type { LauncherSettings } from '../storage/SettingsStore'
 import { settingsStore } from '../storage/SettingsStore'
@@ -92,7 +88,6 @@ export function registerServiceHandlers(): void {
   ipcMain.handle('profile:get-active', () => profileService.getActiveProfile())
   ipcMain.handle('profile:get-all', () => profileService.getProfiles())
   ipcMain.handle('minecraft:get-instances', () => instanceService.list())
-  ipcMain.handle('minecraft:get-news', () => newsService.getNews())
   ipcMain.handle('minecraft:get-favorite-servers', () => serverService.list())
 
   ipcMain.handle(IPC.SERVERS_LIST, () => serverService.list())
@@ -189,7 +184,6 @@ export function registerServiceHandlers(): void {
   ipcMain.handle(IPC.STORE_HISTORY, () => storeService.getHistory())
   ipcMain.handle(IPC.STORE_PROMOS, () => storeService.listPromos())
   ipcMain.handle(IPC.STORE_REDEEM, (_e, code: string) => storeService.redeemPromo(code))
-  ipcMain.handle(IPC.STORE_SYNC_MODE, () => storeService.getSyncMode())
 
   ipcMain.handle(IPC.COSMETIC_LIST, () => cosmeticService.list())
   ipcMain.handle(IPC.COSMETIC_TOGGLE, (_e, cosmeticId: string) => cosmeticService.toggleEquip(cosmeticId))
@@ -200,35 +194,6 @@ export function registerServiceHandlers(): void {
   ipcMain.handle(IPC.SKIN_SET_ACTIVE, (_e, id: string | null) => skinLibraryService.setActive(id))
   ipcMain.handle(IPC.SKIN_ACTIVE_DATA, () => skinLibraryService.getActiveDataUrl())
 
-  ipcMain.handle(IPC.FRIENDS_LIST, () => friendsService.list())
-  ipcMain.handle(IPC.FRIENDS_ADD, (_e, username: string, note?: string) => friendsService.add(username, note))
-  ipcMain.handle(IPC.FRIENDS_ACCEPT, (_e, friendId: string) => friendsService.accept(friendId))
-  ipcMain.handle(IPC.FRIENDS_REMOVE, (_e, friendId: string) => friendsService.remove(friendId))
-  ipcMain.handle(IPC.FRIENDS_UPDATE_NOTE, (_e, friendId: string, note: string) =>
-    friendsService.updateNote(friendId, note)
-  )
-  ipcMain.handle(IPC.FRIENDS_REFRESH_ALL, () => friendsService.refreshAllStatuses())
-  ipcMain.handle(IPC.FRIENDS_REFRESH, (_e, friendId: string) => friendsService.refreshStatus(friendId))
-
-  ipcMain.handle(IPC.SOCIAL_CONNECT, () => socialService.ensureSession())
-  ipcMain.handle(IPC.CHAT_CONVERSATIONS, () => socialService.listConversations())
-  ipcMain.handle(IPC.CHAT_OPEN_DM, (_e, uuid: string) => socialService.openDm(uuid))
-  ipcMain.handle(IPC.CHAT_MESSAGES, (_e, conversationId: string) => socialService.listMessages(conversationId))
-  ipcMain.handle(IPC.CHAT_SEND, (_e, conversationId: string, text: string, imageUrl?: string | null) =>
-    socialService.sendMessage(conversationId, text, imageUrl)
-  )
-  ipcMain.handle(IPC.CHAT_UPLOAD, (_e, filePath: string) => socialService.uploadImage(filePath))
-  ipcMain.handle(IPC.PARTY_GET, () => socialService.getParty())
-  ipcMain.handle(IPC.PARTY_CREATE, () => socialService.createParty())
-  ipcMain.handle(IPC.PARTY_INVITE, (_e, uuid: string) => socialService.inviteToParty(uuid))
-  ipcMain.handle(IPC.PARTY_LEAVE, () => socialService.leaveParty())
-  ipcMain.handle(IPC.PARTY_ACCEPT, (_e, inviteId: string) => socialService.acceptPartyInvite(inviteId))
-  ipcMain.handle(IPC.PARTY_DECLINE, (_e, inviteId: string) => socialService.declinePartyInvite(inviteId))
-  ipcMain.handle(IPC.PARTY_SET_SERVER, (_e, serverAddress: string) => socialService.setPartyServer(serverAddress))
-  ipcMain.handle(IPC.SOCIAL_TYPING, (_e, conversationId: string) => {
-    socialService.sendTyping(conversationId)
-  })
-
   ipcMain.handle(IPC.BOOT_INITIALIZE, () => bootService.initialize())
   ipcMain.handle(IPC.SETTINGS_JAVA_LIST, async () => {
     const settings = await settingsStore.load()
@@ -237,7 +202,6 @@ export function registerServiceHandlers(): void {
   ipcMain.handle(IPC.SETTINGS_JAVA_BROWSE, () => settingsService.browseJavaExecutable())
   ipcMain.handle(IPC.SETTINGS_JAVA_ADD, (_e, javaPath: string) => settingsService.addCustomJavaPath(javaPath))
 
-  ipcMain.handle(IPC.NEWS_LIST, () => newsService.getNews())
   ipcMain.handle(IPC.MEDIA_LIST, (_e, instanceId?: string) => mediaService.list(instanceId))
   ipcMain.handle(IPC.MEDIA_OPEN_FOLDER, (_e, instanceId?: string) => mediaService.openFolder(instanceId))
   ipcMain.handle(IPC.MEDIA_OPEN_FILE, (_e, filePath: string) => mediaService.openFile(filePath))
@@ -266,20 +230,4 @@ export function registerServiceHandlers(): void {
   ipcMain.handle(IPC.UPDATE_INSTALL_MOD, (_e, instanceId?: string) => updateService.installMod(instanceId))
   ipcMain.handle(IPC.UPDATE_DISMISS, () => updateService.dismissBanner())
   ipcMain.handle(IPC.UPDATE_OPEN_RELEASE, (_e, url?: string) => updateService.openReleasePage(url))
-
-  ipcMain.handle(IPC.AI_KEY_STATUS, () => aiAssistantService.keyStatus())
-  ipcMain.handle(IPC.AI_HAS_KEY, async () => (await aiAssistantService.keyStatus()).hasKey)
-  ipcMain.handle(IPC.AI_SET_KEY, (_e, key: string) => aiAssistantService.setKey(key))
-  ipcMain.handle(IPC.AI_CLEAR_KEY, () => aiAssistantService.clearKey())
-  ipcMain.handle(IPC.AI_CHAT, (_e, payload) => aiAssistantService.chat(payload))
-  ipcMain.handle(IPC.AI_CONFIRM_INSTALL, (_e, payload) => aiAssistantService.confirmInstall(payload))
-}
-
-/** Forwards live social WebSocket payloads to all renderer windows. */
-export function registerSocialEventBridge(): void {
-  socialService.onEvent((event) => {
-    for (const win of BrowserWindow.getAllWindows()) {
-      win.webContents.send(IPC.SOCIAL_EVENT, event)
-    }
-  })
 }

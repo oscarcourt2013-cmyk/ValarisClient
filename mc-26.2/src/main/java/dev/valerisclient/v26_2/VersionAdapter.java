@@ -7,7 +7,6 @@ import dev.valerisclient.core.util.DirectionUtil;
 import dev.valerisclient.v26_2.mixin.MinecraftUserAccessor;
 import dev.valerisclient.core.account.LauncherAccountStore;
 import dev.valerisclient.v26_2.screen.AccountSwitcherScreen;
-import dev.valerisclient.v26_2.screen.SocialHubScreen;
 import dev.valerisclient.v26_2.screen.PrimeTitleScreen;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
@@ -264,12 +263,6 @@ public final class VersionAdapter implements MinecraftAdapter {
         mc.gui.setScreen(new AccountSwitcherScreen(parent));
     }
 
-    @Override
-    public void openSocialHub() {
-        Minecraft mc = Minecraft.getInstance();
-        Screen parent = mc.gui.screen();
-        mc.gui.setScreen(new SocialHubScreen(parent));
-    }
 
     @Override
     public void joinMultiplayerServer(String address) {

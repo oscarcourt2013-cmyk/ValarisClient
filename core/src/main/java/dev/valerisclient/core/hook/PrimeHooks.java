@@ -262,9 +262,6 @@ public final class PrimeHooks {
         if (client.serverApi().handleClientCommand(message)) {
             return true;
         }
-        if (client.ai().handleClientCommand(message)) {
-            return true;
-        }
         return client.customSkins().handleClientCommand(message);
     }
 

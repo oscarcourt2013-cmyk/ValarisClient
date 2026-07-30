@@ -10,25 +10,21 @@ import { ResourcesPage } from '@renderer/pages/ResourcesPage'
 import { ShadersPage } from '@renderer/pages/ShadersPage'
 import { StorePage } from '@renderer/pages/StorePage'
 import { ServersPage } from '@renderer/pages/ServersPage'
-import { FriendsPage } from '@renderer/pages/FriendsPage'
-import { ChatPage } from '@renderer/pages/ChatPage'
-import { NewsPage } from '@renderer/pages/NewsPage'
 import { MediaPage } from '@renderer/pages/MediaPage'
 import { PerformancePage } from '@renderer/pages/PerformancePage'
 import { DownloadsPage } from '@renderer/pages/DownloadsPage'
 import { ConsolePage } from '@renderer/pages/ConsolePage'
 import { SettingsPage } from '@renderer/pages/SettingsPage'
-import type { FavoriteServer, NewsItem } from '@shared/types'
+import type { FavoriteServer } from '@shared/types'
 
 interface AppRoutesProps {
-  news: NewsItem[]
   servers: FavoriteServer[]
 }
 
-export function AppRoutes({ news, servers }: AppRoutesProps) {
+export function AppRoutes({ servers }: AppRoutesProps) {
   return (
     <Routes>
-      <Route index element={<DashboardPage news={news} servers={servers} />} />
+      <Route index element={<DashboardPage servers={servers} />} />
       <Route path="accounts" element={<AccountsPage />} />
       <Route path="profile" element={<ProfilePage />} />
       <Route path="instances" element={<InstancesPage />} />
@@ -40,9 +36,6 @@ export function AppRoutes({ news, servers }: AppRoutesProps) {
       <Route path="store" element={<StorePage />} />
       <Route path="cosmetics" element={<Navigate to="/skins" replace />} />
       <Route path="servers" element={<ServersPage />} />
-      <Route path="friends" element={<FriendsPage />} />
-      <Route path="chat" element={<ChatPage />} />
-      <Route path="news" element={<NewsPage />} />
       <Route path="media" element={<MediaPage />} />
       <Route path="performance" element={<PerformancePage />} />
       <Route path="downloads" element={<DownloadsPage />} />

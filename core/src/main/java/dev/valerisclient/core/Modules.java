@@ -25,10 +25,8 @@ import dev.valerisclient.core.modules.performance.MemorySpikeAlertModule;
 import dev.valerisclient.core.modules.performance.ParticleOptimizerModule;
 import dev.valerisclient.core.modules.performance.PerformanceProfilesModule;
 import dev.valerisclient.core.modules.performance.RamCleanerModule;
-import dev.valerisclient.core.modules.prime.AiAssistantModule;
 import dev.valerisclient.core.modules.prime.ClientBadgeModule;
 import dev.valerisclient.core.modules.prime.CustomSkinModule;
-import dev.valerisclient.core.modules.prime.SocialHubModule;
 import dev.valerisclient.core.modules.prime.DiscordRichPresenceModule;
 import dev.valerisclient.core.modules.prime.GameplayDnaModule;
 import dev.valerisclient.core.modules.prime.ModuleBundlesModule;
@@ -37,7 +35,6 @@ import dev.valerisclient.core.modules.prime.PrimeConfigCloudModule;
 import dev.valerisclient.core.modules.prime.PrimeCosmeticsModule;
 import dev.valerisclient.core.modules.prime.PrimeProfilesModule;
 import dev.valerisclient.core.modules.prime.PrimeSettingsManagerModule;
-import dev.valerisclient.core.modules.prime.VoiceChatModule;
 import dev.valerisclient.core.modules.prime.ServerNotesModule;
 import dev.valerisclient.core.modules.prime.SmartProfileModule;
 import dev.valerisclient.core.modules.pvp.ArmorHudModule;
@@ -259,7 +256,7 @@ final class Modules {
         modules.register(new ToggleSneakModule(adapter));
         modules.register(new AutoRespawnModule(adapter));
         modules.register(new AutoGgModule(adapter));
-        modules.register(new SessionRecapModule(adapter, client.notifications(), client.social()));
+        modules.register(new SessionRecapModule(adapter, client.notifications()));
         modules.register(new MentionHighlightModule(adapter));
         modules.register(new DeathReplayModule(adapter, client.notifications()));
         modules.register(new ChatTimestampModule());
@@ -301,12 +298,8 @@ final class Modules {
         modules.register(new PrimeCosmeticsModule(client.cosmetics()));
         modules.register(new PrimeAccountModule(hud, themes, adapter, client.account()));
         modules.register(new ClientBadgeModule(client.presence(), client.account()));
-        modules.register(new SocialHubModule(client.social()));
-        modules.register(new AiAssistantModule(client.ai()));
         modules.register(new CustomSkinModule(client.customSkins()));
         modules.register(new DiscordRichPresenceModule(client.discordRpc(), adapter, modules, client.account()));
-        modules.register(new VoiceChatModule(client.voiceChat(), hud, themes, adapter,
-                client.notifications(), client.keybinds()));
         modules.register(new PrimeSettingsManagerModule(modules, adapter));
     }
 }

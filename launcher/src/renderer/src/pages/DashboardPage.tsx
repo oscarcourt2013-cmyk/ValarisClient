@@ -13,17 +13,15 @@ import { EmptyState } from '@renderer/components/EmptyState'
 import type { UpdateStatusDto } from '@shared/ipc'
 import { formatLoader, formatTier, playerCapeUrl } from '@shared/format'
 import type { FavoriteServer, GameInstance, NewsItem } from '@shared/types'
-import type { FriendEntry } from '@shared/content-types'
 import { SkinViewer3D } from '@renderer/components/SkinViewer3D'
 import { playUiSound } from '@renderer/lib/uiSounds'
 import './DashboardPage.css'
 
 interface DashboardPageProps {
-  news: NewsItem[]
   servers: FavoriteServer[]
 }
 
-export function DashboardPage({ news, servers }: DashboardPageProps) {
+export function DashboardPage({ servers }: DashboardPageProps) {
   const { t, locale } = useI18n()
   const {
     prime,
@@ -46,11 +44,6 @@ export function DashboardPage({ news, servers }: DashboardPageProps) {
   const [crashDismissed, setCrashDismissed] = useState(false)
   const [updateStatus, setUpdateStatus] = useState<UpdateStatusDto | null>(null)
   const [showUpdate, setShowUpdate] = useState(false)
-  const [friends, setFriends] = useState<FriendEntry[]>([])
-
-  useEffect(() => {
-    void window.primeLauncher.friends.list().then(setFriends).catch(() => setFriends([]))
-  }, [])
 
   useEffect(() => {
     void (async () => {
@@ -166,11 +159,7 @@ export function DashboardPage({ news, servers }: DashboardPageProps) {
     )
   }
 
-  const topNews = news.slice(0, 3)
   const topServers = servers.slice(0, 4)
-  const activeFriends = friends
-    .filter((f) => f.status === 'online' || f.status === 'in-game' || f.status === 'away')
-    .slice(0, 5)
   const preparing =
     launching ||
     (launchProgress != null &&
@@ -390,69 +379,6 @@ export function DashboardPage({ news, servers }: DashboardPageProps) {
           )}
         </div>
 
-        <div className="home__panel">
-          <div className="home__panel-head">
-            <h2>{t('dashboard.friendsActivity')}</h2>
-            <Link to="/friends" className="home__panel-more">
-              <ChevronRight size={16} />
-            </Link>
-          </div>
-          {activeFriends.length === 0 ? (
-            <EmptyState
-              icon={<Users size={20} />}
-              title={t('dashboard.noFriendsOnline')}
-              description={t('dashboard.noFriendsOnlineHint')}
-              action={
-                <Link to="/friends">
-                  <Button variant="secondary" size="sm">
-                    {t('nav.friends')}
-                  </Button>
-                </Link>
-              }
-            />
-          ) : (
-            <ul className="home__list">
-              {activeFriends.map((f) => (
-                <li key={f.id} className="home__row">
-                  <div className="home__row-icon">
-                    <Users size={16} />
-                  </div>
-                  <div className="home__row-text">
-                    <strong>{f.username}</strong>
-                    <span>
-                      {f.status === 'in-game'
-                        ? f.serverAddress || f.activity || t('dashboard.friendInGame')
-                        : f.status === 'away'
-                          ? t('dashboard.friendAway')
-                          : t('dashboard.friendOnline')}
-                    </span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-
-        <div className="home__panel">
-          <div className="home__panel-head">
-            <h2>{t('dashboard.news')}</h2>
-            <Link to="/news" className="home__panel-more">
-              {t('dashboard.moreNews')}
-              <ChevronRight size={16} />
-            </Link>
-          </div>
-          <ul className="home__list">
-            {topNews.map((item) => (
-              <li key={item.id} className="home__news">
-                <Badge variant={item.tag === 'update' ? 'red' : 'default'}>{t(`newsTag.${item.tag}`)}</Badge>
-                <div>
-                  <strong>{item.title}</strong>
-                  <p>{item.summary}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
       </section>
 
       <AnimatePresence>{showLogin && <LoginModal onClose={() => setShowLogin(false)} />}</AnimatePresence>

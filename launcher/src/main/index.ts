@@ -2,7 +2,7 @@ import { app, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { existsSync } from 'fs'
 import { IPC } from '../shared/ipc'
-import { registerServiceHandlers, registerSocialEventBridge } from './ipc/handlers'
+import { registerServiceHandlers } from './ipc/handlers'
 import { registerMediaScheme, registerMediaProtocol } from './protocol/mediaProtocol'
 import { readSettingsSync } from './utils/readSettingsSync'
 
@@ -73,7 +73,6 @@ import { settingsStore } from './storage/SettingsStore'
 import { downloadStore } from './storage/DownloadStore'
 import { launcherDiscordService } from './services/LauncherDiscordService'
 import { minecraftEngine } from './minecraft/MinecraftEngine'
-import { socialService } from './services/SocialService'
 
 app.whenReady().then(async () => {
   registerMediaProtocol()
@@ -83,20 +82,8 @@ app.whenReady().then(async () => {
   await settingsStore.load()
   await downloadStore.load()
   registerServiceHandlers()
-  registerSocialEventBridge()
   registerWindowHandlers()
   createWindow()
-
-  void socialService.ensureSession().catch(() => {
-    // offline — social features degrade gracefully
-  })
-
-  // Anonymous usage ping — fail silent
-  void fetch(`${(process.env.PRIME_API_BASE || 'http://194.9.172.102:26005').replace(/\/$/, '')}/v1/stats/launch`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ client: 'launcher' })
-  }).catch(() => {})
 
   await launcherDiscordService.start()
 

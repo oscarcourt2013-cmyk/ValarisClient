@@ -6,8 +6,6 @@ import dev.valerisclient.core.adapter.MinecraftAdapter;
 import dev.valerisclient.core.design.ValerisVersion;
 import dev.valerisclient.core.notification.NotificationManager;
 import dev.valerisclient.core.servers.PartnerServers;
-import dev.valerisclient.core.social.SocialClient;
-import dev.valerisclient.core.social.SocialService;
 
 import java.util.List;
 import java.util.Locale;
@@ -21,7 +19,6 @@ public final class ServerApiService {
 
     private final MinecraftAdapter adapter;
     private final NotificationManager notifications;
-    private final SocialService social;
     private final PrimeAccountManager account;
     private final PrimeXpHandler xpHandler;
     private final PrimeRewardHandler rewardHandler;
@@ -34,12 +31,10 @@ public final class ServerApiService {
 
     public ServerApiService(
             MinecraftAdapter adapter,
-            NotificationManager notifications,
-            SocialService social) {
+            NotificationManager notifications) {
         this.adapter = adapter;
         this.notifications = notifications;
-        this.social = social;
-        this.account = new PrimeAccountManager(social.client());
+        this.account = new PrimeAccountManager();
         this.xpHandler = new PrimeXpHandler(account, notifications);
         this.rewardHandler = new PrimeRewardHandler(notifications, adapter);
         this.notifyHandler = new PrimeNotifyHandler(notifications, adapter);
@@ -219,18 +214,6 @@ public final class ServerApiService {
                     "⚡ " + f.username() + " joue actuellement sur Elysia SMP");
             friendPresenceAnnounced = true;
             return;
-        }
-        // Also scan raw social map for activity text.
-        for (SocialClient.Friend f : social.client().friends().values()) {
-            if (f.pending()) {
-                continue;
-            }
-            if (PartnerServers.isPartnerAddress(f.serverAddress())) {
-                notifications.info("Friends",
-                        "⚡ " + f.username() + " joue actuellement sur Elysia SMP");
-                friendPresenceAnnounced = true;
-                return;
-            }
         }
     }
 

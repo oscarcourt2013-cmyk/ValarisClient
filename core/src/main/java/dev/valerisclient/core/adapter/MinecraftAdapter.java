@@ -101,9 +101,6 @@ public interface MinecraftAdapter {
     default void openAccountSwitcher() {
     }
 
-    /** Opens the in-game social hub overlay (pause menu). */
-    default void openSocialHub() {
-    }
 
     /** Connects to a multiplayer server by address (e.g. party join). */
     default void joinMultiplayerServer(String address) {

@@ -6,7 +6,6 @@ import { Avatar, Badge, Button } from '@renderer/design-system/components'
 import { useAccounts } from '@renderer/context/AccountProvider'
 import { useI18n } from '@renderer/context/I18nProvider'
 import { formatTier, playerCapeUrl } from '@shared/format'
-import type { FriendEntry } from '@shared/content-types'
 import { SkinViewer3D } from '@renderer/components/SkinViewer3D'
 import { EmptyState } from '@renderer/components/EmptyState'
 import './ProfilePage.css'
@@ -14,7 +13,6 @@ import './ProfilePage.css'
 export function ProfilePage() {
   const { t, locale } = useI18n()
   const { prime, activeAccount, profile, accounts } = useAccounts()
-  const [friends, setFriends] = useState<FriendEntry[]>([])
   const [skinDataUrl, setSkinDataUrl] = useState<string | null>(null)
 
   const username = activeAccount?.username ?? prime?.username ?? t('common.guest')
@@ -28,11 +26,9 @@ export function ProfilePage() {
     : t('common.never')
 
   useEffect(() => {
-    void window.primeLauncher.friends.list().then(setFriends).catch(() => setFriends([]))
     void window.primeLauncher.skins.activeData().then(setSkinDataUrl)
   }, [activeAccount?.id])
 
-  const recentFriends = friends.slice(0, 6)
 
   return (
     <PageShell title={t('pages.profile.title')} subtitle={t('pages.profile.subtitle')}>
@@ -78,20 +74,11 @@ export function ProfilePage() {
                 <dt>{t('profile.accounts')}</dt>
                 <dd>{accounts.length}</dd>
               </div>
-              <div>
-                <dt>{t('profile.friends')}</dt>
-                <dd>{friends.length}</dd>
-              </div>
             </dl>
             <div className="profile__actions">
               <Link to="/skins">
                 <Button variant="secondary" size="sm" icon={<Shirt size={14} />}>
                   {t('nav.skins')}
-                </Button>
-              </Link>
-              <Link to="/friends">
-                <Button variant="secondary" size="sm" icon={<Users size={14} />}>
-                  {t('nav.friends')}
                 </Button>
               </Link>
               <Link to="/accounts">
@@ -101,26 +88,6 @@ export function ProfilePage() {
               </Link>
             </div>
           </div>
-        </section>
-
-        <section className="profile__panel">
-          <h3>{t('profile.recentFriends')}</h3>
-          {recentFriends.length === 0 ? (
-            <EmptyState
-              icon={<Users size={20} />}
-              title={t('profile.noFriends')}
-              description={t('profile.noFriendsHint')}
-            />
-          ) : (
-            <ul className="profile__friend-list">
-              {recentFriends.map((f) => (
-                <li key={f.id}>
-                  <strong>{f.username}</strong>
-                  <span>{f.status}</span>
-                </li>
-              ))}
-            </ul>
-          )}
         </section>
       </div>
     </PageShell>

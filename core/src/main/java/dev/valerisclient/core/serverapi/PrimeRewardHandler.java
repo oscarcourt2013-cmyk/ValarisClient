@@ -27,8 +27,8 @@ public final class PrimeRewardHandler {
         if ("link".equalsIgnoreCase(action) && !link.isBlank()) {
             adapter.openExternalLink(link);
         } else if ("open_ui".equalsIgnoreCase(action)) {
-            // Stub: open social hub as a safe default surface.
-            adapter.openSocialHub();
+            // Default surface for a server-driven reward prompt.
+            adapter.openClickGui();
         } else if ("notification".equalsIgnoreCase(action) || "message".equalsIgnoreCase(action)) {
             if (!message.isBlank()) {
                 adapter.displayClientMessage("§6[Valeris] §f" + message);

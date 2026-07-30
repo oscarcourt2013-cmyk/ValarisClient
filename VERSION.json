@@ -1,7 +1,5 @@
 {
   "mod": "1.0.0",
   "launcher": "1.0.0",
-  "backend": "1.0.0",
-  "apiBase": "http://194.9.172.102:26005",
-  "notes": "Single source of truth — bump here then sync gradle.properties / package.json / Cargo.toml / backend package.json"
+  "notes": "Single source of truth - bump here then sync gradle.properties / package.json / Cargo.toml"
 }

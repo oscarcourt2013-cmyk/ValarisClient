@@ -7,11 +7,9 @@ import com.valerisclient.commands.PrimeCommand;
 import com.valerisclient.database.Database;
 import com.valerisclient.database.DatabaseFactory;
 import com.valerisclient.detection.ClientDetectionService;
-import com.valerisclient.friends.FriendsService;
 import com.valerisclient.listeners.MissionListener;
 import com.valerisclient.listeners.PlayerConnectionListener;
 import com.valerisclient.missions.MissionService;
-import com.valerisclient.network.NetworkService;
 import com.valerisclient.notifications.NotificationService;
 import com.valerisclient.placeholders.PrimePlaceholders;
 import com.valerisclient.profile.ProfileService;
@@ -32,8 +30,6 @@ public final class ValerisClientPlugin extends JavaPlugin {
     private ProfileService profiles;
     private AchievementService achievements;
     private MissionService missions;
-    private FriendsService friends;
-    private NetworkService network;
     private NotificationService notifications;
 
     @Override
@@ -53,14 +49,11 @@ public final class ValerisClientPlugin extends JavaPlugin {
         achievements = new AchievementService(this, database, xp);
         missions = new MissionService(this, database, xp, notifications);
         profiles = new ProfileService(this, database, detection, xp);
-        friends = new FriendsService(this, notifications);
-        network = new NetworkService(this);
 
         api = new ValerisClientAPIImpl(detection, database, xp);
 
         detection.register();
         xp.startPlaytimeTask();
-        network.start();
 
         var cmd = getCommand("prime");
         if (cmd != null) {
@@ -84,9 +77,6 @@ public final class ValerisClientPlugin extends JavaPlugin {
     public void onDisable() {
         if (xp != null) {
             xp.shutdown();
-        }
-        if (network != null) {
-            network.shutdown();
         }
         if (detection != null) {
             detection.unregister();
@@ -139,14 +129,6 @@ public final class ValerisClientPlugin extends JavaPlugin {
 
     public MissionService missions() {
         return missions;
-    }
-
-    public FriendsService friends() {
-        return friends;
-    }
-
-    public NetworkService network() {
-        return network;
     }
 
     public NotificationService notifications() {

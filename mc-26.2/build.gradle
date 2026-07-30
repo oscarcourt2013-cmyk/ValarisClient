@@ -6,12 +6,12 @@ plugins {
 }
 
 base {
-	archivesName = 'stellar-client-26.2'
+	archivesName = 'valeris-client-26.2'
 }
 
 loom {
 	mods {
-		"stellarclient" {
+		"valerisclient" {
 			sourceSet sourceSets.main
 			sourceSet project(':core').sourceSets.main
 		}

@@ -29,16 +29,12 @@ public final class PlayerConnectionListener implements Listener {
         plugin.database().upsertPlayer(player.getUniqueId(), player.getName());
         plugin.xp().onJoin(player);
         plugin.missions().onJoin(player);
-        plugin.network().reportJoin(player);
-        // Delay friend scan — detection may arrive after handshake.
-        Bukkit.getScheduler().runTaskLater(plugin, () -> plugin.friends().onPlayerJoin(player), 40L);
     }
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
         plugin.xp().onQuit(player);
-        plugin.network().reportQuit(player);
         plugin.detection().clear(player.getUniqueId());
         clearTab(player);
     }
@@ -48,7 +44,6 @@ public final class PlayerConnectionListener implements Listener {
         Player player = event.getPlayer();
         plugin.xp().awardLogin(player);
         applyTab(player);
-        plugin.network().reportPrime(player, event.getClientVersion());
     }
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
