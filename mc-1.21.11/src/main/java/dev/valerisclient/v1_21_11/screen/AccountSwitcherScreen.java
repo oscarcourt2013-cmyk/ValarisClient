@@ -11,7 +11,7 @@ import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 
 /** Title-menu account switcher shell for 1.21.11. */
-public final class AccountSwitcherScreen extends Screen implements ValerisStyledScreen {
+public final class AccountSwitcherScreen extends Screen {
 
     private final GuiRenderContext renderContext = new GuiRenderContext();
     private final AccountSwitcherUi ui = new AccountSwitcherUi(ValerisClient.get().adapter());

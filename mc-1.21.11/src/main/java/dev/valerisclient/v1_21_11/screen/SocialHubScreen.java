@@ -10,7 +10,7 @@ import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 
 /** In-game social hub shell for 1.21.11. */
-public final class SocialHubScreen extends Screen implements ValerisStyledScreen {
+public final class SocialHubScreen extends Screen {
 
     private final GuiRenderContext renderContext = new GuiRenderContext();
     private final SocialHubUi ui = new SocialHubUi(ValerisClient.get().social(), ValerisClient.get().adapter());

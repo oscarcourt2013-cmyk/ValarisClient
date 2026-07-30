@@ -5,6 +5,7 @@ import dev.valerisclient.core.design.PrimeDesign;
 import dev.valerisclient.core.design.PrimeLogo;
 import dev.valerisclient.core.gui.GuiLayout;
 import dev.valerisclient.core.gui.UiChrome;
+import dev.valerisclient.core.gui.VanillaSkin;
 import dev.valerisclient.core.theme.Theme;
 import dev.valerisclient.core.util.ColorUtil;
 import dev.valerisclient.core.util.Easing;
@@ -182,10 +183,14 @@ public final class OptionsMenuRenderer {
     private void renderFooter(RenderContext ctx, Theme theme, OptionsMenuLayout l, String backLabel,
                               double mouseX, double mouseY) {
         boolean hover = hit(mouseX, mouseY, l.footerX(), l.footerY(), l.footerW(), l.footerH());
-        UiChrome.button(ctx, theme, l.footerX(), l.footerY(), l.footerW(), l.footerH(), hover, true);
+        // Same chrome as every skinned vanilla button, so DONE/BACK does not read as
+        // a different kind of control from the buttons on the screens either side.
+        VanillaSkin.button(ctx, theme, l.footerX(), l.footerY(), l.footerW(), l.footerH(),
+                hover, true, 1f);
         int lw = GuiLayout.labelWidth(ctx, backLabel);
         GuiLayout.label(ctx, backLabel, l.footerX() + (l.footerW() - lw) / 2,
-                l.footerY() + (l.footerH() - ctx.uiFontHeight()) / 2 + 1, theme.foreground());
+                l.footerY() + (l.footerH() - ctx.uiFontHeight()) / 2 + 1,
+                VanillaSkin.buttonTextColor(theme, hover, true));
     }
 
     // --- input ---

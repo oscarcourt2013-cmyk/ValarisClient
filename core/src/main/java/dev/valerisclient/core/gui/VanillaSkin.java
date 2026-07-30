@@ -38,30 +38,32 @@ public final class VanillaSkin {
     }
 
     /**
-     * Chrome for a vanilla button. The caller still draws the label, so the
-     * button's own text handling (truncation, colour, narration) is untouched.
+     * Chrome for a button on a skinned vanilla screen. The caller still draws the
+     * label, so the button's own text handling (truncation, narration) is untouched.
+     *
+     * <p>Delegates to {@link UiChrome#button} so a vanilla button and a button in
+     * one of our own screens are the same pixels from the same code, rather than
+     * two implementations that drift apart.</p>
      */
     public static void button(RenderContext ctx, Theme theme, int x, int y, int w, int h,
                               boolean hovered, boolean active, float alpha) {
         if (w <= 0 || h <= 0) {
             return;
         }
-        int radius = Math.min(PrimeDesign.RADIUS_MD, h / 2);
-        if (!active) {
-            RoundedRect.border(ctx, x, y, w, h, radius, 1,
-                    ColorUtil.withAlpha(theme.border(), 0.3f * alpha),
-                    ColorUtil.withAlpha(theme.background(), 0.55f * alpha));
-            return;
+        boolean faded = alpha < 0.99f;
+        if (faded) {
+            ctx.setDrawOpacity(alpha);
         }
-        int fill = hovered ? theme.backgroundLight() : theme.surfaceElevated();
-        RoundedRect.border(ctx, x, y, w, h, radius, 1,
-                ColorUtil.withAlpha(theme.border(), (hovered ? 0.85f : 0.45f) * alpha),
-                ColorUtil.withAlpha(fill, (hovered ? 0.95f : 0.8f) * alpha));
-        if (hovered) {
-            // Accent underline instead of vanilla's brighter sprite swap.
-            ctx.fillGradientHorizontal(x + radius, y + h - 1, Math.max(0, w - radius * 2), 1,
-                    ColorUtil.withAlpha(theme.accent(), 0.9f * alpha),
-                    ColorUtil.withAlpha(theme.accent(), 0.1f * alpha));
+        if (active) {
+            UiChrome.button(ctx, theme, x, y, w, h, hovered, false);
+        } else {
+            int radius = Math.min(PrimeDesign.RADIUS_MD, h / 2);
+            RoundedRect.border(ctx, x, y, w, h, radius, 1,
+                    ColorUtil.withAlpha(theme.border(), 0.3f),
+                    ColorUtil.withAlpha(theme.background(), 0.55f));
+        }
+        if (faded) {
+            ctx.setDrawOpacity(1f);
         }
     }
 
