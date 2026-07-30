@@ -94,12 +94,14 @@ public final class UiChrome {
         }
     }
 
-    /** Rounder card chrome for the module-browser grid (bigger radius than {@link #card}). */
+    /**
+     * Rounder card chrome for the module-browser grid (bigger radius than {@link #card}).
+     * Opaque without blur: the ClickGUI draws a scrim behind, so the world must not
+     * bleed through the cards themselves.
+     */
     public static void cardElevated(RenderContext ctx, Theme theme, int x, int y, int w, int h, boolean selected) {
         int radius = PrimeDesign.RADIUS_XL;
-        float fillAlpha = BlurBackdrop.isActive()
-                ? (selected ? 0.52f : 0.38f)
-                : (selected ? 1f : 0.92f);
+        float fillAlpha = BlurBackdrop.isActive() ? (selected ? 0.62f : 0.5f) : 1f;
         int fill = ColorUtil.withAlpha(selected ? theme.surfaceElevated() : theme.background(), fillAlpha);
         RoundedRect.softShadow(ctx, x, y, w, h, radius, selected ? 0x50000000 : 0x30000000);
         RoundedRect.border(ctx, x, y, w, h, radius, 1,

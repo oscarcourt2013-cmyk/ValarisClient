@@ -32,6 +32,7 @@ import dev.stellarclient.core.gui.menu.CosmeticsMenuRenderer;
 import dev.stellarclient.core.gui.menu.SettingsMenuRenderer;
 import dev.stellarclient.core.keybind.KeybindManager;
 
+import dev.stellarclient.core.util.ColorUtil;
 import dev.stellarclient.core.util.Easing;
 
 import java.util.ArrayList;
@@ -244,24 +245,26 @@ public final class ClickGui implements ConfigBinding {
             }
             case ONBOARDING -> renderOnboarding(ctx, theme, mouseX, mouseY);
             case SETTINGS -> {
-                mainMenu.renderBackground(ctx, theme, openFade);
+                renderScrim(ctx, theme);
                 settingsMenu.render(ctx, theme, themes, profiles, cloudSync, adapter, keybinds,
                         screenWidth, screenHeight, mouseX, mouseY);
             }
             case COSMETICS -> {
-                mainMenu.renderBackground(ctx, theme, openFade);
+                renderScrim(ctx, theme);
                 cosmeticsMenu.render(ctx, theme, cosmetics, screenWidth, screenHeight, mouseX, mouseY);
             }
             case CONFIGURATIONS -> {
-                mainMenu.renderBackground(ctx, theme, openFade);
+                renderScrim(ctx, theme);
                 configurationsMenu.render(ctx, theme, cloudSync, profiles, screenWidth, screenHeight, mouseX, mouseY);
             }
             case FAVORITES -> {
+                renderScrim(ctx, theme);
                 renderSearchBar(ctx, theme);
                 refreshFavoritesPanel();
                 favoritesPanel.render(ctx, theme, mouseX, mouseY);
             }
             case BROWSE -> {
+                renderScrim(ctx, theme);
                 ClickGuiBrowseLayout layout = ClickGuiBrowseLayout.compute(screenWidth, screenHeight,
                         selectedModulePanel != null);
                 cardBrowser.setSearchQuery(searchQuery.toString());
@@ -278,6 +281,23 @@ public final class ClickGui implements ConfigBinding {
         }
         renderEditors(ctx, theme);
         tooltips.render(ctx, theme);
+    }
+
+    /**
+     * Full-screen dim behind the ClickGUI content views so panels and cards read
+     * clearly instead of competing with the world showing through.
+     */
+    private void renderScrim(RenderContext ctx, Theme theme) {
+        float fade = Easing.easeOutCubic(openFade);
+        ctx.fillRect(0, 0, screenWidth, screenHeight,
+                ColorUtil.withAlpha(theme.overlay(), fade));
+        // Slightly deeper at the very top and bottom so the bar and dock sit on
+        // a darker base than the middle of the screen.
+        int band = Math.max(8, screenHeight / 8);
+        int edge = ColorUtil.withAlpha(0xFF000000, 0.35f * fade);
+        int clear = ColorUtil.withAlpha(0xFF000000, 0f);
+        ctx.fillGradientVertical(0, 0, screenWidth, band, edge, clear);
+        ctx.fillGradientVertical(0, screenHeight - band, screenWidth, band, clear, edge);
     }
 
     private void renderEditors(RenderContext ctx, Theme theme) {
