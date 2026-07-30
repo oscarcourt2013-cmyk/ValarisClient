@@ -4,19 +4,37 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Hard-coded partner multiplayer servers shown in the vanilla server list.
- * Partners are injected client-side and cannot be removed by the player.
+ * Partner multiplayer servers.
+ *
+ * <p>Nothing is injected into the player's server list any more: the list is
+ * theirs. {@link #LEGACY_ADDRESSES} names entries a previous build pinned there
+ * so they can be cleaned up on load.</p>
  */
 public final class PartnerServers {
 
     public record Entry(String name, String address) {
     }
 
-    private static final List<Entry> PARTNERS = List.of(
-            new Entry("Elysia SMP", "elysiasmp.fr")
-    );
+    private static final List<Entry> PARTNERS = List.of();
+
+    /** Addresses older builds injected and blocked from deletion. */
+    private static final List<String> LEGACY_ADDRESSES = List.of("elysiasmp.fr");
 
     private PartnerServers() {
+    }
+
+    /** True for a server a previous build pinned into the vanilla list. */
+    public static boolean isLegacyInjectedAddress(String address) {
+        if (address == null || address.isBlank()) {
+            return false;
+        }
+        String normalized = normalize(address);
+        for (String legacy : LEGACY_ADDRESSES) {
+            if (normalized.equals(legacy) || normalized.startsWith(legacy + ":")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static List<Entry> partners() {

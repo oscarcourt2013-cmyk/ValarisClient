@@ -1,70 +1,84 @@
 package dev.valarisclient.v1_21_11.multiplayer;
 
+import dev.valarisclient.core.ValarisClient;
+import dev.valarisclient.core.servers.PartnerServerState;
 import dev.valarisclient.core.servers.PartnerServers;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.multiplayer.ServerList;
 
-/** Injects partner servers into the vanilla multiplayer list and pins them to the top. */
-public final class PartnerServerList {
+import java.util.ArrayList;
+import java.util.List;
 
-    /** Guards against re-entry when ensurePartners itself calls add/swap (mixin RETURN hooks). */
-    private static final ThreadLocal<Boolean> ENSURING = ThreadLocal.withInitial(() -> false);
+/**
+ * Adds partner servers to the vanilla multiplayer list, once each.
+ *
+ * <p>Deliberately not sticky: a partner is offered a single time and the entry
+ * then belongs to the player, who may rename, reorder or delete it. An earlier
+ * build re-pinned partners on every load and cancelled deletion, which made
+ * them impossible to get rid of.</p>
+ */
+public final class PartnerServerList {
 
     private PartnerServerList() {
     }
 
-    public static void ensurePartners(ServerList list) {
-        if (list == null || Boolean.TRUE.equals(ENSURING.get())) {
+    public static void sync(ServerList list) {
+        if (list == null) {
             return;
         }
-        ENSURING.set(true);
-        try {
-            int pinIndex = 0;
-            for (PartnerServers.Entry partner : PartnerServers.partners()) {
-                int existing = indexOfAddress(list, partner.address());
-                if (existing < 0) {
-                    ServerData data = new ServerData(
-                            PartnerServers.displayName(partner),
-                            partner.address(),
-                            ServerData.Type.OTHER);
-                    // No save() during load — re-injected every load, avoids recursion.
-                    list.add(data, false);
-                    existing = list.size() - 1;
-                } else {
-                    ServerData data = list.get(existing);
-                    if (data != null) {
-                        data.name = PartnerServers.displayName(partner);
-                    }
-                }
-                // Bubble-swap to pinned slot so partners stay at indices 0..n-1 in catalog order.
-                while (existing > pinIndex) {
-                    list.swap(existing, existing - 1);
-                    existing--;
-                }
-                pinIndex++;
-            }
-        } finally {
-            ENSURING.set(false);
+        boolean changed = removeLegacyPartners(list);
+        changed |= addNewPartners(list);
+        if (changed) {
+            list.save();
         }
     }
 
-    public static void ensureLoaded() {
-        ServerList list = new ServerList(Minecraft.getInstance());
-        list.load();
-        ensurePartners(list);
+    /** Strips entries an older build pinned here and refused to delete. */
+    private static boolean removeLegacyPartners(ServerList list) {
+        List<ServerData> stale = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            ServerData data = list.get(i);
+            if (data != null && PartnerServers.isLegacyInjectedAddress(data.ip)) {
+                stale.add(data);
+            }
+        }
+        for (ServerData data : stale) {
+            list.remove(data);
+        }
+        return !stale.isEmpty();
     }
 
-    private static int indexOfAddress(ServerList list, String address) {
+    private static boolean addNewPartners(ServerList list) {
+        ValarisClient client = ValarisClient.get();
+        PartnerServerState state = client == null ? null : client.partnerServers();
+        if (state == null) {
+            return false;
+        }
+        boolean changed = false;
+        for (PartnerServers.Entry partner : PartnerServers.partners()) {
+            // markOffered is true only the first time, so a deleted partner
+            // is not resurrected on the next load.
+            if (!state.markOffered(partner.address()) || contains(list, partner.address())) {
+                continue;
+            }
+            list.add(new ServerData(
+                    PartnerServers.displayName(partner),
+                    partner.address(),
+                    ServerData.Type.OTHER), false);
+            changed = true;
+        }
+        return changed;
+    }
+
+    private static boolean contains(ServerList list, String address) {
         String want = hostKey(address);
         for (int i = 0; i < list.size(); i++) {
             ServerData data = list.get(i);
-            if (data != null && PartnerServers.isPartnerAddress(data.ip)
-                    && hostKey(data.ip).equals(want)) {
-                return i;
+            if (data != null && hostKey(data.ip).equals(want)) {
+                return true;
             }
         }
-        return -1;
+        return false;
     }
 
     private static String hostKey(String address) {

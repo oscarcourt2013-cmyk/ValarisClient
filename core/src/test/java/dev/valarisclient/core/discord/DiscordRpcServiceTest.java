@@ -145,7 +145,7 @@ class DiscordRpcServiceTest {
     }
 
     @Test
-    void partnerServerUsesBrandName() {
+    void serverUsesHostnameWhenNotAPartner() {
         DiscordRpcService service = new DiscordRpcService();
         StubAdapter adapter = new StubAdapter();
         adapter.server = "elysiasmp.fr";
@@ -153,7 +153,7 @@ class DiscordRpcServiceTest {
 
         DiscordPresenceSnapshot snapshot = service.buildSnapshot(adapter, modules, new ValarisAccountService());
 
-        assertEquals("Elysia SMP", snapshot.details());
+        assertEquals("elysiasmp.fr", snapshot.details());
         assertTrue(snapshot.state().startsWith("♥ "));
     }
 

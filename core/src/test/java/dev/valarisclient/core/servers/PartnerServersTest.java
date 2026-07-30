@@ -8,9 +8,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class PartnerServersTest {
 
     @Test
-    void recognizesElysiaPartner() {
-        assertTrue(PartnerServers.isPartnerAddress("elysiasmp.fr"));
-        assertTrue(PartnerServers.isPartnerAddress("ElysiaSMP.fr:25565"));
+    void injectsNoPartners() {
+        assertTrue(PartnerServers.partners().isEmpty());
+        assertFalse(PartnerServers.isPartnerAddress("elysiasmp.fr"));
         assertFalse(PartnerServers.isPartnerAddress("hypixel.net"));
+    }
+
+    @Test
+    void recognizesLegacyInjectedAddressesForCleanup() {
+        assertTrue(PartnerServers.isLegacyInjectedAddress("elysiasmp.fr"));
+        assertTrue(PartnerServers.isLegacyInjectedAddress("ElysiaSMP.fr:25565"));
+        assertFalse(PartnerServers.isLegacyInjectedAddress("hypixel.net"));
     }
 }

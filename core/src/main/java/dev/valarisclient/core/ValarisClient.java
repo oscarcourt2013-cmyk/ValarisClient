@@ -76,6 +76,8 @@ public final class ValarisClient {
     private final CloudSyncManager cloudSync;
     private final ValarisAccountService account;
     private final OnboardingManager onboarding;
+    private final dev.valarisclient.core.servers.PartnerServerState partnerServers =
+            new dev.valarisclient.core.servers.PartnerServerState();
     private final LoadingOverlay loadingOverlay;
     private final ReplaySession replaySession;
     private final ReplayStorage replayStorage;
@@ -142,6 +144,7 @@ public final class ValarisClient {
         configManager.register(cosmetics);
         configManager.register(onboarding);
         configManager.register(account);
+        configManager.register(partnerServers);
         configManager.register(notificationPrefs);
         configManager.register(discordRpc.settings());
 
@@ -294,6 +297,7 @@ public final class ValarisClient {
     public CloudSyncManager cloudSync() { return cloudSync; }
     public ValarisAccountService account() { return account; }
     public OnboardingManager onboarding() { return onboarding; }
+    public dev.valarisclient.core.servers.PartnerServerState partnerServers() { return partnerServers; }
     public LoadingOverlay loadingOverlay() { return loadingOverlay; }
     public ReplaySession replaySession() { return replaySession; }
     public ReplayStorage replayStorage() { return replayStorage; }
