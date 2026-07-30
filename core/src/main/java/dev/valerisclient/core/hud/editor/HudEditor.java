@@ -1,7 +1,7 @@
 package dev.valerisclient.core.hud.editor;
 
 import dev.valerisclient.core.adapter.RenderContext;
-import dev.valerisclient.core.design.PrimeDesign;
+import dev.valerisclient.core.design.ValerisDesign;
 import dev.valerisclient.core.hud.HudAnchor;
 import dev.valerisclient.core.hud.HudElement;
 import dev.valerisclient.core.hud.HudManager;
@@ -459,11 +459,11 @@ public final class HudEditor {
         considerTargetX(best, x, width, 0);
         considerTargetX(best, x, width, screenWidth / 2f);
         considerTargetX(best, x, width, screenWidth);
-        if (best.delta <= PrimeDesign.SNAP_THRESHOLD) {
+        if (best.delta <= ValerisDesign.SNAP_THRESHOLD) {
             guideX = best.guide;
             return best.value;
         }
-        return Math.round(x / (float) PrimeDesign.GRID_SIZE) * PrimeDesign.GRID_SIZE;
+        return Math.round(x / (float) ValerisDesign.GRID_SIZE) * ValerisDesign.GRID_SIZE;
     }
 
     /** Aligns the dragged box's left edge, center or right edge onto {@code target}. */
@@ -486,11 +486,11 @@ public final class HudEditor {
         considerTargetY(best, y, height, 0);
         considerTargetY(best, y, height, screenHeight / 2f);
         considerTargetY(best, y, height, screenHeight);
-        if (best.delta <= PrimeDesign.SNAP_THRESHOLD) {
+        if (best.delta <= ValerisDesign.SNAP_THRESHOLD) {
             guideY = best.guide;
             return best.value;
         }
-        return Math.round(y / (float) PrimeDesign.GRID_SIZE) * PrimeDesign.GRID_SIZE;
+        return Math.round(y / (float) ValerisDesign.GRID_SIZE) * ValerisDesign.GRID_SIZE;
     }
 
     private static void considerTargetY(SnapResult best, float y, float height, float target) {
@@ -663,7 +663,7 @@ public final class HudEditor {
         int labelH = ctx.uiFontHeight() + 4;
         int labelX = (int) clampSafe(x + (w - labelW) / 2f, 0, screenWidth - labelW);
         int labelY = y - labelH - 2 < 0 ? y + h + 3 : y - labelH - 2;
-        ctx.fillRoundedRect(labelX, labelY, labelW, labelH, PrimeDesign.RADIUS_SM,
+        ctx.fillRoundedRect(labelX, labelY, labelW, labelH, ValerisDesign.RADIUS_SM,
                 ColorUtil.withAlpha(theme.background(), 0.9f));
         ctx.drawUiText(label, labelX + 4, labelY + 2, theme.foreground());
     }
@@ -701,12 +701,12 @@ public final class HudEditor {
         if (y + h > screenHeight) {
             y = Math.round(element.lastY()) - h - 4;
         }
-        ctx.fillRoundedRect(x, y, w, h, PrimeDesign.RADIUS_SM, ColorUtil.withAlpha(theme.background(), 0.9f));
+        ctx.fillRoundedRect(x, y, w, h, ValerisDesign.RADIUS_SM, ColorUtil.withAlpha(theme.background(), 0.9f));
         ctx.drawUiText(text, x + 4, y + 2, theme.accent());
     }
 
     private void drawGrid(RenderContext ctx, Theme theme) {
-        int grid = PrimeDesign.GRID_SIZE * 2;
+        int grid = ValerisDesign.GRID_SIZE * 2;
         int color = ColorUtil.withAlpha(theme.border(), 0.18f);
         for (int x = grid; x < screenWidth; x += grid) {
             ctx.fillRect(x, 0, 1, screenHeight, color);

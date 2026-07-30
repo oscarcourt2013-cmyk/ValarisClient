@@ -1,12 +1,12 @@
 package dev.valerisclient.v1_21_11.mixin;
 
-import dev.valerisclient.v1_21_11.render.PrimeCosmeticRenderData;
+import dev.valerisclient.v1_21_11.render.ValerisCosmeticRenderData;
 import net.minecraft.client.renderer.entity.state.AvatarRenderState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(AvatarRenderState.class)
-public abstract class AvatarRenderStateMixin implements PrimeCosmeticRenderData {
+public abstract class AvatarRenderStateMixin implements ValerisCosmeticRenderData {
 
     @Unique
     private String ValerisClient$capeId = "";

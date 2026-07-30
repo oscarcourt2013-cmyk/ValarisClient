@@ -1,6 +1,6 @@
 package dev.valerisclient.v26_2.mixin;
 
-import dev.valerisclient.core.hook.PrimeHooks;
+import dev.valerisclient.core.hook.ValerisHooks;
 import net.minecraft.client.renderer.LightmapRenderStateExtractor;
 import net.minecraft.client.renderer.state.LightmapRenderState;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,7 +20,7 @@ public abstract class LightmapRenderStateExtractorMixin {
 
     @Inject(method = "tick", at = @At("HEAD"), cancellable = true)
     private void ValerisClient$stableFullbrightTick(CallbackInfo ci) {
-        if (PrimeHooks.fullbrightActive()) {
+        if (ValerisHooks.fullbrightActive()) {
             this.blockLightFlicker = 0.0F;
             this.needsUpdate = true;
             ci.cancel();
@@ -29,7 +29,7 @@ public abstract class LightmapRenderStateExtractorMixin {
 
     @Inject(method = "extract", at = @At("TAIL"))
     private void ValerisClient$applyFullbright(LightmapRenderState renderState, float partialTicks, CallbackInfo ci) {
-        if (!PrimeHooks.fullbrightActive()) {
+        if (!ValerisHooks.fullbrightActive()) {
             return;
         }
         renderState.brightness = 15.0F;

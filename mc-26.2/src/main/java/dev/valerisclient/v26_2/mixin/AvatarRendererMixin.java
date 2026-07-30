@@ -4,8 +4,8 @@ import dev.valerisclient.core.cosmetics.CapePhysics;
 import dev.valerisclient.core.cosmetics.CosmeticLoadout;
 import dev.valerisclient.core.state.CapePhysicsState;
 import dev.valerisclient.core.state.CosmeticsState;
-import dev.valerisclient.v26_2.render.PrimeCosmeticRenderData;
-import dev.valerisclient.v26_2.render.PrimeWingsLayer;
+import dev.valerisclient.v26_2.render.ValerisCosmeticRenderData;
+import dev.valerisclient.v26_2.render.ValerisWingsLayer;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.player.AvatarRenderer;
@@ -22,15 +22,15 @@ public abstract class AvatarRendererMixin {
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void ValerisClient$addWingsLayer(EntityRendererProvider.Context context, boolean slim, CallbackInfo ci) {
-        ((LivingEntityRendererAccessor) this).ValerisClient$addLayer(new PrimeWingsLayer(
+        ((LivingEntityRendererAccessor) this).ValerisClient$addLayer(new ValerisWingsLayer(
                 (AvatarRenderer<?>) (Object) this, context.getModelSet()));
     }
 
     @Inject(method = "extractCapeState", at = @At("RETURN"))
-    private void ValerisClient$primeCape(Avatar entity, AvatarRenderState state, float tickDelta, CallbackInfo ci) {
+    private void ValerisClient$valerisCape(Avatar entity, AvatarRenderState state, float tickDelta, CallbackInfo ci) {
         boolean local = entity instanceof LocalPlayer;
         CosmeticLoadout loadout = CosmeticsState.loadoutFor(entity.getUUID(), local);
-        if (state instanceof PrimeCosmeticRenderData data) {
+        if (state instanceof ValerisCosmeticRenderData data) {
             data.ValerisClient$setCapeId(loadout.capeId());
             data.ValerisClient$setWingsId(loadout.wingsId());
         }

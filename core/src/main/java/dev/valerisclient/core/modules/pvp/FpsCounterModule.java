@@ -5,7 +5,7 @@ import dev.valerisclient.core.adapter.RenderContext;
 import dev.valerisclient.core.hud.HudAnchor;
 import dev.valerisclient.core.hud.HudElement;
 import dev.valerisclient.core.hud.HudManager;
-import dev.valerisclient.core.i18n.PrimeLang;
+import dev.valerisclient.core.i18n.ValerisLang;
 import dev.valerisclient.core.module.Module;
 import dev.valerisclient.core.module.ModuleCategory;
 import dev.valerisclient.core.theme.Theme;
@@ -70,7 +70,7 @@ public final class FpsCounterModule extends Module {
             int fps = adapter.fps();
             if (fps != lastFps) {
                 lastFps = fps;
-                text = PrimeLang.get("prime.hud.fps.format", "%d FPS", fps);
+                text = ValerisLang.get("valeris.hud.fps.format", "%d FPS", fps);
             }
         }
     }

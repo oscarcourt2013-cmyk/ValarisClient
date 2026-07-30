@@ -1,7 +1,7 @@
 package dev.valerisclient.core.gui;
 
 import dev.valerisclient.core.adapter.RenderContext;
-import dev.valerisclient.core.design.PrimeDesign;
+import dev.valerisclient.core.design.ValerisDesign;
 import dev.valerisclient.core.theme.Theme;
 import dev.valerisclient.core.util.ColorUtil;
 
@@ -12,7 +12,7 @@ public final class UiChrome {
     }
 
     public static void glassPanel(RenderContext ctx, Theme theme, int x, int y, int w, int h) {
-        int radius = PrimeDesign.RADIUS_LG;
+        int radius = ValerisDesign.RADIUS_LG;
         float fillAlpha = BlurBackdrop.isActive() ? 0.42f : 0.92f;
         float borderAlpha = BlurBackdrop.isActive() ? 0.72f : 0.55f;
 
@@ -37,7 +37,7 @@ public final class UiChrome {
      * no scanline gradients — a few fill calls instead of thousands.
      */
     public static void editorPanel(RenderContext ctx, Theme theme, int x, int y, int w, int h) {
-        int radius = PrimeDesign.RADIUS_MD;
+        int radius = ValerisDesign.RADIUS_MD;
         RoundedRect.border(ctx, x, y, w, h, radius, 1,
                 ColorUtil.withAlpha(theme.border(), 0.55f),
                 ColorUtil.withAlpha(theme.background(), 0.92f));
@@ -48,7 +48,7 @@ public final class UiChrome {
     }
 
     public static void cardLite(RenderContext ctx, Theme theme, int x, int y, int w, int h, boolean selected) {
-        int radius = PrimeDesign.RADIUS_SM;
+        int radius = ValerisDesign.RADIUS_SM;
         float fillAlpha = BlurBackdrop.isActive()
                 ? (selected ? 0.48f : 0.34f)
                 : (selected ? 0.88f : 0.72f);
@@ -58,7 +58,7 @@ public final class UiChrome {
     }
 
     public static void card(RenderContext ctx, Theme theme, int x, int y, int w, int h, boolean selected) {
-        int radius = PrimeDesign.RADIUS_MD;
+        int radius = ValerisDesign.RADIUS_MD;
         float fillAlpha = BlurBackdrop.isActive()
                 ? (selected ? 0.52f : 0.38f)
                 : (selected ? 1f : 0.94f);
@@ -71,7 +71,7 @@ public final class UiChrome {
 
     public static void button(RenderContext ctx, Theme theme, int x, int y, int w, int h,
                               boolean hover, boolean primary) {
-        int radius = PrimeDesign.RADIUS_MD;
+        int radius = ValerisDesign.RADIUS_MD;
         if (primary) {
             RoundedRect.softShadow(ctx, x, y, w, h, radius, 0x55E11D2E);
             RoundedRect.fill(ctx, x, y, w, h, radius, theme.accentSecondary());
@@ -100,7 +100,7 @@ public final class UiChrome {
      * bleed through the cards themselves.
      */
     public static void cardElevated(RenderContext ctx, Theme theme, int x, int y, int w, int h, boolean selected) {
-        int radius = PrimeDesign.RADIUS_XL;
+        int radius = ValerisDesign.RADIUS_XL;
         float fillAlpha = BlurBackdrop.isActive() ? (selected ? 0.62f : 0.5f) : 1f;
         int fill = ColorUtil.withAlpha(selected ? theme.surfaceElevated() : theme.background(), fillAlpha);
         RoundedRect.softShadow(ctx, x, y, w, h, radius, selected ? 0x50000000 : 0x30000000);
@@ -123,7 +123,7 @@ public final class UiChrome {
     }
 
     public static void flatHeader(RenderContext ctx, Theme theme, int x, int y, int w, int h) {
-        int radius = PrimeDesign.RADIUS_MD;
+        int radius = ValerisDesign.RADIUS_MD;
         int fill = BlurBackdrop.isActive()
                 ? ColorUtil.withAlpha(theme.backgroundLight(), 0.48f)
                 : theme.backgroundLight();

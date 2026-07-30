@@ -1,6 +1,6 @@
 package dev.valerisclient.core.state;
 
-import dev.valerisclient.core.account.PrimeAccountService;
+import dev.valerisclient.core.account.ValerisAccountService;
 
 /** Whether the ValerisClient tab-list badge module is active, plus tier tint. */
 public final class ClientBadgeState {
@@ -34,8 +34,8 @@ public final class ClientBadgeState {
     }
 
     /** Tints the badge plate by account grade (free / prime / prime_plus). */
-    public static void setTier(PrimeAccountService.Tier tier) {
-        PrimeAccountService.Tier resolved = tier != null ? tier : PrimeAccountService.Tier.FREE;
+    public static void setTier(ValerisAccountService.Tier tier) {
+        ValerisAccountService.Tier resolved = tier != null ? tier : ValerisAccountService.Tier.FREE;
         switch (resolved) {
             case FREE -> {
                 background = 0xFF1A1A22;
@@ -57,6 +57,6 @@ public final class ClientBadgeState {
 
     public static void reset() {
         active = false;
-        setTier(PrimeAccountService.Tier.PREMIUM);
+        setTier(ValerisAccountService.Tier.PREMIUM);
     }
 }

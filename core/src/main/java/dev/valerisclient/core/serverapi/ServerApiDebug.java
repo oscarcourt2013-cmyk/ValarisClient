@@ -62,7 +62,7 @@ public final class ServerApiDebug {
         recentPackets.clear();
     }
 
-    public String formatReport(int protocol, PrimeAccountManager account) {
+    public String formatReport(int protocol, ValerisAccountManager account) {
         StringBuilder sb = new StringBuilder();
         sb.append("§6§lPrime Server API§r\n");
         sb.append("§7Channel: §f").append(ServerApiProtocol.CHANNEL).append('\n');

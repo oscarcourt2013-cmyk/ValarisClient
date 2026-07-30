@@ -2,8 +2,8 @@ package dev.valerisclient.core.gui.menu;
 
 import dev.valerisclient.core.adapter.MinecraftAdapter;
 import dev.valerisclient.core.adapter.RenderContext;
-import dev.valerisclient.core.design.PrimeDesign;
-import dev.valerisclient.core.design.PrimeLogo;
+import dev.valerisclient.core.design.ValerisDesign;
+import dev.valerisclient.core.design.ValerisLogo;
 import dev.valerisclient.core.theme.Theme;
 import dev.valerisclient.core.util.ColorUtil;
 import dev.valerisclient.core.util.Easing;
@@ -104,12 +104,12 @@ public final class GameMenuRenderer {
         }
         ctx.setDrawOpacity(fade);
         int centerX = ctx.screenWidth() / 2;
-        PrimeLogo.drawCentered(ctx, centerX, layout.logoY(), layout.logoH(), 0xFFFFFFFF);
+        ValerisLogo.drawCentered(ctx, centerX, layout.logoY(), layout.logoH(), 0xFFFFFFFF);
 
-        float primeScale = 1.05f;
+        float valerisScale = 1.05f;
         String prime = "VALERIS";
-        int primeW = ctx.smoothTextWidth(prime, primeScale);
-        ctx.drawSmoothText(prime, centerX - primeW / 2, layout.brandY(), theme.foreground(), primeScale);
+        int primeW = ctx.smoothTextWidth(prime, valerisScale);
+        ctx.drawSmoothText(prime, centerX - primeW / 2, layout.brandY(), theme.foreground(), valerisScale);
 
         float clientScale = 0.72f;
         String client = "C L I E N T";
@@ -139,7 +139,7 @@ public final class GameMenuRenderer {
         int y = layout.panelY();
         int w = layout.panelW();
         int h = layout.panelH();
-        int radius = PrimeDesign.RADIUS_MD;
+        int radius = ValerisDesign.RADIUS_MD;
 
         ctx.fillSoftShadow(x, y, w, h, radius, 0x90000000);
         ctx.fillRoundedBorder(x, y, w, h, radius, 1,
@@ -182,7 +182,7 @@ public final class GameMenuRenderer {
         int fill = hover
                 ? ColorUtil.withAlpha(theme.backgroundLight(), 0.72f)
                 : ColorUtil.withAlpha(0xFF161618, 0.95f);
-        ctx.fillRoundedRect(x, y, w, h, PrimeDesign.RADIUS_SM, fill);
+        ctx.fillRoundedRect(x, y, w, h, ValerisDesign.RADIUS_SM, fill);
         // Diamond hatch (subtle)
         for (int i = 0; i < w; i += 8) {
             ctx.fillRect(x + i, y + 2, 1, h - 4, ColorUtil.withAlpha(0xFFFFFFFF, 0.03f));
@@ -191,7 +191,7 @@ public final class GameMenuRenderer {
                 ColorUtil.withAlpha(theme.accent(), hover ? 1f : 0.75f),
                 ColorUtil.withAlpha(theme.accent(), 0.2f));
         if (hover) {
-            ctx.fillRoundedBorder(x, y, w, h, PrimeDesign.RADIUS_SM, 1,
+            ctx.fillRoundedBorder(x, y, w, h, ValerisDesign.RADIUS_SM, 1,
                     ColorUtil.withAlpha(theme.accent(), 0.45f), fill);
         }
 
@@ -222,10 +222,10 @@ public final class GameMenuRenderer {
             int fill = hover
                     ? ColorUtil.withAlpha(theme.backgroundLight(), 0.65f)
                     : ColorUtil.withAlpha(0xFF141416, 0.92f);
-            ctx.fillRoundedRect(x, y, w, h, PrimeDesign.RADIUS_SM, fill);
+            ctx.fillRoundedRect(x, y, w, h, ValerisDesign.RADIUS_SM, fill);
             ctx.fillRect(x + 2, y, w - 4, 1, ColorUtil.withAlpha(theme.accent(), hover ? 0.85f : 0.35f));
             if (hover) {
-                ctx.fillRoundedBorder(x, y, w, h, PrimeDesign.RADIUS_SM, 1,
+                ctx.fillRoundedBorder(x, y, w, h, ValerisDesign.RADIUS_SM, 1,
                         ColorUtil.withAlpha(theme.accent(), 0.4f), fill);
             }
 
@@ -254,8 +254,8 @@ public final class GameMenuRenderer {
         int fill = hover
                 ? ColorUtil.withAlpha(theme.accentSecondary(), 0.35f)
                 : ColorUtil.withAlpha(0xFF121214, 0.95f);
-        ctx.fillRoundedRect(x, y, w, h, PrimeDesign.RADIUS_SM, fill);
-        ctx.fillRoundedBorder(x, y, w, h, PrimeDesign.RADIUS_SM, 1,
+        ctx.fillRoundedRect(x, y, w, h, ValerisDesign.RADIUS_SM, fill);
+        ctx.fillRoundedBorder(x, y, w, h, ValerisDesign.RADIUS_SM, 1,
                 ColorUtil.withAlpha(theme.accent(), hover ? 0.7f : 0.28f), fill);
 
         String label = adapter.translate("menu.returnToMenu", "Save and Quit to Title")
@@ -284,7 +284,7 @@ public final class GameMenuRenderer {
 
         // Left brand
         float brandScale = 0.78f;
-        PrimeLogo.draw(ctx, 8, y + (h - 16) / 2, 16, 0xFFFFFFFF);
+        ValerisLogo.draw(ctx, 8, y + (h - 16) / 2, 16, 0xFFFFFFFF);
         ctx.drawSmoothText("ValerisClient", 28, textTop(ctx, y, h, brandScale),
                 theme.accent(), brandScale);
 
@@ -309,7 +309,7 @@ public final class GameMenuRenderer {
         int ctaX = w - ctaW - 8;
         int ctaY = y + 4;
         int ctaH = h - 8;
-        ctx.fillRoundedBorder(ctaX, ctaY, ctaW, ctaH, PrimeDesign.RADIUS_SM, 1,
+        ctx.fillRoundedBorder(ctaX, ctaY, ctaW, ctaH, ValerisDesign.RADIUS_SM, 1,
                 ColorUtil.withAlpha(theme.accent(), 0.65f),
                 ColorUtil.withAlpha(0xFF10080A, 0.9f));
         ctx.drawSmoothText("ENHANCE YOUR GAME.", ctaX + 8, ctaY + 3, theme.foreground(), 0.62f);

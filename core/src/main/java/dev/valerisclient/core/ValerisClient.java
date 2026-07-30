@@ -1,6 +1,6 @@
 package dev.valerisclient.core;
 
-import dev.valerisclient.core.account.PrimeAccountService;
+import dev.valerisclient.core.account.ValerisAccountService;
 import dev.valerisclient.core.adapter.MinecraftAdapter;
 import dev.valerisclient.core.cloud.CloudSyncManager;
 import dev.valerisclient.core.cloud.LocalCloudClient;
@@ -9,7 +9,7 @@ import dev.valerisclient.core.cosmetics.CosmeticManager;
 import dev.valerisclient.core.crosshair.CrosshairConfig;
 import dev.valerisclient.core.crosshair.CrosshairPresetStore;
 import dev.valerisclient.core.crosshair.CrosshairProfileManager;
-import dev.valerisclient.core.i18n.PrimeLang;
+import dev.valerisclient.core.i18n.ValerisLang;
 import dev.valerisclient.core.bootstrap.FirstRunConfigurator;
 import dev.valerisclient.core.bootstrap.OnboardingFlow;
 import dev.valerisclient.core.discord.DiscordRpcService;
@@ -32,7 +32,7 @@ import dev.valerisclient.core.keybind.KeybindManager;
 import dev.valerisclient.core.module.ModuleManager;
 import dev.valerisclient.core.notification.NotificationManager;
 import dev.valerisclient.core.notification.NotificationPreferences;
-import dev.valerisclient.core.presence.PrimePresenceService;
+import dev.valerisclient.core.presence.ValerisPresenceService;
 import dev.valerisclient.core.serverapi.ServerApiService;
 import dev.valerisclient.core.skin.CustomSkinService;
 import dev.valerisclient.core.profile.ProfileManager;
@@ -74,7 +74,7 @@ public final class ValerisClient {
     private final CrosshairProfileManager crosshairProfiles;
     private final CosmeticManager cosmetics;
     private final CloudSyncManager cloudSync;
-    private final PrimeAccountService account;
+    private final ValerisAccountService account;
     private final OnboardingManager onboarding;
     private final LoadingOverlay loadingOverlay;
     private final ReplaySession replaySession;
@@ -83,7 +83,7 @@ public final class ValerisClient {
     private final ClipRecorder clipRecorder;
     private final TooltipRenderer tooltips;
     private final DiscordRpcService discordRpc;
-    private final PrimePresenceService presence;
+    private final ValerisPresenceService presence;
     private final ServerApiService serverApi;
     private final CustomSkinService customSkins;
 
@@ -112,9 +112,9 @@ public final class ValerisClient {
         this.loadingOverlay = new LoadingOverlay();
         this.replaySession = new ReplaySession();
         this.tooltips = new TooltipRenderer();
-        this.account = new PrimeAccountService();
+        this.account = new ValerisAccountService();
         this.discordRpc = new DiscordRpcService();
-        this.presence = new PrimePresenceService(adapter);
+        this.presence = new ValerisPresenceService(adapter);
         this.serverApi = new ServerApiService(adapter, notifications);
 
         Path modRoot = adapter.configDirectory().resolve(MOD_ID);
@@ -163,13 +163,13 @@ public final class ValerisClient {
         if (instance != null) {
             throw new IllegalStateException(NAME + " is already bootstrapped");
         }
-        PrimeLang.bind(adapter::translate);
+        ValerisLang.bind(adapter::translate);
         ValerisClient client = new ValerisClient(adapter);
         instance = client;
-        client.loadingOverlay.setStage(PrimeLang.get("prime.gui.loading.core", "Loading Core..."), 0.2f);
+        client.loadingOverlay.setStage(ValerisLang.get("valeris.gui.loading.core", "Loading Core..."), 0.2f);
         Modules.registerBuiltins(client);
         client.wireGlobalListeners();
-        client.loadingOverlay.setStage(PrimeLang.get("prime.gui.loading.modules", "Loading Modules..."), 0.55f);
+        client.loadingOverlay.setStage(ValerisLang.get("valeris.gui.loading.modules", "Loading Modules..."), 0.55f);
         boolean freshInstall = client.profiles.loadInitial();
         client.debutSession = freshInstall;
         if (freshInstall) {
@@ -179,9 +179,9 @@ public final class ValerisClient {
         if (customSkin != null && !customSkin.isEnabled()) {
             customSkin.setEnabled(true);
         }
-        client.loadingOverlay.setStage(PrimeLang.get("prime.gui.loading.ready", "ValerisClient ready"), 1f);
+        client.loadingOverlay.setStage(ValerisLang.get("valeris.gui.loading.ready", "ValerisClient ready"), 1f);
         LOGGER.info("{} v{} bootstrapped (Minecraft {}, {} modules, profile '{}'{})",
-                NAME, dev.valerisclient.core.design.PrimeDesign.VERSION,
+                NAME, dev.valerisclient.core.design.ValerisDesign.VERSION,
                 adapter.minecraftVersion(), client.modules.all().size(), client.profiles.activeProfile(),
                 freshInstall ? ", first launch" : "");
     }
@@ -192,8 +192,8 @@ public final class ValerisClient {
                 return;
             }
             String verb = event.enabled()
-                    ? PrimeLang.get("prime.notification.module.enabled", "Enabled")
-                    : PrimeLang.get("prime.notification.module.disabled", "Disabled");
+                    ? ValerisLang.get("valeris.notification.module.enabled", "Enabled")
+                    : ValerisLang.get("valeris.notification.module.disabled", "Disabled");
             if (event.enabled()) {
                 notifications.success(event.module().name(), verb);
             } else {
@@ -292,7 +292,7 @@ public final class ValerisClient {
     public CrosshairProfileManager crosshairProfiles() { return crosshairProfiles; }
     public CosmeticManager cosmetics() { return cosmetics; }
     public CloudSyncManager cloudSync() { return cloudSync; }
-    public PrimeAccountService account() { return account; }
+    public ValerisAccountService account() { return account; }
     public OnboardingManager onboarding() { return onboarding; }
     public LoadingOverlay loadingOverlay() { return loadingOverlay; }
     public ReplaySession replaySession() { return replaySession; }
@@ -301,7 +301,7 @@ public final class ValerisClient {
     public ClipRecorder clipRecorder() { return clipRecorder; }
     public TooltipRenderer tooltips() { return tooltips; }
     public DiscordRpcService discordRpc() { return discordRpc; }
-    public PrimePresenceService presence() { return presence; }
+    public ValerisPresenceService presence() { return presence; }
     public ServerApiService serverApi() { return serverApi; }
     public CustomSkinService customSkins() { return customSkins; }
 }

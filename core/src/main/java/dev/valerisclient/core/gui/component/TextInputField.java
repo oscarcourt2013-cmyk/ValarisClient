@@ -1,7 +1,7 @@
 package dev.valerisclient.core.gui.component;
 
 import dev.valerisclient.core.adapter.RenderContext;
-import dev.valerisclient.core.design.PrimeDesign;
+import dev.valerisclient.core.design.ValerisDesign;
 import dev.valerisclient.core.gui.GuiLayout;
 import dev.valerisclient.core.theme.Theme;
 
@@ -99,8 +99,8 @@ public final class TextInputField {
     }
 
     public void render(RenderContext ctx, Theme theme, int x, int y, int width) {
-        int h = PrimeDesign.INPUT_HEIGHT;
-        ctx.fillRoundedRect(x, y, width, h, PrimeDesign.RADIUS_SM,
+        int h = ValerisDesign.INPUT_HEIGHT;
+        ctx.fillRoundedRect(x, y, width, h, ValerisDesign.RADIUS_SM,
                 focused ? theme.surfaceElevated() : theme.backgroundLight());
         ctx.fillGradientHorizontal(x + 1, y + h - 2, width - 2, 2,
                 focused ? theme.accent() : theme.border(),
@@ -109,8 +109,8 @@ public final class TextInputField {
         String display = buffer.isEmpty() ? placeholder : buffer.toString();
         int color = buffer.isEmpty() ? theme.foregroundMuted() : theme.foreground();
         int textY = y + (h - ctx.uiFontHeight()) / 2 + 1;
-        int textX = x + PrimeDesign.SPACE_SM;
-        int maxTextW = width - PrimeDesign.SPACE_SM * 2;
+        int textX = x + ValerisDesign.SPACE_SM;
+        int maxTextW = width - ValerisDesign.SPACE_SM * 2;
         ctx.drawUiText(trimToWidth(ctx, display, maxTextW), textX, textY, color);
 
         if (focused && (System.currentTimeMillis() - blinkMillis) % 1000 < 500) {
@@ -121,7 +121,7 @@ public final class TextInputField {
     }
 
     public boolean hit(double mx, double my, int x, int y, int width) {
-        return mx >= x && mx < x + width && my >= y && my < y + PrimeDesign.INPUT_HEIGHT;
+        return mx >= x && mx < x + width && my >= y && my < y + ValerisDesign.INPUT_HEIGHT;
     }
 
     private static String trimToWidth(RenderContext ctx, String text, int maxWidth) {

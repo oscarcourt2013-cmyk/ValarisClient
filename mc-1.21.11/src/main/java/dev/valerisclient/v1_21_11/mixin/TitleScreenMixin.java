@@ -1,7 +1,7 @@
 package dev.valerisclient.v1_21_11.mixin;
 
 import dev.valerisclient.core.gui.menu.TitleScreenGate;
-import dev.valerisclient.v1_21_11.screen.PrimeTitleScreen;
+import dev.valerisclient.v1_21_11.screen.ValerisTitleScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.TitleScreen;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,7 +17,7 @@ public class TitleScreenMixin {
         if (TitleScreenGate.consumeAllowVanilla()) {
             return;
         }
-        Minecraft.getInstance().setScreen(new PrimeTitleScreen());
+        Minecraft.getInstance().setScreen(new ValerisTitleScreen());
         ci.cancel();
     }
 }

@@ -2,7 +2,7 @@ package dev.valerisclient.v1_21_11.mixin;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.textures.GpuTexture;
-import dev.valerisclient.core.hook.PrimeHooks;
+import dev.valerisclient.core.hook.ValerisHooks;
 import net.minecraft.client.renderer.LightTexture;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -27,7 +27,7 @@ public abstract class LightTextureMixin {
 
     @Inject(method = "updateLightTexture", at = @At("HEAD"), cancellable = true)
     private void ValerisClient$fullbrightLightmap(float partialTick, CallbackInfo ci) {
-        if (!PrimeHooks.fullbrightActive()) {
+        if (!ValerisHooks.fullbrightActive()) {
             return;
         }
         this.blockLightRedFlicker = 0.0F;
@@ -38,7 +38,7 @@ public abstract class LightTextureMixin {
 
     @Inject(method = "tick", at = @At("HEAD"), cancellable = true)
     private void ValerisClient$stableFullbrightTick(CallbackInfo ci) {
-        if (PrimeHooks.fullbrightActive()) {
+        if (ValerisHooks.fullbrightActive()) {
             this.blockLightRedFlicker = 0.0F;
             this.updateLightTexture = true;
             ci.cancel();
@@ -47,14 +47,14 @@ public abstract class LightTextureMixin {
 
     @Inject(method = "calculateDarknessScale", at = @At("RETURN"), cancellable = true)
     private void ValerisClient$noDarknessPulse(CallbackInfoReturnable<Float> cir) {
-        if (PrimeHooks.fullbrightActive()) {
+        if (ValerisHooks.fullbrightActive()) {
             cir.setReturnValue(0.0F);
         }
     }
 
     @Inject(method = "getBrightness(FI)F", at = @At("RETURN"), cancellable = true)
     private static void ValerisClient$fullbrightLevel(CallbackInfoReturnable<Float> cir) {
-        if (PrimeHooks.fullbrightActive()) {
+        if (ValerisHooks.fullbrightActive()) {
             cir.setReturnValue(1.0F);
         }
     }
@@ -65,7 +65,7 @@ public abstract class LightTextureMixin {
             cancellable = true
     )
     private static void ValerisClient$fullbrightDimension(CallbackInfoReturnable<Float> cir) {
-        if (PrimeHooks.fullbrightActive()) {
+        if (ValerisHooks.fullbrightActive()) {
             cir.setReturnValue(1.0F);
         }
     }

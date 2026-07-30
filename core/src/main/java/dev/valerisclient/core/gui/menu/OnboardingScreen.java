@@ -1,9 +1,9 @@
 package dev.valerisclient.core.gui.menu;
 
 import dev.valerisclient.core.adapter.RenderContext;
-import dev.valerisclient.core.design.PrimeLogo;
+import dev.valerisclient.core.design.ValerisLogo;
 import dev.valerisclient.core.gui.UiChrome;
-import dev.valerisclient.core.i18n.PrimeLang;
+import dev.valerisclient.core.i18n.ValerisLang;
 import dev.valerisclient.core.theme.Theme;
 
 /**
@@ -25,7 +25,7 @@ public final class OnboardingScreen {
         int x = (screenW - PANEL_W) / 2;
         int y = (screenH - PANEL_H) / 2 + Math.round(menuSlide);
         UiChrome.glassPanel(ctx, theme, x, y, PANEL_W, PANEL_H);
-        PrimeLogo.drawCentered(ctx, x + PANEL_W / 2, y + 10, 18, 0xFFFFFFFF);
+        ValerisLogo.drawCentered(ctx, x + PANEL_W / 2, y + 10, 18, 0xFFFFFFFF);
 
         int step = onboarding.step();
         switch (step) {
@@ -36,7 +36,7 @@ public final class OnboardingScreen {
         }
 
         int displayStep = Math.min(step + 1, 4);
-        ctx.drawText(PrimeLang.get("prime.gui.onboarding.step_footer", "Step %1$d/4  ·  Esc = skip", displayStep),
+        ctx.drawText(ValerisLang.get("valeris.gui.onboarding.step_footer", "Step %1$d/4  ·  Esc = skip", displayStep),
                 x + 12, y + PANEL_H - 14, theme.foregroundMuted(), true);
     }
 
@@ -66,75 +66,75 @@ public final class OnboardingScreen {
 
     private static void renderThemeStep(RenderContext ctx, Theme theme, OnboardingManager onboarding,
                                         int x, int y, double mouseX, double mouseY) {
-        ctx.drawText(PrimeLang.get("prime.gui.onboarding.theme.title", "Choose your theme"),
+        ctx.drawText(ValerisLang.get("valeris.gui.onboarding.theme.title", "Choose your theme"),
                 x + 12, y + 36, theme.accent(), true);
         drawChoice(ctx, theme, x + 12, y + 54, 60,
-                PrimeLang.get("prime.gui.settings.theme.crimson", "Crimson"),
+                ValerisLang.get("valeris.gui.settings.theme.crimson", "Crimson"),
                 "prime-crimson".equals(onboarding.chosenTheme()), mouseX, mouseY);
         drawChoice(ctx, theme, x + 76, y + 54, 60,
-                PrimeLang.get("prime.gui.settings.theme.midnight", "Midnight"),
+                ValerisLang.get("valeris.gui.settings.theme.midnight", "Midnight"),
                 "prime-midnight".equals(onboarding.chosenTheme()), mouseX, mouseY);
         drawChoice(ctx, theme, x + 140, y + 54, 60,
-                PrimeLang.get("prime.gui.settings.theme.aurora", "Aurora"),
+                ValerisLang.get("valeris.gui.settings.theme.aurora", "Aurora"),
                 "prime-aurora".equals(onboarding.chosenTheme()), mouseX, mouseY);
         drawChoice(ctx, theme, x + 204, y + 54, 60,
-                PrimeLang.get("prime.gui.settings.theme.obsidian", "Obsidian"),
+                ValerisLang.get("valeris.gui.settings.theme.obsidian", "Obsidian"),
                 "prime-obsidian".equals(onboarding.chosenTheme()), mouseX, mouseY);
         drawChoice(ctx, theme, x + 268, y + 54, 60,
-                PrimeLang.get("prime.gui.settings.theme.ember", "Ember"),
+                ValerisLang.get("valeris.gui.settings.theme.ember", "Ember"),
                 "prime-ember".equals(onboarding.chosenTheme()), mouseX, mouseY);
-        ctx.drawText(PrimeLang.get("prime.gui.onboarding.theme.hint", "Click an option then continue"),
+        ctx.drawText(ValerisLang.get("valeris.gui.onboarding.theme.hint", "Click an option then continue"),
                 x + 12, y + 86, theme.foregroundMuted(), true);
         drawPrimary(ctx, theme, x + 12, y + 112, PANEL_W - 24,
-                PrimeLang.get("prime.gui.onboarding.theme.continue", "Continue"), mouseX, mouseY);
+                ValerisLang.get("valeris.gui.onboarding.theme.continue", "Continue"), mouseX, mouseY);
     }
 
     private static void renderProfileStep(RenderContext ctx, Theme theme, OnboardingManager onboarding,
                                           int x, int y, double mouseX, double mouseY) {
-        ctx.drawText(PrimeLang.get("prime.gui.onboarding.profile.title", "Module profile"),
+        ctx.drawText(ValerisLang.get("valeris.gui.onboarding.profile.title", "Module profile"),
                 x + 12, y + 36, theme.accent(), true);
         drawChoice(ctx, theme, x + 12, y + 56, 100,
-                PrimeLang.get("prime.gui.onboarding.profile.balanced", "Balanced"),
+                ValerisLang.get("valeris.gui.onboarding.profile.balanced", "Balanced"),
                 "default".equals(onboarding.chosenProfile()), mouseX, mouseY);
         drawChoice(ctx, theme, x + 120, y + 56, 100,
-                PrimeLang.get("prime.gui.onboarding.profile.pvp", "PvP"),
+                ValerisLang.get("valeris.gui.onboarding.profile.pvp", "PvP"),
                 "pvp".equals(onboarding.chosenProfile()), mouseX, mouseY);
         drawChoice(ctx, theme, x + 228, y + 56, 100,
-                PrimeLang.get("prime.gui.onboarding.profile.survival", "Survival"),
+                ValerisLang.get("valeris.gui.onboarding.profile.survival", "Survival"),
                 "survival".equals(onboarding.chosenProfile()), mouseX, mouseY);
-        ctx.drawText(PrimeLang.get("prime.gui.onboarding.profile.hint", "FPS, coords, crosshair, Discord RPC included"),
+        ctx.drawText(ValerisLang.get("valeris.gui.onboarding.profile.hint", "FPS, coords, crosshair, Discord RPC included"),
                 x + 12, y + 88, theme.foregroundMuted(), true);
         drawPrimary(ctx, theme, x + 12, y + 112, PANEL_W - 24,
-                PrimeLang.get("prime.gui.onboarding.theme.continue", "Continue"), mouseX, mouseY);
+                ValerisLang.get("valeris.gui.onboarding.theme.continue", "Continue"), mouseX, mouseY);
     }
 
     private static void renderKeybindStep(RenderContext ctx, Theme theme, int x, int y,
                                           double mouseX, double mouseY) {
-        ctx.drawText(PrimeLang.get("prime.gui.onboarding.keybinds.title", "Essential shortcuts"),
+        ctx.drawText(ValerisLang.get("valeris.gui.onboarding.keybinds.title", "Essential shortcuts"),
                 x + 12, y + 36, theme.accent(), true);
-        ctx.drawText(PrimeLang.get("prime.gui.onboarding.keybinds.menu",
+        ctx.drawText(ValerisLang.get("valeris.gui.onboarding.keybinds.menu",
                         "Right Shift  →  Valeris Menu (modules, settings)"),
                 x + 12, y + 56, theme.foreground(), true);
-        ctx.drawText(PrimeLang.get("prime.gui.onboarding.keybinds.hud", "H  →  HUD Editor (move elements)"),
+        ctx.drawText(ValerisLang.get("valeris.gui.onboarding.keybinds.hud", "H  →  HUD Editor (move elements)"),
                 x + 12, y + 72, theme.foreground(), true);
-        ctx.drawText(PrimeLang.get("prime.gui.onboarding.keybinds.zoom", "C  →  Zoom (Zoom module, hold)"),
+        ctx.drawText(ValerisLang.get("valeris.gui.onboarding.keybinds.zoom", "C  →  Zoom (Zoom module, hold)"),
                 x + 12, y + 88, theme.foregroundMuted(), true);
         drawPrimary(ctx, theme, x + 12, y + 112, PANEL_W - 24,
-                PrimeLang.get("prime.gui.onboarding.keybinds.got_it", "Got it!"), mouseX, mouseY);
+                ValerisLang.get("valeris.gui.onboarding.keybinds.got_it", "Got it!"), mouseX, mouseY);
     }
 
     private static void renderFinishStep(RenderContext ctx, Theme theme, int x, int y,
                                          double mouseX, double mouseY) {
-        ctx.drawText(PrimeLang.get("prime.gui.onboarding.finish.title", "You're all set!"),
+        ctx.drawText(ValerisLang.get("valeris.gui.onboarding.finish.title", "You're all set!"),
                 x + 12, y + 36, theme.accent(), true);
-        ctx.drawText(PrimeLang.get("prime.gui.onboarding.finish.line1",
+        ctx.drawText(ValerisLang.get("valeris.gui.onboarding.finish.line1",
                         "Your HUD, crosshair and Discord RPC are ready."),
                 x + 12, y + 56, theme.foreground(), true);
-        ctx.drawText(PrimeLang.get("prime.gui.onboarding.finish.line2",
+        ctx.drawText(ValerisLang.get("valeris.gui.onboarding.finish.line2",
                         "Explore Modules in the menu to customize everything."),
                 x + 12, y + 72, theme.foregroundMuted(), true);
         drawPrimary(ctx, theme, x + 12, y + 112, PANEL_W - 24,
-                PrimeLang.get("prime.gui.onboarding.finish.enter", "Enter ValerisClient"), mouseX, mouseY);
+                ValerisLang.get("valeris.gui.onboarding.finish.enter", "Enter ValerisClient"), mouseX, mouseY);
     }
 
     private static boolean handleThemeClick(OnboardingManager onboarding, double mx, double my, int x, int y) {

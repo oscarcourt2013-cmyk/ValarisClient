@@ -1,7 +1,7 @@
 package dev.valerisclient.core.gui.clickgui;
 
 import dev.valerisclient.core.adapter.RenderContext;
-import dev.valerisclient.core.design.PrimeDesign;
+import dev.valerisclient.core.design.ValerisDesign;
 import dev.valerisclient.core.gui.GuiLayout;
 import dev.valerisclient.core.gui.UiChrome;
 import dev.valerisclient.core.theme.Theme;
@@ -47,7 +47,7 @@ final class BottomDock {
             int fill = hover
                     ? ColorUtil.withAlpha(theme.backgroundLight(), 0.7f)
                     : ColorUtil.withAlpha(theme.surfaceElevated(), 0.5f);
-            ctx.fillRoundedRect(bx, btnY, BTN, BTN, PrimeDesign.RADIUS_SM, fill);
+            ctx.fillRoundedRect(bx, btnY, BTN, BTN, ValerisDesign.RADIUS_SM, fill);
             String glyph = actions[i].glyph;
             int glyphW = GuiLayout.labelWidth(ctx, glyph);
             GuiLayout.label(ctx, glyph, bx + (BTN - glyphW) / 2, btnY + (BTN - ctx.uiFontHeight()) / 2 + 1,

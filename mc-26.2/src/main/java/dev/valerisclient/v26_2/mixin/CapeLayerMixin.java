@@ -3,7 +3,7 @@ package dev.valerisclient.v26_2.mixin;
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.valerisclient.core.ValerisClient;
 import dev.valerisclient.core.cosmetics.CosmeticTextures;
-import dev.valerisclient.v26_2.render.PrimeCosmeticRenderData;
+import dev.valerisclient.v26_2.render.ValerisCosmeticRenderData;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.layers.CapeLayer;
@@ -27,9 +27,9 @@ public abstract class CapeLayerMixin {
     private HumanoidModel<AvatarRenderState> model;
 
     @Inject(method = "submit", at = @At("HEAD"), cancellable = true)
-    private void ValerisClient$renderPrimeCape(PoseStack poseStack, SubmitNodeCollector collector, int light,
+    private void ValerisClient$renderValerisCape(PoseStack poseStack, SubmitNodeCollector collector, int light,
                                              AvatarRenderState state, float a, float b, CallbackInfo ci) {
-        if (!(state instanceof PrimeCosmeticRenderData data)) {
+        if (!(state instanceof ValerisCosmeticRenderData data)) {
             return;
         }
         String path = CosmeticTextures.capePath(data.ValerisClient$getCapeId());

@@ -1,8 +1,8 @@
 package dev.valerisclient.core.gui.clickgui;
 
 import dev.valerisclient.core.adapter.RenderContext;
-import dev.valerisclient.core.design.PrimeDesign;
-import dev.valerisclient.core.design.PrimeLogo;
+import dev.valerisclient.core.design.ValerisDesign;
+import dev.valerisclient.core.design.ValerisLogo;
 import dev.valerisclient.core.gui.GuiLayout;
 import dev.valerisclient.core.gui.UiChrome;
 import dev.valerisclient.core.theme.Theme;
@@ -44,7 +44,7 @@ final class ClickGuiTopBar {
         int barH = layout.topBarH();
 
         int closeX = barX + barW - EDGE_PAD - CLOSE_BTN;
-        int logoW = PrimeLogo.widthForHeight(barH - 6);
+        int logoW = ValerisLogo.widthForHeight(barH - 6);
         int wordmarkW = GuiLayout.labelWidth(ctx, "VALERIS CLIENT");
 
         // Try configurations from richest to sparsest until one fits.
@@ -65,7 +65,7 @@ final class ClickGuiTopBar {
             }
 
             int leftW = EDGE_PAD + logoW + (wordmark ? 4 + wordmarkW : 0);
-            int rightW = (searchW > 0 ? searchW + PrimeDesign.SPACE_SM : 0) + CLOSE_BTN + EDGE_PAD;
+            int rightW = (searchW > 0 ? searchW + ValerisDesign.SPACE_SM : 0) + CLOSE_BTN + EDGE_PAD;
             boolean last = attempt == 4;
 
             if (leftW + tabsW + rightW <= barW || last) {
@@ -80,7 +80,7 @@ final class ClickGuiTopBar {
                     xs[i] = cursor;
                     cursor += tabW[i] + TAB_GAP;
                 }
-                int searchX = closeX - PrimeDesign.SPACE_SM - searchW;
+                int searchX = closeX - ValerisDesign.SPACE_SM - searchW;
                 return new Solved(labels, xs, tabW, barY + (barH - TAB_H) / 2,
                         wordmark, searchX, searchW, closeX);
             }
@@ -103,10 +103,10 @@ final class ClickGuiTopBar {
         ctx.pushClip(barX, barY, barW, barH);
 
         int logoH = barH - 6;
-        PrimeLogo.draw(ctx, barX + EDGE_PAD, barY + (barH - logoH) / 2, logoH, 0xFFFFFFFF);
+        ValerisLogo.draw(ctx, barX + EDGE_PAD, barY + (barH - logoH) / 2, logoH, 0xFFFFFFFF);
         if (s.showWordmark()) {
             GuiLayout.label(ctx, "VALERIS CLIENT",
-                    barX + EDGE_PAD + PrimeLogo.widthForHeight(logoH) + 4,
+                    barX + EDGE_PAD + ValerisLogo.widthForHeight(logoH) + 4,
                     barY + (barH - ctx.uiFontHeight()) / 2 + 1, theme.foreground());
         }
 
@@ -135,7 +135,7 @@ final class ClickGuiTopBar {
 
         int closeY = barY + (barH - CLOSE_BTN) / 2;
         boolean closeHover = hit(mouseX, mouseY, s.closeX(), closeY, CLOSE_BTN, CLOSE_BTN);
-        ctx.fillRoundedRect(s.closeX(), closeY, CLOSE_BTN, CLOSE_BTN, PrimeDesign.RADIUS_SM,
+        ctx.fillRoundedRect(s.closeX(), closeY, CLOSE_BTN, CLOSE_BTN, ValerisDesign.RADIUS_SM,
                 closeHover ? theme.backgroundLight() : ColorUtil.withAlpha(theme.surfaceElevated(), 0.6f));
         int xW = GuiLayout.labelWidth(ctx, "X");
         GuiLayout.label(ctx, "X", s.closeX() + (CLOSE_BTN - xW) / 2,

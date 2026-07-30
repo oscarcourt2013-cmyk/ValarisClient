@@ -1,6 +1,6 @@
 package dev.valerisclient.v1_21_11.mixin;
 
-import dev.valerisclient.core.hook.PrimeHooks;
+import dev.valerisclient.core.hook.ValerisHooks;
 import dev.valerisclient.core.hud.editor.HudEditorState;
 import dev.valerisclient.core.hud.vanilla.VanillaHudComponent;
 import dev.valerisclient.core.hud.vanilla.VanillaHudMeasurements;
@@ -27,14 +27,14 @@ public abstract class GuiMixin {
 
     @Inject(method = "render", at = @At("RETURN"))
     private void ValerisClient$handShaderWash(GuiGraphics graphics, DeltaTracker deltaTracker, CallbackInfo ci) {
-        if (!PrimeHooks.handShaderActive()) {
+        if (!ValerisHooks.handShaderActive()) {
             return;
         }
         Minecraft minecraft = Minecraft.getInstance();
         if (minecraft.options.getCameraType().isFirstPerson()) {
             int w = minecraft.getWindow().getGuiScaledWidth();
             int h = minecraft.getWindow().getGuiScaledHeight();
-            int color = PrimeHooks.handShaderOverlayArgb();
+            int color = ValerisHooks.handShaderOverlayArgb();
             // Soft wash over the lower HUD where first-person hands sit.
             graphics.fill(0, (int) (h * 0.62f), w, h, color);
         }
@@ -42,7 +42,7 @@ public abstract class GuiMixin {
 
     @Inject(method = "renderCrosshair", at = @At("HEAD"), cancellable = true)
     private void ValerisClient$hideVanillaCrosshair(GuiGraphics graphics, DeltaTracker deltaTracker, CallbackInfo ci) {
-        if (PrimeHooks.hideVanillaCrosshair()) {
+        if (ValerisHooks.hideVanillaCrosshair()) {
             ci.cancel();
         }
     }

@@ -1,7 +1,7 @@
 package dev.valerisclient.core.hud.editor;
 
 import dev.valerisclient.core.adapter.RenderContext;
-import dev.valerisclient.core.design.PrimeDesign;
+import dev.valerisclient.core.design.ValerisDesign;
 import dev.valerisclient.core.gui.UiChrome;
 import dev.valerisclient.core.hud.HudElement;
 import dev.valerisclient.core.theme.Theme;
@@ -351,7 +351,7 @@ final class HudEditorUi {
                 boolean hover = listView.contains(mouseX, mouseY)
                         && mouseY >= rowY && mouseY < rowY + ROW_HEIGHT;
                 if (isSelected || hover) {
-                    ctx.fillRoundedRect(listView.x(), rowY, listView.w(), ROW_HEIGHT - 1, PrimeDesign.RADIUS_SM,
+                    ctx.fillRoundedRect(listView.x(), rowY, listView.w(), ROW_HEIGHT - 1, ValerisDesign.RADIUS_SM,
                             ColorUtil.withAlpha(isSelected ? theme.accent() : theme.surfaceElevated(),
                                     isSelected ? 0.30f : 0.55f));
                 }
@@ -429,10 +429,10 @@ final class HudEditorUi {
             int sx = x + pad + i * (SWATCH + 2);
             boolean current = selected.tintArgb() == tint;
             if (tint == 0) {
-                ctx.fillRoundedBorder(sx, row2Y, SWATCH, SWATCH, PrimeDesign.RADIUS_SM, 1,
+                ctx.fillRoundedBorder(sx, row2Y, SWATCH, SWATCH, ValerisDesign.RADIUS_SM, 1,
                         current ? theme.accent() : theme.border(), theme.backgroundLight());
             } else {
-                ctx.fillRoundedBorder(sx, row2Y, SWATCH, SWATCH, PrimeDesign.RADIUS_SM, 1,
+                ctx.fillRoundedBorder(sx, row2Y, SWATCH, SWATCH, ValerisDesign.RADIUS_SM, 1,
                         current ? theme.accent() : ColorUtil.withAlpha(theme.border(), 0.5f), tint);
             }
         }
@@ -484,7 +484,7 @@ final class HudEditorUi {
         int y = ctx.screenHeight() - fontH - 6;
         hintBar = new Rect(x, y - 3, w, fontH + 8);
         ctx.fillRoundedRect(hintBar.x(), hintBar.y(), hintBar.w(), hintBar.h(),
-                PrimeDesign.RADIUS_SM, ColorUtil.withAlpha(theme.surfaceElevated(), 0.55f));
+                ValerisDesign.RADIUS_SM, ColorUtil.withAlpha(theme.surfaceElevated(), 0.55f));
         ctx.drawUiText(line, x + 10, y, ColorUtil.withAlpha(theme.foregroundMuted(), 0.9f));
     }
 

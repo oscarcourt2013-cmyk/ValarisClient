@@ -45,7 +45,7 @@ public interface MinecraftAdapter {
     void openClickGui();
 
     /** Opens ClickGUI directly on the settings view. */
-    default void openPrimeSettings() {
+    default void openValerisSettings() {
         openClickGui();
     }
 

@@ -1,9 +1,9 @@
 package dev.valerisclient.core.gui.menu;
 
 import dev.valerisclient.core.adapter.RenderContext;
-import dev.valerisclient.core.design.PrimeDesign;
-import dev.valerisclient.core.design.PrimeLogo;
-import dev.valerisclient.core.i18n.PrimeLang;
+import dev.valerisclient.core.design.ValerisDesign;
+import dev.valerisclient.core.design.ValerisLogo;
+import dev.valerisclient.core.i18n.ValerisLang;
 import dev.valerisclient.core.theme.Theme;
 import dev.valerisclient.core.util.ColorUtil;
 import dev.valerisclient.core.util.Easing;
@@ -136,15 +136,15 @@ public final class LoadingOverlay {
 
         if (phase == Phase.HOLD || phase == Phase.ACTIVE) {
             int glowSize = logoH + 24 + Math.round(6f * (float) Math.sin(pulsePhase));
-            int glowX = cx - PrimeLogo.widthForHeight(glowSize) / 2 - 12;
+            int glowX = cx - ValerisLogo.widthForHeight(glowSize) / 2 - 12;
             int glowY = cy - 8;
             ctx.fillRoundedRect(glowX, glowY,
-                    PrimeLogo.widthForHeight(glowSize) + 24, glowSize + 16,
+                    ValerisLogo.widthForHeight(glowSize) + 24, glowSize + 16,
                     12, ColorUtil.withAlpha(theme.accent(), phase == Phase.HOLD ? 0.22f : 0.12f));
         }
 
         ctx.pushTransform(cx, cy + logoH / 2f, logoScale, 0f, 0f, -logoH / 2f);
-        PrimeLogo.draw(ctx, -PrimeLogo.widthForHeight(baseLogoH) / 2, 0, baseLogoH, 0xFFFFFFFF);
+        ValerisLogo.draw(ctx, -ValerisLogo.widthForHeight(baseLogoH) / 2, 0, baseLogoH, 0xFFFFFFFF);
         ctx.popTransform();
 
         float textAlpha = phase == Phase.ENTER
@@ -178,10 +178,10 @@ public final class LoadingOverlay {
             }
         }
 
-        String version = PrimeLang.get("prime.gui.loading.version", "v%s", PrimeDesign.VERSION);
-        String tagline = PrimeLang.get("prime.gui.loading.tagline", "Premium Minecraft Client");
-        ctx.drawText(version, barX, barY + PrimeDesign.SPACE_MD + 2, theme.foregroundMuted(), true);
-        ctx.drawText(tagline, barX, barY + PrimeDesign.SPACE_MD + 14, theme.foregroundMuted(), true);
+        String version = ValerisLang.get("valeris.gui.loading.version", "v%s", ValerisDesign.VERSION);
+        String tagline = ValerisLang.get("valeris.gui.loading.tagline", "Premium Minecraft Client");
+        ctx.drawText(version, barX, barY + ValerisDesign.SPACE_MD + 2, theme.foregroundMuted(), true);
+        ctx.drawText(tagline, barX, barY + ValerisDesign.SPACE_MD + 14, theme.foregroundMuted(), true);
         ctx.setDrawOpacity(1f);
     }
 }

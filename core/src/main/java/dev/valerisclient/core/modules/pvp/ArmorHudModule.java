@@ -2,7 +2,7 @@ package dev.valerisclient.core.modules.pvp;
 
 import dev.valerisclient.core.adapter.MinecraftAdapter;
 import dev.valerisclient.core.adapter.RenderContext;
-import dev.valerisclient.core.design.PrimeDesign;
+import dev.valerisclient.core.design.ValerisDesign;
 import dev.valerisclient.core.hud.HudAnchor;
 import dev.valerisclient.core.hud.HudElement;
 import dev.valerisclient.core.hud.HudManager;
@@ -127,7 +127,7 @@ public final class ArmorHudModule extends Module {
         }
 
         private void drawStripFrame(RenderContext ctx, Theme theme, int x, int y, int w, int h) {
-            int radius = PrimeDesign.RADIUS_SM;
+            int radius = ValerisDesign.RADIUS_SM;
             ctx.fillSoftShadow(x, y + 1, w, h, radius, 0x60000000);
             ctx.fillRoundedBorder(x, y, w, h, radius, 1,
                     ColorUtil.withAlpha(theme.accent(), 0.85f),

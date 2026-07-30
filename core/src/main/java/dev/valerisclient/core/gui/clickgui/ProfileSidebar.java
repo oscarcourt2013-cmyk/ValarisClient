@@ -2,7 +2,7 @@ package dev.valerisclient.core.gui.clickgui;
 
 import dev.valerisclient.core.adapter.MinecraftAdapter;
 import dev.valerisclient.core.adapter.RenderContext;
-import dev.valerisclient.core.design.PrimeDesign;
+import dev.valerisclient.core.design.ValerisDesign;
 import dev.valerisclient.core.gui.GuiLayout;
 import dev.valerisclient.core.gui.UiChrome;
 import dev.valerisclient.core.gui.component.TextInputField;
@@ -47,7 +47,7 @@ final class ProfileSidebar {
             boolean active = name.equals(profiles.activeProfile());
             boolean hover = mouseX >= x && mouseX < x + w && mouseY >= rowY && mouseY < rowY + ROW_H;
             if (active || hover) {
-                ctx.fillRoundedRect(x + 3, rowY, w - 6, ROW_H, PrimeDesign.RADIUS_SM,
+                ctx.fillRoundedRect(x + 3, rowY, w - 6, ROW_H, ValerisDesign.RADIUS_SM,
                         active ? theme.surfaceElevated() : ColorUtil.withAlpha(theme.surfaceElevated(), 0.5f));
             }
             if (active) {

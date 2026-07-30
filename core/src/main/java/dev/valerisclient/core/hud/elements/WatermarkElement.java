@@ -1,7 +1,7 @@
 package dev.valerisclient.core.hud.elements;
 
 import dev.valerisclient.core.adapter.RenderContext;
-import dev.valerisclient.core.design.PrimeLogo;
+import dev.valerisclient.core.design.ValerisLogo;
 import dev.valerisclient.core.hud.HudAnchor;
 import dev.valerisclient.core.hud.HudElement;
 import dev.valerisclient.core.theme.ThemeManager;
@@ -25,7 +25,7 @@ public final class WatermarkElement extends HudElement {
 
     @Override
     public int measureWidth(RenderContext ctx) {
-        return PrimeLogo.widthForHeight(LOGO_H) + ctx.textWidth(suffix) + PADDING * 2 + 2;
+        return ValerisLogo.widthForHeight(LOGO_H) + ctx.textWidth(suffix) + PADDING * 2 + 2;
     }
 
     @Override
@@ -39,8 +39,8 @@ public final class WatermarkElement extends HudElement {
         int w = measureWidth(ctx);
         int h = measureHeight(ctx);
         ctx.fillRect(0, 0, w, h, theme.background());
-        PrimeLogo.draw(ctx, PADDING, PADDING + 1, LOGO_H, 0xFFFFFFFF);
-        int textX = PADDING + PrimeLogo.widthForHeight(LOGO_H) + 4;
+        ValerisLogo.draw(ctx, PADDING, PADDING + 1, LOGO_H, 0xFFFFFFFF);
+        int textX = PADDING + ValerisLogo.widthForHeight(LOGO_H) + 4;
         ctx.drawText(suffix, textX, PADDING, theme.foreground(), true);
     }
 }

@@ -8,7 +8,7 @@ import dev.valerisclient.core.config.ConfigBinding;
 import dev.valerisclient.core.gui.FavoritesManager;
 import dev.valerisclient.core.cloud.CloudSyncManager;
 import dev.valerisclient.core.cosmetics.CosmeticManager;
-import dev.valerisclient.core.design.PrimeDesign;
+import dev.valerisclient.core.design.ValerisDesign;
 import dev.valerisclient.core.gui.GuiLayout;
 import dev.valerisclient.core.gui.menu.MainMenuRenderer;
 import dev.valerisclient.core.gui.menu.OnboardingManager;
@@ -25,7 +25,7 @@ import dev.valerisclient.core.theme.Theme;
 import dev.valerisclient.core.theme.ThemeManager;
 import dev.valerisclient.core.profile.ProfileManager;
 import dev.valerisclient.core.gui.TooltipRenderer;
-import dev.valerisclient.core.i18n.PrimeLang;
+import dev.valerisclient.core.i18n.ValerisLang;
 import dev.valerisclient.core.gui.clickgui.ModuleCardBrowser;
 import dev.valerisclient.core.gui.menu.ConfigurationsMenuRenderer;
 import dev.valerisclient.core.gui.menu.CosmeticsMenuRenderer;
@@ -116,7 +116,7 @@ public final class ClickGui implements ConfigBinding {
                     favorites, x, 8));
             x += Panel.WIDTH + 8;
         }
-        favoritesPanel = new Panel(PrimeLang.get("prime.gui.clickgui.favorites", "Favorites"),
+        favoritesPanel = new Panel(ValerisLang.get("valeris.gui.clickgui.favorites", "Favorites"),
                 favorites.resolve(modules), favorites, 8, 8);
     }
 
@@ -242,7 +242,7 @@ public final class ClickGui implements ConfigBinding {
                 int px = mainMenu.panelX(screenWidth);
                 int py = mainMenu.panelY(screenWidth, screenHeight, menuSlide);
                 mainMenu.renderPanel(ctx, theme, px, py, adapter.playerName(),
-                        PrimeDesign.VERSION, mouseX, mouseY, menuSlide);
+                        ValerisDesign.VERSION, mouseX, mouseY, menuSlide);
             }
             case ONBOARDING -> renderOnboarding(ctx, theme, mouseX, mouseY);
             case SETTINGS -> {
@@ -302,7 +302,7 @@ public final class ClickGui implements ConfigBinding {
 
     private void renderEditors(RenderContext ctx, Theme theme) {
         if (stringEditor != null) {
-            int[] pos = GuiLayout.clampPopup(editorX, editorY, 140, PrimeDesign.INPUT_HEIGHT,
+            int[] pos = GuiLayout.clampPopup(editorX, editorY, 140, ValerisDesign.INPUT_HEIGHT,
                     screenWidth, screenHeight);
             editorX = pos[0];
             editorY = pos[1];
@@ -347,14 +347,14 @@ public final class ClickGui implements ConfigBinding {
 
     private void renderSearchBar(RenderContext ctx, Theme theme) {
         String label = searchQuery.isEmpty()
-                ? PrimeLang.get("prime.gui.clickgui.search.placeholder", "Type to search...")
+                ? ValerisLang.get("valeris.gui.clickgui.search.placeholder", "Type to search...")
                 : searchQuery.toString();
         int labelColor = searchQuery.isEmpty() ? theme.foregroundMuted() : theme.foreground();
         int maxWidth = ctx.screenWidth() - 32;
         int width = Math.min(maxWidth, Math.max(SEARCH_MIN_WIDTH, GuiLayout.labelWidth(ctx, label) + 16));
         int x = (ctx.screenWidth() - width) / 2;
         int y = ctx.screenHeight() - SEARCH_HEIGHT - 8;
-        ctx.fillRoundedRect(x, y, width, SEARCH_HEIGHT, PrimeDesign.RADIUS_MD, theme.backgroundLight());
+        ctx.fillRoundedRect(x, y, width, SEARCH_HEIGHT, ValerisDesign.RADIUS_MD, theme.backgroundLight());
         ctx.fillGradientHorizontal(x + 2, y + SEARCH_HEIGHT - 2, width - 4, 2,
                 theme.accent(), dev.valerisclient.core.util.ColorUtil.withAlpha(theme.accent(), 0.05f));
         GuiLayout.label(ctx, GuiLayout.trimToWidth(ctx, label, width - 12),
@@ -480,7 +480,7 @@ public final class ClickGui implements ConfigBinding {
         editingString = setting;
         stringEditor = new TextInputField(setting.get(), setting.name(), 48);
         stringEditor.setFocused(true);
-        int[] pos = GuiLayout.clampPopup(x, y, 140, PrimeDesign.INPUT_HEIGHT, screenWidth, screenHeight);
+        int[] pos = GuiLayout.clampPopup(x, y, 140, ValerisDesign.INPUT_HEIGHT, screenWidth, screenHeight);
         editorX = pos[0];
         editorY = pos[1];
         colorPicker = null;
@@ -649,13 +649,13 @@ public final class ClickGui implements ConfigBinding {
             return;
         }
         List<Module> results = modules.search(searchQuery.toString());
-        searchPanel = new Panel(PrimeLang.get("prime.gui.clickgui.search.panel", "Search (%d)", results.size()),
+        searchPanel = new Panel(ValerisLang.get("valeris.gui.clickgui.search.panel", "Search (%d)", results.size()),
                 results, favorites,
                 searchPanel != null ? searchPanel.x : 8, 8);
     }
 
     private void refreshFavoritesPanel() {
-        favoritesPanel = new Panel(PrimeLang.get("prime.gui.clickgui.favorites", "Favorites"),
+        favoritesPanel = new Panel(ValerisLang.get("valeris.gui.clickgui.favorites", "Favorites"),
                 favorites.resolve(modules), favorites, favoritesPanel.x, favoritesPanel.y);
         favoritesPanel.collapsed = false;
     }

@@ -1,6 +1,6 @@
 package dev.valerisclient.v1_21_11.mixin;
 
-import dev.valerisclient.v1_21_11.screen.PrimePauseScreen;
+import dev.valerisclient.v1_21_11.screen.ValerisPauseScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.PauseScreen;
 import org.spongepowered.asm.mixin.Final;
@@ -22,7 +22,7 @@ public class PauseScreenMixin {
         if (!this.showPauseMenu) {
             return;
         }
-        Minecraft.getInstance().setScreen(new PrimePauseScreen());
+        Minecraft.getInstance().setScreen(new ValerisPauseScreen());
         ci.cancel();
     }
 }

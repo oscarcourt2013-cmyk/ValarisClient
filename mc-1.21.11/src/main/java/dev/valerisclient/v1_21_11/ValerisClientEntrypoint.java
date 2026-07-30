@@ -1,7 +1,7 @@
 package dev.valerisclient.v1_21_11;
 
 import dev.valerisclient.core.ValerisClient;
-import dev.valerisclient.core.hook.PrimeHooks;
+import dev.valerisclient.core.hook.ValerisHooks;
 import dev.valerisclient.v1_21_11.render.GuiRenderContext;
 import dev.valerisclient.v1_21_11.network.MainNetworking;
 import dev.valerisclient.v1_21_11.network.PresenceNetworking;
@@ -49,15 +49,15 @@ public final class ValerisClientEntrypoint implements ClientModInitializer {
         ClientLifecycleEvents.CLIENT_STOPPING.register(client -> ValerisClient.get().shutdown());
 
         ClientReceiveMessageEvents.GAME.register((message, overlay) ->
-                PrimeHooks.onChatMessage(message.getString(), false));
-        ClientSendMessageEvents.ALLOW_CHAT.register(PrimeHooks::allowOutgoingChat);
-        ClientSendMessageEvents.ALLOW_COMMAND.register(PrimeHooks::allowOutgoingCommand);
+                ValerisHooks.onChatMessage(message.getString(), false));
+        ClientSendMessageEvents.ALLOW_CHAT.register(ValerisHooks::allowOutgoingChat);
+        ClientSendMessageEvents.ALLOW_COMMAND.register(ValerisHooks::allowOutgoingCommand);
         ClientSendMessageEvents.CHAT.register(message ->
-                PrimeHooks.onChatMessage(message, true));
+                ValerisHooks.onChatMessage(message, true));
 
         AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
             if (player != null && entity != null) {
-                PrimeHooks.onAttackEntity(entity.getName().getString());
+                ValerisHooks.onAttackEntity(entity.getName().getString());
             }
             return InteractionResult.PASS;
         });
@@ -88,10 +88,10 @@ public final class ValerisClientEntrypoint implements ClientModInitializer {
         }
         float health = player.getHealth();
         if (lastHealth >= 0 && health < lastHealth) {
-            PrimeHooks.onPlayerDamage(lastHealth - health);
+            ValerisHooks.onPlayerDamage(lastHealth - health);
         }
         if (player.isDeadOrDying() && lastHealth > 0) {
-            PrimeHooks.onPlayerDeath(player.getX(), player.getY(), player.getZ());
+            ValerisHooks.onPlayerDeath(player.getX(), player.getY(), player.getZ());
         }
         lastHealth = health;
     }

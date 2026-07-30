@@ -1,6 +1,6 @@
 package dev.valerisclient.v1_21_11.mixin;
 
-import dev.valerisclient.core.hook.PrimeHooks;
+import dev.valerisclient.core.hook.ValerisHooks;
 import net.minecraft.client.Camera;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -16,8 +16,8 @@ public abstract class CameraMixin {
 
     @Inject(method = "setup", at = @At("RETURN"))
     private void ValerisClient$cinematicCamera(CallbackInfo ci) {
-        if (PrimeHooks.cinematicCameraActive()) {
-            setRotation(PrimeHooks.cinematicYaw(), PrimeHooks.cinematicPitch());
+        if (ValerisHooks.cinematicCameraActive()) {
+            setRotation(ValerisHooks.cinematicYaw(), ValerisHooks.cinematicPitch());
         }
     }
 }

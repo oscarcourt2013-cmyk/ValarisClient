@@ -1,9 +1,9 @@
 package dev.valerisclient.core.gui.menu;
 
 import dev.valerisclient.core.adapter.RenderContext;
-import dev.valerisclient.core.design.PrimeDesign;
+import dev.valerisclient.core.design.ValerisDesign;
 import dev.valerisclient.core.discord.DiscordRpcService;
-import dev.valerisclient.core.i18n.PrimeLang;
+import dev.valerisclient.core.i18n.ValerisLang;
 import dev.valerisclient.core.theme.Theme;
 import dev.valerisclient.core.util.ColorUtil;
 
@@ -48,9 +48,9 @@ public final class TitleMenuTopBar {
                     ? ColorUtil.withAlpha(theme.backgroundLight(), 0.58f)
                     : ColorUtil.withAlpha(theme.surfaceElevated(), 0.44f);
             ctx.fillRoundedRect(layout.profileX(), layout.y(), layout.profileW(), BTN,
-                    PrimeDesign.RADIUS_SM, fill);
+                    ValerisDesign.RADIUS_SM, fill);
             ctx.fillRoundedBorder(layout.profileX(), layout.y(), layout.profileW(), BTN,
-                    PrimeDesign.RADIUS_SM, 1,
+                    ValerisDesign.RADIUS_SM, 1,
                     ColorUtil.withAlpha(theme.accent(), hover ? 0.7f : 0.28f), fill);
             ctx.drawSmoothText(layout.profileLabel(), layout.profileX() + 8,
                     layout.y() + (BTN - ctx.fontHeight()) / 2 + 1, theme.foreground(), 0.88f);
@@ -86,9 +86,9 @@ public final class TitleMenuTopBar {
         int fill = hover
                 ? ColorUtil.withAlpha(theme.backgroundLight(), 0.58f)
                 : ColorUtil.withAlpha(theme.surfaceElevated(), 0.44f);
-        ctx.fillRoundedRect(x, y, BTN, BTN, PrimeDesign.RADIUS_SM, fill);
+        ctx.fillRoundedRect(x, y, BTN, BTN, ValerisDesign.RADIUS_SM, fill);
         if (hover) {
-            ctx.fillRoundedBorder(x, y, BTN, BTN, PrimeDesign.RADIUS_SM, 1,
+            ctx.fillRoundedBorder(x, y, BTN, BTN, ValerisDesign.RADIUS_SM, 1,
                     ColorUtil.withAlpha(theme.accent(), 0.55f), fill);
         }
         int iconW = ctx.smoothTextWidth(icon, ICON_SCALE);
@@ -120,7 +120,7 @@ public final class TitleMenuTopBar {
     private static String profileLabel(String playerName, String accountType) {
         String suffix = accountTypeSuffix(accountType);
         if (playerName == null || playerName.isBlank()) {
-            String base = PrimeLang.get("prime.gui.account.chip", "⇄ Account");
+            String base = ValerisLang.get("valeris.gui.account.chip", "⇄ Account");
             return suffix.isEmpty() ? base : base + suffix;
         }
         String trimmed = playerName.trim();

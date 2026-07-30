@@ -1,7 +1,7 @@
 package dev.valerisclient.core.module;
 
 import com.google.gson.JsonElement;
-import dev.valerisclient.core.i18n.PrimeLang;
+import dev.valerisclient.core.i18n.ValerisLang;
 
 /**
  * A user-configurable module setting.
@@ -38,14 +38,14 @@ public abstract sealed class Setting
 
     public final String name() {
         if (moduleId != null) {
-            return PrimeLang.setting(moduleId, id, "name", name);
+            return ValerisLang.setting(moduleId, id, "name", name);
         }
         return name;
     }
 
     public final String description() {
         if (moduleId != null) {
-            return PrimeLang.setting(moduleId, id, "description", description);
+            return ValerisLang.setting(moduleId, id, "description", description);
         }
         return description;
     }

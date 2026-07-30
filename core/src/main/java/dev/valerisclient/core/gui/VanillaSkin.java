@@ -1,7 +1,7 @@
 package dev.valerisclient.core.gui;
 
 import dev.valerisclient.core.adapter.RenderContext;
-import dev.valerisclient.core.design.PrimeDesign;
+import dev.valerisclient.core.design.ValerisDesign;
 import dev.valerisclient.core.theme.Theme;
 import dev.valerisclient.core.util.ColorUtil;
 
@@ -57,7 +57,7 @@ public final class VanillaSkin {
         if (active) {
             UiChrome.button(ctx, theme, x, y, w, h, hovered, false);
         } else {
-            int radius = Math.min(PrimeDesign.RADIUS_MD, h / 2);
+            int radius = Math.min(ValerisDesign.RADIUS_MD, h / 2);
             RoundedRect.border(ctx, x, y, w, h, radius, 1,
                     ColorUtil.withAlpha(theme.border(), 0.3f),
                     ColorUtil.withAlpha(theme.background(), 0.55f));

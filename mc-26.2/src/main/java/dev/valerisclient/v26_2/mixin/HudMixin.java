@@ -1,6 +1,6 @@
 package dev.valerisclient.v26_2.mixin;
 
-import dev.valerisclient.core.hook.PrimeHooks;
+import dev.valerisclient.core.hook.ValerisHooks;
 import dev.valerisclient.core.hud.editor.HudEditorState;
 import dev.valerisclient.core.hud.vanilla.VanillaHudComponent;
 import dev.valerisclient.core.hud.vanilla.VanillaHudMeasurements;
@@ -27,7 +27,7 @@ public abstract class HudMixin {
 
     @Inject(method = "extractCrosshair", at = @At("HEAD"), cancellable = true)
     private void ValerisClient$hideVanillaCrosshair(GuiGraphicsExtractor extractor, DeltaTracker deltaTracker, CallbackInfo ci) {
-        if (PrimeHooks.hideVanillaCrosshair()) {
+        if (ValerisHooks.hideVanillaCrosshair()) {
             ci.cancel();
         }
     }

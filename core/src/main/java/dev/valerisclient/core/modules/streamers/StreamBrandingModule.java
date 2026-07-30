@@ -17,7 +17,7 @@ public final class StreamBrandingModule extends Module {
     private final BooleanSetting hideWatermark =
             addSetting(new BooleanSetting(
                     "hide-watermark", "Hide watermark", "Hide the Valeris watermark", true));
-    private final BooleanSetting hidePrimeBranding =
+    private final BooleanSetting hideValerisBranding =
             addSetting(new BooleanSetting(
                     "hide-prime-branding", "Hide Valeris branding", "Hide Valeris account branding", true));
 
@@ -51,7 +51,7 @@ public final class StreamBrandingModule extends Module {
         if (hideWatermark.get()) {
             hideElement("watermark");
         }
-        if (hidePrimeBranding.get()) {
+        if (hideValerisBranding.get()) {
             hideElement("prime-account");
         }
     }

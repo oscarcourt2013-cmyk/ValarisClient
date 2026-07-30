@@ -1,8 +1,8 @@
 package dev.valerisclient.core.gui.options;
 
 import dev.valerisclient.core.adapter.RenderContext;
-import dev.valerisclient.core.design.PrimeDesign;
-import dev.valerisclient.core.design.PrimeLogo;
+import dev.valerisclient.core.design.ValerisDesign;
+import dev.valerisclient.core.design.ValerisLogo;
 import dev.valerisclient.core.gui.GuiLayout;
 import dev.valerisclient.core.gui.UiChrome;
 import dev.valerisclient.core.gui.VanillaSkin;
@@ -77,7 +77,7 @@ public final class OptionsMenuRenderer {
         int y = l.headerY();
         if (l.showBranding()) {
             int logoH = 14;
-            PrimeLogo.drawCentered(ctx, centerX, y, logoH, 0xFFFFFFFF);
+            ValerisLogo.drawCentered(ctx, centerX, y, logoH, 0xFFFFFFFF);
             y += logoH + 3;
         }
         String title = GuiLayout.trimToWidth(ctx, page.title(), l.panelW() - OptionsMenuLayout.PAD * 2);
@@ -91,9 +91,9 @@ public final class OptionsMenuRenderer {
                            double mouseX, double mouseY) {
         boolean hover = row.enabled() && hit(mouseX, mouseY, x, y, w, h);
         int fill = hover ? theme.backgroundLight() : ColorUtil.withAlpha(theme.surfaceElevated(), 0.55f);
-        ctx.fillRoundedRect(x, y, w, h, PrimeDesign.RADIUS_SM, fill);
+        ctx.fillRoundedRect(x, y, w, h, ValerisDesign.RADIUS_SM, fill);
         if (hover) {
-            ctx.fillRoundedBorder(x, y, w, h, PrimeDesign.RADIUS_SM, 1,
+            ctx.fillRoundedBorder(x, y, w, h, ValerisDesign.RADIUS_SM, 1,
                     ColorUtil.withAlpha(theme.accent(), 0.5f), fill);
         }
 
@@ -105,8 +105,8 @@ public final class OptionsMenuRenderer {
         switch (row) {
             case OptionRow.Toggle t -> {
                 boolean on = t.get().getAsBoolean();
-                int tw = PrimeDesign.TOGGLE_WIDTH;
-                int th = PrimeDesign.TOGGLE_HEIGHT;
+                int tw = ValerisDesign.TOGGLE_WIDTH;
+                int th = ValerisDesign.TOGGLE_HEIGHT;
                 int tx = x + w - 6 - tw;
                 int ty = y + (h - th) / 2;
                 label(ctx, t.label(), x, textY, tx - x - 8, labelColor);

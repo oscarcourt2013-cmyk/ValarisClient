@@ -31,7 +31,10 @@ public final class ValerisVersion {
 	}
 }
 
-tasks.named("compileJava").configure {
+// The task writes into src/main/java, so every task that reads the source
+// directory depends on it -- not just compileJava. Without this, sourcesJar
+// races the generator and Gradle fails the build on the undeclared dependency.
+tasks.matching { it.name in ["compileJava", "sourcesJar"] }.configureEach {
 	dependsOn("generateValerisVersion")
 }
 

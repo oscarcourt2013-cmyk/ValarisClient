@@ -69,6 +69,6 @@ public final class AccountSwitcherScreen extends Screen {
 
     @Override
     public void onClose() {
-        Minecraft.getInstance().gui.setScreen(parent != null ? parent : new PrimeTitleScreen());
+        Minecraft.getInstance().gui.setScreen(parent != null ? parent : new ValerisTitleScreen());
     }
 }

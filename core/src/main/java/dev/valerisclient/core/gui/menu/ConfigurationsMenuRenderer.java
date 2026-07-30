@@ -4,7 +4,7 @@ import dev.valerisclient.core.adapter.RenderContext;
 import dev.valerisclient.core.cloud.CloudClient;
 import dev.valerisclient.core.cloud.CloudSyncManager;
 import dev.valerisclient.core.gui.UiChrome;
-import dev.valerisclient.core.i18n.PrimeLang;
+import dev.valerisclient.core.i18n.ValerisLang;
 import dev.valerisclient.core.profile.ProfileManager;
 import dev.valerisclient.core.theme.Theme;
 import dev.valerisclient.core.util.ColorUtil;
@@ -32,21 +32,21 @@ public final class ConfigurationsMenuRenderer {
         int y = (screenH - PANEL_H) / 2;
         UiChrome.glassPanel(ctx, theme, x, y, PANEL_W, PANEL_H);
 
-        ctx.drawText(PrimeLang.get("prime.gui.configurations.title", "Configurations"),
+        ctx.drawText(ValerisLang.get("valeris.gui.configurations.title", "Configurations"),
                 x + 12, y + 12, theme.accent(), true);
-        ctx.drawText(PrimeLang.get("prime.gui.configurations.local_only", "Local backups only — stored on this PC"),
+        ctx.drawText(ValerisLang.get("valeris.gui.configurations.local_only", "Local backups only — stored on this PC"),
                 x + 12, y + 28, theme.foregroundMuted(), true);
-        ctx.drawText(PrimeLang.get("prime.gui.configurations.profile", "Profile: %s", profiles.activeProfile()),
+        ctx.drawText(ValerisLang.get("valeris.gui.configurations.profile", "Profile: %s", profiles.activeProfile()),
                 x + 12, y + 44, theme.foreground(), true);
 
         int btnY = y + 64;
         int btnW = (PANEL_W - 24 - BTN_GAP * 2) / 3;
         drawButton(ctx, theme, x + 12, btnY, btnW, BTN_H,
-                PrimeLang.get("prime.gui.configurations.upload", "Upload"), mouseX, mouseY, true);
+                ValerisLang.get("valeris.gui.configurations.upload", "Upload"), mouseX, mouseY, true);
         drawButton(ctx, theme, x + 12 + btnW + BTN_GAP, btnY, btnW, BTN_H,
-                PrimeLang.get("prime.gui.configurations.download", "Download"), mouseX, mouseY, false);
+                ValerisLang.get("valeris.gui.configurations.download", "Download"), mouseX, mouseY, false);
         drawButton(ctx, theme, x + 12 + (btnW + BTN_GAP) * 2, btnY, btnW, BTN_H,
-                PrimeLang.get("prime.gui.configurations.restore", "Restore"), mouseX, mouseY, false);
+                ValerisLang.get("valeris.gui.configurations.restore", "Restore"), mouseX, mouseY, false);
 
         List<CloudClient.VersionEntry> versions = cloud.listVersions(profiles.activeProfile());
         if (selectedVersion >= versions.size()) {
@@ -54,7 +54,7 @@ public final class ConfigurationsMenuRenderer {
         }
 
         int rowY = btnY + BTN_H + 14;
-        ctx.drawText(PrimeLang.get("prime.gui.configurations.versions", "Versions (%d):", versions.size()),
+        ctx.drawText(ValerisLang.get("valeris.gui.configurations.versions", "Versions (%d):", versions.size()),
                 x + 12, rowY, theme.foreground(), true);
         rowY += 14;
         int shown = 0;
@@ -72,14 +72,14 @@ public final class ConfigurationsMenuRenderer {
             shown++;
         }
         if (versions.isEmpty()) {
-            ctx.drawText(PrimeLang.get("prime.gui.configurations.empty", "No backups yet — tap Upload"),
+            ctx.drawText(ValerisLang.get("valeris.gui.configurations.empty", "No backups yet — tap Upload"),
                     x + 16, rowY, theme.foregroundMuted(), true);
         }
 
         if (!statusMessage.isBlank()) {
             ctx.drawText(statusMessage, x + 12, y + PANEL_H - 28, theme.foregroundMuted(), true);
         }
-        ctx.drawText(PrimeLang.get("prime.gui.configurations.hint", "Click a version, then Restore"),
+        ctx.drawText(ValerisLang.get("valeris.gui.configurations.hint", "Click a version, then Restore"),
                 x + 12, y + PANEL_H - 14, theme.foregroundMuted(), true);
     }
 
@@ -100,15 +100,15 @@ public final class ConfigurationsMenuRenderer {
         if (hit(mx, my, x + 12, btnY, btnW, BTN_H)) {
             profiles.saveActive();
             cloud.uploadNow(profiles.activeProfile());
-            statusMessage = PrimeLang.get("prime.gui.configurations.status.uploaded", "Backup saved locally");
+            statusMessage = ValerisLang.get("valeris.gui.configurations.status.uploaded", "Backup saved locally");
             return true;
         }
         if (hit(mx, my, x + 12 + btnW + BTN_GAP, btnY, btnW, BTN_H)) {
             if (cloud.downloadNow(profiles.activeProfile())) {
                 profiles.saveActive();
-                statusMessage = PrimeLang.get("prime.gui.configurations.status.downloaded", "Backup restored");
+                statusMessage = ValerisLang.get("valeris.gui.configurations.status.downloaded", "Backup restored");
             } else {
-                statusMessage = PrimeLang.get("prime.gui.configurations.status.none", "No backup found");
+                statusMessage = ValerisLang.get("valeris.gui.configurations.status.none", "No backup found");
             }
             return true;
         }
@@ -118,12 +118,12 @@ public final class ConfigurationsMenuRenderer {
                 String id = versions.get(selectedVersion).id();
                 if (cloud.restoreVersion(profiles.activeProfile(), id)) {
                     profiles.saveActive();
-                    statusMessage = PrimeLang.get("prime.gui.configurations.status.restored", "Version restored");
+                    statusMessage = ValerisLang.get("valeris.gui.configurations.status.restored", "Version restored");
                 } else {
-                    statusMessage = PrimeLang.get("prime.gui.configurations.status.failed", "Restore failed");
+                    statusMessage = ValerisLang.get("valeris.gui.configurations.status.failed", "Restore failed");
                 }
             } else {
-                statusMessage = PrimeLang.get("prime.gui.configurations.status.pick", "Select a version first");
+                statusMessage = ValerisLang.get("valeris.gui.configurations.status.pick", "Select a version first");
             }
             return true;
         }
@@ -144,15 +144,15 @@ public final class ConfigurationsMenuRenderer {
         if (key == 85) { // U
             profiles.saveActive();
             cloud.uploadNow(profiles.activeProfile());
-            statusMessage = PrimeLang.get("prime.gui.configurations.status.uploaded", "Backup saved locally");
+            statusMessage = ValerisLang.get("valeris.gui.configurations.status.uploaded", "Backup saved locally");
             return true;
         }
         if (key == 68) { // D
             if (cloud.downloadNow(profiles.activeProfile())) {
                 profiles.saveActive();
-                statusMessage = PrimeLang.get("prime.gui.configurations.status.downloaded", "Backup restored");
+                statusMessage = ValerisLang.get("valeris.gui.configurations.status.downloaded", "Backup restored");
             } else {
-                statusMessage = PrimeLang.get("prime.gui.configurations.status.none", "No backup found");
+                statusMessage = ValerisLang.get("valeris.gui.configurations.status.none", "No backup found");
             }
             return true;
         }

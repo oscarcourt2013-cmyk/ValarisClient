@@ -78,7 +78,7 @@ public final class AccountSwitcherScreen extends Screen {
     @Override
     public void onClose() {
         if (minecraft != null) {
-            minecraft.setScreen(parent != null ? parent : new PrimeTitleScreen());
+            minecraft.setScreen(parent != null ? parent : new ValerisTitleScreen());
         }
     }
 }

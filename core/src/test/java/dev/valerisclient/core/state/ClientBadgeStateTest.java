@@ -1,6 +1,6 @@
 package dev.valerisclient.core.state;
 
-import dev.valerisclient.core.account.PrimeAccountService;
+import dev.valerisclient.core.account.ValerisAccountService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,17 +16,17 @@ class ClientBadgeStateTest {
 
     @Test
     void tierChangesAccent() {
-        ClientBadgeState.setTier(PrimeAccountService.Tier.FREE);
+        ClientBadgeState.setTier(ValerisAccountService.Tier.FREE);
         int freeAccent = ClientBadgeState.accent();
 
-        ClientBadgeState.setTier(PrimeAccountService.Tier.PREMIUM);
-        int primeAccent = ClientBadgeState.accent();
+        ClientBadgeState.setTier(ValerisAccountService.Tier.PREMIUM);
+        int valerisAccent = ClientBadgeState.accent();
 
-        ClientBadgeState.setTier(PrimeAccountService.Tier.PRIME_PLUS);
+        ClientBadgeState.setTier(ValerisAccountService.Tier.PRIME_PLUS);
         int plusAccent = ClientBadgeState.accent();
 
-        assertNotEquals(freeAccent, primeAccent);
-        assertNotEquals(primeAccent, plusAccent);
+        assertNotEquals(freeAccent, valerisAccent);
+        assertNotEquals(valerisAccent, plusAccent);
         assertEquals(0xFFF59E0B, plusAccent);
     }
 }

@@ -1,7 +1,7 @@
 package dev.valerisclient.v26_2.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import dev.valerisclient.core.hook.PrimeHooks;
+import dev.valerisclient.core.hook.ValerisHooks;
 import net.minecraft.client.renderer.GameRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,6 +15,6 @@ public abstract class GameRendererMixin {
 
     @ModifyReturnValue(method = "bossOverlayWorldDarkening", at = @At("RETURN"))
     private float ValerisClient$noWorldDarkening(float amount) {
-        return PrimeHooks.fullbrightActive() ? 0.0F : amount;
+        return ValerisHooks.fullbrightActive() ? 0.0F : amount;
     }
 }

@@ -1,7 +1,7 @@
 package dev.valerisclient.v1_21_11.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import dev.valerisclient.core.hook.PrimeHooks;
+import dev.valerisclient.core.hook.ValerisHooks;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.ScreenEffectRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -28,8 +28,8 @@ public abstract class ScreenEffectRendererMixin {
             MultiBufferSource bufferSource,
             TextureAtlasSprite sprite,
             CallbackInfo ci) {
-        if (PrimeHooks.lowFireActive()) {
-            poseStack.translate(0.0F, -PrimeHooks.lowFireHeightOffset(), 0.0F);
+        if (ValerisHooks.lowFireActive()) {
+            poseStack.translate(0.0F, -ValerisHooks.lowFireHeightOffset(), 0.0F);
         }
     }
 }

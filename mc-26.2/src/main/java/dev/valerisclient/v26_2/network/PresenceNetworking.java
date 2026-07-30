@@ -1,7 +1,7 @@
 package dev.valerisclient.v26_2.network;
 
 import dev.valerisclient.core.ValerisClient;
-import dev.valerisclient.core.hook.PrimeHooks;
+import dev.valerisclient.core.hook.ValerisHooks;
 import dev.valerisclient.core.skin.CustomSkinService;
 import dev.valerisclient.core.state.ClientBadgeState;
 import dev.valerisclient.core.state.CosmeticsState;
@@ -35,7 +35,7 @@ public final class PresenceNetworking {
 
         ClientPlayNetworking.registerGlobalReceiver(PresencePayload.TYPE, (payload, context) ->
                 context.client().execute(() -> {
-                    PrimeHooks.onPresencePayload(
+                    ValerisHooks.onPresencePayload(
                             payload.playerId(), payload.capeId(), payload.wingsId(), payload.skinHash());
                     maybePushSkinToPeer(payload.playerId());
                 }));
@@ -43,7 +43,7 @@ public final class PresenceNetworking {
         ClientPlayNetworking.registerGlobalReceiver(SkinTexturePayload.TYPE, (payload, context) ->
                 context.client().execute(() -> {
                     if (payload.png() != null && payload.png().length <= CustomSkinService.MAX_BYTES) {
-                        PrimeHooks.onSkinTexturePayload(payload.playerId(), payload.png());
+                        ValerisHooks.onSkinTexturePayload(payload.playerId(), payload.png());
                     }
                 }));
 

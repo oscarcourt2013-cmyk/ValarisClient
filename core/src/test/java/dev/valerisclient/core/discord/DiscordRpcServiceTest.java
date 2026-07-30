@@ -1,6 +1,6 @@
 package dev.valerisclient.core.discord;
 
-import dev.valerisclient.core.account.PrimeAccountService;
+import dev.valerisclient.core.account.ValerisAccountService;
 import dev.valerisclient.core.adapter.MinecraftAdapter;
 import dev.valerisclient.core.event.EventBus;
 import dev.valerisclient.core.keybind.KeybindManager;
@@ -129,7 +129,7 @@ class DiscordRpcServiceTest {
         DiscordRpcService service = new DiscordRpcService();
         StubAdapter adapter = new StubAdapter();
         ModuleManager modules = new ModuleManager(new EventBus(), new KeybindManager());
-        PrimeAccountService account = new PrimeAccountService();
+        ValerisAccountService account = new ValerisAccountService();
         account.login("Zorat");
 
         DiscordPresenceSnapshot snapshot = service.buildSnapshot(adapter, modules, account);
@@ -151,7 +151,7 @@ class DiscordRpcServiceTest {
         adapter.server = "elysiasmp.fr";
         ModuleManager modules = new ModuleManager(new EventBus(), new KeybindManager());
 
-        DiscordPresenceSnapshot snapshot = service.buildSnapshot(adapter, modules, new PrimeAccountService());
+        DiscordPresenceSnapshot snapshot = service.buildSnapshot(adapter, modules, new ValerisAccountService());
 
         assertEquals("Elysia SMP", snapshot.details());
         assertTrue(snapshot.state().startsWith("♥ "));
@@ -164,7 +164,7 @@ class DiscordRpcServiceTest {
         adapter.inGame = false;
         ModuleManager modules = new ModuleManager(new EventBus(), new KeybindManager());
 
-        DiscordPresenceSnapshot snapshot = service.buildSnapshot(adapter, modules, new PrimeAccountService());
+        DiscordPresenceSnapshot snapshot = service.buildSnapshot(adapter, modules, new ValerisAccountService());
 
         assertTrue(snapshot.details().contains("Main Menu"));
         assertTrue(snapshot.state().contains("26.2"));

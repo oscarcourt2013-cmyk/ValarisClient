@@ -1,7 +1,7 @@
 package dev.valerisclient.core.gui.component;
 
 import dev.valerisclient.core.adapter.RenderContext;
-import dev.valerisclient.core.design.PrimeDesign;
+import dev.valerisclient.core.design.ValerisDesign;
 import dev.valerisclient.core.gui.GuiLayout;
 import dev.valerisclient.core.theme.Theme;
 import dev.valerisclient.core.util.ColorUtil;
@@ -40,11 +40,11 @@ public final class ColorPickerWidget {
         int svSize = 64;
         int svX = x;
         int svY = y;
-        int hueX = x + svSize + PrimeDesign.SPACE_SM;
+        int hueX = x + svSize + ValerisDesign.SPACE_SM;
         int hueY = y;
         int hueW = 10;
         int hueH = svSize;
-        int alphaY = y + svSize + PrimeDesign.SPACE_SM;
+        int alphaY = y + svSize + ValerisDesign.SPACE_SM;
         int previewX = hueX;
         int previewY = alphaY;
 
@@ -69,7 +69,7 @@ public final class ColorPickerWidget {
         ctx.fillRect(hueX - 1, hy, hueW + 2, 2, theme.foreground());
 
         // Alpha bar
-        int alphaW = svSize + hueW + PrimeDesign.SPACE_SM;
+        int alphaW = svSize + hueW + ValerisDesign.SPACE_SM;
         for (int i = 0; i < alphaW; i++) {
             float a = i / (float) alphaW;
             ctx.fillRect(x + i, alphaY, 1, 6, ColorUtil.fromHsv(hue, saturation, value, a));
@@ -92,14 +92,14 @@ public final class ColorPickerWidget {
             updateSv(mx, my, x, y, svSize);
             return true;
         }
-        int hueX = x + svSize + PrimeDesign.SPACE_SM;
+        int hueX = x + svSize + ValerisDesign.SPACE_SM;
         if (mx >= hueX && mx < hueX + 10 && my >= y && my < y + svSize) {
             dragMode = DragMode.HUE;
             updateHue(my, y, svSize);
             return true;
         }
-        int alphaY = y + svSize + PrimeDesign.SPACE_SM;
-        int alphaW = svSize + 10 + PrimeDesign.SPACE_SM;
+        int alphaY = y + svSize + ValerisDesign.SPACE_SM;
+        int alphaW = svSize + 10 + ValerisDesign.SPACE_SM;
         if (mx >= x && mx < x + alphaW && my >= alphaY && my < alphaY + 6) {
             dragMode = DragMode.ALPHA;
             alpha = Math.clamp((float) (mx - x) / alphaW, 0f, 1f);
@@ -114,7 +114,7 @@ public final class ColorPickerWidget {
             case SV -> updateSv(mx, my, x, y, svSize);
             case HUE -> updateHue(my, y, svSize);
             case ALPHA -> {
-                int alphaW = svSize + 10 + PrimeDesign.SPACE_SM;
+                int alphaW = svSize + 10 + ValerisDesign.SPACE_SM;
                 alpha = Math.clamp((float) (mx - x) / alphaW, 0f, 1f);
             }
             default -> {

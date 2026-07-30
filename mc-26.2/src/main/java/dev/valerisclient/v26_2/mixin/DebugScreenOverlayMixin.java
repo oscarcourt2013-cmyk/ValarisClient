@@ -1,6 +1,6 @@
 package dev.valerisclient.v26_2.mixin;
 
-import dev.valerisclient.core.hook.PrimeHooks;
+import dev.valerisclient.core.hook.ValerisHooks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -20,7 +20,7 @@ public abstract class DebugScreenOverlayMixin {
 
     @Inject(method = "extractRenderState", at = @At("HEAD"), cancellable = true)
     private void ValerisClient$streamSafeDebug(GuiGraphicsExtractor graphics, CallbackInfo ci) {
-        if (!PrimeHooks.streamDebugShield()) {
+        if (!ValerisHooks.streamDebugShield()) {
             return;
         }
         ci.cancel();

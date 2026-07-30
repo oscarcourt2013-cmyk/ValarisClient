@@ -25,18 +25,18 @@ import dev.valerisclient.core.modules.performance.MemorySpikeAlertModule;
 import dev.valerisclient.core.modules.performance.ParticleOptimizerModule;
 import dev.valerisclient.core.modules.performance.PerformanceProfilesModule;
 import dev.valerisclient.core.modules.performance.RamCleanerModule;
-import dev.valerisclient.core.modules.prime.ClientBadgeModule;
-import dev.valerisclient.core.modules.prime.CustomSkinModule;
-import dev.valerisclient.core.modules.prime.DiscordRichPresenceModule;
-import dev.valerisclient.core.modules.prime.GameplayDnaModule;
-import dev.valerisclient.core.modules.prime.ModuleBundlesModule;
-import dev.valerisclient.core.modules.prime.PrimeAccountModule;
-import dev.valerisclient.core.modules.prime.PrimeConfigCloudModule;
-import dev.valerisclient.core.modules.prime.PrimeCosmeticsModule;
-import dev.valerisclient.core.modules.prime.PrimeProfilesModule;
-import dev.valerisclient.core.modules.prime.PrimeSettingsManagerModule;
-import dev.valerisclient.core.modules.prime.ServerNotesModule;
-import dev.valerisclient.core.modules.prime.SmartProfileModule;
+import dev.valerisclient.core.modules.valeris.ClientBadgeModule;
+import dev.valerisclient.core.modules.valeris.CustomSkinModule;
+import dev.valerisclient.core.modules.valeris.DiscordRichPresenceModule;
+import dev.valerisclient.core.modules.valeris.GameplayDnaModule;
+import dev.valerisclient.core.modules.valeris.ModuleBundlesModule;
+import dev.valerisclient.core.modules.valeris.ValerisAccountModule;
+import dev.valerisclient.core.modules.valeris.ValerisConfigCloudModule;
+import dev.valerisclient.core.modules.valeris.ValerisCosmeticsModule;
+import dev.valerisclient.core.modules.valeris.ValerisProfilesModule;
+import dev.valerisclient.core.modules.valeris.ValerisSettingsManagerModule;
+import dev.valerisclient.core.modules.valeris.ServerNotesModule;
+import dev.valerisclient.core.modules.valeris.SmartProfileModule;
 import dev.valerisclient.core.modules.pvp.ArmorHudModule;
 import dev.valerisclient.core.modules.pvp.ChorusCooldownModule;
 import dev.valerisclient.core.modules.pvp.ComboCounterModule;
@@ -289,17 +289,17 @@ final class Modules {
                 client.keybinds(), client.notifications()));
 
         // Prime
-        modules.register(new PrimeProfilesModule(client.profiles()));
+        modules.register(new ValerisProfilesModule(client.profiles()));
         modules.register(new ModuleBundlesModule(modules, client.notifications()));
         modules.register(new SmartProfileModule(adapter, client.profiles(), client.notifications()));
         modules.register(new GameplayDnaModule(modules, client.notifications()));
         modules.register(new ServerNotesModule(adapter, client.notifications()));
-        modules.register(new PrimeConfigCloudModule(client.cloudSync(), client.profiles()));
-        modules.register(new PrimeCosmeticsModule(client.cosmetics()));
-        modules.register(new PrimeAccountModule(hud, themes, adapter, client.account()));
+        modules.register(new ValerisConfigCloudModule(client.cloudSync(), client.profiles()));
+        modules.register(new ValerisCosmeticsModule(client.cosmetics()));
+        modules.register(new ValerisAccountModule(hud, themes, adapter, client.account()));
         modules.register(new ClientBadgeModule(client.presence(), client.account()));
         modules.register(new CustomSkinModule(client.customSkins()));
         modules.register(new DiscordRichPresenceModule(client.discordRpc(), adapter, modules, client.account()));
-        modules.register(new PrimeSettingsManagerModule(modules, adapter));
+        modules.register(new ValerisSettingsManagerModule(modules, adapter));
     }
 }

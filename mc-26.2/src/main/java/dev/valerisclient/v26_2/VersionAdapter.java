@@ -7,7 +7,7 @@ import dev.valerisclient.core.util.DirectionUtil;
 import dev.valerisclient.v26_2.mixin.MinecraftUserAccessor;
 import dev.valerisclient.core.account.LauncherAccountStore;
 import dev.valerisclient.v26_2.screen.AccountSwitcherScreen;
-import dev.valerisclient.v26_2.screen.PrimeTitleScreen;
+import dev.valerisclient.v26_2.screen.ValerisTitleScreen;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.GraphicsPreset;
@@ -133,7 +133,7 @@ public final class VersionAdapter implements MinecraftAdapter {
     }
 
     @Override
-    public void openPrimeSettings() {
+    public void openValerisSettings() {
         ValerisClient.get().clickGui().showSettings();
         Minecraft.getInstance().gui.setScreen(new dev.valerisclient.v26_2.screen.ClickGuiScreen());
     }
@@ -257,9 +257,9 @@ public final class VersionAdapter implements MinecraftAdapter {
                     "Return to the main menu before switching accounts.");
             return;
         }
-        Screen parent = mc.gui.screen() instanceof PrimeTitleScreen
+        Screen parent = mc.gui.screen() instanceof ValerisTitleScreen
                 ? mc.gui.screen()
-                : new PrimeTitleScreen();
+                : new ValerisTitleScreen();
         mc.gui.setScreen(new AccountSwitcherScreen(parent));
     }
 
@@ -298,7 +298,7 @@ public final class VersionAdapter implements MinecraftAdapter {
 
     @Override
     public void closeAccountSwitcher() {
-        Minecraft.getInstance().gui.setScreen(new PrimeTitleScreen());
+        Minecraft.getInstance().gui.setScreen(new ValerisTitleScreen());
     }
 
     @Override

@@ -1,7 +1,7 @@
 package dev.valerisclient.v26_2.network;
 
 import dev.valerisclient.core.ValerisClient;
-import dev.valerisclient.core.hook.PrimeHooks;
+import dev.valerisclient.core.hook.ValerisHooks;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.minecraft.client.Minecraft;
@@ -17,7 +17,7 @@ public final class MainNetworking {
         PayloadTypeRegistry.clientboundPlay().register(MainPayload.TYPE, MainPayload.CODEC);
 
         ClientPlayNetworking.registerGlobalReceiver(MainPayload.TYPE, (payload, context) ->
-                context.client().execute(() -> PrimeHooks.onServerApiPayload(payload.json())));
+                context.client().execute(() -> ValerisHooks.onServerApiPayload(payload.json())));
 
         var api = ValerisClient.get().serverApi();
         api.setOutboundSender(MainNetworking::sendJson);

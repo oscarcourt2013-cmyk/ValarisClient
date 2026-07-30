@@ -2,7 +2,7 @@ package dev.valerisclient.core.gui.clickgui;
 
 import dev.valerisclient.core.adapter.RenderContext;
 import dev.valerisclient.core.gui.FavoritesManager;
-import dev.valerisclient.core.design.PrimeDesign;
+import dev.valerisclient.core.design.ValerisDesign;
 import dev.valerisclient.core.gui.GuiLayout;
 import dev.valerisclient.core.gui.UiChrome;
 import dev.valerisclient.core.module.BooleanSetting;
@@ -12,7 +12,7 @@ import dev.valerisclient.core.module.EnumSetting;
 import dev.valerisclient.core.module.IntSetting;
 import dev.valerisclient.core.module.Module;
 import dev.valerisclient.core.module.Setting;
-import dev.valerisclient.core.i18n.PrimeLang;
+import dev.valerisclient.core.i18n.ValerisLang;
 import dev.valerisclient.core.module.StringSetting;
 import dev.valerisclient.core.theme.Theme;
 import dev.valerisclient.core.util.Easing;
@@ -122,7 +122,7 @@ final class Panel {
                 List<Setting> settings = detailSettings();
                 if (settings.isEmpty() && visibleRows > 0) {
                     ctx.fillRect(px, rowY, WIDTH, ROW_HEIGHT, theme.background());
-                    GuiLayout.label(ctx, PrimeLang.get("prime.gui.clickgui.no_options", "No options"),
+                    GuiLayout.label(ctx, ValerisLang.get("valeris.gui.clickgui.no_options", "No options"),
                             px + PADDING, rowY + (ROW_HEIGHT - ctx.uiFontHeight()) / 2 + 1,
                             theme.foregroundMuted());
                 }
@@ -211,7 +211,7 @@ final class Panel {
             case DoubleSetting number -> renderSlider(ctx, theme, setting.name(), String.format("%.1f", number.get()),
                     (float) ((number.get() - number.min()) / (number.max() - number.min())), px, rowY, textX, textY);
             case EnumSetting<?> mode -> {
-                String value = PrimeLang.enumValue(mode.get());
+                String value = ValerisLang.enumValue(mode.get());
                 int valueW = GuiLayout.labelWidth(ctx, value);
                 GuiLayout.label(ctx, value, px + WIDTH - PADDING - valueW, textY, theme.accent());
                 int nameMaxW = WIDTH - SETTING_INDENT - PADDING - valueW - 4;

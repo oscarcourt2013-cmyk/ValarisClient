@@ -3,7 +3,7 @@ package dev.valerisclient.core.module;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import dev.valerisclient.core.event.EventBus;
-import dev.valerisclient.core.i18n.PrimeLang;
+import dev.valerisclient.core.i18n.ValerisLang;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -117,11 +117,11 @@ public abstract class Module {
     }
 
     public final String name() {
-        return PrimeLang.module(id, "name", name);
+        return ValerisLang.module(id, "name", name);
     }
 
     public final String description() {
-        return PrimeLang.module(id, "description", description);
+        return ValerisLang.module(id, "description", description);
     }
 
     public final ModuleCategory category() {

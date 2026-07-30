@@ -1,12 +1,12 @@
 package dev.valerisclient.core.gui.menu;
 
 import dev.valerisclient.core.adapter.RenderContext;
-import dev.valerisclient.core.design.PrimeDesign;
-import dev.valerisclient.core.design.PrimeLogo;
+import dev.valerisclient.core.design.ValerisDesign;
+import dev.valerisclient.core.design.ValerisLogo;
 import dev.valerisclient.core.gui.BlurBackdrop;
 import dev.valerisclient.core.gui.GuiLayout;
 import dev.valerisclient.core.gui.clickgui.ClickGuiView;
-import dev.valerisclient.core.i18n.PrimeLang;
+import dev.valerisclient.core.i18n.ValerisLang;
 import dev.valerisclient.core.theme.Theme;
 import dev.valerisclient.core.util.ColorUtil;
 import dev.valerisclient.core.util.Easing;
@@ -19,12 +19,12 @@ public final class MainMenuRenderer {
     public static final int PANEL_WIDTH = ClickGuiMenuLayout.MENU_W;
 
     private static final String[] LABEL_KEYS = {
-            "prime.gui.main_menu.resume",
-            "prime.gui.main_menu.modules",
-            "prime.gui.main_menu.hud_editor",
-            "prime.gui.main_menu.configurations",
-            "prime.gui.main_menu.cosmetics",
-            "prime.gui.main_menu.settings"
+            "valeris.gui.main_menu.resume",
+            "valeris.gui.main_menu.modules",
+            "valeris.gui.main_menu.hud_editor",
+            "valeris.gui.main_menu.configurations",
+            "valeris.gui.main_menu.cosmetics",
+            "valeris.gui.main_menu.settings"
     };
 
     private static final String[] LABEL_FALLBACKS = {
@@ -63,9 +63,9 @@ public final class MainMenuRenderer {
         ClickGuiMenuLayout layout = ClickGuiMenuLayout.compute(ctx.screenWidth(), ctx.screenHeight(), LABEL_KEYS.length);
         int slideY = Math.max(-layout.logoY() + 12, Math.round(menuSlide));
 
-        PrimeLogo.draw(ctx, layout.logoX(), layout.logoY() + slideY, layout.logoH(), 0xFFFFFFFF);
+        ValerisLogo.draw(ctx, layout.logoX(), layout.logoY() + slideY, layout.logoH(), 0xFFFFFFFF);
 
-        String versionLabel = PrimeLang.get("prime.gui.main_menu.version", "Valeris %s", version);
+        String versionLabel = ValerisLang.get("valeris.gui.main_menu.version", "Valeris %s", version);
         int versionW = GuiLayout.labelWidth(ctx, versionLabel);
         int versionY = layout.logoY() + slideY + layout.logoH() + 4;
         GuiLayout.label(ctx, versionLabel,
@@ -76,12 +76,12 @@ public final class MainMenuRenderer {
         for (int i = 0; i < LABEL_KEYS.length; i++) {
             int bx = layout.menuX();
             int by = layout.buttonY(i) + slideY;
-            String label = PrimeLang.get(LABEL_KEYS[i], LABEL_FALLBACKS[i]);
+            String label = ValerisLang.get(LABEL_KEYS[i], LABEL_FALLBACKS[i]);
             drawCompactButton(ctx, theme, label, bx, by, layout.menuW(), layout.buttonH(),
                     mouseX, mouseY, i == 0);
         }
 
-        String hint = PrimeLang.get("prime.gui.main_menu.hint", "Right Shift  ·  H = HUD");
+        String hint = ValerisLang.get("valeris.gui.main_menu.hint", "Right Shift  ·  H = HUD");
         int hintW = GuiLayout.labelWidth(ctx, hint);
         GuiLayout.label(ctx, hint,
                 (ctx.screenWidth() - hintW) / 2,
@@ -93,7 +93,7 @@ public final class MainMenuRenderer {
                                    int x, int y, int w, int h,
                                    double mouseX, double mouseY, boolean primary) {
         boolean hover = mouseX >= x && mouseX < x + w && mouseY >= y && mouseY < y + h;
-        int radius = PrimeDesign.RADIUS_SM;
+        int radius = ValerisDesign.RADIUS_SM;
 
         if (primary) {
             int base = hover ? theme.accentSecondary() : theme.accent();

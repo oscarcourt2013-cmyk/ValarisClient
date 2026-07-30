@@ -19,10 +19,10 @@ public final class ServerApiService {
 
     private final MinecraftAdapter adapter;
     private final NotificationManager notifications;
-    private final PrimeAccountManager account;
-    private final PrimeXpHandler xpHandler;
-    private final PrimeRewardHandler rewardHandler;
-    private final PrimeNotifyHandler notifyHandler;
+    private final ValerisAccountManager account;
+    private final ValerisXpHandler xpHandler;
+    private final ValerisRewardHandler rewardHandler;
+    private final ValerisNotifyHandler notifyHandler;
     private final ServerApiDebug debug = new ServerApiDebug();
 
     private volatile Consumer<String> outboundSender;
@@ -34,13 +34,13 @@ public final class ServerApiService {
             NotificationManager notifications) {
         this.adapter = adapter;
         this.notifications = notifications;
-        this.account = new PrimeAccountManager();
-        this.xpHandler = new PrimeXpHandler(account, notifications);
-        this.rewardHandler = new PrimeRewardHandler(notifications, adapter);
-        this.notifyHandler = new PrimeNotifyHandler(notifications, adapter);
+        this.account = new ValerisAccountManager();
+        this.xpHandler = new ValerisXpHandler(account, notifications);
+        this.rewardHandler = new ValerisRewardHandler(notifications, adapter);
+        this.notifyHandler = new ValerisNotifyHandler(notifications, adapter);
     }
 
-    public PrimeAccountManager account() {
+    public ValerisAccountManager account() {
         return account;
     }
 
@@ -197,8 +197,8 @@ public final class ServerApiService {
         if (!PartnerServers.isPartnerAddress(server)) {
             return;
         }
-        List<PrimeAccountManager.FriendView> friends = account.getFriends();
-        for (PrimeAccountManager.FriendView f : friends) {
+        List<ValerisAccountManager.FriendView> friends = account.getFriends();
+        for (ValerisAccountManager.FriendView f : friends) {
             if (f.serverAddress() == null || f.serverAddress().isBlank()) {
                 continue;
             }

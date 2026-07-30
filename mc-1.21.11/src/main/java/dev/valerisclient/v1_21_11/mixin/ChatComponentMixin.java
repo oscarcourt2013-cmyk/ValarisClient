@@ -1,6 +1,6 @@
 package dev.valerisclient.v1_21_11.mixin;
 
-import dev.valerisclient.core.hook.PrimeHooks;
+import dev.valerisclient.core.hook.ValerisHooks;
 import dev.valerisclient.core.stream.StreamRedactor;
 import net.minecraft.client.GuiMessage;
 import net.minecraft.client.gui.components.ChatComponent;
@@ -48,7 +48,7 @@ public abstract class ChatComponentMixin {
         if (message == null) {
             return null;
         }
-        if (!PrimeHooks.streamChatRedact()) {
+        if (!ValerisHooks.streamChatRedact()) {
             return message;
         }
         String plain = message.getString();
@@ -60,7 +60,7 @@ public abstract class ChatComponentMixin {
     }
 
     private static GuiMessage redact(GuiMessage message) {
-        if (!PrimeHooks.streamChatRedact() || message == null) {
+        if (!ValerisHooks.streamChatRedact() || message == null) {
             return message;
         }
         Component content = message.content();

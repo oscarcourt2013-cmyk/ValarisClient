@@ -2,9 +2,9 @@ package dev.valerisclient.core.gui.menu;
 
 import dev.valerisclient.core.adapter.MinecraftAdapter;
 import dev.valerisclient.core.adapter.RenderContext;
-import dev.valerisclient.core.design.PrimeDesign;
-import dev.valerisclient.core.design.PrimeLogo;
-import dev.valerisclient.core.i18n.PrimeLang;
+import dev.valerisclient.core.design.ValerisDesign;
+import dev.valerisclient.core.design.ValerisLogo;
+import dev.valerisclient.core.i18n.ValerisLang;
 import dev.valerisclient.core.theme.Theme;
 import dev.valerisclient.core.util.ColorUtil;
 import dev.valerisclient.core.util.Easing;
@@ -15,10 +15,10 @@ public final class TitleMenuRenderer {
     private static final int MENU_BUTTON_COUNT = 4;
     private static final TitleMenuAction[] ACTIONS = TitleMenuAction.values();
     private static final String[] LABEL_KEYS = {
-            "prime.gui.title.singleplayer",
-            "prime.gui.title.multiplayer",
-            "prime.gui.title.prime_client",
-            "prime.gui.title.options"
+            "valeris.gui.title.singleplayer",
+            "valeris.gui.title.multiplayer",
+            "valeris.gui.title.prime_client",
+            "valeris.gui.title.options"
     };
     private static final String[] LABEL_FALLBACKS = {
             "Singleplayer", "Multiplayer", "ValerisClient", "Options"
@@ -38,7 +38,7 @@ public final class TitleMenuRenderer {
         renderBranding(ctx, theme, layout, eased);
         renderButtons(ctx, theme, layout, mouseX, mouseY, eased);
         renderQuitLink(ctx, theme, layout, mouseX, mouseY, eased);
-        renderFooter(ctx, theme, adapter.minecraftVersion(), PrimeDesign.VERSION, layout, eased);
+        renderFooter(ctx, theme, adapter.minecraftVersion(), ValerisDesign.VERSION, layout, eased);
     }
 
     /** Edge vignette only — keeps the panorama visible in the center. */
@@ -57,7 +57,7 @@ public final class TitleMenuRenderer {
 
     private void renderBranding(RenderContext ctx, Theme theme, TitleMenuLayout layout, float fade) {
         ctx.setDrawOpacity(fade);
-        PrimeLogo.draw(ctx, layout.logoX(), layout.logoY(), layout.logoH(), 0xFFFFFFFF);
+        ValerisLogo.draw(ctx, layout.logoX(), layout.logoY(), layout.logoH(), 0xFFFFFFFF);
         ctx.setDrawOpacity(1f);
     }
 
@@ -65,7 +65,7 @@ public final class TitleMenuRenderer {
                                double mouseX, double mouseY, float fade) {
         ctx.setDrawOpacity(fade);
         for (int i = 0; i < MENU_BUTTON_COUNT; i++) {
-            String label = PrimeLang.get(LABEL_KEYS[i], LABEL_FALLBACKS[i]);
+            String label = ValerisLang.get(LABEL_KEYS[i], LABEL_FALLBACKS[i]);
             drawMenuButton(ctx, theme, label, layout.buttonX(), layout.buttonTop(i),
                     layout.buttonW(), layout.buttonH(), mouseX, mouseY, i == 2);
         }
@@ -75,7 +75,7 @@ public final class TitleMenuRenderer {
     private void drawMenuButton(RenderContext ctx, Theme theme, String label,
                                 int x, int y, int w, int h, double mouseX, double mouseY, boolean featured) {
         boolean hover = mouseX >= x && mouseX < x + w && mouseY >= y && mouseY < y + h;
-        int radius = PrimeDesign.RADIUS_SM;
+        int radius = ValerisDesign.RADIUS_SM;
 
         if (featured) {
             ctx.fillRoundedRect(x, y, w, h, radius, theme.accent());
@@ -103,7 +103,7 @@ public final class TitleMenuRenderer {
 
     private void renderQuitLink(RenderContext ctx, Theme theme, TitleMenuLayout layout,
                                 double mouseX, double mouseY, float fade) {
-        String label = PrimeLang.get("prime.gui.title.quit", "Quit Game");
+        String label = ValerisLang.get("valeris.gui.title.quit", "Quit Game");
         float scale = 0.88f;
         int textW = ctx.smoothTextWidth(label, scale);
         int x = (ctx.screenWidth() - textW) / 2;
@@ -119,7 +119,7 @@ public final class TitleMenuRenderer {
     private void renderFooter(RenderContext ctx, Theme theme, String minecraftVersion,
                               String clientVersion, TitleMenuLayout layout, float fade) {
         ctx.setDrawOpacity(fade * 0.75f);
-        String footer = PrimeLang.get("prime.gui.title.footer", "ValerisClient %1$s  ·  Minecraft %2$s",
+        String footer = ValerisLang.get("valeris.gui.title.footer", "ValerisClient %1$s  ·  Minecraft %2$s",
                 clientVersion, minecraftVersion);
         float scale = 0.78f;
         int footerW = ctx.smoothTextWidth(footer, scale);

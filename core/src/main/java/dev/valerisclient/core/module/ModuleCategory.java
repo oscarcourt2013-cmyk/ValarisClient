@@ -1,6 +1,6 @@
 package dev.valerisclient.core.module;
 
-import dev.valerisclient.core.i18n.PrimeLang;
+import dev.valerisclient.core.i18n.ValerisLang;
 
 /** The seven ValerisClient module families, in ClickGUI display order. */
 public enum ModuleCategory {
@@ -23,7 +23,7 @@ public enum ModuleCategory {
     }
 
     public String displayName() {
-        return PrimeLang.category(this, displayName);
+        return ValerisLang.category(this, displayName);
     }
 
     public String icon() {

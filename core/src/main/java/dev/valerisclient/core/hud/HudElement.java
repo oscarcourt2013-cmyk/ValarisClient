@@ -1,7 +1,7 @@
 package dev.valerisclient.core.hud;
 
 import dev.valerisclient.core.adapter.RenderContext;
-import dev.valerisclient.core.i18n.PrimeLang;
+import dev.valerisclient.core.i18n.ValerisLang;
 
 /**
  * One movable HUD component (FPS counter, keystrokes, notifications, ...).
@@ -67,7 +67,7 @@ public abstract class HudElement {
     }
 
     public final String name() {
-        return PrimeLang.hud(id, name);
+        return ValerisLang.hud(id, name);
     }
 
     public final HudAnchor anchor() {

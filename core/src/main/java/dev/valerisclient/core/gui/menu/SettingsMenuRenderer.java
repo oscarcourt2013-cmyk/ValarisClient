@@ -3,11 +3,11 @@ package dev.valerisclient.core.gui.menu;
 import dev.valerisclient.core.adapter.MinecraftAdapter;
 import dev.valerisclient.core.adapter.RenderContext;
 import dev.valerisclient.core.cloud.CloudSyncManager;
-import dev.valerisclient.core.design.PrimeDesign;
-import dev.valerisclient.core.design.PrimeLogo;
+import dev.valerisclient.core.design.ValerisDesign;
+import dev.valerisclient.core.design.ValerisLogo;
 import dev.valerisclient.core.gui.GuiLayout;
 import dev.valerisclient.core.gui.UiChrome;
-import dev.valerisclient.core.i18n.PrimeLang;
+import dev.valerisclient.core.i18n.ValerisLang;
 import dev.valerisclient.core.keybind.KeyNames;
 import dev.valerisclient.core.keybind.Keybind;
 import dev.valerisclient.core.keybind.KeybindManager;
@@ -39,11 +39,11 @@ public final class SettingsMenuRenderer {
 
         Category(String label) {
             this.label = label;
-            this.key = "prime.gui.settings.tab." + name().toLowerCase();
+            this.key = "valeris.gui.settings.tab." + name().toLowerCase();
         }
 
         String translated() {
-            return PrimeLang.get(key, label);
+            return ValerisLang.get(key, label);
         }
     }
 
@@ -109,7 +109,7 @@ public final class SettingsMenuRenderer {
         int x = (screenW - panelW) / 2;
         int y = (screenH - panelH) / 2;
         UiChrome.glassPanel(ctx, theme, x, y, panelW, panelH);
-        GuiLayout.label(ctx, PrimeLang.get("prime.gui.settings.title", "Settings"), x + 12, y + 10, theme.accent());
+        GuiLayout.label(ctx, ValerisLang.get("valeris.gui.settings.title", "Settings"), x + 12, y + 10, theme.accent());
 
         int tabY = y + 28;
         int tabX = x + 8;
@@ -126,7 +126,7 @@ public final class SettingsMenuRenderer {
                 tabY += 16;
                 tabsInRow = 0;
             }
-            ctx.fillRoundedRect(tabX, tabY, tw, 14, PrimeDesign.RADIUS_SM,
+            ctx.fillRoundedRect(tabX, tabY, tw, 14, ValerisDesign.RADIUS_SM,
                     sel ? theme.surfaceElevated() : theme.backgroundLight());
             GuiLayout.label(ctx, cat.translated(), tabX + 5, tabY + 3, sel ? theme.accent() : theme.foregroundMuted());
             tabX += tw + 4;
@@ -140,89 +140,89 @@ public final class SettingsMenuRenderer {
         switch (active) {
             case GENERAL -> {
                 row(ctx, theme, x + 12, rowY,
-                        PrimeLang.get("prime.gui.settings.row.profile", "Profile"), profiles.activeProfile());
+                        ValerisLang.get("valeris.gui.settings.row.profile", "Profile"), profiles.activeProfile());
                 rowY += 16;
                 row(ctx, theme, x + 12, rowY,
-                        PrimeLang.get("prime.gui.settings.row.minecraft", "Minecraft"), adapter.minecraftVersion());
+                        ValerisLang.get("valeris.gui.settings.row.minecraft", "Minecraft"), adapter.minecraftVersion());
                 rowY += 16;
                 String sync = cloud.autoSync()
-                        ? PrimeLang.get("prime.gui.settings.cloud_sync.enabled", "Enabled")
-                        : PrimeLang.get("prime.gui.settings.cloud_sync.disabled", "Disabled");
+                        ? ValerisLang.get("valeris.gui.settings.cloud_sync.enabled", "Enabled")
+                        : ValerisLang.get("valeris.gui.settings.cloud_sync.disabled", "Disabled");
                 row(ctx, theme, x + 12, rowY,
-                        PrimeLang.get("prime.gui.settings.row.cloud_sync", "Local backup"), sync);
+                        ValerisLang.get("valeris.gui.settings.row.cloud_sync", "Local backup"), sync);
             }
             case APPEARANCE -> {
                 row(ctx, theme, x + 12, rowY,
-                        PrimeLang.get("prime.gui.settings.row.active_theme", "Active theme"), themes.active().name());
+                        ValerisLang.get("valeris.gui.settings.row.active_theme", "Active theme"), themes.active().name());
                 rowY += 18;
                 drawThemeChip(ctx, theme, themes, "prime-crimson",
-                        PrimeLang.get("prime.gui.settings.theme.crimson", "Crimson"),
+                        ValerisLang.get("valeris.gui.settings.theme.crimson", "Crimson"),
                         x + 12, rowY, 100);
                 drawThemeChip(ctx, theme, themes, "prime-midnight",
-                        PrimeLang.get("prime.gui.settings.theme.midnight", "Midnight"),
+                        ValerisLang.get("valeris.gui.settings.theme.midnight", "Midnight"),
                         x + 118, rowY, 100);
                 drawThemeChip(ctx, theme, themes, "prime-aurora",
-                        PrimeLang.get("prime.gui.settings.theme.aurora", "Aurora"),
+                        ValerisLang.get("valeris.gui.settings.theme.aurora", "Aurora"),
                         x + 224, rowY, 100);
                 rowY += 20;
                 drawThemeChip(ctx, theme, themes, "prime-obsidian",
-                        PrimeLang.get("prime.gui.settings.theme.obsidian", "Obsidian"),
+                        ValerisLang.get("valeris.gui.settings.theme.obsidian", "Obsidian"),
                         x + 12, rowY, 100);
                 drawThemeChip(ctx, theme, themes, "prime-ember",
-                        PrimeLang.get("prime.gui.settings.theme.ember", "Ember"),
+                        ValerisLang.get("valeris.gui.settings.theme.ember", "Ember"),
                         x + 118, rowY, 100);
             }
             case PERFORMANCE -> row(ctx, theme, x + 12, rowY,
-                    PrimeLang.get("prime.gui.settings.row.tip", "Tip"),
-                    PrimeLang.get("prime.gui.settings.tip.performance", "Use Performance Profiles module"));
+                    ValerisLang.get("valeris.gui.settings.row.tip", "Tip"),
+                    ValerisLang.get("valeris.gui.settings.tip.performance", "Use Performance Profiles module"));
             case CONTROLS -> renderControls(ctx, theme, keybinds, x, rowY, panelW, contentBottom);
             case ACCOUNT -> {
                 row(ctx, theme, x + 12, rowY,
-                        PrimeLang.get("prime.gui.settings.row.player", "Player"), adapter.playerName());
+                        ValerisLang.get("valeris.gui.settings.row.player", "Player"), adapter.playerName());
                 rowY += 16;
                 String type = adapter.sessionAccountType();
                 row(ctx, theme, x + 12, rowY,
-                        PrimeLang.get("prime.gui.settings.row.session", "Session"),
+                        ValerisLang.get("valeris.gui.settings.row.session", "Session"),
                         type == null || type.isBlank() ? "—" : type);
                 rowY += 22;
                 boolean canSwitch = !adapter.isInGame();
                 boolean hover = canSwitch && mouseX >= x + 12 && mouseX < x + 168
                         && mouseY >= rowY && mouseY < rowY + 20;
                 UiChrome.button(ctx, theme, x + 12, rowY, 156, 20, hover, canSwitch);
-                String btn = PrimeLang.get("prime.gui.settings.account.switch", "Switch account…");
+                String btn = ValerisLang.get("valeris.gui.settings.account.switch", "Switch account…");
                 GuiLayout.label(ctx, btn, x + 20, rowY + 6,
                         canSwitch ? theme.foreground() : theme.foregroundMuted());
                 rowY += 26;
                 GuiLayout.label(ctx, GuiLayout.trimToWidth(ctx,
                                 canSwitch
-                                        ? PrimeLang.get("prime.gui.settings.account.switch_hint",
+                                        ? ValerisLang.get("valeris.gui.settings.account.switch_hint",
                                         "Uses accounts from the ValerisClient Launcher")
-                                        : PrimeLang.get("prime.gui.settings.account.in_world",
+                                        : ValerisLang.get("valeris.gui.settings.account.in_world",
                                         "Return to the title screen to switch accounts"),
                                 panelW - 40),
                         x + 12, rowY, theme.foregroundMuted());
             }
             case PRIVACY -> row(ctx, theme, x + 12, rowY,
-                    PrimeLang.get("prime.gui.settings.row.data", "Data"),
-                    PrimeLang.get("prime.gui.settings.privacy.hint", "Configs stored locally only"));
+                    ValerisLang.get("valeris.gui.settings.row.data", "Data"),
+                    ValerisLang.get("valeris.gui.settings.privacy.hint", "Configs stored locally only"));
             case ABOUT -> {
-                PrimeLogo.draw(ctx, x + 12, rowY, 14, 0xFFFFFFFF);
-                row(ctx, theme, x + 12 + PrimeLogo.widthForHeight(14) + 6, rowY + 2,
-                        PrimeLang.get("prime.gui.settings.about.client", "ValerisClient"),
-                        PrimeLang.get("prime.gui.settings.about.version", "v%s", PrimeDesign.VERSION));
+                ValerisLogo.draw(ctx, x + 12, rowY, 14, 0xFFFFFFFF);
+                row(ctx, theme, x + 12 + ValerisLogo.widthForHeight(14) + 6, rowY + 2,
+                        ValerisLang.get("valeris.gui.settings.about.client", "ValerisClient"),
+                        ValerisLang.get("valeris.gui.settings.about.version", "v%s", ValerisDesign.VERSION));
                 rowY += 20;
                 row(ctx, theme, x + 12, rowY,
-                        PrimeLang.get("prime.gui.settings.about.legitimate", "Legitimate client"),
-                        PrimeLang.get("prime.gui.settings.about.tagline", "Visual & QoL only"));
+                        ValerisLang.get("valeris.gui.settings.about.legitimate", "Legitimate client"),
+                        ValerisLang.get("valeris.gui.settings.about.tagline", "Visual & QoL only"));
             }
         }
         ctx.popClip();
 
         String footer = active == Category.CONTROLS
-                ? PrimeLang.get("prime.gui.settings.keybinds.footer",
+                ? ValerisLang.get("valeris.gui.settings.keybinds.footer",
                 "Click key to rebind · Backspace clears · Scroll for more")
                 : (search.isEmpty()
-                ? PrimeLang.get("prime.gui.settings.search.placeholder", "Search settings...")
+                ? ValerisLang.get("valeris.gui.settings.search.placeholder", "Search settings...")
                 : search.toString());
         GuiLayout.label(ctx, GuiLayout.trimToWidth(ctx, footer, panelW - 24),
                 x + 12, y + panelH - 18, theme.foregroundMuted());
@@ -247,10 +247,10 @@ public final class SettingsMenuRenderer {
             GuiLayout.label(ctx, GuiLayout.trimToWidth(ctx, bind.displayName(), 130),
                     x + 12, drawY + 3, theme.foreground());
             int btnX = x + panelW - KEY_BTN_W - 20;
-            ctx.fillRoundedRect(btnX, drawY, KEY_BTN_W, 14, PrimeDesign.RADIUS_SM,
+            ctx.fillRoundedRect(btnX, drawY, KEY_BTN_W, 14, ValerisDesign.RADIUS_SM,
                     listening ? theme.accent() : theme.backgroundLight());
             String label = listening
-                    ? PrimeLang.get("prime.gui.settings.keybinds.listening", "Press a key…")
+                    ? ValerisLang.get("valeris.gui.settings.keybinds.listening", "Press a key…")
                     : KeyNames.glfwName(bind.key());
             int textColor = listening ? theme.background() : theme.foreground();
             GuiLayout.label(ctx, GuiLayout.trimToWidth(ctx, label, KEY_BTN_W - 8),
@@ -399,7 +399,7 @@ public final class SettingsMenuRenderer {
     private static void drawThemeChip(RenderContext ctx, Theme theme, ThemeManager themes,
                                       String themeId, String label, int x, int y, int w) {
         boolean selected = themeId.equals(themes.active().id());
-        ctx.fillRoundedRect(x, y, w, 16, PrimeDesign.RADIUS_SM,
+        ctx.fillRoundedRect(x, y, w, 16, ValerisDesign.RADIUS_SM,
                 selected ? theme.accent() : theme.backgroundLight());
         GuiLayout.label(ctx, label, x + 6, y + 4,
                 selected ? theme.foreground() : theme.foregroundMuted());

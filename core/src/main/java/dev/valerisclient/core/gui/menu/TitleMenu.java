@@ -2,7 +2,7 @@ package dev.valerisclient.core.gui.menu;
 
 import dev.valerisclient.core.adapter.MinecraftAdapter;
 import dev.valerisclient.core.adapter.RenderContext;
-import dev.valerisclient.core.design.PrimeDesign;
+import dev.valerisclient.core.design.ValerisDesign;
 import dev.valerisclient.core.theme.Theme;
 public final class TitleMenu {
 
@@ -41,7 +41,7 @@ public final class TitleMenu {
             switch (top) {
                 case DISCORD -> adapter.openExternalLink(TitleMenuTopBar.discordUrl());
                 case VANILLA -> adapter.openVanillaTitleScreen();
-                case SETTINGS -> adapter.openPrimeSettings();
+                case SETTINGS -> adapter.openValerisSettings();
                 case PROFILE -> adapter.openAccountSwitcher();
             }
             return true;

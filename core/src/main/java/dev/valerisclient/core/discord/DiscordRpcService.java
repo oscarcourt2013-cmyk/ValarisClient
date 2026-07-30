@@ -1,9 +1,9 @@
 package dev.valerisclient.core.discord;
 
-import dev.valerisclient.core.account.PrimeAccountService;
+import dev.valerisclient.core.account.ValerisAccountService;
 import dev.valerisclient.core.adapter.MinecraftAdapter;
-import dev.valerisclient.core.design.PrimeDesign;
-import dev.valerisclient.core.i18n.PrimeLang;
+import dev.valerisclient.core.design.ValerisDesign;
+import dev.valerisclient.core.i18n.ValerisLang;
 import dev.valerisclient.core.discord.ipc.DiscordIpcClient;
 import dev.valerisclient.core.module.Module;
 import dev.valerisclient.core.module.ModuleManager;
@@ -69,7 +69,7 @@ public final class DiscordRpcService {
         menuSinceMillis = System.currentTimeMillis();
     }
 
-    public void tick(MinecraftAdapter adapter, ModuleManager modules, PrimeAccountService account) {
+    public void tick(MinecraftAdapter adapter, ModuleManager modules, ValerisAccountService account) {
         if (!running) {
             return;
         }
@@ -81,7 +81,7 @@ public final class DiscordRpcService {
         publishIfChanged(buildSnapshot(adapter, modules, account));
     }
 
-    public void forceUpdate(MinecraftAdapter adapter, ModuleManager modules, PrimeAccountService account) {
+    public void forceUpdate(MinecraftAdapter adapter, ModuleManager modules, ValerisAccountService account) {
         if (!running) {
             return;
         }
@@ -102,12 +102,12 @@ public final class DiscordRpcService {
     }
 
     DiscordPresenceSnapshot buildSnapshot(MinecraftAdapter adapter, ModuleManager modules,
-                                          PrimeAccountService account) {
+                                          ValerisAccountService account) {
         String mcVersion = adapter.minecraftVersion();
-        String primeVersion = PrimeDesign.VERSION;
+        String valerisVersion = ValerisDesign.VERSION;
 
         if (!adapter.isInGame() || !adapter.hasPlayer()) {
-            return menuPresence(mcVersion, primeVersion, adapter);
+            return menuPresence(mcVersion, valerisVersion, adapter);
         }
 
         String server = adapter.serverAddress();
@@ -115,12 +115,12 @@ public final class DiscordRpcService {
                 || "Singleplayer".equalsIgnoreCase(server);
 
         String details = singleplayer
-                ? PrimeLang.get("prime.discord.singleplayer", "Singleplayer")
+                ? ValerisLang.get("valeris.discord.singleplayer", "Singleplayer")
                 : serverLabel(server);
 
         String state = buildInGameState(adapter, modules, account, singleplayer);
         if (state.isEmpty()) {
-            state = PrimeLang.get("prime.discord.playing_minecraft", "Playing Minecraft");
+            state = ValerisLang.get("valeris.discord.playing_minecraft", "Playing Minecraft");
         }
 
         Long start = settings.showSessionTime()
@@ -133,7 +133,7 @@ public final class DiscordRpcService {
                 details,
                 state,
                 "prime_logo",
-                PrimeLang.get("prime.discord.client_version", "ValerisClient v%s", primeVersion),
+                ValerisLang.get("valeris.discord.client_version", "ValerisClient v%s", valerisVersion),
                 "",
                 "",
                 start,
@@ -142,7 +142,7 @@ public final class DiscordRpcService {
     }
 
     private String buildInGameState(MinecraftAdapter adapter, ModuleManager modules,
-                                    PrimeAccountService account, boolean singleplayer) {
+                                    ValerisAccountService account, boolean singleplayer) {
         List<String> parts = new ArrayList<>(4);
 
         if (settings.showHealth()) {
@@ -159,10 +159,10 @@ public final class DiscordRpcService {
             parts.add(account.tier().name());
         }
         if (settings.showModuleCount()) {
-            parts.add(PrimeLang.get("prime.discord.modules_short", "%d mods", countEnabled(modules)));
+            parts.add(ValerisLang.get("valeris.discord.modules_short", "%d mods", countEnabled(modules)));
         }
         if (settings.showFps()) {
-            parts.add(PrimeLang.get("prime.discord.fps", "%d FPS", adapter.fps()));
+            parts.add(ValerisLang.get("valeris.discord.fps", "%d FPS", adapter.fps()));
         }
         if (settings.showBiome()) {
             String biome = adapter.biomeName();
@@ -189,30 +189,30 @@ public final class DiscordRpcService {
         return String.join(STATE_SEP, parts);
     }
 
-    private DiscordPresenceSnapshot menuPresence(String mcVersion, String primeVersion,
+    private DiscordPresenceSnapshot menuPresence(String mcVersion, String valerisVersion,
                                                    MinecraftAdapter adapter) {
         String details = adapter.isScreenOpen()
-                ? PrimeLang.get("prime.discord.browsing_menus", "Browsing menus")
-                : PrimeLang.get("prime.discord.main_menu", "In Main Menu");
-        String state = PrimeLang.get("prime.discord.state_menu", "Minecraft %1$s · Valeris v%2$s",
-                mcVersion, primeVersion);
+                ? ValerisLang.get("valeris.discord.browsing_menus", "Browsing menus")
+                : ValerisLang.get("valeris.discord.main_menu", "In Main Menu");
+        String state = ValerisLang.get("valeris.discord.state_menu", "Minecraft %1$s · Valeris v%2$s",
+                mcVersion, valerisVersion);
         if (settings.showFps()) {
-            state += STATE_SEP + PrimeLang.get("prime.discord.fps", "%d FPS", adapter.fps());
+            state += STATE_SEP + ValerisLang.get("valeris.discord.fps", "%d FPS", adapter.fps());
         }
         Long start = settings.showSessionTime() ? menuSinceMillis / 1000L : null;
         return new DiscordPresenceSnapshot(
                 details,
                 state,
                 "prime_logo",
-                PrimeLang.get("prime.discord.client_version", "ValerisClient v%s", primeVersion),
+                ValerisLang.get("valeris.discord.client_version", "ValerisClient v%s", valerisVersion),
                 "",
                 "",
                 start,
                 List.of(
                         new DiscordPresenceSnapshot.Button(
-                                PrimeLang.get("prime.discord.button.website", "Website"), WEBSITE_URL),
+                                ValerisLang.get("valeris.discord.button.website", "Website"), WEBSITE_URL),
                         new DiscordPresenceSnapshot.Button(
-                                PrimeLang.get("prime.discord.button.download", "Download"), DOWNLOAD_URL)
+                                ValerisLang.get("valeris.discord.button.download", "Download"), DOWNLOAD_URL)
                 )
         );
     }
@@ -220,14 +220,14 @@ public final class DiscordRpcService {
     private List<DiscordPresenceSnapshot.Button> buildButtons(String server, boolean singleplayer) {
         List<DiscordPresenceSnapshot.Button> buttons = new ArrayList<>(2);
         buttons.add(new DiscordPresenceSnapshot.Button(
-                PrimeLang.get("prime.discord.button.website", "Website"), WEBSITE_URL));
+                ValerisLang.get("valeris.discord.button.website", "Website"), WEBSITE_URL));
         if (!singleplayer && settings.showServerIp() && server != null && !server.isBlank()) {
             buttons.add(new DiscordPresenceSnapshot.Button(
-                    PrimeLang.get("prime.discord.button.server_status", "Server Status"),
+                    ValerisLang.get("valeris.discord.button.server_status", "Server Status"),
                     serverStatusUrl(server)));
         } else {
             buttons.add(new DiscordPresenceSnapshot.Button(
-                    PrimeLang.get("prime.discord.button.download", "Download"), DOWNLOAD_URL));
+                    ValerisLang.get("valeris.discord.button.download", "Download"), DOWNLOAD_URL));
         }
         return buttons;
     }
@@ -235,7 +235,7 @@ public final class DiscordRpcService {
     /** Prefer partner brand name, else clean hostname (no redundant "Playing on"). */
     private String serverLabel(String server) {
         if (!settings.showServerIp()) {
-            return PrimeLang.get("prime.discord.multiplayer", "Multiplayer");
+            return ValerisLang.get("valeris.discord.multiplayer", "Multiplayer");
         }
         String partner = PartnerServers.partnerLabel(server);
         if (partner != null) {

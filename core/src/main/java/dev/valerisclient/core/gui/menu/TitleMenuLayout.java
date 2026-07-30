@@ -1,6 +1,6 @@
 package dev.valerisclient.core.gui.menu;
 
-import dev.valerisclient.core.design.PrimeLogo;
+import dev.valerisclient.core.design.ValerisLogo;
 
 /** Compact Feather-style title menu geometry. */
 record TitleMenuLayout(
@@ -34,7 +34,7 @@ record TitleMenuLayout(
                 MENU_W,
                 BUTTON_H,
                 BUTTON_GAP,
-                (screenWidth - PrimeLogo.widthForHeight(logoH)) / 2,
+                (screenWidth - ValerisLogo.widthForHeight(logoH)) / 2,
                 startY,
                 logoH,
                 startY + headerBlock + stackH + quitGap,

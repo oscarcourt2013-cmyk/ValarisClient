@@ -1,7 +1,7 @@
 package dev.valerisclient.core.gui.clickgui;
 
 import dev.valerisclient.core.adapter.RenderContext;
-import dev.valerisclient.core.design.PrimeDesign;
+import dev.valerisclient.core.design.ValerisDesign;
 import dev.valerisclient.core.gui.FavoritesManager;
 import dev.valerisclient.core.gui.GuiLayout;
 import dev.valerisclient.core.gui.UiChrome;
@@ -184,7 +184,7 @@ public final class ModuleCardBrowser {
             int textY = y + (TAB_H - ctx.uiFontHeight()) / 2 + 1;
             GuiLayout.label(ctx, GuiLayout.trimToWidth(ctx, cat.displayName(), tw - TAB_PAD + 8),
                     tabX + TAB_PAD / 2, textY, textColor);
-            tabX += tw + PrimeDesign.SPACE_XS;
+            tabX += tw + ValerisDesign.SPACE_XS;
         }
     }
 
@@ -228,7 +228,7 @@ public final class ModuleCardBrowser {
                     ColorUtil.withAlpha(theme.border(), 0.6f));
             if (optionsHover || sel) {
                 ctx.fillRoundedRect(x + 2, y + options[1], Math.max(0, cardW - 4), options[3],
-                        PrimeDesign.RADIUS_SM,
+                        ValerisDesign.RADIUS_SM,
                         ColorUtil.withAlpha(theme.accent(), optionsHover ? 0.22f : 0.12f));
             }
             int optionsColor = optionsHover || sel ? theme.foreground() : theme.foregroundMuted();
@@ -294,7 +294,7 @@ public final class ModuleCardBrowser {
                     scrollY = 0;
                     return true;
                 }
-                tabX += tw + PrimeDesign.SPACE_XS;
+                tabX += tw + ValerisDesign.SPACE_XS;
             }
         }
 

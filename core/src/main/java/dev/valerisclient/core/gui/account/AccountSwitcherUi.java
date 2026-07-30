@@ -5,9 +5,9 @@ import dev.valerisclient.core.account.LauncherAccountStore;
 import dev.valerisclient.core.account.LauncherAccountStore.AccountEntry;
 import dev.valerisclient.core.adapter.MinecraftAdapter;
 import dev.valerisclient.core.adapter.RenderContext;
-import dev.valerisclient.core.design.PrimeDesign;
+import dev.valerisclient.core.design.ValerisDesign;
 import dev.valerisclient.core.gui.UiChrome;
-import dev.valerisclient.core.i18n.PrimeLang;
+import dev.valerisclient.core.i18n.ValerisLang;
 import dev.valerisclient.core.theme.Theme;
 import dev.valerisclient.core.util.ColorUtil;
 
@@ -56,7 +56,7 @@ public final class AccountSwitcherUi {
         UiChrome.glassPanel(ctx, theme, x, y, PANEL_W, panelH);
 
         ctx.drawSmoothText(
-                PrimeLang.get("prime.gui.account.title", "Switch Account"),
+                ValerisLang.get("valeris.gui.account.title", "Switch Account"),
                 x + PAD, y + 14, theme.foreground(), 1.12f);
 
         String current = adapter.playerName();
@@ -65,7 +65,7 @@ public final class AccountSwitcherUi {
             String chip = current + (type == null || type.isBlank() ? "" : " · " + typeLabel(type));
             int chipW = ctx.smoothTextWidth(chip, 0.78f) + 16;
             int chipX = x + PANEL_W - PAD - chipW;
-            ctx.fillRoundedRect(chipX, y + 12, chipW, 18, PrimeDesign.RADIUS_SM,
+            ctx.fillRoundedRect(chipX, y + 12, chipW, 18, ValerisDesign.RADIUS_SM,
                     ColorUtil.withAlpha(theme.accent(), 0.22f));
             ctx.drawSmoothText(chip, chipX + 8, y + 16, theme.accent(), 0.78f);
         }
@@ -82,10 +82,10 @@ public final class AccountSwitcherUi {
 
         if (accounts.isEmpty()) {
             ctx.drawSmoothText(
-                    PrimeLang.get("prime.gui.account.empty", "No launcher accounts found."),
+                    ValerisLang.get("valeris.gui.account.empty", "No launcher accounts found."),
                     x + PAD + 12, listTop + 16, theme.foreground(), 0.9f);
             ctx.drawSmoothText(
-                    PrimeLang.get("prime.gui.account.empty_hint",
+                    ValerisLang.get("valeris.gui.account.empty_hint",
                             "Sign in from the ValerisClient Launcher, or add an offline name below."),
                     x + PAD + 12, listTop + 34, theme.foregroundMuted(), 0.78f);
         } else {
@@ -101,7 +101,7 @@ public final class AccountSwitcherUi {
                         || a.username().equalsIgnoreCase(current);
                 if (hover || active) {
                     ctx.fillRoundedRect(x + PAD + 4, rowY + 3, PANEL_W - PAD * 2 - 8, ROW_H - 6,
-                            PrimeDesign.RADIUS_SM,
+                            ValerisDesign.RADIUS_SM,
                             ColorUtil.withAlpha(active ? theme.accent() : theme.backgroundLight(),
                                     active ? 0.32f : 0.5f));
                 }
@@ -114,15 +114,15 @@ public final class AccountSwitcherUi {
 
                 ctx.drawSmoothText(a.username(), x + PAD + 40, rowY + 8, theme.foreground(), 0.9f);
                 String meta = a.microsoft()
-                        ? PrimeLang.get("prime.gui.account.type.microsoft", "Microsoft")
-                        : PrimeLang.get("prime.gui.account.type.offline", "Offline");
+                        ? ValerisLang.get("valeris.gui.account.type.microsoft", "Microsoft")
+                        : ValerisLang.get("valeris.gui.account.type.offline", "Offline");
                 if (active) {
-                    meta += " · " + PrimeLang.get("prime.gui.account.active", "Active");
+                    meta += " · " + ValerisLang.get("valeris.gui.account.active", "Active");
                 }
                 ctx.drawSmoothText(meta, x + PAD + 40, rowY + 20, theme.foregroundMuted(), 0.72f);
 
                 if (hover && !busy) {
-                    String action = PrimeLang.get("prime.gui.account.use", "Use →");
+                    String action = ValerisLang.get("valeris.gui.account.use", "Use →");
                     int aw = ctx.smoothTextWidth(action, 0.78f);
                     ctx.drawSmoothText(action, x + PANEL_W - PAD - 12 - aw, rowY + 12, theme.accent(), 0.78f);
                 }
@@ -130,11 +130,11 @@ public final class AccountSwitcherUi {
         }
 
         int fieldY = y + panelH - 78;
-        ctx.fillRoundedRect(x + PAD, fieldY, PANEL_W - PAD * 2 - 86, 28, PrimeDesign.RADIUS_SM,
+        ctx.fillRoundedRect(x + PAD, fieldY, PANEL_W - PAD * 2 - 86, 28, ValerisDesign.RADIUS_SM,
                 ColorUtil.withAlpha(theme.background(), 0.55f));
-        ctx.fillRoundedBorder(x + PAD, fieldY, PANEL_W - PAD * 2 - 86, 28, PrimeDesign.RADIUS_SM, 1,
+        ctx.fillRoundedBorder(x + PAD, fieldY, PANEL_W - PAD * 2 - 86, 28, ValerisDesign.RADIUS_SM, 1,
                 ColorUtil.withAlpha(theme.border(), 0.45f), ColorUtil.withAlpha(theme.background(), 0.55f));
-        String placeholder = PrimeLang.get("prime.gui.account.offline_hint", "Offline name…");
+        String placeholder = ValerisLang.get("valeris.gui.account.offline_hint", "Offline name…");
         String fieldText = draftName.isEmpty()
                 ? placeholder
                 : draftName + (System.currentTimeMillis() / 500 % 2 == 0 ? "|" : "");
@@ -143,7 +143,7 @@ public final class AccountSwitcherUi {
 
         boolean addHover = !busy && hit(mouseX, mouseY, x + PANEL_W - PAD - 78, fieldY, 78, 28);
         UiChrome.button(ctx, theme, x + PANEL_W - PAD - 78, fieldY, 78, 28, addHover, true);
-        String addLabel = PrimeLang.get("prime.gui.account.add", "Add");
+        String addLabel = ValerisLang.get("valeris.gui.account.add", "Add");
         int tw = ctx.smoothTextWidth(addLabel, 0.88f);
         ctx.drawSmoothText(addLabel, x + PANEL_W - PAD - 78 + (78 - tw) / 2, fieldY + 8,
                 0xFFFFFFFF, 0.88f);
@@ -153,11 +153,11 @@ public final class AccountSwitcherUi {
                     statusError ? 0xFFFF6B6B : theme.foregroundMuted(), 0.78f);
         } else if (busy) {
             ctx.drawSmoothText(
-                    PrimeLang.get("prime.gui.account.switching", "Switching…"),
+                    ValerisLang.get("valeris.gui.account.switching", "Switching…"),
                     x + PAD, y + panelH - 28, theme.accent(), 0.78f);
         } else {
             ctx.drawSmoothText(
-                    PrimeLang.get("prime.gui.account.hint", "Click an account · Esc to close"),
+                    ValerisLang.get("valeris.gui.account.hint", "Click an account · Esc to close"),
                     x + PAD, y + panelH - 28, theme.foregroundMuted(), 0.78f);
         }
     }
@@ -237,7 +237,7 @@ public final class AccountSwitcherUi {
         }
         Optional<AccountEntry> created = LauncherAccountStore.addOffline(draftName);
         if (created.isEmpty()) {
-            status = PrimeLang.get("prime.gui.account.invalid", "Invalid or duplicate name.");
+            status = ValerisLang.get("valeris.gui.account.invalid", "Invalid or duplicate name.");
             statusError = true;
             return;
         }
@@ -265,13 +265,13 @@ public final class AccountSwitcherUi {
                     if (ok) {
                         LauncherAccountStore.setActive(account.id());
                         reload();
-                        status = PrimeLang.get("prime.gui.account.switched", "Switched to")
+                        status = ValerisLang.get("valeris.gui.account.switched", "Switched to")
                                 + " " + payload.username();
                         statusError = false;
                         ValerisClient.get().notifications().success("Account", payload.username());
                         adapter.closeAccountSwitcher();
                     } else {
-                        status = PrimeLang.get("prime.gui.account.failed",
+                        status = ValerisLang.get("valeris.gui.account.failed",
                                 "Could not apply session (title screen only).");
                         statusError = true;
                     }
@@ -295,21 +295,21 @@ public final class AccountSwitcherUi {
         String raw = e.getMessage() == null ? "" : e.getMessage();
         String lower = raw.toLowerCase(Locale.ROOT);
         if (lower.contains("needs a launcher re-login") || lower.contains("refresh")) {
-            return PrimeLang.get("prime.gui.account.relogin",
+            return ValerisLang.get("valeris.gui.account.relogin",
                     "Microsoft session expired — sign in again in the launcher.");
         }
         if (lower.contains("http 400") || lower.contains("invalid_grant") || lower.contains("aadsts")) {
-            return PrimeLang.get("prime.gui.account.token_invalid",
+            return ValerisLang.get("valeris.gui.account.token_invalid",
                     "Microsoft token invalid — re-login in the ValerisClient Launcher.");
         }
         if (lower.contains("http 401") || lower.contains("unauthorized")) {
-            return PrimeLang.get("prime.gui.account.unauthorized",
+            return ValerisLang.get("valeris.gui.account.unauthorized",
                     "Xbox / Minecraft auth failed — check the account owns Java.");
         }
         if (raw.length() > 72) {
             return raw.substring(0, 69) + "…";
         }
-        return raw.isBlank() ? PrimeLang.get("prime.gui.account.failed", "Switch failed") : raw;
+        return raw.isBlank() ? ValerisLang.get("valeris.gui.account.failed", "Switch failed") : raw;
     }
 
     private static String typeLabel(String type) {
