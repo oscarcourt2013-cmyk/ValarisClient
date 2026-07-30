@@ -29,6 +29,24 @@ let exitHandled = false
 /** How long the JVM must stay alive before the launch counts as running. */
 const RUNNING_ANNOUNCE_DELAY_MS = 4000
 
+/**
+ * Whether this session ever actually spawned a game process.
+ *
+ * <p>isRunning() has a fallback for JVMs it cannot get a process handle for, and
+ * that fallback must not apply to a launch that never started anything --
+ * otherwise a failure reports as a running game.</p>
+ */
+let gameProcessSpawned = false
+
+/** Ends the session so isRunning() stops reporting a game that is not there. */
+function endLaunchSession(): void {
+  exitHandled = true
+  gameRunning = false
+  activeGameProcess = null
+  activeInstanceId = null
+  sessionStartedAt = 0
+}
+
 function isLikelyMinecraftProcess(command: unknown, args: unknown): boolean {
   const joined = Array.isArray(args) ? args.join(' ').toLowerCase() : ''
   // Require MC/Fabric markers — bare `java` matches installers and breaks running sync.
@@ -50,6 +68,7 @@ function trackGameProcess(proc: ChildProcess): void {
   }
   activeGameProcess = proc
   gameRunning = true
+  gameProcessSpawned = true
 
   // Spawning the JVM is not the same as launching the game: a mod or mapping
   // mismatch kills it in well under a second, and announcing 'running' on spawn
@@ -80,6 +99,7 @@ async function beginGameSession(instanceId: string): Promise<void> {
   sessionStartedAt = Date.now()
   intentionalKill = false
   exitHandled = false
+  gameProcessSpawned = false
   knownCrashReports = await snapshotCrashReports(getInstanceGameDir(instanceId))
 }
 
@@ -457,8 +477,10 @@ export class MinecraftEngine {
     if (processAlive(activeGameProcess)) {
       return true
     }
-    // Process handle can be missing on some JVMs — trust the session until exit is handled.
-    if (activeInstanceId != null && !exitHandled) {
+    // Process handle can be missing on some JVMs — trust the session until exit
+    // is handled, but only once a process has actually been spawned. Otherwise a
+    // launch that failed before starting anything reports as a running game.
+    if (activeInstanceId != null && !exitHandled && gameProcessSpawned) {
       return true
     }
     gameRunning = false
@@ -600,6 +622,11 @@ export class MinecraftEngine {
       await runMinecraftJavaCoreLaunch(launchOptions)
     } catch (err) {
       const message = formatLaunchError(err)
+      // Close the session before reporting. isRunning() falls back to "a session
+      // is open and no exit was handled" when it has no process handle, so
+      // leaving it open makes a failed launch read as a running game, and the
+      // renderer's poll flips the UI back to "running" over the error.
+      endLaunchSession()
       emitLaunchError(message, err)
       throw new Error(message)
     }
@@ -607,11 +634,19 @@ export class MinecraftEngine {
     gameRunning = processAlive(activeGameProcess) || gameRunning
     await instanceService.touchLastPlayed(instanceId)
 
-    emitLaunchProgress({
-      phase: 'running',
-      detail: `Minecraft running as ${account.username}`,
-      percent: 100
-    })
+    // Deliberately not announcing 'running' here. This point is reached when the
+    // backend has logged its command line, which is well before the game has
+    // loaded anything and says nothing about whether the JVM survived.
+    // trackGameProcess announces it once the process has proved it is still
+    // alive. Without a process handle there is nothing to verify, so say we are
+    // still waiting rather than claiming success.
+    if (!processAlive(activeGameProcess)) {
+      emitLaunchProgress({
+        phase: 'launch',
+        detail: 'Waiting for Minecraft to open…',
+        percent: 90
+      })
+    }
 
     return { username: account.username, primeModInstalled }
   }
